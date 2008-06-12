@@ -1,0 +1,88 @@
+<!--[* $Id: *]-->
+<!--[* Purpose of this template: popup selector for pnForm and Content integration *]-->
+
+<!--[if $modules eq 0]-->
+    <br />
+    <br />
+    <p class="centered">
+        <!--[pnml name="_MEDIAATTACH_DEFINITIONNOMODULES"]-->
+    </p>
+<!--[else]-->
+
+    <div id="<!--[$baseID]-->_preview" style="float: right; width: 300px; border: 1px dotted #a3a3a3; padding: .2em .5em; margin-right: 1em">
+        <p><strong><!--[pnml name="_MEDIAATTACH_FILEINFO"]--></strong></p>
+
+        <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]-->
+        <div id="<!--[$baseID]-->_previewcontainer">&nbsp;</div>
+    </div>
+
+    <br />
+    <br />
+    <!--[assign var="leftside" value=" style=\"float: left; width: 10em\""]-->
+    <!--[assign var="rightside" value=" style=\"float: left\""]-->
+    <!--[assign var="break" value=" style=\"clear: left\""]-->
+
+    <p>
+        <label for="<!--[$baseID]-->_did"<!--[$leftside]-->><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
+        <select id="<!--[$baseID]-->_did" name="<!--[$baseID]-->_did" onchange="mediaAttach.itemSelector.onParamChanged()"<!--[$rightside]-->>
+            <option value="0"><!--[pnml name="_ALL"]--></option>
+        <!--[foreach item="currentdef" from=$definitions]-->
+            <option value="<!--[$currentdef.did]-->"<!--[if $definitionid eq $currentdef.did]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
+        <!--[/foreach]-->
+        </select>
+        <br<!--[$break]--> />
+    </p>
+    <p>
+        <label for="<!--[$baseID]-->_catid"<!--[$leftside]-->><!--[pnml name="_CATEGORY"]-->:</label>
+        <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+        <!--[selector_category category=$mainCategory name="`$baseID`_catid" field="id" defaultText=$lblDef editLink=false selectedValue=$catID]-->
+        <br<!--[$break]--> />
+    </p>
+    <p>
+        <label for="<!--[$baseID]-->_fileid"<!--[$leftside]-->><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+        <select id="<!--[$baseID]-->_fileid" name="<!--[$baseID]-->" onchange="mediaAttach.itemSelector.onFileChanged()"<!--[$rightside]-->>
+            <!--[foreach item="file" from=$files]--><!--[strip]-->
+                <option value="<!--[$file.fileid]-->"<!--[if $selectedFileID eq $file.fileid]--> selected="selected"<!--[/if]-->>
+                    <!--[$file.title]--> (<!--[$file.extension]-->)
+                </option><!--[/strip]-->
+            <!--[foreachelse]-->
+                <option value="0"><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_NOENTRIES"]--></option>
+            <!--[/foreach]-->
+        </select>
+        <br<!--[$break]--> />
+    </p>
+    <p>
+        <label for="<!--[$baseID]-->_sortby"<!--[$leftside]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBY"]-->:</label>
+        <select id="<!--[$baseID]-->_sortby" name="sortby" onchange="mediaAttach.itemSelector.onParamChanged()"<!--[$rightside]-->>
+            <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYDATE"]--></option>
+            <option value="title"<!--[if $sortby eq "title"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYTITLE"]--></option>
+            <option value="module"<!--[if $sortby eq "module"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYMODULE"]--></option>
+            <option value="username"<!--[if $sortby eq "username"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYUSERNAME"]--></option>
+            <option value="filename"<!--[if $sortby eq "filename"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILENAME"]--></option>
+            <option value="filetype"<!--[if $sortby eq "filetype"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILETYPE"]--></option>
+            <option value="filesize"<!--[if $sortby eq "filesize"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILESIZE"]--></option>
+        </select>
+        <select id="<!--[$baseID]-->_sortdir" name="sortdir" onchange="mediaAttach.itemSelector.onParamChanged()">
+            <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRASC"]--></option>
+            <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRDESC"]--></option>
+        </select>
+        <br<!--[$break]--> />
+    </p>
+    <p>
+        <label for="<!--[$baseID]-->_filterby"<!--[$leftside]-->><!--[pnml name="_MEDIAATTACH_UPLOADFILTERBY"]-->:</label>
+        <input type="text" id="<!--[$baseID]-->_filterby" name="searchfor"<!--[$rightside]--> />
+        <input type="button" id="MediaAttach_gosearch" name="gosearch" value="<!--[pnml name="_SEARCH"]-->" onclick="mediaAttach.itemSelector.onParamChanged()" onkeypress="mediaAttach.itemSelector.onParamChanged()" />
+        <br<!--[$break]--> />
+    </p>
+
+    <br />
+    <br />
+
+    <script type="text/javascript" language="javascript">
+    /* <![CDATA[ */
+        Event.observe(window, 'load', function() {
+            mediaAttach.itemSelector.onLoad('<!--[$baseID]-->', <!--[$selectedFileID|default:0]-->);
+        });
+    /* ]]> */
+    </script>
+<!--[/if]-->

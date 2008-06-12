@@ -1,0 +1,179 @@
+<!--[* $Id: MediaAttach_admin_def_view.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Definition management *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="easymoblog.gif" set="icons/large" alt=_MEDIAATTACH_DEFINITIONDEFS altml=true]--></div>
+
+<!--[if $modules eq 0]-->
+    <p class="centered">
+        <!--[pnml name="_MEDIAATTACH_DEFINITIONNOMODULES"]-->
+    </p>
+<!--[else]-->
+    <h3><!--[pnimg src="easymoblog.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_DEFINITIONDEFS"]--></h3>
+
+    <!--[foreach item="currentdef" from=$definitions]-->
+        <div style="margin: 5px 20px; padding-left: 20px; padding-bottom: 20px; border: 1px solid #000">
+            <p style="font-weight: 700"><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)</p>
+
+            <!--[assign var="currentmod" value=$currentdef.modname]-->
+            <!--[if $currentdef.state eq 0]-->
+                <a id="new_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none">
+                    <!--[pnml name="_MEDIAATTACH_DEFINITIONNEW"]-->
+                </a>
+                <div id="new_definition<!--[$currentmod]-->">
+                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createdefinition"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+                        <fieldset>
+                            <legend><!--[pnml name="_MEDIAATTACH_DEFINITIONADD"]--></legend>
+                            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+                            <label for="MediaAttach_modname" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONMODNAME"]-->:</label>
+                            <p style="float: left"><!--[$currentmod]--></p>
+                            <input type="hidden" id="MediaAttach_modname" name="modname" value="<!--[$currentmod]-->" /><br />
+
+                            <label for="MediaAttach_groups<!--[$currentmod]-->" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONGROUPS"]-->:</label>
+                            <select id="MediaAttach_groups<!--[$currentmod]-->" name="groups[]" size="10" multiple="multiple" style="width: 150px">
+                                <!--[foreach item="currentgroup" from=$groups]-->
+                                    <option value="<!--[$currentgroup.gid]-->" selected="selected"><!--[$currentgroup.groupname]--></option>
+                                <!--[/foreach]-->
+                            </select><br /><br />
+
+                            <label for="MediaAttach_displayfiles" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONDSPFILES"]-->:</label>
+                            <select id="MediaAttach_displayfiles" name="displayfiles" size="1">
+                                <option value="0"><!--[pnml name="_MEDIAATTACH_NONE"]--></option>
+                                <option value="1"><!--[pnml name="_MEDIAATTACH_ONLYOWN"]--></option>
+                                <option value="2"><!--[pnml name="_MEDIAATTACH_ALL"]--></option>
+                            </select><br /><br />
+
+                            <input type="checkbox" id="MediaAttach_sendmails<!--[$currentmod]-->" name="sendmails" value="1" onclick="maCheckMailDiv('<!--[$currentmod]-->')" onkeyup="maCheckMailDiv('<!--[$currentmod]-->')" class="maadminright" />
+                            <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[pnml name="_MEDIAATTACH_DEFINITIONSENDMAILS"]--></label><br />
+                            <div id="divmail<!--[$currentmod]-->">
+                                <label for="MediaAttach_recipient" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONRECIPIENT"]-->:</label>
+                                <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" /><br />
+                            </div>
+                            <br />
+
+                            <label for="MediaAttach_maxsize" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONMAXSIZE"]-->:</label>
+                            <input type="text" id="MediaAttach_maxsize" name="maxsize" maxlength="20" value="2000" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_KB"]--><br />
+
+                            <label for="MediaAttach_downloadmode" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONDOWNLOADMODE"]-->:</label>
+                            <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
+                                <option value="0" selected="selected"><!--[pnml name="_MEDIAATTACH_DEFINITIONPHYSICAL"]--></option>
+                                <option value="1"><!--[pnml name="_MEDIAATTACH_DEFINITIONINLINE"]--></option>
+                            </select><br />
+
+                            <label for="MediaAttach_naming<!--[$currentmod]-->" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMING"]-->:</label>
+                            <select id="MediaAttach_naming<!--[$currentmod]-->" name="naming" size="1" onchange="maCheckNamingDiv('<!--[$currentmod]-->')" onblur="maCheckNamingDiv('<!--[$currentmod]-->')" onkeyup="maCheckNamingDiv('<!--[$currentmod]-->')">
+                                <option value="0" selected="selected"><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMORIG"]--></option>
+                                <option value="1"><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMRAND"]--></option>
+                                <option value="2"><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMSTAT"]--></option>
+                            </select><br />
+                            <div id="divnamingprefix<!--[$currentmod]-->">
+                                <label for="MediaAttach_namingprefix" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONPREFIX"]-->:</label>
+                                <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" /><br />
+                            </div>
+
+                            <label for="MediaAttach_numfiles" class="maadminleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONNUMFILES"]-->:</label>
+                            <select id="MediaAttach_numfiles" name="numfiles" size="1">
+                                <option value="1" selected="selected">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                            <br /><br />
+
+                            <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_DEFINITIONADD"]-->" class="maadminright" />
+                        </fieldset>
+                    </form>
+                </div>
+
+                <script type="text/javascript" language="javascript">
+                    /* <![CDATA[ */
+                    initNewDefinition('<!--[$currentmod]-->');
+
+                    function maSwitchNewDef<!--[$currentmod]-->(event) {
+                        maSwitchDisplayState('new_definition<!--[$currentmod]-->');
+                        Event.stop(event);
+                    }
+                    $('new_definition<!--[$currentmod]-->_switch').observe('click', maSwitchNewDef<!--[$currentmod]-->, false);
+                    $('new_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchNewDef<!--[$currentmod]-->, false);
+                    /* ]]> */
+                </script>
+
+            <!--[else]-->
+                <a id="show_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none">
+                    <span id="showlink<!--[$currentmod]-->one"><!--[pnml name="_MEDIAATTACH_DEFINITIONSHOW"]--></span>
+                    <span id="showlink<!--[$currentmod]-->two" style="display: none"><!--[pnml name="_MEDIAATTACH_DEFINITIONHIDE"]--></span>
+                </a>
+                <div id="show_definition<!--[$currentmod]-->" style="text-align: left">
+                    <h3><!--[pnml name="_MEDIAATTACH_DEFINITIONFOR"]--> <!--[$currentmod]--></h3>
+                    <dl id="deflist<!--[$currentmod]-->" class="madeflist">
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONMODNAME"]--></dt>
+                        <dd><!--[$currentmod]--></dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONGROUPS"]--></dt>
+                        <dd><!--[foreach name="grouploop" item="currentgroup" from=$currentdef.groups]--><!--[$currentgroup.groupname]--><!--[if $smarty.foreach.grouploop.last ne true]-->, <!--[/if]--><!--[/foreach]--></dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONDSPFILES"]--></dt>
+                        <dd>
+                            <!--[if $currentdef.displayfiles eq 0]--><!--[pnml name="_MEDIAATTACH_NONE"]-->
+                            <!--[elseif $currentdef.displayfiles eq 1]--><!--[pnml name="_MEDIAATTACH_ONLYOWN"]-->
+                            <!--[elseif $currentdef.displayfiles eq 2]--><!--[pnml name="_MEDIAATTACH_ALL"]-->
+                            <!--[/if]-->
+                        </dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONSENDMAILS"]--></dt>
+                        <dd>
+                            <!--[if $currentdef.sendmails eq 1]--><!--[pnml name="_YES"]-->
+                            <!--[else]--><!--[pnml name="_NO"]-->
+                            <!--[/if]-->
+                        </dd>
+                <!--[if $currentdef.sendmails eq 1]-->
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONRECIPIENT"]--></dt>
+                        <dd><!--[$currentdef.recipient]--></dd>
+                <!--[/if]-->
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONMAXSIZE"]--></dt>
+                        <dd><!--[math equation="x/1024" x=$currentdef.maxsize format="%.1f"]-->&nbsp;<!--[pnml name="_MEDIAATTACH_KB"]--></dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONDOWNLOADMODE"]--></dt>
+                        <dd>
+                            <!--[if $currentdef.downloadmode eq 1]--><!--[pnml name="_MEDIAATTACH_DEFINITIONINLINE"]-->
+                            <!--[else]--><!--[pnml name="_MEDIAATTACH_DEFINITIONPHYSICAL"]-->
+                            <!--[/if]-->
+                        </dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMING"]--></dt>
+                        <dd>
+                            <!--[if $currentdef.naming eq 0]--><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMORIG"]-->
+                            <!--[elseif $currentdef.naming eq 1]--><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMRAND"]-->
+                            <!--[elseif $currentdef.naming eq 2]--><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMSTAT"]--> <em><!--[$currentdef.namingprefix]--></em>
+                            <!--[/if]-->
+                        </dd>
+                        <dt><!--[pnml name="_MEDIAATTACH_DEFINITIONNUMFILES"]--></dt>
+                        <dd><!--[$currentdef.numfiles]--></dd>
+                    </dl>
+                    <br style="clear: left" />
+                    <p><a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="editdefinition" did=$currentdef.did]-->">
+                        <!--[pnml name="_MEDIAATTACH_DEFINITIONEDIT"]-->
+                    </a></p>
+                </div>
+
+                <script type="text/javascript" language="javascript">
+                    /* <![CDATA[ */
+                    initShowDefinition('<!--[$currentmod]-->');
+
+                    function maSwitchShowDef<!--[$currentmod]-->(event) {
+                        maCheckDefLink('<!--[$currentmod]-->');
+                        Event.stop(event);
+                    }
+                    $('show_definition<!--[$currentmod]-->_switch').observe('click', maSwitchShowDef<!--[$currentmod]-->, false);
+                    $('show_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchShowDef<!--[$currentmod]-->, false);
+                    /* ]]> */
+                </script>
+            <!--[/if]-->
+        </div>
+    <!--[/foreach]-->
+<!--[/if]-->
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

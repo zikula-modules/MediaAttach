@@ -1,0 +1,212 @@
+diff -r pnForum_vorher/pnajax.php pnForum_nachher/pnajax.php
+120,122c120,132
+<     pnf_jsonizeoutput(array('data'    => $pnr->fetch('pnforum_user_singlepost.html'),
+<                             'post_id' => $post['post_id']),
+<                       true);
+---
+> 
+>     if (pnModAvailable('MediaAttach') && pnModIsHooked('MediaAttach', 'pnForum')) {
+>         pnf_jsonizeoutput(array('data'    => $pnr->fetch('pnforum_user_singlepost.html'),
+>                                 'post_id' => $post['post_id'],
+>                                 'uploadauthid' => pnSecGenAuthKey('MediaAttach')),
+>                           true);
+>     }
+>     else {
+>         pnf_jsonizeoutput(array('data'    => $pnr->fetch('pnforum_user_singlepost.html'),
+>                                 'post_id' => $post['post_id']),
+>                           true);
+>     }
+> 
+682,686c692,710
+<         pnf_jsonizeoutput(array('topic'        => $topic,
+<                                 'confirmation' => $confirmation,
+<                                 'redirect'     => pnModURL('pnForum', 'user', 'viewtopic',
+<                                                            array('topic' => $topic_id))),
+<                           true);
+---
+> 
+>         if (pnModAvailable('MediaAttach') && pnModIsHooked('MediaAttach', 'pnForum')) {
+>             pnf_jsonizeoutput(array('topic'        => $topic,
+>                                     'confirmation' => $confirmation,
+>                                     'redirect'     => pnModURL('pnForum', 'user', 'viewtopic',
+>                                                                array('topic' => $topic_id)),
+>                                     'uploadredirect' => urlencode(pnModURL('pnForum', 'user', 'viewtopic',
+>                                                                array('topic' => $topic_id))),
+>                                     'uploadobjectid' => $topic_id,
+>                                     'uploadauthid' => pnSecGenAuthKey('MediaAttach')),
+>                               true);
+>         }
+>         else {
+>             pnf_jsonizeoutput(array('topic'        => $topic,
+>                                     'confirmation' => $confirmation,
+>                                     'redirect'     => pnModURL('pnForum', 'user', 'viewtopic',
+>                                                                array('topic' => $topic_id))),
+>                               true);
+>         }
+diff -r pnForum_vorher/pnjavascript/pnforum_user.js pnForum_nachher/pnjavascript/pnforum_user.js
+42c42
+< function createnewtopic()
+---
+> function createnewtopic(event)
+74a75
+>     if (event) Event.stop(event);
+80c81
+<     
+---
+> 
+90a92,100
+>     if ($('myuploadframe') && $('btnUpload') && json.uploadauthid) {
+>         newTopicUpload = true;
+>         newTopicRedirect = json.redirect;
+>         $('MediaAttach_redirect').value = json.uploadredirect;
+>         $('MediaAttach_objectid').value = json.uploadobjectid;
+>         updateAuthid(json.uploadauthid);
+>         $('btnUpload').click();
+>     }
+> 
+692c702
+< function createQuickReply()
+---
+> function createQuickReply(event)
+716a727
+>     if (event) Event.stop(event);
+748a760,764
+>     if ($('myuploadframe') && $('btnUpload') && result.uploadauthid) {
+>         updateAuthid(result.uploadauthid);
+>         $('btnUpload').click();
+>     }
+> 
+diff -r pnForum_vorher/pnlang/deu/global.php pnForum_nachher/pnlang/deu/global.php
+175a176,177
+> define('_PNFORUM_ATTACHMENTS','Anhänge');
+> define('_PNFORUM_ATTACHMENTSTITLE','Dateianhänge');
+diff -r pnForum_vorher/pnlang/eng/global.php pnForum_nachher/pnlang/eng/global.php
+175a176,177
+> define('_PNFORUM_ATTACHMENTS','Attachments');
+> define('_PNFORUM_ATTACHMENTSTITLE','File attachments');
+Nur in pnForum_nachher/pntemplates/plugins: function.mediaattach_attachicon.php.
+diff -r pnForum_vorher/pntemplates/plugins/function.mediaattach_fileuploads.php pnForum_nachher/pntemplates/plugins/function.mediaattach_fileuploads.php
+36,38d35
+<     extract($params);
+< 	unset($params);
+< 
+40a38,41
+>         if (!isset($params['objectid'])) {
+>             $smarty->trigger_error("smarty_function_mediaattach_fileuploads: missing parameter 'objectid'");
+>             return false;
+>         }
+42c43
+<                          array('objectid' => $objectid));
+---
+>                          array('objectid' => $params['objectid']));
+diff -r pnForum_vorher/pntemplates/pnforum_user_editpost.html pnForum_nachher/pntemplates/pnforum_user_editpost.html
+74c74
+<                 <!--[* $hooks.MediaAttach *]--><br />
+---
+>                 <!--[* removed MediaAttach from this template *]--><br />
+diff -r pnForum_vorher/pntemplates/pnforum_user_newtopic.html pnForum_nachher/pntemplates/pnforum_user_newtopic.html
+6a7,8
+> <!--[ pnmodcallhooks hookobject=item hookaction=display hookid=$topic.topic_id implode=false ]-->
+> 
+32a35
+>                     <!--[$hooks.MediaAttach]-->
+49c52
+<                                 <button class="image ok" onclick="createnewtopic(); return false;" type="submit" title="<!--[ pnml name='_PNFORUM_SUBMIT' ]-->">
+---
+>                                 <button id="btnCreateNewTopic" class="image ok" onclick="createnewtopic(); return false;" type="submit" title="<!--[ pnml name='_PNFORUM_SUBMIT' ]-->">
+78c81
+<                         <!--[* $hooks.MediaAttach *]--><br />
+---
+>                         <br />
+104a108,111
+>     var btnCreateNewTopic = $('btnCreateNewTopic');
+>     btnCreateNewTopic.observe('click', createnewtopic, false);
+>     btnCreateNewTopic.observe('keypress', createnewtopic, false);
+> 
+diff -r pnForum_vorher/pntemplates/pnforum_user_reply.html pnForum_nachher/pntemplates/pnforum_user_reply.html
+36a37
+>                 <!--[$hooks.MediaAttach]-->
+diff -r pnForum_vorher/pntemplates/pnforum_user_viewforum.html pnForum_nachher/pntemplates/pnforum_user_viewforum.html
+91a92,93
+>     <!--[mediaattach_attachicon topics=$forum.topics assign="uploadtopicids"]-->
+> 
+120c122,130
+<         
+---
+> 
+>         <!--[assign var="showattachment" value="0"]-->
+>         <!--[ foreach item="hasuploads" key="topicid" from=$uploadtopicids]-->
+>             <!--[if $topicid eq $topic.topic_id && $hasuploads eq 1]-->
+>                 <!--[assign var="showattachment" value="1"]-->
+>             <!--[/if]-->
+>         <!--[ /foreach ]-->
+> 
+> 
+155a166,168
+>                 <!--[ if $showattachment eq 1 ]-->
+>                     <!--[ pnimg modname="core" set="icons/extrasmall" src="attach.gif" alt=_PNFORUM_ATTACHMENTS altml=true title=_PNFORUM_ATTACHMENTSTITLE titleml=true ]-->
+>                 <!--[ /if ]-->
+diff -r pnForum_vorher/pntemplates/pnforum_user_viewtopic.html pnForum_nachher/pntemplates/pnforum_user_viewtopic.html
+152c152
+<     
+---
+> 
+154a155,156
+> <!--[mediaattach_fileuploads objectid=$topic.topic_id]-->
+> 
+189a192
+>                 <!--[ $hooks.MediaAttach ]-->
+206c209
+<                             <button class="image ok" onclick="createQuickReply(); return false;" type="submit" title="<!--[ pnml name='_PNFORUM_SUBMIT' ]-->">
+---
+>                             <button id="btnCreateQuickReply" class="image ok" onclick="createQuickReply(); return false;" type="submit" title="<!--[ pnml name='_PNFORUM_SUBMIT' ]-->">
+235c238
+<                     <!--[* $hooks.MediaAttach *]--><br />
+---
+>                     <br />
+249a253,256
+>     var btnCreateQuickReply = $('btnCreateQuickReply');
+>     btnCreateQuickReply.observe('click', createQuickReply, false);
+>     btnCreateQuickReply.observe('keypress', createQuickReply, false);
+> 
+diff -r pnForum_vorher/pnuserapi.php pnForum_nachher/pnuserapi.php
+4849a4850,4888
+> /**
+>  * gettopicreadpermission
+>  * determines if the current user has access to topic specified by given topic_id
+>  *
+>  *@params $args['topic_id'] int the id of testet topic
+>  *@returns array of categories with an array of forums in the catgories
+>  *
+>  */
+> function pnForum_userapi_gettopicreadpermission($args)
+> {
+>     if(!isset($args['topic_id']) || !is_numeric($args['topic_id'])) {
+>         return showforumerror(_MODARGSERROR, __FILE__, __LINE__);
+>     }
+> 
+>     $topic_id = $args['topic_id'];
+>     unset($args);
+> 
+>     list($dbconn, $pntable) = pnfOpenDB();
+>     $cattable = $pntable['pnforum_categories'];
+>     $forumstable = $pntable['pnforum_forums'];
+>     $topicstable = $pntable['pnforum_topics'];
+> 
+>     $sql = 'SELECT ' . $forumstable . '.cat_id AS cat_id,
+>                    ' . $forumstable . '.forum_id AS forum_id
+>             FROM ' . $forumstable . ', ' . $topicstable . '
+>             WHERE ' . $topicstable . '.topic_id = \'' . pnVarPrepForStore($topic_id) . '\'
+>             AND ' . $forumstable . '.forum_id = ' . $topicstable . '.forum_id';
+> 
+>     $result = pnfExecuteSQL($dbconn, $sql, __FILE__, __LINE__);
+> 
+>     $row = $result->GetRowAssoc(false);
+>     $cat_id = $row['cat_id'];
+>     $forum_id = $row['forum_id'];
+> 
+>     pnfCloseDB($result);
+> 
+>     return allowedtoreadcategoryandforum($cat_id, $forum_id);
+> }
+> 

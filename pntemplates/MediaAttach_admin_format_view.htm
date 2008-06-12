@@ -1,0 +1,96 @@
+<!--[* $Id: MediaAttach_admin_format_view.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Format management *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="windowlist.gif" set="icons/large" alt=_MEDIAATTACH_FORMATS altml=true]--></div>
+
+<h3><!--[pnimg src="inline_image.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_FORMATS"]--></h3>
+
+<a id="new_format_switch" href="javascript:void(0);" style="display: none">
+    <!--[pnml name="_MEDIAATTACH_FORMATNEW"]-->
+</a>
+<div id="new_format">
+    <form id="newformatform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createformat"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+        <fieldset>
+            <legend><!--[pnml name="_MEDIAATTACH_FORMATADD"]--></legend>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+            <label for="MediaAttach_extension" class="maleft"><!--[pnml name="_MEDIAATTACH_FILETYPE"]-->:</label>
+            <input type="text" class="required validate-alphanum" id="MediaAttach_extension" name="extension" maxlength="5" /><br />
+            <p id="advice-required-MediaAttach_extension" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONEXTENSIONREQUIRED"]--></p>
+            <p id="advice-validate-alphanum-MediaAttach_extension" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONEXTENSIONALPHANUM"]--></p>
+
+            <label for="MediaAttach_image" class="maleft"><!--[pnml name="_MEDIAATTACH_IMAGE"]-->:</label>
+            <!--[maimageselect selected="modules/MediaAttach/pnimages/formats/unknown.gif" type="formats"]--><br />
+
+            <label for="MediaAttach_groups" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPS"]-->:</label>
+            <select id="MediaAttach_groups" name="groups[]" size="10" multiple="multiple" style="width: 150px">
+                <!--[foreach item="currentgroup" from=$groups]-->
+                    <option value="<!--[$currentgroup.gid]-->" selected="selected"><!--[$currentgroup.groupname]--></option>
+                <!--[/foreach]-->
+            </select><br /><br />
+
+            <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_FORMATADD"]-->" class="maright" />
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript" language="javascript">
+    maInitFormatView();
+</script>
+
+<div class="matablecontainer">
+<table summary="<!--[pnml name="_MEDIAATTACH_FORMATS"]-->">
+    <colgroup>
+        <col id="filetype" />
+        <col id="groups" />
+        <col id="actions" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th id="f" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_FILETYPE"]-->"><!--[pnml name="_MEDIAATTACH_FILETYPE"]--></th>
+            <th id="g" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_GROUPS"]-->"><!--[pnml name="_MEDIAATTACH_GROUPS"]--></th>
+            <th id="a" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_ACTIONS"]-->"><!--[pnml name="_MEDIAATTACH_ACTIONS"]--></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--[foreach item="currentformat" from=$formats]-->
+            <tr>
+                <td headers="f">
+                    <!--[pnimg src="formats/`$currentformat.image`" modname="MediaAttach" alt=$currentformat.extension style="padding-right: 5px"]-->
+                    <!--[$currentformat.extension]-->
+                    <!--[foreach item="currentdanger" from=$danger]-->
+                        <!--[if $currentformat.extension eq $currentdanger]-->
+                            <span style="color: red; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FORMATDANGER"]--></span>
+                        <!--[/if]-->
+                    <!--[/foreach]-->
+                </td>
+                <td headers="g">
+                    <!--[foreach item="currentgroup" from=$currentformat.groups]-->
+                        <!--[pnimg src="folder/`$currentgroup.image`" modname="MediaAttach" alt="icon" style="padding-right: 5px"]-->
+                        <!--[$currentgroup.groupname]-->
+                        <br />
+                    <!--[/foreach]-->
+                </td>
+                <td headers="a" style="text-align: center" nowrap="nowrap">
+                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="editformat]-->" method="post" style="display: inline">
+                        <input type="hidden" name="fid" value="<!--[$currentformat.fid]-->" />
+                        <!--[pnimg src="edit.gif" modname="core" set="icons/extrasmall" assign="editimg"]-->
+                        <input type="image" name="submit" src="<!--[$editimg.src]-->" alt="<!--[pnml name="_EDIT"]-->" />
+                    </form>
+                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" style="display: inline">
+                        <input type="hidden" name="fid" value="<!--[$currentformat.fid]-->" />
+                        <!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" assign="delimg"]-->
+                        <input type="image" name="submit" src="<!--[$delimg.src]-->" alt="<!--[pnml name="_DELETE"]-->" />
+                    </form>
+                </td>
+            </tr>
+        <!--[/foreach]-->
+    </tbody>
+</table>
+</div>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

@@ -1,0 +1,24 @@
+<!--[* $Id: MediaAttach_user_filelist_pnForum.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: The filelist for pnForum *]-->
+
+<!--[* let IE execute a js directly after rendering the DOM - this fixes that the user has to click for activating activeX for flash *]-->
+<!--[add_additional_header header='<!--']-->
+<!--[add_additional_header header='[if IE]><script type="text/javascript" src="fix_eolas.js" defer="defer"></script><![endif]']-->
+<!--[add_additional_header header='-->']-->
+
+<!--[if $definition.displayfiles ne 0]-->
+<!--[pnuserloggedin assign="isLoggedIn"]-->
+<!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
+<!--[if $isLoggedIn || $numFiles > 0]-->
+    <a name="files"></a>
+    <strong><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></strong>
+    <div id="myfilelist" style="margin: 10px 0 10px 0;">
+        <!--[pnusergetvar name="uid" assign="currentuser"]-->
+        <!--[foreach item="file" from=$files]-->
+            <!--[include file="MediaAttach_user_filelist_single_pnForum.htm"]-->
+        <!--[/foreach]-->
+    </div>
+    <br />
+    <br />
+<!--[/if]-->
+<!--[/if]-->

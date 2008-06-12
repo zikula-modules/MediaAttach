@@ -1,0 +1,44 @@
+$Id: credits.txt 115 2006-05-31 21:05:27Z weckamc $
+
+
+
+Credits to:
+
+Everybody who uses this module and gave feedback, especially to the following kind persons:
+
+Frank Schummertz
+  -- for fixing annoying bugs during initial development
+  -- for guiding me through the hooks
+
+Joerg Napp
+  -- for giving me alot of useful hints
+
+Jørn Lind-Nielsen
+  -- for giving some nice inspirations for the quota system from photoshare
+
+Carsten Volmer
+  -- for active testing and helpful support
+
+My girlfriend
+  -- for having to share with a laptop
+
+The developers and people behind the libraries I included - please respect their efforts and licenses:
+
+  -- File_Bittorrent2                        http://pear.php.net/package/File_Bittorrent2
+        License: LGPL
+  -- GeSHi                                   http://qbnz.com/highlighter/
+        License: GPL
+  -- getID3()                                http://www.getid3.org/
+        License: GPL
+  -- Highslide JS                            http://vikjavev.no/highslide/
+        License: Creative Commons Attribution-NonCommercial 2.5 License (http://creativecommons.org/licenses/by-nc/2.5/)
+  -- JavaScript Image Cropper UI             http://www.defusion.org.uk/code/javascript-image-cropper-ui-using-prototype-scriptaculous/
+        Copyright (c) 2006, David Spurr (www.defusion.org.uk)
+        All rights reserved.
+  -- JW FLV Player                           http://www.jeroenwijering.com/?item=JW_FLV_Player
+        License: Creative Commons Attribution-NonCommercial 2.0 License (http://creativecommons.org/licenses/by-nc-sa/2.0/)
+  -- SWFUpload                               http://swfupload.mammon.se/
+        (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media
+        License: MIT License (http://www.opensource.org/licenses/mit-license.php)
+  -- JS-TreeMenu                             http://www.gerd-tentler.de/tools/treemenu/
+  -- TAR File Manager                        http://www.phpclasses.org/browse/package/529.html

@@ -1,0 +1,53 @@
+<!--[* $Id: MediaAttach_user_delete.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Confirmation for upload deletion *]-->
+
+<form action="<!--[pnmodurl modname="MediaAttach" type="user" func="delete"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_UPLOADDELETE"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="confirmation" value="1" />
+        <input type="hidden" name="fileid" value="<!--[$file.fileid]-->" />
+        <input type="hidden" name="backurl" value="<!--[$backurl]-->" />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILE"]-->:</label>
+        <a href="<!--[pnmodurl modname="MediaAttach" func="display" fileid=$file.fileid]-->">
+            <!--[pnimg src="formats/`$file.format`" alt=$file.extension style="padding-right: 5px"]-->
+            <!--[$file.filename]-->
+        </a><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
+        <a href="<!--[$file.url|pnvarprepfordisplay]-->"><!--[pnmodgetinfo modname=$file.modname info="displayname"]--></a><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADUSER"]-->:</label>
+        <!--[$file.username|userprofilelink]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADDATE"]-->:</label>
+        <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADTITLE"]-->:</label>
+        <!--[$file.title]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADDESC"]-->:</label>
+        <!--[$file.desc]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMIMETYPE"]-->:</label>
+        <!--[$file.mimetype]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILESIZE"]-->:</label>
+        <!--[mafilesize size=$file.filesize]--><br />
+
+        <input name="submit" type="submit" value="<!--[pnml name="_CONFIRMDELETE"]-->" class="maright" />
+        <a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[pnml name="_CANCELDELETE"]-->"><!--[pnml name="_CANCEL"]--></a>
+    </fieldset>
+    <fieldset>
+        <legend><!--[pnml name=_META]--></legend>
+        <ul>
+            <!--[pnusergetvar name=uname uid=$file.cr_uid assign=username]-->
+            <li><!--[pnml name=_CREATEDBY username=$username]--></li>
+            <li><!--[pnml name=_CREATEDON date=$file.cr_date|pndate_format]--></li>
+            <!--[pnusergetvar name=uname uid=$file.lu_uid assign=username]-->
+            <li><!--[pnml name=_UPDATEDBY username=$username]--></li>
+            <li><!--[pnml name=_UPDATEDON date=$file.lu_date|pndate_format]--></li>
+        </ul>
+    </fieldset>
+</form>

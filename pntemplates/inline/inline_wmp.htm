@@ -1,0 +1,56 @@
+<!--[* $Id: inline_wmp.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows files within the windows media player inline *]-->
+
+<!--[assign var="playerwidth" value=" width=\"320\""]-->
+<!--[assign var="playerheight" value=" height=\"260\""]-->
+<!--[if $file.fileInfo.video.resolution_x ne ""]-->
+    <!--[assign var="playerwidth" value=" width=\"`$file.fileInfo.video.resolution_x`\""]-->
+<!--[/if]-->
+<!--[if $file.fileInfo.video.resolution_y ne ""]-->
+    <!--[* consider 45px additional height for the control toolbar *]-->
+    <!--[assign var="playerheight" value=" height=\"`$file.fileInfo.video.resolution_y + 45`\""]-->
+<!--[/if]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid inline=1 assign="fileurl"]-->
+
+<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            type="video/x-ms-wmv"
+            data="<!--[$fileurl|pnvarprepfordisplay]-->"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+        <param name="src" value="<!--[$fileurl|pnvarprepfordisplay]-->" />
+        <param name="controller" value="1" />
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+
+<!--[literal]--><!--[if IE]><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+            codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112<!--[* 6,4,5,715 *]-->"
+            standby="Loading Microsoft Windows Media Player components..."
+            type="application/x-oleobject"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+        <param name="url" value="<!--[$fileurl|pnvarprepfordisplay]-->" />
+        <param name="uimode" value="mini" /><!--[* full, mini, none, invisible *]-->
+        <param name="showcontrols" value="1" />
+        <param name="showstatusbar" value="0" />
+        <param name="autosize" Value="0" />
+        <param name="displaysize" Value="0" />
+        <param name="animationatstart" value="0" />
+        <param name="transparentatstart" value="1" />
+<!--[literal]--><!--><!----><!--[/literal]-->
+
+        <param name="autostart" value="1" />
+
+<!--[*
+        <param name="volume" value="-200" />
+*]-->
+
+        <p>
+            Your browser does not support embedded windows media files.<br />
+            Please click <a href="<!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
+            <a href="http://www.microsoft.com/windows/windowsmedia/" title="Download Windows Media Player" target="_blank">
+                <!--[pnimg src="logo_wmp.png" alt="Download Windows Media Player"]-->
+            </a>
+        </p>
+    </object>
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->

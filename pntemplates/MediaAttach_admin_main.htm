@@ -1,0 +1,17 @@
+<!--[* $Id: MediaAttach_admin_main.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Admin main area *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+
+<h3><!--[pnml name="_MEDIAATTACH_WELCOME"]--></h3>
+
+<!--[if $numUploads > 0 && $sizeUploads > "0"]-->
+    <p style="margin-left: 50px"><!--[$numUploads]--> <!--[pnml name="_MEDIAATTACH_FILESTOTAL"]--> (<!--[$sizeUploads]-->)</p>
+<!--[else]-->
+    <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]--><br />
+<!--[/if]-->
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

@@ -1,0 +1,92 @@
+<!--[* $Id: $ *]-->
+<!--[* Purpose of this template: SWFUpload form *]-->
+
+<!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
+
+<br id="files" />
+<!--[insert name="getstatusmsg"]--><br /><br />
+<!--[if $definition.state eq 1]-->
+    <!--[pnmodfunc modname="MediaAttach" type="user" func="showfilelist" objectid=$objectid]-->
+    <!--[if $allowadd]-->
+        <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+            <!--[pnpageaddvar name="javascript" value="modules/MediaAttach/pnincludes/SWFUpload/SWFUpload.js"]-->
+            <!--[pnpageaddvar name="javascript" value="modules/MediaAttach/pnincludes/SWFUpload/callbacks.js"]-->
+            <!--[pnpageaddvar name="stylesheet" value="modules/MediaAttach/pnincludes/SWFUpload/swfstyle.css"]-->
+
+            <div id="SWFUploadTarget">
+                <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createuploadflash"]-->" method="post" enctype="multipart/form-data">
+                    <div>
+                        <label id="labelfile" for="Filedata"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+                        <input id="Filedata" name="Filedata" type="file" /><br />
+
+                        <input type="submit" value="<!--[pnml name="_MEDIAATTACH_UPLOAD"]-->" />
+                    </div>
+                </form>
+            </div>
+
+            <h4 id="queueinfo"><!--[pnml name="_MEDIAATTACH_SWFQUEUEISEMPTY"]--></h4>
+            <div id="SWFUploadFileListingFiles"></div>
+            <br style="clear: both" />
+
+            <a class="swfuploadbtn" id="cancelqueuebtn" href="javascript:cancelQueue();"><!--[pnml name="_MEDIAATTACH_SWFCANCELQUEUE"]--></a>
+
+            <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
+
+            <script type="text/javascript" language="javascript">
+            /* <![CDATA[ */
+                var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]-->);
+                var errorAllowedFilenum         = "<!--[pnml name="_MEDIAATTACH_ERRORALLOWEDFILENUM" m=$definition.numfiles]-->";
+                var errorAlreadySelected        = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYSELECTED"]-->";
+                var errorExtensionNotAllowed    = "<!--[pnml name="_MEDIAATTACH_ERROREXTENSIONNOTALLOWED"]-->";
+                var errorNoFilesSelected        = "<!--[pnml name="_MEDIAATTACH_ERRORNOFILESSELECTED"]-->";
+                var errorAlreadyRunning         = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYRUNNING"]-->";
+
+                var msgCallbackFileQueue        = "<!--[pnml name="_MEDIAATTACH_SWFCBFILEQUEUE"]-->";
+                var msgCallbackFileSelected     = "<!--[pnml name="_MEDIAATTACH_SWFCBFILECANCELLED"]-->";
+                var msgCallbackFilesQueued      = "<!--[pnml name="_MEDIAATTACH_SWFCBFILESQUEUED"]-->";
+                var msgCallbackUploadingFile    = "<!--[pnml name="_MEDIAATTACH_SWFCBUPLOADINGFILE"]-->";
+                var msgCallbackUploadingOf      = "<!--[pnml name="_MEDIAATTACH_SWFCBUPLOADINGOF"]-->";
+                var msgCallbackAllFilesUploaded = "<!--[pnml name="_MEDIAATTACH_SWFALLFILESUPLOADED"]-->";
+
+                var maxFilesAtOnce = <!--[$definition.numfiles]-->;
+
+                var swfu;
+
+                function initSWFUpload() {
+                    // Max settings
+                    swfu = new SWFUpload({
+                        upload_script                   : '<!--[pnmodurl modname="MediaAttach" type="user" func="createuploadflash" parentmodule=$modname objectid=$objectid redirect=$redirect]-->',
+                        target                          : 'SWFUploadTarget',
+                        flash_path                      : 'modules/MediaAttach/pnincludes/SWFUpload/SWFUpload.swf',
+                        allowed_filesize                : <!--[$definition.maxsize]-->,
+                        allowed_filetypes               : '<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->*.<!--[$currentformat.extension]--><!--[if !$smarty.foreach.formatloop.last]-->;<!--[/if]--><!--[/foreach]-->',
+                        allowed_filetypes_description   : '<!--[pnml name="_MEDIAATTACH_SWFFILESELECTION"]-->',
+                        browse_link_innerhtml           : '<!--[pnml name="_MEDIAATTACH_SWFBROWSEFILES"]-->',
+                        upload_link_innerhtml           : '<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->',
+                        browse_link_class               : 'swfuploadbtn browsebtn',
+                        upload_link_class               : 'swfuploadbtn uploadbtn',
+                        flash_loaded_callback           : 'swfu.flashLoaded',
+                        upload_file_queued_callback     : 'fileQueued',
+                        upload_file_start_callback      : 'uploadFileStart',
+                        upload_progress_callback        : 'uploadProgress',
+                        upload_file_complete_callback   : 'uploadFileComplete',
+                        upload_file_cancel_callback     : 'uploadFileCancelled',
+                        upload_queue_complete_callback  : 'uploadQueueComplete',
+                        upload_error_callback           : 'uploadError',
+                        upload_cancel_callback          : 'uploadCancel',
+                        auto_upload                     : false
+                    });
+
+                }
+
+                Event.observe(window, 'load', initSWFUpload, false);
+            /* ]]> */
+            </script>
+
+        <!--[else]-->
+            <p><!--[pnml name="_MEDIAATTACH_QUOTAFULL"]--></p>
+        <!--[/if]-->
+<!--[*    <!--[else]-->
+        <p><!--[pnml name="_MEDIAATTACH_NORIGHTS"]--></p> *]-->
+    <!--[/if]-->
+<!--[/if]-->

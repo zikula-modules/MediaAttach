@@ -1,0 +1,76 @@
+<!--[* $Id: MediaAttach_admin_quotas.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Quota management *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="encrypted.gif" set="icons/large" alt=Quotas]--></div>
+
+<h3><!--[pnimg src="unlock.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]-->Quotas</h3>
+<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updategroupquotas"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_QUOTASGROUPS"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+        <!--[counter start=0 skip=1 assign="currentgroupnum"]-->
+        <!--[foreach item="currentquota" from=$groupquotas]-->
+            <!--[counter assign="currentgroupnum"]-->
+            <label for="MediaAttach_amountg<!--[$currentgroupnum]-->" class="maleft"><!--[$currentquota.name]--></label>
+            <input type="hidden" name="gid<!--[$currentgroupnum]-->" value="<!--[$currentquota.gid]-->" />
+            <input type="text" id="MediaAttach_amountg<!--[$currentgroupnum]-->" name="amountg<!--[$currentgroupnum]-->" maxlength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_MB"]--><br />
+        <!--[/foreach]-->
+        <br />
+        <input type="hidden" name="anzgroups" value="<!--[$currentgroupnum]-->" />
+
+        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_QUOTASUPDATE"]-->" class="maright" />
+    </fieldset>
+</form>
+<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updateuserquotas"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_QUOTASUSERS"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+        <!--[if $userquotas eq 0]-->
+            <p><!--[pnml name="_MEDIAATTACH_QUOTASNOUSERS"]--></p>
+        <!--[else]-->
+            <!--[counter start=0 skip=1 assign="currentgroupnum"]-->
+            <!--[foreach item="currentquota" from=$userquotas]-->
+                <!--[counter assign="currentusernum"]-->
+                <label for="MediaAttach_amountu<!--[$currentusernum]-->" class="maleft"><!--[$currentquota.name]--></label>
+                <input type="hidden" name="uid<!--[$currentusernum]-->" value="<!--[$currentquota.uid]-->" />
+                <input type="text" id="MediaAttach_amountu<!--[$currentusernum]-->" name="amountu<!--[$currentusernum]-->" maxlength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_MB"]-->
+                <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteuserquota" uid=$currentquota.uid]-->" title="<!--[pnml name="_DELETE"]-->"><!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" alt="_DELETE" altml=true]--></a><br />
+            <!--[/foreach]-->
+            <br />
+            <input type="hidden" name="anzusers" value="<!--[$currentusernum]-->" />
+
+            <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_QUOTASUPDATE"]-->" class="maright" />
+        <!--[/if]-->
+    </fieldset>
+</form>
+<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createuserquota"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_QUOTASNEWUSER"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+        <label for="newuname" class="maleft"><!--[pnml name="_MEDIAATTACH_QUOTASUSERNAME"]-->:</label>
+        <input type="text" name="uname" id="newuname" value="" />
+        <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]--><br />
+
+        <div id="username_choices" class="autocomplete_user"></div>
+
+        <script type="text/javascript">
+        // <![CDATA[
+            new Ajax.Autocompleter('newuname', 'username_choices', document.location.pnbaseURL + 'ajax.php?module=Users&func=getusers', {paramName: 'fragment', minChars: 2});
+        // ]]>
+        </script>
+
+        <label for="MediaAttach_amount" class="maleft"><!--[pnml name="_MEDIAATTACH_QUOTASQUOTA"]-->:</label>
+        <input type="text" id="MediaAttach_amount" name="amount" maxlength="10" value="0" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_MB"]--><br /><br />
+
+        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_QUOTASUSERCREATE"]-->" class="maright" />
+    </fieldset>
+</form>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

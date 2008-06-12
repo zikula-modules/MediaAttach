@@ -1,0 +1,30 @@
+<div class="row">
+  <!--[pnformlabel for=maFileID text=_MEDIAATTACH_CONTENTENTTYPE_MEDIASNIPPETLABEL]-->
+  <!--[mediaattachitemselector id=mafile group=data]-->
+</div>
+
+<div class="row">
+  <!--[pnformradiobutton id=linkButton value=link dataField=pasteMode group=data mandatory=1]--> 
+  <!--[pnformlabel for=textButton text=_MEDIAATTACH_CONTENTENTTYPE_PASTEMODELINK]-->
+  <!--[pnformradiobutton id=embedButton value=embed dataField=pasteMode group=data mandatory=1]--> 
+  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_PASTEMODEEMBED]-->
+</div>
+
+<div class="row">
+  <!--[pnformradiobutton id=floatnoneButton value=none dataField=floatMode group=data mandatory=1]--> 
+  <!--[pnformlabel for=textButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATNONE]-->
+  <!--[pnformradiobutton id=floatleftButton value=left dataField=floatMode group=data mandatory=1]--> 
+  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATLEFT]-->
+  <!--[pnformradiobutton id=floatrightButton value=right dataField=floatMode group=data mandatory=1]--> 
+  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATRIGHT]-->
+</div>
+
+<div class="row">
+    <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+    <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
+        <!--[pnformradiobutton id="thumbnr`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField=thumbnr group=data mandatory=1]--> 
+        <!--[pnformlabel for=rawButton text="`$thumbsize[0]` x `$thumbsize[1]` px"]-->
+    <!--[/foreach]-->
+    <!--[pnformradiobutton id="original" value="original" dataField=thumbnr group=data mandatory=1]--> 
+    <!--[pnformlabel for=rawButton text=_MEDIAATTACH_EXTERNALPASTEORIGINAL]-->
+</div>

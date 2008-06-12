@@ -1,0 +1,39 @@
+<!--[* $Id: MediaAttach_user_filelist_single_pnForum.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: One entry within the file list for pnForum *]-->
+
+<!--[if ($definition.displayfiles eq 1 && $currentuser eq $file.uid) || $definition.displayfiles eq 2]-->
+    <div id="file<!--[$file.fileid]-->" style="clear: both">
+        <div style="float: right; width: 15%; text-align: right">
+            <!--[mafilebuttons file=$file edit=1 delete=1]-->
+        </div>
+        <div style="float: left; width: 80%">
+            <!--[pnimg src="formats/`$file.format`" modname="MediaAttach" alt=_MEDIAATTACH_DOWNLOADIT altml=true style="padding-right: 5px"]-->
+            <!--[$file.title]--><!--[if $file.extension ne "extvid"]--> (<!--[mafilesize size=$file.filesize]-->)<!--[/if]--><br />
+            <!--[include file="MediaAttach_file_categories.htm"]-->
+
+            <!--[mafilebuttons file=$file view=1 info=1 dl=1 mail=1]-->
+            &nbsp;
+            (<!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, &nbsp;<!--[$file.date|date_format:"%d.%m.%y, %H:%M"]-->)
+<!--[if $file.extension ne "extvid"]-->
+           &nbsp;
+            <!--[$file.dlcount]--> <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT"]-->
+
+            <div id="fileinfo<!--[$file.fileid]-->" style="display: none">
+                <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
+            </div>
+<!--[/if]-->
+        </div>
+    </div>
+<!--[if $file.extension ne "extvid"]-->
+    <script type="text/javascript" language="javascript">
+    /* <![CDATA[ */
+        function maSwitchFileInfo<!--[$file.fileid]-->(event) {
+            maSwitchDisplayState('fileinfo<!--[$file.fileid]-->');
+            Event.stop(event);
+        }
+        $('fileinfo<!--[$file.fileid]-->_switch').observe('click', maSwitchFileInfo<!--[$file.fileid]-->, false);
+        $('fileinfo<!--[$file.fileid]-->_switch').observe('keypress', maSwitchFileInfo<!--[$file.fileid]-->, false);
+    /* ]]> */
+    </script>
+<!--[/if]-->
+<!--[/if]-->

@@ -1,0 +1,222 @@
+.highslide img {
+    border: 2px solid gray;
+    cursor: url('./graphics/zoomin.cur'), pointer;
+    outline: none;
+}
+.highslide:hover img {
+    border: 2px solid silver;
+}
+
+.highslide-image {
+    border: 10px solid white;
+}
+.highslide-image-blur {
+}
+.highslide-caption {
+    display: none;
+    border: 2px solid white;
+    border-top: none;
+    padding: 5px;
+    background-color: #F0EDE0;
+    text-align: justify;
+}
+.highslide-loading {
+    display: block;
+    color: black;
+    font-size: 8pt;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px;
+    border: 1px solid black;
+    background-color: white;
+    
+    /*padding-left: 22px;
+    background-image: url('./graphics/loader.gif');
+    background-repeat: no-repeat;
+    background-position: 3px 1px;*/   
+}
+.control {
+    float: right;
+    display: block;
+    /*position: relative;*/
+    margin: 0 5px;
+    font-size: 9pt;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.control:hover {
+    color: black !important;
+}
+.highslide-move {
+    cursor: move;
+}
+.highslide-overlay {
+    display: none;
+}
+a.highslide-credits,
+a.highslide-credits i {
+    padding: 2px;
+    color: silver;
+    text-decoration: none;
+    font-size: 10px;
+}
+a.highslide-credits:hover,
+a.highslide-credits:hover i {
+    color: white;
+    background-color: gray;
+}
+.highslide-previous-next {
+    text-align: center;
+    padding-bottom: 5px;
+}
+.highslide-previous-next a {
+    font-size: 7pt;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    padding: 0 20px;
+}
+.highslide-html {
+    border: 2px solid silver;
+    background-color: white;
+}
+.highslide-html-blur {
+    border: 2px solid gray;
+}
+.highslide-html-content {
+    position: absolute;
+    display: none;
+    text-align: left;
+}
+/* Individual CSS-classes: no border */
+.highslide-no-border .highslide-image {
+    border: none;
+    border-bottom: 1px solid white;
+    
+}
+.highslide-no-border .highslide-html {
+    border: none;
+    
+}
+.highslide-no-border .highslide-caption {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: gray;
+    color: white;
+}
+.highslide-no-border .highslide-caption code {
+    color: white;
+}
+
+/* Individual CSS-classes: gradient */
+.highslide-white .highslide-image {
+    border: 5px solid white;
+    
+}
+.highslide-white .highslide-caption {
+    background-color: white;
+}
+.highslide-white .control, .highslide-white .control * {
+    color: #666;
+}
+.highslide-white .highslide-html {
+    border: 2px solid white;
+}
+
+/* Individual CSS-classes: narrow border */
+.highslide-narrow-border .highslide-image {
+    border: 2px solid white;
+}
+.highslide-narrow-border .highslide-caption {
+    background-color: white;
+}
+
+/* Individual CSS-classes: black border */
+.highslide-black-border .highslide-image {
+    border: 2px solid #655F2F;
+}
+.highslide-black-border .highslide-caption {
+    border: 2px solid #655F2F;
+    border-top: none;
+    background-color: white;
+    color: #333;
+}
+
+/* Individual CSS-classes: specified blur style */
+.highslide-blur-example .highslide-image-blur {
+    border-color: silver;
+}
+
+.highslide-blur-example .highslide-caption-blur {
+    border-color: silver;
+}
+
+.html-header {
+    background-image: url('./graphics/header-background.gif');
+    cursor: default;
+    height: 18px;
+    padding: 2px;
+}
+.highslide-html-blur #highslide-html-7-header {
+    background-image: url('./graphics/header-background-blur.gif'); 
+    height: 18px;
+    padding: 2px;
+}
+
+
+/* Controlbar example */
+.controlbar {   
+    background: url('./graphics/controlbar4.gif');
+    width: 167px;
+    height: 34px;
+}
+.controlbar a { 
+    display: block;
+    float: left;
+    /*margin: 0px 0 0 4px;*/    
+    height: 27px;
+}
+.controlbar a:hover {
+    background-image: url('./graphics/controlbar4-hover.gif');
+}
+.controlbar .previous {
+    width: 50px;
+}
+.controlbar .next {
+    width: 40px;
+    background-position: -50px 0;
+}
+.controlbar .highslide-move {
+    width: 40px;
+    background-position: -90px 0;
+}
+.controlbar .close {
+    width: 36px;
+    background-position: -130px 0;
+}
+
+/* Controlbar example */
+.controlbar2 {  
+    margin-left: 60px;
+    background: url('./graphics/controlbar2.gif');
+    width: 210px;
+    height: 32px;
+}
+.controlbar2 a {    
+    display: block;
+    float: left;
+    margin: 0 0 0 5px;
+    height: 30px;
+    width: 42px;
+}
+
+/* Put these last in your highlide-related CSS */
+.highslide-display-block {
+    display: block;
+}
+.highslide-display-none {
+    display: none;
+}

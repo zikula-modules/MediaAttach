@@ -1,0 +1,17 @@
+<!--[* $Id: inline_doc_ooffice.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows open office files (writer, calc, ...) *]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid inline=1 assign="fileurl"]-->
+
+<!--[if $file.mimetype eq "application/vnd.oasis.opendocument.text" || $file.extension eq "odt"]-->
+<!--[*    Download your open writer document <a href="<!--[$fileurl]-->">here</a>.<br /> *]-->
+<!--[elseif $file.mimetype eq "application/vnd.oasis.opendocument.spreadsheet" || $file.extension eq "ods"]-->
+<!--[*    Download your open calc sheet <a href="<!--[$fileurl]-->">here</a>.<br /> *]-->
+<!--[elseif $file.mimetype eq "application/vnd.oasis.opendocument.presentation" || $file.extension eq "odp"]-->
+<!--[*    Download your open impress presentation <a href="<!--[$fileurl]-->">here</a>.<br /> *]-->
+<!--[/if]-->
+<!--[*
+<iframe src="<!--[$fileurl]-->"<!--[$typehtml]--> id="ma<!--[$idprefix]-->doc<!--[$file.fileid]-->" name="madoc<!--[$file.fileid]-->" width="350" height="200">
+   <p>Your browser does not supporty embedded frames unfortunately.</p>
+</iframe>
+*]-->

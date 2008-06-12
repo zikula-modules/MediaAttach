@@ -1,0 +1,33 @@
+<!--[* $Id: $ *]-->
+<!--[* Purpose of this template: highslide template *]-->
+
+<script type="text/javascript" language="javascript">
+/* <![CDATA[ */
+    hs.graphicsDir = '<!--[pngetbaseurl]-->modules/MediaAttach/pnincludes/highslide/graphics/';
+    hs.showCredits = 0;
+//    hs.align = 'center';
+    hs.outlineType = 'rounded-white'; // default setting (drop-shadow, rounded-white, outer-glow)
+    hs.outlineWhileAnimating = true;
+/* ]]> */
+</script>
+
+<!--[if $definition.displayfiles ne 0]-->
+<!--[pnuserloggedin assign="isLoggedIn"]-->
+<!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
+<!--[if $isLoggedIn || $numFiles > 0]-->
+    <!--[pnpageaddvar name="javascript" value="modules/MediaAttach/pnjavascript/MediaAttach.js"]-->
+    <!--[pnpageaddvar name="javascript" value="modules/MediaAttach/pnincludes/highslide/highslide.js"]-->
+    <!--[pnpageaddvar name="stylesheet" value="modules/MediaAttach/pnincludes/highslide/highslide.css"]-->
+
+    <!--[pnusergetvar name="uid" assign="currentuser"]-->
+    <div id="myfilelist">
+        <!--[foreach name="fileloop" item="file" from=$files]-->
+            <!--[include file="MediaAttach_user_listgallery_single.htm"]-->
+        <!--[foreachelse]-->
+            <p><!--[pnml name="_MEDIAATTACH_UPLOADNOIMAGES"]--></p>
+        <!--[/foreach]-->
+    </div>
+    <br style="clear: left" />
+    <br />
+<!--[/if]-->
+<!--[/if]-->

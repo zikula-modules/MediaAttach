@@ -1,0 +1,52 @@
+<!--[* $Id: inline_real.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows files within the real player inline *]-->
+
+<!--[assign var="playerwidth" value=""]-->
+<!--[assign var="playerheight" value=""]-->
+<!--[if $file.fileInfo.video.resolution_x ne ""]-->
+    <!--[assign var="playerwidth" value=" width=\"`$file.fileInfo.video.resolution_x`\""]-->
+<!--[/if]-->
+<!--[if $file.fileInfo.video.resolution_y ne ""]-->
+    <!--[assign var="playerheight" value=" height=\"`$file.fileInfo.video.resolution_y`\""]-->
+<!--[/if]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid assign="fileurl"]-->
+
+<!--[*
+    currently disabled because Firefox Linux crashes (there exist a LOT of problems on plugin level)
+    IE and Fx/Win work well, the same goes for Konqueror
+
+    using embed until a solution for this problem has been found
+
+<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            type="audio/x-pn-realaudio-plugin"
+            data="<!--[$fileurl|pnvarprepfordisplay]-->"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+
+<!--[literal]--><!--[if IE]><!--[/literal]-->
+*]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"
+            standby="Loading Real Player components..."
+            type="application/x-oleobject"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+<!--[* <!--[literal]--><!--><!----><!--[/literal]--> *]-->
+
+        <param name="src" value="<!--[$fileurl|pnvarprepfordisplay]-->" />
+        <param name="autostart" value="0" />
+        <param name="maintainaspect" value="1" />
+
+        <embed src="<!--[$fileurl|pnvarprepfordisplay]-->" <!--[$playerwidth]--><!--[$playerheight]--> type="audio/x-pn-realaudio-plugin" nojava="true" controls="all" console="one" />
+        <noembed>
+<!--[*        <p> *]-->
+            Your browser does not support embedded real files.<br />
+            Please click <a href="<!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
+            <a href="http://www.real.com/" title="Download Real Player" target="_blank">
+                <!--[pnimg src="logo_real.png" alt="Download Real Player"]-->
+            </a>
+<!--[*        </p> *]-->
+        </noembed>
+    </object>
+<!--[* <!--[literal]--><!-- <![endif]--><!--[/literal]--> *]-->

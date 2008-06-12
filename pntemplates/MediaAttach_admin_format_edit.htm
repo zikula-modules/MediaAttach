@@ -1,0 +1,39 @@
+<!--[* $Id: MediaAttach_admin_format_edit.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Format editing *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=_MEDIAATTACH_FORMATEDIT altml=true]--></div>
+
+<form id="editformatform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updateformat"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_FORMATEDIT"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="fid" value="<!--[$format.fid]-->" />
+
+        <label for="MediaAttach_extension" class="maleft"><!--[pnml name="_MEDIAATTACH_FILETYPE"]-->:</label>
+        <!--[$format.extension]-->
+        <input type="hidden" id="MediaAttach_extension" name="extension" value="<!--[$format.extension]-->" /><br />
+
+        <label for="MediaAttach_image" class="maleft"><!--[pnml name="_MEDIAATTACH_IMAGE"]-->:</label>
+        <!--[maimageselect selected=$format.image type="formats"]--><br />
+
+        <label for="MediaAttach_groups" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPS"]-->:</label>
+        <select id="MediaAttach_groups" name="groups[]" size="10" multiple="multiple" style="width: 150px">
+            <!--[foreach item="currentgroup" from=$allgroups]-->
+                <option value="<!--[$currentgroup.gid]-->"
+                    <!--[foreach item=mygroup from=$groups]-->
+                        <!--[if $mygroup.gid eq $currentgroup.gid]--> selected="selected"<!--[/if]-->
+                    <!--[/foreach]-->
+                ><!--[$currentgroup.groupname]--></option>
+            <!--[/foreach]-->
+        </select><br /><br />
+
+        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_FORMATUPDATE"]-->" class="maright" />
+        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewformats"]-->" title="<!--[pnml name="_CANCELEDIT"]-->"><!--[pnml name="_CANCEL"]--></a>
+    </fieldset>
+</form>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

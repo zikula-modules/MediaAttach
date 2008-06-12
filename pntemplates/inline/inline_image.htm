@@ -1,0 +1,34 @@
+<!--[* $Id: inline_image.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows an image inline *]-->
+
+<!--[assign var="imgSize" value=""]-->
+<!--[pnmodurl modname="MediaAttach" func="download" inline=1 fileid=$file.fileid assign="fileurl"]-->
+
+<!--[if $thumbnr eq "original" && !$externalPreview]-->
+    <!--[pnmodurl modname="MediaAttach" type="user" func="download" inline=1 fileid=$file.fileid assign="previewfile"]-->
+<!--[elseif $thumbnr eq "original" && $externalPreview]-->
+    <!--[pnmodgetvar module="MediaAttach" name="defaultthumb" assign="thumbnr"]-->
+    <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
+<!--[else]-->
+    <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
+<!--[/if]-->
+
+<!--[if $thumbnr ne "original"]-->
+    <!--[pnmodgetvar module="MediaAttach" name="cropsizemode" assign="cropsizemode"]-->
+    <!--[if $cropsizemode eq 2]-->
+        <!--[maimagesize imgref=$previewfile assign="previewSizeArr"]-->
+        <!--[assign var="imgSize" value=$previewSizeArr[3]]-->
+    <!--[/if]-->
+<!--[/if]-->
+
+<!--[if $externalPreview || ($thumbnr ne "original" && $imgSize eq "")]-->
+    <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+    <!--[assign var="thumbIndex" value=$thumbnr-1]-->
+    <!--[assign var="thumbwidth" value=$thumbsizes[$thumbIndex][0]]-->
+    <!--[assign var="thumbheight" value=$thumbsizes[$thumbIndex][1]]-->
+    <!--[assign var="imgSize" value=" width=\"`$thumbwidth`\" height=\"`$thumbheight`\""]-->
+<!--[/if]-->
+
+<a href="<!--[$fileurl|pnvarprepfordisplay]-->" target="_blank" title="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->">
+    <img id="ma<!--[$idprefix]-->img<!--[$file.fileid]-->" src="<!--[$previewfile]-->"<!--[$imgSize]--> alt="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->" />
+</a>

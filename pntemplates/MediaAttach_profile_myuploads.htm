@@ -1,0 +1,28 @@
+<!--[* $Id: MediaAttach_profile_myuploads.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Upload management *]-->
+
+<h2><!--[pnimg src="folder_documents.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_MYUPLOADS"]--></h2>
+<div>
+
+<!--[include file="MediaAttach_navform.html" hiddenType="account" hiddenFunc="viewuploads" categorization=false sorting=true perpage=true displayswitch=true]-->
+
+<!--[if $filesthere eq 0]-->
+    <p class="centered" style="margin-top: 50px">
+        <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]-->
+    </p>
+<!--[else]-->
+    <!--[if $preview]-->
+        <!--[if $onlyimages]-->
+            <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
+        <!--[else]-->
+            <!--[include file="MediaAttach_user_inlinelist.htm"]-->
+        <!--[/if]-->
+    <!--[else]-->
+        <!--[include file="MediaAttach_user_filelist.htm"]-->
+    <!--[/if]-->
+<!--[/if]-->
+
+<br />
+<!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1]-->
+
+</div>

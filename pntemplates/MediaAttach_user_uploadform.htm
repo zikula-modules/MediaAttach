@@ -1,0 +1,174 @@
+<!--[* $Id: MediaAttach_user_uploadform.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: The form to upload, is shown only if the user is allowed to upload *]-->
+
+<!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
+
+<br id="files" />
+<!--[insert name="getstatusmsg"]--><br /><br />
+<!--[if $definition.state eq 1]-->
+    <!--[pnmodfunc modname="MediaAttach" type="user" func="showfilelist" objectid=$objectid]-->
+    <!--[if $allowadd]-->
+        <a id="myuploadform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->" style="display: none">
+            <!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->
+        </a>
+<!--[if $activateExternalVideos]-->
+      | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]-->" style="display: none">
+            <!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]-->
+        </a>
+<!--[/if]-->
+        <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createupload"]-->" method="post" enctype="multipart/form-data" class="maform">
+            <fieldset>
+                <legend><!--[pnml name="_MEDIAATTACH_UPLOADFILES"]--></legend>
+                <input type="hidden" name="authid" id="MediaAttach_authid" value="<!--[$authid]-->" />
+                <input type="hidden" name="MediaAttach_redirect" id="MediaAttach_redirect" value="<!--[$redirect]-->" />
+                <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="<!--[$modname]-->" />
+                <input type="hidden" name="MediaAttach_objectid" id="MediaAttach_objectid" value="<!--[$objectid]-->" />
+
+                <label class="maleft"><!--[pnml name="_MEDIAATTACH_ALLOWEDFORMATS"]-->:</label>
+                <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
+                    <span id="showformats"><!--[pnml name="_MEDIAATTACH_FORMATSSHOW"]--></span>
+                    <span id="hideformats" style="display: none"><!--[pnml name="_MEDIAATTACH_FORMATSHIDE"]--></span>
+                </a>
+                <p id="allowedformats" style="float: left; margin-left: 13.3em"><!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]--></p><br />
+
+                <label class="maleft"><!--[pnml name="_MEDIAATTACH_MAXSIZE"]-->:</label>
+                <input type="hidden" name="MAX_FILE_SIZE" value="<!--[$definition.maxsize]-->" />
+                <!--[mafilesize size=$definition.maxsize]--><br />
+
+                <!--[if $usequota eq 1]-->
+                    <label class="maleft"><!--[pnml name="_MEDIAATTACH_QUOTA"]-->:</label>
+                    <!--[pnml name="_MEDIAATTACH_QUOTAYOUHAVE"]--> <!--[mafilesize size=$usedquota]--> <!--[pnml name="_MEDIAATTACH_QUOTAOF"]--> <!--[mafilesize size=$allowedquota]--> <!--[pnml name="_MEDIAATTACH_QUOTAUSED"]--><br />
+                <!--[/if]-->
+                <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+                    <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+                    <div id="uploadformwrappernonjs">
+                    <!--[foreach item="currentfilenum" from=$numArr]-->
+                        <div style="margin: 5px 20px; padding-left: 20px">
+                            <p style="font-weight: 700"><!--[pnml name="_MEDIAATTACH_UPLOADFILE"]--><!--[if $definition.numfiles > 1]--> <!--[$currentfilenum]--><!--[/if]--></p>
+
+                            <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+                            <input id="MediaAttach_uploadfile<!--[$currentfilenum]-->" name="MediaAttach_uploadfile<!--[$currentfilenum]-->" type="file" /><br />
+
+                            <label for="MediaAttach_title<!--[$currentfilenum]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_TITLE"]-->:</label>
+                            <input id="MediaAttach_title<!--[$currentfilenum]-->" name="MediaAttach_title<!--[$currentfilenum]-->" type="text" maxlength="32" /><br />
+
+                            <label for="MediaAttach_description<!--[$currentfilenum]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]-->:</label>
+                            <textarea id="MediaAttach_description<!--[$currentfilenum]-->" name="MediaAttach_description<!--[$currentfilenum]-->" rows="3" cols="30"></textarea><br />
+
+                            <label for="mafilecats_<!--[$currentfilenum]-->_Main_" class="maleft"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+                            <!--[nocache]-->
+                            <ul class="maCatSelector">
+                            <!--[foreach from=$categories key=property item=category]-->
+                                <li><!--[selector_category category=$category name="mafilecats_`$currentfilenum`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+                            <!--[/foreach]-->
+                            </ul>
+                            <!--[/nocache]-->
+                            <br />
+                        </div>
+                    <!--[/foreach]-->
+                    </div>
+
+                    <div id="uploadformwrapperjs" style="display: none">
+                        <div id="fileInputFrame">
+                            <label class="maleft"><!--[pnml name="_MEDIAATTACH_MAXFILES"]-->:</label>
+                            <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="<!--[$definition.numfiles]-->" />
+                            <!--[$definition.numfiles]--><br />
+
+                            <label id="labelfile" for="MediaAttach_uploadfile" class="maleft"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+                            <input id="MediaAttach_uploadfile" type="file" /><br />
+
+                            <label id="labeltitle" for="MediaAttach_title" class="maleft"><!--[pnml name="_MEDIAATTACH_TITLE"]-->:</label>
+                            <input id="MediaAttach_title" type="text" maxlength="32" /><br />
+
+                            <label id="labeldesc" for="MediaAttach_description" class="maleft"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]-->:</label>
+                            <textarea id="MediaAttach_description" rows="3" cols="30"></textarea><br />
+
+                            <label for="mafilecats_Main_" class="maleft"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+                            <!--[nocache]-->
+                            <ul id="maCatSelector" class="maCatSelector">
+                            <!--[foreach from=$categories key=property item=category]-->
+                                <li><!--[selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+                            <!--[/foreach]-->
+                            </ul>
+                            <!--[/nocache]-->
+                            <br />
+
+                            <input type="button" id="addNewUploadFile" value="<!--[pnml name="_MEDIAATTACH_ADDFILE"]-->" class="maadminright" /><br />
+                        </div>
+
+                        <ul id="addedUploadList">
+                            <li><!--[pnml name="_MEDIAATTACH_INFOFORATTACHMENTBOX"]--></li>
+                        </ul>
+
+                        <ul class="" style="position: relative" id="uploadRemoveBox">
+                            <li><!--[pnml name="_MEDIAATTACH_INFOFORDROPBOX"]--></li>
+                        </ul>
+                    </div>
+
+                    <iframe id="myuploadframe" name="myuploadframe" src="ajax.php?module=MediaAttach&amp;func=performupload" style="display: none"></iframe>
+
+                    <br />
+                    <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
+                    <input type="submit" value="<!--[pnml name="_MEDIAATTACH_UPLOAD"]-->" class="maadminright" />
+                    <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]-->
+                    <span id="myuploadresult" style="display: none"><!--[pnml name="_MEDIAATTACH_UPLOADING"]--></span><br />
+                <!--[else]-->
+                    <p><!--[pnml name="_MEDIAATTACH_QUOTAFULL"]--></p>
+                <!--[/if]-->
+            </fieldset>
+        </form>
+<!--[if $activateExternalVideos]-->
+<form id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="MediaAttach_modname" value="<!--[$modname]-->" />
+        <input type="hidden" name="MediaAttach_redirect" value="<!--[$redirect]-->" />
+        <input type="hidden" name="MediaAttach_objectid" value="<!--[$objectid]-->" />
+
+        <label class="mamarginleft"><!--[pnml name="_MEDIAATTACH_EXTVIDEOSUPPORTED"]-->:</label>
+        <a id="supportedproviders_switch" href="javascript:void(0);" style="display: none">
+            <span id="showproviders"><!--[pnml name="_MEDIAATTACH_FORMATSSHOW"]--></span>
+            <span id="hideproviders" style="display: none"><!--[pnml name="_MEDIAATTACH_FORMATSHIDE"]--></span>
+        </a>
+        <p id="supportedproviders" style="float: left; margin-left: 14em"><!--[foreach name="proloop" item="provider" from=$supportedProviders]--><!--[$provider.name|pnvarprepfordisplay]--><!--[if !$smarty.foreach.proloop.last]-->, <!--[/if]--><!--[/foreach]--></p><br />
+
+        <label id="lblurl" for="MediaAttach_videourl" class="mamarginleft"><!--[pnml name="_MEDIAATTACH_EXTVIDEOURL"]-->:</label>
+        <input id="MediaAttach_videourl" name="MediaAttach_videourl" type="text" size="40" />
+        <input type="submit" value="<!--[pnml name="_SUBMIT"]-->" />
+        <br />
+
+        <label for="maextvidcats_Main_" class="mamarginleft"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+        <!--[nocache]-->
+        <ul class="maCatSelector" style="margin-left: 14em">
+        <!--[foreach from=$categories key=property item=category]-->
+            <li><!--[selector_category category=$category name="maextvidcats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+        <!--[/foreach]-->
+        </ul>
+        <!--[/nocache]-->
+    </fieldset>
+</form>
+<!--[/if]-->
+        <script type="text/javascript" language="javascript">
+        /* <![CDATA[ */
+            maInitUploadFormView();
+
+        <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+            var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]-->);
+            var errorAllowedFilenum = "<!--[pnml name="_MEDIAATTACH_ERRORALLOWEDFILENUM" m=$definition.numfiles]-->";
+            var errorAlreadySelected = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYSELECTED"]-->";
+            var errorExtensionNotAllowed = "<!--[pnml name="_MEDIAATTACH_ERROREXTENSIONNOTALLOWED"]-->";
+            maInitUploadFormFunction();
+
+            var errorNoFilesSelected = "<!--[pnml name="_MEDIAATTACH_ERRORNOFILESSELECTED"]-->";
+            var errorAlreadyRunning = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYRUNNING"]-->";
+            maInitUploadFormAsynchronous();
+        <!--[/if]-->
+
+        <!--[if $activateExternalVideos]-->
+            maInitExtVideoFormView();
+        <!--[/if]-->
+        /* ]]> */
+        </script>
+    <!--[/if]-->
+<!--[/if]-->

@@ -1,0 +1,6 @@
+
+# Allow the view of pdf files from the pndocs directory
+SetEnvIf Request_URI "\.pdf$" object_is_pdf=pdf
+Order deny,allow
+Deny from all
+Allow from env=object_is_pdf

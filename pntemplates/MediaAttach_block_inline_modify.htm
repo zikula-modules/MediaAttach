@@ -1,0 +1,26 @@
+<!--[* $Id: MediaAttach_block_inline_modify.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Block configuration options *]-->
+
+<div class="pn-adminformrow">
+    <label for="MediaAttach_numitems"><!--[pnml name="_MEDIAATTACH_NUMITEMS"]--></label>
+    <input id="MediaAttach_numitems" type="text" name="numitems" value="<!--[$numitems|pnvarprephtmldisplay]-->" size="5" maxlength="5" />
+</div>
+<div class="pn-adminformrow">
+    <label for="MediaAttach_displaytype"><!--[pnml name="_MEDIAATTACH_DISPLAYTYPE"]--></label>
+    <select id="MediaAttach_displaytype" name="displaytype" size="1">
+        <option value="0" <!--[if $displaytype eq 0]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_NEWESTFILES"]--></option>
+        <option value="1" <!--[if $displaytype eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_RANDOMFILES"]--></option>
+    </select>
+</div>
+<div class="pn-adminformrow">
+    <label for="MediaAttach_formats"><!--[pnml name="_MEDIAATTACH_FORMATFILTER"]--></label>
+    <select id="MediaAttach_formats" name="formats[]" size="10" multiple="multiple" style="width: 100px">
+    <!--[foreach item="currentformat" from=$allformats]-->
+        <option value="<!--[$currentformat.extension|pnvarprephtmldisplay]-->"
+            <!--[foreach item=myformat from=$formats]-->
+                <!--[if $myformat eq $currentformat.extension]--> selected="selected"<!--[/if]-->
+            <!--[/foreach]-->
+        ><!--[$currentformat.extension|pnvarprephtmldisplay]--></option>
+    <!--[/foreach]-->
+    </select>
+</div>

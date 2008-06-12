@@ -1,0 +1,202 @@
+<!--[* $Id: MediaAttach_file_information.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows the file information *]-->
+
+<!--[*
+<!--[if $file.fileInfo.error[0] ne ""]-->
+    <!--[if $file.fileInfo.error[0] ne "unable to determine file format"]-->
+        Error: <!--[$file.fileInfo.error[0]]--><br />
+    <!--[/if]-->
+<!--[/if]-->
+
+<!--[if $file.fileInfo.warning[0] ne ""]-->
+        Notice: <!--[$file.fileInfo.warning[0]]--><br />
+<!--[/if]-->
+*]-->
+
+<dl>
+<dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOGENERALINFO"]--></dt>
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOFILETYPE"]-->
+        <!--[if $file.fileInfo.fileformat ne ""]--><!--[$file.fileInfo.fileformat]-->
+        <!--[else]--><!--[$file.extension]--><!--[/if]-->
+    </dd>
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOFILESIZE"]-->
+        <!--[if $file.fileInfo.filesize ne ""]--><!--[mafilesize size=$file.fileInfo.filesize]-->
+        <!--[else]--><!--[mafilesize size=$file.filesize]--><!--[/if]-->
+    </dd>
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOMIMETYPE"]-->
+        <!--[if $file.fileInfo.mime_type ne ""]-->
+            <!--[if $file.fileInfo.mime_type ne $file.mimetype]-->
+                <!--[$file.fileInfo.mime_type]--> (<!--[$file.mimetype]-->)
+            <!--[else]-->
+                <!--[$file.fileInfo.mime_type]-->
+            <!--[/if]-->
+        <!--[else]-->
+            <!--[$file.mimetype]-->
+        <!--[/if]-->
+    </dd>
+<!--[if $file.fileInfo.encoding ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOENCODING"]--> <!--[$file.fileInfo.encoding]--></dd>
+<!--[/if]-->
+
+<!--[if $file.fileInfo.bitrate ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOAVGBITRATE"]--> <!--[math equation="x/1000" x=$file.fileInfo.bitrate format="%.0f"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOKBPS"]--></dd>
+<!--[/if]-->
+<!--[if $file.fileInfo.playtime_seconds ne "" || $file.fileInfo.playtime_string ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOPLAYTIME"]-->
+        <!--[if $file.fileInfo.playtime_string ne ""]-->
+            <!--[$file.fileInfo.playtime_string]-->
+            <!--[if $file.fileInfo.playtime_seconds ne ""]-->
+                (<!--[$file.fileInfo.playtime_seconds]--> <!--[pnml name="_MEDIAATTACH_FILEINFOSECONDS"]-->)
+            <!--[/if]-->
+        <!--[else]-->
+            <!--[$file.fileInfo.playtime_seconds]--> <!--[pnml name="_MEDIAATTACH_FILEINFOSECONDS"]-->
+        <!--[/if]-->
+    </dd>
+<!--[/if]-->
+
+
+<dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOHASHINFO"]--></dt>
+<!--[if $file.fileInfo.md5_file ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOMD5ENTIREFILE"]--> <!--[$file.fileInfo.md5_file]--></dd>
+<!--[/if]-->
+<!--[if $file.fileInfo.md5_data_source ne ""]-->
+  <!--[if $file.fileInfo.md5_data ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOMD5CRAWDATA"]--> <!--[$file.fileInfo.md5_data]--></dd>
+  <!--[/if]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOMD5URAWDATA"]--> <!--[$file.fileInfo.md5_data_source]--></dd>
+<!--[else]-->
+  <!--[if $file.fileInfo.md5_data ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOMD5RAWDATA"]--> <!--[$file.fileInfo.md5_data]--></dd>
+  <!--[/if]-->
+<!--[/if]-->
+<!--[if $file.fileInfo.sha1_file ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOSHA1ENTIREFILE"]--> <!--[$file.fileInfo.sha1_file]--></dd>
+<!--[/if]-->
+<!--[if $file.fileInfo.sha1_data ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOSHA1RAWDATA"]--> <!--[$file.fileInfo.sha1_data]--></dd>
+<!--[/if]-->
+
+
+<!--[if $file.fileInfo.audio]-->
+  <dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOAUDIOINFO"]--></dt>
+
+  <!--[if $file.fileInfo.audio.bitrate ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOAVGBITRATE"]--> <!--[math equation="x/1000" x=$file.fileInfo.audio.bitrate format="%.0f"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOKBPS"]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.bitrate_mode ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOBITRATEMODE"]-->
+      <!--[if $file.fileInfo.audio.bitrate_mode eq "cbr"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOBITRATECBR"]-->
+      <!--[elseif $file.fileInfo.audio.bitrate_mode eq "vbr"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOBITRATEVBR"]-->
+      <!--[else]--><!--[$file.fileInfo.audio.bitrate_mode]-->
+      <!--[/if]-->
+    </dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.sample_rate ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOSAMPLERATE"]--> <!--[$file.fileInfo.audio.sample_rate]--> <!--[pnml name="_MEDIAATTACH_FILEINFOHERTZ"]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.bits_per_sample ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOBITSPERSAMPLE"]--> <!--[$file.fileInfo.audio.bits_per_sample]--></dd>
+  <!--[/if]-->
+
+  <!--[if $file.fileInfo.audio.channelmode ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOCHANNELMODE"]--> <!--[$file.fileInfo.audio.channelmode]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.channels ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFONOOFCHANNELS"]--> <!--[$file.fileInfo.audio.channels]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.codec ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOAUDIOCODEC"]--> <!--[$file.fileInfo.audio.codec]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.encoder ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOENCODER"]--> <!--[$file.fileInfo.audio.encoder]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.compression_ratio ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOCOMPRESSIONRATIO"]--> <!--[$file.fileInfo.audio.compression_ratio]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.audio.lossless]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSLESS"]--> <!--[if $file.fileInfo.audio.lossless]--><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSLESSCOMP"]--><!--[else]--><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSYCOMP"]--><!--[/if]--></dd>
+  <!--[/if]-->
+<!--[/if]-->
+
+
+<!--[if $file.fileInfo.video]-->
+  <!--[splitvar var=$file.mimetype delim="/" assign="mimearr"]-->
+  <!--[if $mimearr[0] eq "image"]-->
+    <dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOIMAGEINFO"]--></dt>
+  <!--[else]-->
+    <dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOVIDEOINFO"]--></dt>
+  <!--[/if]-->
+
+  <!--[if $file.fileInfo.video.bitrate ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOAVGBITRATE"]--> <!--[math equation="x/1000" x=$file.fileInfo.video.bitrate format="%.0f"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOKBPS"]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.bitrate_mode ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOBITRATEMODE"]-->
+      <!--[if $file.fileInfo.video.bitrate_mode eq "cbr"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOBITRATECBR"]-->
+      <!--[elseif $file.fileInfo.video.bitrate_mode eq "vbr"]--> <!--[pnml name="_MEDIAATTACH_FILEINFOBITRATEVBR"]-->
+      <!--[else]--><!--[$file.fileInfo.video.bitrate_mode]-->
+      <!--[/if]-->
+    </dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.bits_per_sample ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOBITSPERSAMPLE"]--> <!--[$file.fileInfo.video.bits_per_sample]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.frame_rate ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOFRAMERATE"]--> <!--[$file.fileInfo.video.frame_rate]--> <!--[pnml name="_MEDIAATTACH_FILEINFOFPS"]--></dd>
+  <!--[/if]-->
+
+  <!--[if $file.fileInfo.video.resolution_x ne "" && $file.fileInfo.video.resolution_y ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOSIZE"]--> <!--[$file.fileInfo.video.resolution_x]--> x <!--[$file.fileInfo.video.resolution_y]--> <!--[pnml name="_MEDIAATTACH_FILEINFOPIXEL"]--></dd>
+  <!--[else]-->
+    <!--[if $file.fileInfo.video.resolution_x ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOWIDTH"]--> <!--[$file.fileInfo.video.resolution_x]--> <!--[pnml name="_MEDIAATTACH_FILEINFOPIXEL"]--></dd>
+    <!--[/if]-->
+    <!--[if $file.fileInfo.video.resolution_y ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOHEIGHT"]--> <!--[$file.fileInfo.video.resolution_y]--> <!--[pnml name="_MEDIAATTACH_FILEINFOPIXEL"]--></dd>
+    <!--[/if]-->
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.pixel_aspect_ratio ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOPIXELDAR"]--> <!--[$file.fileInfo.video.pixel_aspect_ratio]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.codec ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOVIDEOCODEC"]--> <!--[$file.fileInfo.video.codec]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.encoder ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOENCODER"]--> <!--[$file.fileInfo.video.encoder]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.compression_ratio ne ""]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOCOMPRESSIONRATIO"]--> <!--[$file.fileInfo.video.compression_ratio]--></dd>
+  <!--[/if]-->
+  <!--[if $file.fileInfo.video.lossless]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSLESS"]--> <!--[if $file.fileInfo.video.lossless]--><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSLESSCOMP"]--><!--[else]--><!--[pnml name="_MEDIAATTACH_FILEINFOLOSSYCOMP"]--><!--[/if]--></dd>
+  <!--[/if]-->
+
+  <!--[if $file.fileInfo.swf && $file.fileInfo.swf.bgcolor]-->
+    <dd><!--[pnml name="_MEDIAATTACH_FILEINFOBGCOLOR"]--> <!--[$file.fileInfo.swf.bgcolor]--></dd>
+  <!--[/if]-->
+<!--[/if]-->
+
+<!--[if $file.fileInfo.jpg && $file.fileInfo.jpg.exif]-->
+  <dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOEXIF"]--></dt>
+
+  <!--[foreach key="exifGroupname" item="exifGroup" from=$file.fileInfo.jpg.exif]-->
+    <!--[if $exifGroupname ne "MAKERNOTE"]--><!--[* left out because of binary and unneeded big content *]-->
+        <dd><!--[$exifGroupname|pnvarprepfordisplay]--></dd>
+        <!--[foreach key="exifEntry" item="exifValue" from=$exifGroup]-->
+          <!--[if $exifEntry ne "MakerNote" && $exifEntry ne "ComponentsConfiguration" && $exifEntry ne "FileSource" && $exifEntry ne "UserComment"]--><!--[* left out because of binary content *]-->
+            <dd style="padding-left: 30px"><!--[$exifEntry|pnvarprepfordisplay]-->: <!--[if is_array($exifValue)]--><!--[foreach name="valLoop" item="exifVal" from=$exifValue]--><!--[$exifVal]--><!--[if !$smarty.foreach.valLoop.last]-->, <!--[/if]--><!--[/foreach]--><!--[else]--><!--[$exifValue|pnvarprepfordisplay]--><!--[/if]--></dd>
+          <!--[/if]-->
+        <!--[/foreach]-->
+    <!--[/if]-->
+  <!--[/foreach]-->
+<!--[/if]-->
+
+<!--[if $file.fileInfo.comments_html]-->
+  <dt style="font-weight: 1.2; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FILEINFOTAGINFO"]--></dt>
+
+  <!--[foreach key="currentKey" item="currentValue" from=$file.fileInfo.comments_html]-->
+    <dd><!--[$currentKey|pnvarprepfordisplay]-->: <!--[foreach name="valLoop" item="currentElem" from=$currentValue]--><!--[$currentElem|pnvarprepfordisplay]--><!--[if $smarty.foreach.valLoop.last ne true]-->, <!--[/if]--><!--[/foreach]--></dd>
+  <!--[/foreach]-->
+<!--[/if]-->
+
+</dl>

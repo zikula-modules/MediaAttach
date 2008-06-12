@@ -1,0 +1,79 @@
+<!--[* $Id: MediaAttach_import_fs.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Import from server filesystem *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=$templatetitle]--></div>
+
+<h3><!--[pnimg src="fileimport.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_IMPORTFILESFROMFS"]--></h3>
+
+<p><!--[pnml name="_MEDIAATTACH_IMPORTFILESFROMFSHINT"]--> <!--[pnml name="_MEDIAATTACH_IMPORTLIMITSHINT"]--></p>
+
+<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsprocess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_config" class="maform">
+    <fieldset>
+        <legend><!--[$currentdir]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+        <div style="margin-left: 10.5em">
+        <!--[foreach item="curDir" from=$dirs]-->
+            <!--[if $curDir ne "."]-->
+                <!--[pnimg src="folder.gif" alt="Folder" style="margin-right: 5px"]-->
+                <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform" curd="`$currentdir`/`$curDir`"]-->"><!--[$curDir]--></a><br />
+            <!--[/if]-->
+        <!--[/foreach]-->
+        </div>
+
+    <input type="checkbox" name="markall" id="markall" onclick="maToggleImportFiles(this);" class="maright" />
+    <label for="markall" style="text-align: left">Select all</label>
+<br />
+<br />
+        <!--[assign var="filenr" value="-1"]-->
+        <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+        <!--[foreach name="fileloop" item="curFile" from=$files]-->
+            <!--[assign var="filenr" value=$filenr+1]-->
+            <input type="checkbox" id="file<!--[$filenr]-->" name="file<!--[$filenr]-->" value="1" class="maright" />
+            <label for="file<!--[$filenr]-->" style="text-align: left; margin-left: 2em"><!--[$curFile.filename]--> (<!--[mafilesize size=$curFile.filesize]-->)</label><br />
+
+            <div id="filedesc<!--[$filenr]-->">
+                <label for="title<!--[$filenr]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_TITLE"]--></label>
+                <input id="title<!--[$filenr]-->" name="title<!--[$filenr]-->" type="text" maxlength="32" /><br />
+
+                <label for="description<!--[$filenr]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]--></label>
+                <textarea id="description<!--[$filenr]-->" name="description<!--[$filenr]-->" rows="3" cols="30"></textarea><br />
+
+                <label for="mafilecats_Main_"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+                <!--[nocache]-->
+                <ul style="list-style-type: none">
+                <!--[foreach from=$categories key=property item=category]-->
+                    <li><!--[selector_category category=$category name="mafilecats_`$filenr`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+                <!--[/foreach]-->
+                </ul>
+                <!--[/nocache]-->
+                <br />
+            </div>
+
+            <script type="text/javascript" language="javascript">
+            /* <![CDATA[ */
+                Element.hide('filedesc<!--[$filenr]-->');
+
+                function maSwitchFileDesc<!--[$filenr]-->() {
+                    maSwitchDisplayState('filedesc<!--[$filenr]-->');
+                }
+                $('file<!--[$filenr]-->').observe('click', maSwitchFileDesc<!--[$filenr]-->, false);
+                $('file<!--[$filenr]-->').observe('keypress', maSwitchFileDesc<!--[$filenr]-->, false);
+            /* ]]> */
+            </script>
+
+        <!--[foreachelse]-->
+            <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]--><br />
+        <!--[/foreach]-->
+
+        <input type="hidden" name="numfiles" value="<!--[$filenr+1]-->" />
+        <input type="hidden" name="curd" value="<!--[$currentdir]-->" />
+
+        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_IMPORTSTART"]-->" class="maright" />
+    </fieldset>
+</form>
+<br />
+</div>

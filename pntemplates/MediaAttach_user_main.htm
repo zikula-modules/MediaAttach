@@ -1,0 +1,69 @@
+<!--[* $Id: $ *]-->
+<!--[* Purpose of this template: User main area *]-->
+
+<!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
+
+<!--[assign var="showcatlist" value="0"]-->
+<!--[if $catmode > 0 && $cat_id == 0]-->
+    <!--[assign var="showcatlist" value="1"]-->
+<!--[/if]-->
+
+<h2><!--[pnimg src="attach.gif" modname="core" set="icons/small" style="margin-right: 5px"]--><!--[pnmodgetinfo modname="MediaAttach" info="displayname"]--> v<!--[pnmodgetinfo modname="MediaAttach" info="version"]-->
+<!--[if $showcatlist == 1]-->
+    <!--[if $catmode eq 1]--> . <!--[pnml name="_MEDIAATTACH_CATMODECATEGORIES"]-->
+    <!--[elseif $catmode eq 2]--> . <!--[pnml name="_MEDIAATTACH_CATMODEMODULES"]-->
+    <!--[elseif $catmode eq 4]--> . <!--[pnml name="_MEDIAATTACH_CATMODEUSERS"]-->
+    <!--[/if]-->
+<!--[/if]-->
+</h2>
+
+<!--[include file="MediaAttach_navform.html" hiddenType="user" hiddenFunc="main" categorization=true sorting=true perpage=true displayswitch=true]-->
+
+<!--[insert name="getstatusmsg"]-->
+<br />
+
+<!--[if $showcatlist == 1]-->
+    <!--[pnusergetlang assign="currentlang"]-->
+    <!--[foreach name="categoryloop" item="cat" from=$categories]-->
+        <!--[*if $cat.filecount > 0*]-->
+            <!--[if $cat.display_name && $cat.display_name.$currentlang]--><!--[assign var="catname" value=$cat.display_name.$currentlang]-->
+            <!--[else]--><!--[assign var="catname" value=$cat.name]-->
+            <!--[/if]-->
+
+            <!--[assign var="numLevel" value=$cat.ipath_relative|regex_replace:"/[0-9]/":""|strlen]-->
+            <!--[assign var="indentpx" value=$numLevel*35]-->
+            <div<!--[if $indentpx > 0]--> style="margin-left: <!--[$indentpx]-->px"<!--[/if]-->>
+            <h3><!--[$catname|pnvarprepfordisplay]--> (<!--[$cat.filecount|default:0]-->)</h3>
+            <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_prop=$cat.catprop cat_id=$cat.id sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[pnml name="_VIEW"]--> <!--[$catname|pnvarprepfordisplay]--></a></p>
+            <!--[if !$smarty.foreach.categoryloop.last]--><hr /><!--[/if]--><br />
+            </div>
+        <!--[*/if*]-->
+    <!--[/foreach]-->
+<!--[else]-->
+    <!--[* file list *]-->
+    <!--[if $pagetitle]--><h2 class="ma_pagetitle"><!--[$pagetitle]--></h2><!--[/if]-->
+    <!--[if $files eq 0]-->
+        <p class="centered" style="margin-top: 50px">
+            <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]-->
+        </p>
+    <!--[else]-->
+		<!--[if $matemplate]-->
+            <!--[include file=$matemplate]-->
+        <!--[elseif $preview]-->
+            <!--[if $onlyimages]-->
+                <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
+            <!--[else]-->
+                <!--[include file="MediaAttach_user_inlinelist.htm"]-->
+            <!--[/if]-->
+        <!--[else]-->
+            <!--[include file="MediaAttach_user_filelist.htm"]-->
+        <!--[/if]-->
+    <!--[/if]-->
+
+    <br />
+    <!--[pager display="startnum" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum]-->
+<!--[/if]-->
+
+<!--[if $pagetitle]-->
+    <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_id="0" sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[pnml name="_BACK"]--></a></p>
+<!--[/if]-->

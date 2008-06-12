@@ -1,0 +1,73 @@
+<!--[* $Id: MediaAttach_user_edit.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Upload editing *]-->
+
+<h2><!--[pnml name="_MEDIAATTACH_UPLOADEDIT"]--></h2>
+<form action="<!--[pnmodurl modname="MediaAttach" type="user" func="update"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name=_CONTENT]--></legend>
+
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="fileid" value="<!--[$file.fileid]-->" />
+        <input type="hidden" name="backurl" value="<!--[$backurl]-->" />
+
+        <!--[pnmodurl modname="MediaAttach" func="display" fileid=$file.fileid assign="fileurl"]-->
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILE"]-->:</label>
+        <a href="<!--[$fileurl|pnvarprepfordisplay]-->">
+            <!--[pnimg src="formats/`$file.format`" alt=$file.extension style="padding-right: 5px"]-->
+            <!--[$file.filename]-->
+        </a><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
+        <a href="<!--[$file.url|pnvarprepfordisplay]-->"><!--[pnmodgetinfo modname=$file.modname info="displayname"]--></a><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADUSER"]-->:</label>
+        <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADDATE"]-->:</label>
+        <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+
+        <label for="MediaAttach_title" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADTITLE"]-->:</label>
+        <input id="MediaAttach_title" name="MediaAttach_title" type="text" maxlength="32" value="<!--[$file.title]-->" /><br />
+
+        <label for="MediaAttach_description" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADDESC"]-->:</label>
+        <textarea id="MediaAttach_description" name="MediaAttach_description" rows="5" cols="25"><!--[$file.desc]--></textarea><br />
+
+        <label for="mafilecats_Main_"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+        <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+        <!--[nocache]-->
+        <ul style="list-style-type: none">
+        <!--[foreach from=$categories key=property item=category]-->
+            <!--[array_field_isset array=$file.__CATEGORIES__ field=$property assign="catExists"]-->
+            <!--[if $catExists]-->
+                <!--[array_field_isset array=$file.__CATEGORIES__.$property field="id" returnValue=1 assign="selectedValue"]-->
+            <!--[else]-->
+                <!--[assign var="selectedValue" value="0"]-->
+            <!--[/if]-->
+            <li><!--[selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=$selectedValue defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+        <!--[/foreach]-->
+        </ul>
+        <!--[/nocache]-->
+        <br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMIMETYPE"]-->:</label>
+        <!--[$file.mimetype]--><br />
+
+        <label class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILESIZE"]-->:</label>
+        <!--[mafilesize size=$file.filesize]--><br />
+
+        <!--[pnmodcallhooks hookobject="item" hookaction="modify" module="MediaAttach" hookid=$file.fileid]-->
+        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_UPLOADUPDATE"]-->" class="maright" />
+        <a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[pnml name="_CANCELEDIT"]-->"><!--[pnml name="_CANCEL"]--></a>
+    </fieldset>
+    <fieldset>
+        <legend><!--[pnml name=_META]--></legend>
+        <ul>
+            <!--[pnusergetvar name=uname uid=$file.cr_uid assign=username]-->
+            <li><!--[pnml name=_CREATEDBY username=$username]--></li>
+            <li><!--[pnml name=_CREATEDON date=$file.cr_date|pndate_format]--></li>
+            <!--[pnusergetvar name=uname uid=$file.lu_uid assign=username]-->
+            <li><!--[pnml name=_UPDATEDBY username=$username]--></li>
+            <li><!--[pnml name=_UPDATEDON date=$file.lu_date|pndate_format]--></li>
+        </ul>
+    </fieldset>
+</form>

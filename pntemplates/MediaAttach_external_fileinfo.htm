@@ -1,0 +1,30 @@
+<!--[* $Id: *]-->
+<!--[* Purpose of this template: Display several file information for previewing from other modules *]-->
+
+
+<dl id="file<!--[$file.fileid]-->">
+    <dt>
+        <!--[pnimg src="formats/`$file.format`" modname="MediaAttach" style="padding-right: 5px"]-->
+        <!--[$file.title|pnmodcallhooks|pnvarprephtmldisplay]--><!--[if $file.extension ne "extvid"]--> (<!--[mafilesize size=$file.filesize]-->)<!--[/if]-->
+    </dt>
+    <dd>
+        <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
+        <!--[pnml name="_MEDIAATTACH_FROM"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
+        <!--[pnml name="_MEDIAATTACH_ON"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+        <!--[include file="MediaAttach_file_categories.htm"]-->
+    </dd>
+</dl>
+
+<!--[if $file.extension ne "zip" && $file.extension ne "tar" && $file.extension ne "rar"]-->
+<div style="margin-left: 25px">
+    <!--[getinlinesnippet file=$file externalPreview=1]-->
+</div>
+<!--[/if]-->
+
+<!--[* commented out because this seems to be too heavy for the default Ajax timeout
+<!--[if $file.extension ne "extvid"]-->
+    <div id="fileinfo">
+        <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
+    </div>
+<!--[/if]-->
+*]-->

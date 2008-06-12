@@ -1,0 +1,46 @@
+<!--[* $Id: MediaAttach_file_buttons.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: shows different buttons for a given file *]-->
+
+<!--[if $view]-->
+    <a href="<!--[pnmodurl modname="MediaAttach" type="`$smarty.get.type`" func="display" fileid=$file.fileid]-->" title="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->">
+        <!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" alt=_MEDIAATTACH_VIEWIT altml=true style="padding-left: 5px"]-->
+    </a>
+<!--[/if]-->
+<!--[if $info]-->
+    <a id="fileinfo<!--[$file.fileid]-->_switch" href="<!--[pnmodurl modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->" title="<!--[pnml name="_MEDIAATTACH_FILEINFO"]-->">
+        <!--[pnimg src="comment.gif" modname="core" set="icons/extrasmall" alt=_MEDIAATTACH_FILEINFO altml=true style="padding-left: 5px"]-->
+    </a>
+<!--[/if]-->
+<!--[if $dl]-->
+    <a href="<!--[pnmodurl modname="MediaAttach" type="user" func="download" fileid=$file.fileid]-->" title="<!--[pnml name="_MEDIAATTACH_DOWNLOADIT"]-->">
+        <!--[pnimg src="filesave.gif" modname="core" set="icons/extrasmall" alt=_MEDIAATTACH_DOWNLOADIT altml=true style="padding-left: 5px"]-->
+    </a>
+<!--[/if]-->
+<!--[if $mail]-->
+    <a href="<!--[pnmodurl modname="MediaAttach" type="user" func="sendfile" fileid=$file.fileid]-->" title="<!--[pnml name="_MEDIAATTACH_SENDIT"]-->">
+        <!--[pnimg src="mail_generic.gif" modname="core" set="icons/extrasmall" alt=_MEDIAATTACH_SENDIT altml=true style="padding-left: 5px"]-->
+    </a>
+<!--[/if]-->
+
+
+<!--[if ($edit && $file.allowedit) || ($delete && $file.allowdelete)]-->
+    <!--[mareturnurl assign="backurl"]-->
+    <!--[strip]-->
+<!--[if $edit && $file.allowedit]-->
+    <!--[if $usethumbcropper eq 1 && ($file.extension eq "gif" || $file.extension eq "jpg" || $file.extension eq "png")]-->
+        <a href="<!--[pnmodurl modname="MediaAttach" type="user" func="editthumb" fileid=$file.fileid thumbnr=$thumbnr backurl=$backurl]-->" title="<!--[pnml name="_MEDIAATTACH_CROPTHUMB"]-->">
+            <!--[pnimg src="cropthumb.png" modname="MediaAttach" alt=_MEDIAATTACH_CROPTHUMB altml=true style="padding-left: 5px"]-->
+        </a>
+    <!--[/if]-->
+    <a href="<!--[pnmodurl modname="MediaAttach" type="user" func="edit" fileid=$file.fileid backurl=$backurl]-->" title="<!--[pnml name="_EDIT"]-->">
+        <!--[pnimg src="edit.gif" modname="core" set="icons/extrasmall" alt=_EDIT altml=true style="padding-left: 5px"]-->
+    </a>
+<!--[/if]-->
+<!--[if $delete && $file.allowdelete]-->
+        <a href="<!--[pnmodurl modname="MediaAttach" type="user" func="delete" fileid=$file.fileid backurl=$backurl]-->" title="<!--[pnml name="_DELETE"]-->">
+            <!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" alt=_DELETE altml=true style="padding-left: 5px"]-->
+        </a>
+<!--[/if]-->
+    <!--[/strip]-->
+<!--[/if]-->
+

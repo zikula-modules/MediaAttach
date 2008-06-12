@@ -1,0 +1,198 @@
+<!--[* $Id: MediaAttach_admin_modifyconfig.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Configuration *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg src="package_settings.gif" modname="core" set="icons/large" alt="_MEDIAATTACH_CONFIGURATION" altml=true]--></div>
+
+<h3><!--[pnimg src="package_settings.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_CONFIGURATION"]--></h3>
+
+<!--[pnform id="MediaAttach_config" cssClass="maform" enctype="application/x-www-form-urlencoded"]-->
+    <!--[pnformsetinitialfocus inputId="uploaddir"]-->
+    <!--[pnformvalidationsummary]-->
+
+    <fieldset>
+        <legend><!--[pnml name="_GENERALSETTINGS"]--></legend>
+
+        <dl id="configlist">
+            <dt><label><!--[pnml name="_MEDIAATTACH_MEDIAATTACHDIR"]-->:</label></dt>
+            <dd><!--[$mediaattachdir]--></dd>
+
+            <dt><label><!--[pnml name="_MEDIAATTACH_DOCROOT"]-->:</label></dt>
+            <dd><!--[$docroot]--></dd>
+
+            <dt><!--[pnformlabel for="uploaddir" text="_MEDIAATTACH_UPLOADDIR"]--></dt>
+            <dd><!--[pnformtextinput id="uploaddir" size="40" maxLength="200" text=$pncore.MediaAttach.uploaddir]-->&nbsp;&nbsp;
+                <!--[if !$updirexists]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNOTEXIST"]--></span>
+                <!--[elseif !$updirisdir]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNODIR"]--></span>
+                <!--[elseif !$updiriswritable]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNOTWRITABLE"]--></span>
+                <!--[else]--><span class="dirokay"><!--[pnml name="_MEDIAATTACH_DIROKAY"]--></span>
+                <!--[/if]-->
+            </dd>
+
+            <dt><!--[pnformlabel for="cachedir" text="_MEDIAATTACH_CACHEDIR"]--></dt>
+            <dd><!--[pnformtextinput id="cachedir" size="40" maxLength="200" text=$pncore.MediaAttach.cachedir]-->&nbsp;&nbsp;
+                <!--[if !$cachedirexists]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNOTEXIST"]--></span>
+                <!--[elseif !$cachedirisdir]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNODIR"]--></span>
+                <!--[elseif !$cachediriswritable]--><span class="dirnotokay"><!--[pnml name="_MEDIAATTACH_DIRNOTWRITABLE"]--></span>
+                <!--[else]--><span class="dirokay"><!--[pnml name="_MEDIAATTACH_DIROKAY"]--></span>
+                <!--[/if]-->
+            </dd>
+
+    <!--[if $mailer]-->
+            <dt><!--[pnformlabel for="mailfiles" text="_MEDIAATTACH_MAILER"]--></dt>
+            <dd><!--[pnformcheckbox id="mailfiles" checked=$pncore.MediaAttach.mailfiles]--></dd>
+
+            <dt id="mailerdt"><!--[pnformlabel for="maxmailsize" text="_MEDIAATTACH_MAXMAILSIZE"]--></dt>
+            <dd id="mailerdd"><!--[pnformintinput id="maxmailsize" size="10" maxLength="10" text=$maxmailsize]--> <!--[pnml name="_MEDIAATTACH_KB"]--></dd>
+    <!--[/if]-->
+            <dt><!--[pnformlabel for="usequota" text="_MEDIAATTACH_USEQUOTA"]--></dt>
+            <dd><!--[pnformcheckbox id="usequota" checked=$pncore.MediaAttach.usequota]--></dd>
+
+            <dt><!--[pnformlabel for="ownhandling" text="_MEDIAATTACH_OWNHANDLING"]--></dt>
+            <dd><!--[pnformcheckbox id="ownhandling" checked=$pncore.MediaAttach.ownhandling]--></dd>
+
+            <dt><!--[pnformlabel for="usefrontpage" text="_MEDIAATTACH_USEFRONTPAGE"]--></dt>
+            <dd><!--[pnformcheckbox id="usefrontpage" checked=$pncore.MediaAttach.usefrontpage]--></dd>
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_CONFIGIMAGE"]--></legend>
+
+        <dl id="configlist2">
+            <dt><!--[pnformlabel for="thumb1width" text="_MEDIAATTACH_DEFAULTTHUMBSIZE"]--></dt>
+            <dd><ol style="margin-left: 0">
+            <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
+                <li>
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxLength="4" text=$thumbsize[0]]--> x
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`height" size="6" maxLength="4" text=$thumbsize[1]]--> <!--[pnml name="_MEDIAATTACH_CONFIGPIXEL"]-->
+                    <!--[pnformradiobutton id="defaultthumb`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField=defaultthumb mandatory=1]-->
+                </li>
+            <!--[/foreach]-->
+                <li>
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxLength="4" text=""]--> x
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxLength="4" text=""]--> <!--[pnml name="_MEDIAATTACH_CONFIGPIXEL"]-->
+                </li>
+            </ol></dd>
+
+            <dt><!--[pnformlabel for="shrinkimages" text="_MEDIAATTACH_SHRINKIMAGES"]--></dt>
+            <dd><!--[pnformcheckbox id="shrinkimages" checked=$pncore.MediaAttach.shrinkimages]--></dd>
+
+            <dt id="shrinksizedt"><!--[pnformlabel for="shrinkwidth" text="_MEDIAATTACH_DEFAULTSHRINKSIZE"]--></dt>
+            <dd id="shrinksizedd"><!--[pnformintinput id="shrinkwidth" size="8" maxLength="4" text=$pncore.MediaAttach.shrinkwidth]--> x
+                <!--[pnformintinput id="shrinkheight" size="8" maxLength="4" text=$pncore.MediaAttach.shrinkheight]--> <!--[pnml name="_MEDIAATTACH_CONFIGPIXEL"]-->
+            </dd>
+
+            <dt><!--[pnformlabel for="usethumbcropper" text="_MEDIAATTACH_USETHUMBCROPPER"]--></dt>
+            <dd><!--[pnformcheckbox id="usethumbcropper" checked=$pncore.MediaAttach.usethumbcropper]--></dd>
+
+            <dt id="cropsizemodedt"><!--[pnformlabel for="cropsizemode" text="_MEDIAATTACH_CROPSIZEMODE"]--></dt>
+            <dd id="cropsizemodedd"><!--[pnformdropdownlist id="cropsizemode"]--></dd>
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_CONFIGCATMODES"]--></legend>
+
+        <dl id="configlist3">
+            <dt><!--[pnformlabel for="catmodecategories" text="_MEDIAATTACH_CATMODECATEGORIES"]--></dt>
+            <dd><!--[pnformcheckbox id="catmodecategories" checked=$cat_use_categories]--></dd>
+
+            <dt><!--[pnformlabel for="catmodemodules" text="_MEDIAATTACH_CATMODEMODULES"]--></dt>
+            <dd><!--[pnformcheckbox id="catmodemodules" checked=$cat_use_modules]--></dd>
+
+            <dt><!--[pnformlabel for="catmodeusers" text="_MEDIAATTACH_CATMODEUSERS"]--></dt>
+            <dd><!--[pnformcheckbox id="catmodeusers" checked=$cat_use_users]--></dd>
+
+            <dt><!--[pnformlabel for="catdefaultmode" text="_MEDIAATTACH_CATDEFAULTMODE"]--></dt>
+            <dd><!--[pnformdropdownlist id="catdefaultmode"]--></dd>
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_ACTION"]--></legend>
+        <br />
+        <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" hookid="MediaAttach" module="MediaAttach"]-->
+        <!--[pnformbutton id="submit" commandName="submit" text="_MODIFYCONFIG"]-->
+    </fieldset>
+<!--[/pnform]-->
+<script type="text/javascript" language="javascript">
+/* <![CDATA[ */
+    <!--[if $pncore.MediaAttach.mailfiles eq 0]-->
+        $('mailerdt').hide();
+        $('mailerdd').hide();
+    <!--[/if]-->
+    $('mailfiles').observe('click', maCheckMailerEntry, false);
+    $('mailfiles').observe('keyup', maCheckMailerEntry, false);
+
+    <!--[if $pncore.MediaAttach.shrinkimages eq 0]-->
+        $('shrinksizedt').hide();
+        $('shrinksizedd').hide();
+    <!--[/if]-->
+    $('shrinkimages').observe('click', maCheckShrinkEntry, false);
+    $('shrinkimages').observe('keyup', maCheckShrinkEntry, false);
+
+    <!--[if $pncore.MediaAttach.usethumbcropper eq 0]-->
+        $('cropsizemodedt').hide();
+        $('cropsizemodedd').hide();
+    <!--[/if]-->
+    $('usethumbcropper').observe('click', maCheckCropSizeEntry, false);
+    $('usethumbcropper').observe('keyup', maCheckCropSizeEntry, false);
+
+    $('catmodecategories').observe('change', maCheckCatMode1, false);
+    $('catmodecategories').observe('keyup', maCheckCatMode1, false);
+    $('catmodemodules').observe('change', maCheckCatMode2, false);
+    $('catmodemodules').observe('keyup', maCheckCatMode2, false);
+    $('catmodeusers').observe('change', maCheckCatMode3, false);
+    $('catmodeusers').observe('keyup', maCheckCatMode3, false);
+    $('catdefaultmode').observe('change', maCheckCatModes, false);
+    $('catdefaultmode').observe('keyup', maCheckCatModes, false);
+/* ]]> */
+</script>
+<br />
+<!--[if $updirexists]-->
+    <!--[if $updirisdir]-->
+        <!--[if $updiriswritable && $htaccessexists == 0]-->
+            <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="generatehtaccess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_htaccess" class="maform">
+                <fieldset>
+                    <p><!--[pnml name="_MEDIAATTACH_HTACCESSHINT"]--></p>
+
+                    <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_HTACCESSGENERATE"]-->" class="maadminright" />
+                </fieldset>
+            </form>
+            <br />
+        <!--[/if]-->
+    <!--[/if]-->
+<!--[/if]-->
+<div class="configbox">
+    <p style="font-weight: 700"><!--[pnml name="_MEDIAATTACH_PHPINISETTINGS"]--></p>
+    <dl id="inilist">
+        <dt>open_basedir:</dt>
+        <dd><!--[$open_basedir|default:"&nbsp;"]--></dd>
+        <dt>upload_tmp_dir:</dt>
+        <dd><!--[$upload_tmp_dir|default:"&nbsp;"]--></dd>
+        <dt>file_uploads:</dt>
+        <dd><!--[$file_uploads|default:"&nbsp;"]--></dd>
+        <dt>upload_max_filesize:</dt>
+        <dd><!--[$upload_max_filesize|default:"&nbsp;"]--></dd>
+        <dt>post_max_size:</dt>
+        <dd><!--[$post_max_size|default:"&nbsp;"]--></dd>
+        <dt>max_input_time:</dt>
+        <dd><!--[$max_input_time|default:"&nbsp;"]--></dd>
+    </dl>
+    <br style="clear: left" />
+</div>
+<br />
+<div class="configbox">
+    <p style="font-weight: 700"><!--[pnml name="_MEDIAATTACH_VERSIONCHECK"]--></p>
+
+    <!--[pnml name="_MEDIAATTACH_YOURVERSION"]-->: <!--[$yourversion]--><br />
+    <!--[if $yourversion < $newestversion]-->
+        <!--[pnml name="_MEDIAATTACH_NEWVERSION"]-->: <!--[$newestversion]--><br />
+        <a href="http://code.zikula.org/mediaattach/downloads" title="<!--[pnml name="_MEDIAATTACH_TDOWNLOADNOW"]-->"><!--[pnml name="_MEDIAATTACH_DOWNLOADNOW"]--></a><br />
+    <!--[else]-->
+        <!--[pnml name="_MEDIAATTACH_NONEWVERSION"]-->
+    <!--[/if]-->
+</div>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

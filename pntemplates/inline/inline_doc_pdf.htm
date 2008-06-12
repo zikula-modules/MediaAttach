@@ -1,0 +1,41 @@
+<!--[* $Id: inline_doc_pdf.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows a pdf file *]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid inline=1 assign="fileurl"]-->
+
+<!--[*
+commented out temporarily because of reproducable crashes regarding acrobat plugin with firefox
+    IE works fine
+    Konqueror works even more fine
+    Firefox crashes :(
+
+    using embed until a solution for this problem has been found
+
+<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->doc<!--[$file.fileid]-->"
+            type="application/pdf"
+            data="<!--[$fileurl|pnvarprepfordisplay]-->"
+            width="580" height="350">
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+
+<!--[literal]--><!--[if IE]><!--[/literal]-->
+*]-->
+    <object id="ma<!--[$idprefix]-->doc<!--[$file.fileid]-->"
+            classid="clsid:CA8A9780-280D-11CF-A24D-444553540000"
+            width="580" height="350">
+<!--[* <!--[literal]--><!--><!----><!--[/literal]--> *]-->
+
+        <param name="src" value="<!--[$fileurl|pnvarprepfordisplay]-->" />
+
+        <embed src="<!--[$fileurl|pnvarprepfordisplay]-->" width="580" height="350" type="application/pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep.html" />
+        <noembed>
+<!--[*        <p> *]-->
+            Your browser does not support embedded PDF files.<br />
+            Please click <a href="<!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
+            <a href="http://www.adobe.com/products/acrobat/readstep2.html" title="Download Acrobat Reader" target="_blank">
+                <!--[pnimg src="logo_pdf.png" alt="Download Acrobat Reader"]-->
+            </a>
+<!--[*        </p> *]-->
+        </noembed>
+    </object>
+<!--[* <!--[literal]--><!-- <![endif]--><!--[/literal]--> *]-->

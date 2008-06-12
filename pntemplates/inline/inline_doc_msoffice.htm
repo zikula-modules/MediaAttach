@@ -1,0 +1,26 @@
+<!--[* $Id: inline_doc_msoffice.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows a word, excel or powerpoint file *]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid inline=1 assign="fileurl"]-->
+
+<!--[if $file.extension eq "doc"]-->
+<!--[*    Download your word document <a href="<!--[$fileurl]-->">here</a>.<br /> *]-->
+    <!--[assign var="typehtml" value=" type=\"application/msword\""]-->
+<!--[elseif $file.extension eq "xls"]-->
+<!--[*
+    Download your excel sheet <a href="<!--[$fileurl]-->">here</a>.<br />
+
+    http://mysite.verizon.net/vzep00rh/excel_php.html
+    http://www.adp-gmbh.ch/win/misc/ie/owc/chart.html
+
+*]-->
+    <!--[assign var="typehtml" value=" type=\"application/msexcel\""]-->
+<!--[elseif $file.extension eq "ppt"]-->
+<!--[*    Download your powerpoint presentation <a href="<!--[$fileurl]-->">here</a>.<br /> *]-->
+<!--[/if]-->
+<!--[*  application/rtf        rtf  *]-->
+<!--[*
+<iframe src="<!--[$fileurl]-->"<!--[$typehtml]--> id="ma<!--[$idprefix]-->doc<!--[$file.fileid]-->" name="madoc<!--[$file.fileid]-->" width="350" height="200">
+   <p>Your browser does not supporty embedded frames unfortunately.</p>
+</iframe>
+*]-->

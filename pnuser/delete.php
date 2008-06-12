@@ -1,0 +1,90 @@
+<?php
+/**
+ * MediaAttach
+ *
+ * @version      $Id: delete.php 59 2008-03-02 09:57:48Z weckamc $
+ * @author       Axel Guckelsberger
+ * @link         http://www.guite.de
+ * @copyright    Copyright (C) 2008 by Guite
+ * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
+
+Loader::requireOnce('modules/MediaAttach/common.php');
+
+/**
+ * delete a file
+ *
+ * @param     int     fileid         the id of the file to be deleted
+ * @param     int     objectid       generic object id mapped onto fileid if present
+ * @param     bool    confirmation   confirmation that this file can be deleted
+ * @param     string  backurl        url to return after process
+ */
+function MediaAttach_user_delete($args)
+{
+    $fileid       = (int)  FormUtil::getPassedValue('fileid',       (isset($args['fileid']))       ? $args['fileid']       : null, 'GETPOST');
+    $objectid     = (int)  FormUtil::getPassedValue('objectid',     (isset($args['objectid']))     ? $args['objectid']     : null, 'GETPOST');
+    $confirmation = (bool) FormUtil::getPassedValue('confirmation', (isset($args['confirmation'])) ? $args['confirmation'] : null, 'POST');
+    $backurl      =        FormUtil::getPassedValue('backurl',      (isset($args['backurl']))      ? $args['backurl']      : null, 'GETPOST');
+    unset($args);
+
+    if (!empty($objectid)) {
+        $fileid = $objectid;
+    }
+
+    if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
+        return LogUtil::registerError(_GETFAILED);
+    }
+
+    $isOwner = (pnModGetVar('MediaAttach', 'ownhandling') && (pnUserGetVar('uid') == $file['uid']));
+    if (!$isOwner && !SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$objectid:$fileid", ACCESS_DELETE)) {
+        return LogUtil::registerPermissionError();
+    }
+
+    if ($confirmation != true) {
+        $render = pnRender::getInstance('MediaAttach', false);
+        $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
+
+        list($file['title'], $file['desc']) = pnModCallHooks('item', 'transform', '', array($file['title'], $file['desc']));
+        $render->assign('file', $file);
+        $render->assign('backurl', $backurl);
+
+        return $render->fetch(_maIntChooseTemplate($render, 'user', 'delete', $file['modname']));
+    }
+
+    $backurl = str_replace('&amp;', '&', base64_decode($backurl)) . '#files';
+
+    if (!SecurityUtil::confirmAuthKey()) {
+        LogUtil::registerError(_BADAUTHKEY);
+        return pnRedirect($backurl);
+    }
+
+    if (pnModAPIFunc('MediaAttach', 'user', 'delete', array('fileid' => $fileid))) {
+        if ($file['extension'] != 'extvid') {
+            $fullfile = pnModGetVar('MediaAttach', 'uploaddir') . '/' . $file['filename'];
+            if (pnModAPIFunc('MediaAttach', 'filesystem', 'deletefile', array('file' => $fullfile))) {
+                LogUtil::registerStatus(_DELETESUCCEDED);
+            } else {
+                LogUtil::registerError(_DELETEFAILED);
+            }
+        } else {
+            LogUtil::registerStatus(_DELETESUCCEDED);
+        }
+    }
+
+    $maInfo = pnModGetInfo(pnModGetIDFromName('MediaAttach'));
+    // change redirect url in case the user comes from the file display page
+    if (strpos($backurl, $maInfo['displayname']) !== false && strpos($backurl, 'display') !== false) {
+        if (strpos($backurl, 'admin') !== false) {
+            $backurl = pnModURL('MediaAttach', 'admin', 'view');
+        } else {
+            if (pnModGetVar('MediaAttach', 'usefrontpage') != 0) {
+                $backurl = pnModURL('MediaAttach', 'user', 'main');
+            } else {
+                $backurl = pnConfigGetVar('entrypoint');
+            }
+        }
+    }
+
+    return pnRedirect($backurl);
+}

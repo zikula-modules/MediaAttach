@@ -1,0 +1,27 @@
+<!--[* $Id: MediaAttach_admin_format_delete.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
+<!--[* Purpose of this template: Confirmation for format deletion *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" alt=_MEDIAATTACH_FORMATDELETE altml=true]--></div>
+
+<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_FORMATDELETE"]--></legend>
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="confirmation" value="1" />
+        <input type="hidden" name="fid" value="<!--[$format.fid]-->" />
+
+        <p>
+            <!--[pnimg src="formats/`$format.image`" alt=$format.extension style="padding-right: 5px"]-->
+            <!--[$format.extension]-->
+        </p>
+
+        <input name="submit" type="submit" value="<!--[pnml name="_CONFIRMDELETE"]-->" class="maright" />
+        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewformats"]-->" title="<!--[pnml name="_CANCELDELETE"]-->"><!--[pnml name="_CANCEL"]--></a>
+    </fieldset>
+</form>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

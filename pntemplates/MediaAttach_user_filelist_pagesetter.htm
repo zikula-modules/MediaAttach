@@ -1,0 +1,22 @@
+<!--[* $Id: MediaAttach_user_filelist_pagesetter.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: The file list for a special module (here Pagesetter) *]-->
+
+<!--[* let IE execute a js directly after rendering the DOM - this fixes that the user has to click for activating activeX for flash *]-->
+<!--[add_additional_header header='<!--']-->
+<!--[add_additional_header header='[if IE]><script type="text/javascript" src="fix_eolas.js" defer="defer"></script><![endif]']-->
+<!--[add_additional_header header='-->']-->
+
+<!--[if $definition.displayfiles ne 0]-->
+<!--[pnuserloggedin assign="isLoggedIn"]-->
+<!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
+<!--[if $isLoggedIn || $numFiles > 0]-->
+    <h3><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></h3>
+
+    <dl id="myfilelist">
+    <!--[pnusergetvar name="uid" assign="currentuser"]-->
+    <!--[foreach item="file" from=$files]-->
+        <!--[include file="MediaAttach_user_filelist_single_pagesetter.htm"]-->
+    <!--[/foreach]-->
+    </dl>
+<!--[/if]-->
+<!--[/if]-->

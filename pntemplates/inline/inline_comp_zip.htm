@@ -1,0 +1,18 @@
+<!--[* $Id: inline_comp_zip.htm 208 2007-08-08 11:56:00Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows files contained in a zip package *]-->
+
+<!--[if $file.fileInfo.zip]-->
+    <!--[add_additional_header header='<script type="text/javascript" src="modules/MediaAttach/pnincludes/treemenu/treemenu.js"></script>']-->
+    <h5>Information</h5>
+    <ul id="ma<!--[$idprefix]-->zip<!--[$file.fileid]-->" class="mazipfile">
+        <li>Compressed size: <!--[mafilesize size=$file.fileInfo.zip.compressed_size]--></li>
+        <li>Uncompressed size: <!--[mafilesize size=$file.fileInfo.zip.uncompressed_size]--></li>
+        <li>Compression method: <!--[$file.fileInfo.zip.compression_method]--></li>
+        <li>Count of entries: <!--[$file.fileInfo.zip.entries_count]--></li>
+    </ul>
+
+    <h5>Content</h5>
+    <!--[showzipentries fileid=$file.fileid dirarray=$file.fileInfo.zip.files]-->
+<!--[else]-->
+    <p>zip could not be opened properly</p>
+<!--[/if]-->

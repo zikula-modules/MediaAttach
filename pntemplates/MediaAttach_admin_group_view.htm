@@ -1,0 +1,98 @@
+<!--[* $Id: MediaAttach_admin_group_view.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Group management *]-->
+
+<!--[include file="MediaAttach_admin_header.htm"]-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="windowlist.gif" set="icons/large" alt=_MEDIAATTACH_GROUPGROUPS altml=true]--></div>
+
+<h3><!--[pnimg src="package_programs.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_GROUPGROUPS"]--></h3>
+
+<a id="new_group_switch" href="javascript:void(0);" style="display: none">
+    <!--[pnml name="_MEDIAATTACH_GROUPNEW"]-->
+</a>
+<div id="new_group">
+    <form id="newgroupform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="creategroup"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+        <fieldset>
+            <legend><!--[pnml name="_MEDIAATTACH_GROUPADD"]--></legend>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+
+            <label for="MediaAttach_groupname" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPNAME"]-->:</label>
+            <input type="text" class="required validate-alphanum" id="MediaAttach_groupname" name="groupname" maxlength="100" /><br />
+            <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONGROUPNAMEREQUIRED"]--></p>
+            <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONGROUPNAMEALPHANUM"]--></p>
+
+            <label for="MediaAttach_directory" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPDIR"]-->:</label>
+            <input type="text" class="required validate-alphanum" id="MediaAttach_directory" name="directory" maxlength="255" /><br />
+            <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONDIRECTORYREQUIRED"]--></p>
+            <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONDIRECTORYALPHANUM"]--></p>
+
+            <label for="MediaAttach_image" class="maleft"><!--[pnml name="_MEDIAATTACH_IMAGE"]-->:</label>
+            <!--[maimageselect selected="modules/MediaAttach/pnimages/folder/folder.gif" type="groups"]--><br />
+
+            <label for="MediaAttach_formats" class="maleft"><!--[pnml name="_MEDIAATTACH_FORMATS"]-->:</label>
+            <select id="MediaAttach_formats" name="formats[]" size="10" multiple="multiple" style="width: 100px">
+                <!--[foreach item="currentformat" from=$formats]-->
+                    <option value="<!--[$currentformat.fid]-->" selected="selected"><!--[$currentformat.extension]--></option>
+                <!--[/foreach]-->
+            </select><br /><br />
+
+            <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_GROUPADD"]-->" class="maright" />
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript" language="javascript">
+    maInitGroupView();
+</script>
+
+<div class="matablecontainer">
+<table summary="<!--[pnml name="_MEDIAATTACH_GROUPGROUPS"]-->">
+    <colgroup>
+        <col id="groupname" />
+        <col id="directory" />
+        <col id="formats" />
+        <col id="actions" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th id="g" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_GROUPNAME"]-->"><!--[pnml name="_MEDIAATTACH_GROUPNAME"]--></th>
+            <th id="d" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_GROUPDIR"]-->"><!--[pnml name="_MEDIAATTACH_GROUPDIR"]--></th>
+            <th id="f" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_ADMINFORMATS"]-->"><!--[pnml name="_MEDIAATTACH_ADMINFORMATS"]--></th>
+            <th id="a" scope="col" abbr="<!--[pnml name="_MEDIAATTACH_ACTIONS"]-->"><!--[pnml name="_MEDIAATTACH_ACTIONS"]--></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--[foreach item="currentgroup" from=$groups]-->
+            <tr>
+                <td headers="g">
+                    <!--[pnimg src="folder/`$currentgroup.image`" modname="MediaAttach" alt="icon" style="padding-right: 5px"]-->
+                    <!--[$currentgroup.groupname]-->
+                </td>
+                <td headers="d">
+                    <!--[$currentgroup.directory]-->
+                </td>
+                <td headers="f">
+                    <!--[assign var="erster" value="1"]-->
+                    <!--[foreach item="currentformat" from=$currentgroup.formats]--><!--[if $erster eq 0]-->, <!--[else]--><!--[assign var="erster" value="0"]--><!--[/if]--><!--[$currentformat.extension]--><!--[/foreach]-->
+                </td>
+                <td headers="a" style="text-align: center" nowrap="nowrap">
+                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="editgroup]-->" method="post" style="display: inline">
+                        <input type="hidden" name="gid" value="<!--[$currentgroup.gid]-->" />
+                        <!--[pnimg src="edit.gif" modname="core" set="icons/extrasmall" assign="editimg"]-->
+                        <input type="image" name="submit" src="<!--[$editimg.src]-->" alt="<!--[pnml name="_EDIT"]-->" />
+                    </form>
+                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deletegroup"]-->" method="post" style="display: inline">
+                        <input type="hidden" name="gid" value="<!--[$currentgroup.gid]-->" />
+                        <!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" assign="delimg"]-->
+                        <input type="image" name="submit" src="<!--[$delimg.src]-->" alt="<!--[pnml name="_DELETE"]-->" />
+                    </form>
+                </td>
+            </tr>
+        <!--[/foreach]-->
+    </tbody>
+</table>
+</div>
+
+</div>
+<!--[include file="MediaAttach_admin_footer.htm"]-->

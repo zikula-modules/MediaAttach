@@ -1,0 +1,341 @@
+/* $Id: style.css 242 2007-09-22 23:30:32Z weckamc $ */
+
+
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+
+/* table definitions */
+
+    div.matablecontainer {
+        border: 2px solid #333;
+        padding: 1px;
+        width: 100%;
+    }
+
+    div.matablecontainer table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.8em;
+        border: 1px solid #FFF;
+        cursor: default;
+    }
+
+    div.matablecontainer table caption {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12pt;
+        font-weight: 700;
+        margin-left: auto;
+        margin-right: auto;
+        caption-side: top;
+    }
+    div.matablecontainer table td, div.matablecontainer table th {
+        vertical-align: top;
+        border-bottom: 1px solid #666;
+        padding: 2px;
+        background-color: #FFF;
+    }
+    div.matablecontainer table th {
+        background-color: orange;
+        color: #FFF;
+        padding: 4px 2px 2px 2px;
+        border-bottom: 2px solid #333;
+    }
+
+    div.matablecontainer table td {
+        padding: 2px 5px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 0.95em;
+    }
+
+    div.matablecontainer table col {
+        border-width: 1px;
+        border-style: dotted;
+    }
+
+    div.matablecontainer table tr:hover td, div.matablecontainer table tr:focus td, div.matablecontainer table tr:active td {
+        background-color: #CCC;
+    }
+
+    div.matablecontainer table tr td:hover, div.matablecontainer table tr td:focus, div.matablecontainer table tr td:active {
+        background-color: #999;
+    }
+
+
+
+
+/* form definitions */
+
+    form.maform fieldset {
+        margin: 10px 15px;
+        padding: 10px;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    form.maform fieldset legend {
+        padding: 2px 5px;
+        font-weight: 700;
+        border-width: 1px;
+        border-style: solid;
+        margin-left: 20px;
+    }
+
+    form.maform fieldset label.maleft {
+        float: left;
+        text-align: right;
+        width: 10em;
+        margin-right: .5em;
+    }
+
+    form.maform fieldset label.maadminleft, form#MediaAttach_config fieldset label {
+        float: left;
+        text-align: right;
+        width: 20em;
+        margin-right: .5em;
+    }
+
+/*
+    form.maform fieldset input[type=text], form.maform fieldset select {
+        float: left;
+    }
+*/
+
+    form.maform fieldset input.maright {
+        float: left;
+        width: auto;
+        clear: both;
+        margin-left: 10.3em;
+        margin-right: .3em;
+    }
+
+    form.maform fieldset input.maadminright {
+        float: left;
+        width: auto;
+        clear: both;
+        margin-left: 20.3em;
+        margin-right: .3em;
+    }
+
+    form.maform fieldset input[type=checkbox].maright, form.maform fieldset input[type=radio].maright, form.maform fieldset input[type=submit].maright {
+        margin-left: 10.3em;
+    }
+
+    form.maform fieldset input[type=checkbox].maadminright, form.maform fieldset input[type=radio].maadminright, form.maform fieldset input[type=submit].maadminright {
+        margin-left: 20.3em;
+    }
+
+    form.maform fieldset br {
+        clear: both;
+    }
+
+    form.maform fieldset label, form.maform fieldset select, form.maform fieldset input[type=checkbox], form.maform fieldset input[type=radio], form.maform fieldset input[type=button], form.maform fieldset input[type=submit] {
+        cursor: pointer;
+    }
+
+/*
+    form.maform fieldset input, form.maform fieldset textarea, form.maform fieldset select {
+        color: #000;
+        background-color: #ddd;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    form.maform fieldset input:focus, form.maform fieldset input:active, form.maform fieldset textarea:focus, form.maform fieldset textarea:active, form.maform fieldset select:focus, form.maform fieldset select:active {
+        color: #000;
+        background-color: #fff;
+    }
+*/
+
+    form.maform {
+        line-height: 180%;
+    }
+
+
+    form.maform .custom-advice {
+        color: red;
+    }
+
+
+    .mamarginleft {
+        margin-left: 3em;
+    }
+
+
+/* definitions for live search of user names in quota administration */
+    div.autocomplete_user {
+        position: absolute;
+        width: 25em;
+        background-color: #FFF;
+        border: 1px solid #888;
+        margin: 0;
+        padding: 0;
+    }
+
+    div.autocomplete_user ul {
+        list-style-image: url("../../../images/icons/extrasmall/edit_user.gif");
+        margin: 0;
+        padding: 0;
+    }
+
+    div.autocomplete_user ul li.selected {
+        background-color: #FFB;
+    }
+
+    div.autocomplete_user ul li {
+        margin: 0;
+        padding: 0.1em 0 0.1em 0;
+        line-height: 1.4em;
+        cursor: pointer;
+    }
+
+
+
+/* definitions for multiple uploads at once */
+
+    ul#addedUploadList {
+        background-color: #E7F3F7;
+        padding: 10px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    ul#addedUploadList li {
+        list-style-type: none;
+        margin-left: 30px;
+    }
+
+    .addedUpload {
+        padding: 3px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        list-style-image: url("../../../images/icons/extrasmall/attach.gif");
+        border: 1px solid #E7F3F7;
+    }
+
+    .addedUpload:hover, .addedUpload:focus, .addedUpload:active {
+        border: 1px solid #000;
+    }
+
+    ul#uploadRemoveBox, .dropActive {
+        border: 1px dashed #000;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    ul#uploadRemoveBox li {
+        list-style-image: url("../../../images/icons/extrasmall/editdelete.gif");
+        margin-left: 30px;
+    }
+
+    .dropActive {
+        background-color: #FFDAB5;
+    }
+
+/* configuration classes */
+
+    span.dirokay {
+        color: green;
+    }
+
+    span.dirnotokay {
+        color: red;
+    }
+
+    div.configbox {
+        margin: 5px 20px;
+        padding: 0 0 20px 20px;
+        border: 1px solid #000;
+    }
+
+    dl#macatlist, dl#configlist, dl#configlist2, dl#configlist3, dl#inilist {
+        margin: 2em 0;
+        padding: 0;
+        font-size: 0.9em;
+    }
+    dl#macatlist dt, dl#configlist dt, dl#configlist2 dt, dl#configlist3 dt, dl#inilist dt {
+        float: left;
+        font-weight: 700;
+        margin: 0 0 0 0;
+        border-top: 1px solid #999;
+    }
+
+    dl#macatlist dt, dl#configlist dt, dl#configlist2 dt, dl#configlist3 dt {
+        width: 30em;
+    }
+
+    dl#inilist dt {
+        width: 20em;
+    }
+
+    /* commented backslash hack for mac-ie5 \*/
+    dl#macatlist dt, dl#configlist dt, dl#configlist2 dt, dl#configlist3 dt, dl#inilist dt { clear: both; }
+    /* end hack */
+
+    dl#macatlist dd, dl#configlist dd, dl#configlist2 dd, dl#configlist3 dd, dl#inilist dd {
+        float: left;
+        width: 20em;
+        margin: 0 0 0 0;
+        border-top: 1px solid #999;
+    }
+
+
+/* geshi */
+    div.geshicodebox {
+        width: 70%;
+        height: 12.5em;
+        overflow: auto;
+        border: 1px solid #000;
+        padding: .4em 1.5em;
+    }
+
+
+
+/* zip file information */
+    ul.mazipfile {
+        margin: .3em 0 .3em 2em !important;
+        font-size: 0.7em !important;
+        padding: 0 !important;
+        list-style-type: square !important;
+    }
+
+
+/* definition list */
+    dl.madeflist {
+        margin: 2em 0 !important;
+        padding: 0 !important;
+    }
+    dl.madeflist dt {
+        float: left !important;
+        width: 20em !important;
+        font-weight: 700 !important;
+        margin: 0 0 0 0 !important;
+        border-top: 1px solid #999 !important;
+    }
+
+    /* commented backslash hack for mac-ie5 \*/
+    dl.madeflist dt { clear: both !important; }
+    /* end hack */
+
+    dl.madeflist dd {
+        float: left !important;
+        width: 24em !important;
+        margin: 0 0 0 0 !important;
+        border-top: 1px solid #999 !important;
+    }
+
+
+/* nav form */
+    form#maNavForm {
+        margin-bottom: 1em;
+    }
+
+    ul.maCatSelector {
+        list-style-type: none !important;
+    }

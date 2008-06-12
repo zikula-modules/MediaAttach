@@ -1,0 +1,47 @@
+<!--[* $Id: inline_flash.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows an external video file *]-->
+
+<!--[if $externalPreview eq 1]-->
+    <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+    <!--[pnmodgetvar module="MediaAttach" name="defaultthumb" assign="defaultthumb"]-->
+    <!--[assign var="defaultthumb" value=$defaultthumb-1]-->
+    <!--[assign var="thumbwidth" value=$thumbsizes[$defaultthumb][0]]-->
+    <!--[assign var="thumbheight" value=$thumbsizes[$defaultthumb][1]]-->
+    <!--[assign var="playerwidth" value=" width=\"`$thumbwidth`\""]-->
+    <!--[assign var="playerheight" value=" height=\"`$thumbheight`\""]-->
+<!--[else]-->
+    <!--[assign var="playerwidth" value=" width=\"`$provider.playerWidth`\""]-->
+    <!--[assign var="playerheight" value=" height=\"`$provider.playerHeight`\""]-->
+<!--[/if]-->
+
+<!--[assign var="fileurl" value=$file.filename]-->
+
+<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            type="application/x-shockwave-flash"
+            data="<!--[$fileurl|pnvarprepfordisplay]-->"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+        <param name="pluginurl" value="http://www.macromedia.com/go/getflashplayer" />
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+
+<!--[literal]--><!--[if IE]><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000"
+            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+            <!--[$playerwidth]--><!--[$playerheight]-->>
+        <param name="movie" value="<!--[$fileurl|pnvarprepfordisplay]-->" />
+<!--[literal]--><!--><!----><!--[/literal]-->
+
+        <param name="quality" value="high" />
+        <param name="wmode" value="transparent" />
+        <!--[* <param name="wmode" value="opaque" /> *]-->
+
+        <p>
+            Your browser does not support embedded flash files.<br />
+            Please click <a href="<!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
+            <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" title="Download Flash Player" target="_blank">
+                <!--[pnimg src="logo_flash.png" alt="Download Flash Player"]-->
+            </a>
+        </p>
+    </object>
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->

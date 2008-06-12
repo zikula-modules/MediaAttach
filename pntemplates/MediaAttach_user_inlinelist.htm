@@ -1,0 +1,19 @@
+<!--[* $Id: MediaAttach_user_inlinelist.htm 217 2007-08-09 20:28:42Z weckamc $ *]-->
+<!--[* Purpose of this template: the default inline list template *]-->
+
+<!--[if $definition.displayfiles ne 0]-->
+<!--[pnuserloggedin assign="isLoggedIn"]-->
+<!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
+<!--[if $isLoggedIn || $numFiles > 0]-->
+    <!--[pnpageaddvar name="javascript" value="modules/MediaAttach/pnjavascript/MediaAttach.js"]-->
+
+    <h3><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></h3>
+
+    <!--[pnusergetvar name="uid" assign="currentuser"]-->
+    <div id="myfilelist">
+        <!--[foreach name="fileloop" item="file" from=$files]-->
+            <!--[include file="MediaAttach_user_inlinelist_single.htm"]-->
+        <!--[/foreach]-->
+    </div>
+<!--[/if]-->
+<!--[/if]-->

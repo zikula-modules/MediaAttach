@@ -1,0 +1,218 @@
+<!--[* $Id: *]-->
+<!--[* Purpose of this template: popup selector for scribite integration *]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<!--[lang]-->" lang="<!--[lang]-->">
+<head>
+    <title><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_TITLE"]--></title>
+    <link type="text/css" rel="stylesheet" href="<!--[pngetbaseurl]-->modules/MediaAttach/pnstyle/style.css" />
+    <style type="text/css">
+        body {
+            margin: 10px;
+            text-align: left;
+        }
+        div#filecontainer {
+            width: 80%;
+            height: 300px;
+            overflow: auto;
+        }
+        div#filecontainer a {
+            margin: 0.1em 0.2em;
+        }
+        div#filecontainer a img.previmg {
+            border: 1px solid #000;
+            background-color: #CCC;
+            padding: 0.5em;
+        }
+        div#filecontainer a:hover img.previmg, div#filecontainer a:focus img.previmg, div#filecontainer a:active img.previmg {
+            background-color: #FFF;
+        }
+    </style>
+    <!--[pnconfiggetvar name="entrypoint" assign="ourEntry"]-->
+    <script type="text/javascript">/* <![CDATA[ */ document.location.entrypoint="<!--[$ourEntry|default:"index.php"]-->"; document.location.pnbaseURL="<!--[pngetbaseurl]-->"; /* ]]> */</script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/prototype.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/scriptaculous.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/dragdrop.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/effects.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/pnajax.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->modules/MediaAttach/pnjavascript/finditem.js"></script>
+    <script type="text/javascript" src="<!--[pngetbaseurl]-->modules/MediaAttach/pnjavascript/MediaAttach.js"></script>
+</head>
+
+<body>
+
+<!--[if $modules eq 0]-->
+    <p class="centered">
+        <!--[pnml name="_MEDIAATTACH_DEFINITIONNOMODULES"]-->
+    </p>
+<!--[else]-->
+
+<form action="<!--[$ourEntry|default:"index.php"]-->" id="selectorForm" method="get" class="maform">
+    <input type="hidden" name="module" value="<!--[pnmodgetinfo module="MediaAttach" info="displayname"]-->" />
+    <input type="hidden" name="type" value="external" />
+    <input type="hidden" name="func" value="finditem" />
+    <input type="hidden" id="fromguppy" name="guppy" value="<!--[$fromGuppy]-->" />
+
+    <fieldset>
+        <legend><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_TITLE"]--></legend>
+
+        <label for="MediaAttach_onlyimages" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALONLYIMAGES"]--></label>
+        <input type="checkbox" id="MediaAttach_onlyimages" name="onlyimages" value="1" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaattach.find.onParamChanged()" <!--[if $onlyimages]--> checked="checked"<!--[/if]-->/>
+        <br />
+
+        <label for="MediaAttach_did" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
+        <select id="MediaAttach_did" name="did" onchange="mediaAttach.find.onParamChanged()">
+        <!--[foreach item="currentdef" from=$definitions]-->
+            <option value="<!--[$currentdef.did]-->"<!--[if $definitionid eq $currentdef.did]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
+        <!--[/foreach]-->
+        </select>
+        <br />
+
+        <label for="MediaAttach_cid" class="maleft"><!--[pnml name="_CATEGORY"]-->:</label>
+        <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+        <!--[selector_category category=$mainCategory name="catid" field="id" defaultText=$lblDef editLink=false submit=true selectedValue=$catID]-->
+        <br />
+
+    <!--[pnmodavailable modname="MultiHook" assign="mhavailable"]-->
+    <!--[if $mhavailable eq 1]-->
+        <label for="MediaAttach_output" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUT"]-->:</label>
+         <select id="MediaAttach_output" name="output">
+             <option value="link"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTLINK"]--></option>
+             <option value="inline"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTINLINE"]--></option>
+             <option value="physical"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTPHYSICAL"]--></option>
+         </select>
+        <br />
+    <!--[else]-->
+       <input type="hidden" id="MediaAttach_output" name="output" value="link" />
+    <!--[/if]-->
+
+    <!--[if $onlyimages eq 1]-->
+        <label for="MediaAttach_pasteas" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEAS"]-->:</label>
+        <select id="MediaAttach_pasteas" name="pasteas">
+            <option value="1"<!--[if $fromGuppy ne 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBWITHLINK"]--></option>
+            <option value="2"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBWITHLINKDL"]--></option>
+            <option value="3"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMB"]--></option>
+            <option value="4"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINAL"]--></option>
+            <option value="5"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBLINK"]--></option>
+            <option value="6"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINALLINK"]--></option>
+            <option value="7"<!--[if $fromGuppy eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEID"]--></option>
+        </select>
+        <br /><br />
+    <!--[elseif $fromGuppy eq 1]-->
+        <label for="MediaAttach_pasteas" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEAS"]-->:</label>
+        <select id="MediaAttach_pasteas" name="pasteas">
+            <option value="6"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINALLINK"]--></option>
+            <option value="7" selected="selected"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEID"]--></option>
+        </select>
+        <br /><br />
+    <!--[/if]-->
+
+        <label for="MediaAttach_objectid" class="maleft"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+
+        <!--[if $onlyimages eq 1]-->
+            <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+            <!--[assign var="thumbIndex" value=$thumbnr-1]-->
+            <!--[assign var="thumbwidth" value=$thumbsizes[$thumbIndex][0]]-->
+            <!--[assign var="thumbheight" value=$thumbsizes[$thumbIndex][1]]-->
+        <!--[/if]-->
+
+        <div id="filecontainer">
+            <!--[if $onlyimages ne 1]-->
+                <ul>
+            <!--[else]-->
+            <!--[/if]-->
+            <!--[foreach item="file" from=$files]-->
+                <!--[if $onlyimages ne 1]-->
+                    <li>
+                <!--[else]-->
+                <!--[/if]-->
+                <a href="#" onclick="mediaAttach.find.selectItem(<!--[$file.fileid]-->)" onkeypress="mediaAttach.find.selectItem(<!--[$file.fileid]-->)">
+                    <!--[if $onlyimages ne 1]-->
+                        <!--[pnimg src="formats/`$file.format`" modname="MediaAttach" alt=$file.extension style="padding-right: 5px"]-->
+                        <!--[$file.title]--> (<!--[$file.extension]--><!--[if $file.extension ne "extvid"]-->, <!--[mafilesize size=$file.filesize]--><!--[/if]-->)
+                    <!--[else]-->
+                        <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
+                        <img id="maimg<!--[$file.fileid]-->" src="<!--[$previewfile]-->" width="<!--[$thumbwidth]-->" height="<!--[$thumbheight]-->" title="<!--[$file.title]-->" alt="" class="previmg" />
+                    <!--[/if]-->
+                </a>
+                <!--[if $onlyimages eq 1]-->
+                <input type="hidden" id="imgpreview<!--[$file.fileid]-->" value="<!--[$previewfile]-->" />
+                <!--[/if]-->
+                <input type="hidden" id="imgtitle<!--[$file.fileid]-->" value="<!--[$file.title]-->" />
+                <input type="hidden" id="imgdesc<!--[$file.fileid]-->" value="<!--[$file.desc|strip_tags]-->" />
+                <!--[if $onlyimages ne 1]-->
+                    </li>
+                <!--[else]-->
+                <!--[/if]-->
+            <!--[foreachelse]-->
+                <!--[if $onlyimages ne 1]-->
+                    <li>
+                <!--[else]-->
+                <!--[/if]-->
+                <!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_NOENTRIES"]-->
+                <!--[if $onlyimages ne 1]-->
+                    </li>
+                <!--[else]-->
+                <!--[/if]-->
+            <!--[/foreach]-->
+            <!--[if $onlyimages ne 1]-->
+                </ul>
+            <!--[else]-->
+            <!--[/if]-->
+        </div>
+        <br />
+
+<!--[if $onlyimages]-->
+        <select id="MediaAttach_thumbnr" name="thumbnr" style="width: 100px" onchange="mediaAttach.find.onParamChanged()">
+            <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+            <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
+                <option value="<!--[$smarty.foreach.thumbLoop.iteration]-->"<!--[if $smarty.foreach.thumbLoop.iteration eq $thumbnr]--> selected="selected"<!--[/if]-->><!--[$thumbsize[0]]--> x <!--[$thumbsize[1]]--> px&nbsp;</option>
+            <!--[/foreach]-->
+        </select>
+<!--[/if]-->
+
+        <label for="MediaAttach_sortby" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADSORTBY"]-->:</label>
+        <select id="MediaAttach_sortby" name="sortby" onchange="mediaAttach.find.onParamChanged()">
+            <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYDATE"]--></option>
+            <option value="title"<!--[if $sortby eq "title"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYTITLE"]--></option>
+            <option value="module"<!--[if $sortby eq "module"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYMODULE"]--></option>
+            <option value="username"<!--[if $sortby eq "username"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYUSERNAME"]--></option>
+            <option value="filename"<!--[if $sortby eq "filename"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILENAME"]--></option>
+            <option value="filetype"<!--[if $sortby eq "filetype"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILETYPE"]--></option>
+            <option value="filesize"<!--[if $sortby eq "filesize"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILESIZE"]--></option>
+        </select>
+        <select id="MediaAttach_sortdir" name="sortdir" onchange="mediaAttach.find.onParamChanged()">
+            <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRASC"]--></option>
+            <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRDESC"]--></option>
+        </select>
+
+        <label for="MediaAttach_perpage" style="display: inline; margin-left: 40px"><!--[pnml name="_MEDIAATTACH_UPLOADPERPAGE"]--></label>
+        <select id="MediaAttach_perpage" name="itemsperpage" style="width: 50px; text-align: right" onchange="mediaAttach.find.onParamChanged()">
+            <option value="5"<!--[if $itemsperpage eq 5]--> selected="selected"<!--[/if]-->>5</option>
+            <option value="10"<!--[if $itemsperpage eq 10]--> selected="selected"<!--[/if]-->>10</option>
+            <option value="15"<!--[if $itemsperpage eq 15]--> selected="selected"<!--[/if]-->>15</option>
+            <option value="20"<!--[if $itemsperpage eq 20]--> selected="selected"<!--[/if]-->>20</option>
+            <option value="30"<!--[if $itemsperpage eq 30]--> selected="selected"<!--[/if]-->>30</option>
+            <option value="50"<!--[if $itemsperpage eq 50]--> selected="selected"<!--[/if]-->>50</option>
+            <option value="100"<!--[if $itemsperpage eq 100]--> selected="selected"<!--[/if]-->>100</option>
+        </select>
+        <br />
+
+        <label for="MediaAttach_filterby" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILTERBY"]-->:</label>
+        <input type="text" id="MediaAttach_filterby" name="searchfor" />
+        <input type="button" id="MediaAttach_gosearch" name="gosearch" value="<!--[pnml name="_FILTER"]-->" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaAttach.find.onParamChanged()" />
+        <br />
+
+        <div style="margin-left: 6em">
+            <!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum template="pagercss.html" maxpages="10"]-->
+        </div>
+        <input type="button" name="cancelButton" value="<!--[pnml name="_CANCEL"]-->" onclick="mediaAttach.find.handleCancel()" />
+        <br />
+    </fieldset>
+</form>
+
+<!--[pnmodfunc modname="MediaAttach" type="user" func="viewupload"]-->
+
+<!--[/if]-->
+
+</body>
+</html>

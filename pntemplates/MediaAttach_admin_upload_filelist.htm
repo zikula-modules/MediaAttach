@@ -1,0 +1,12 @@
+<!--[* $Id: MediaAttach_admin_upload_filelist.htm 218 2007-08-10 11:41:45Z weckamc $ *]-->
+<!--[* Purpose of this template: Shows the list of admin files *]-->
+
+<!--[pnuserloggedin assign="isLoggedIn"]-->
+<!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
+<!--[if $isLoggedIn || $numFiles > 0]-->
+<dl id="myfilelist" style="margin-left: 50px">
+<!--[foreach item="file" from=$files]-->
+    <!--[include file="MediaAttach_admin_upload_filelist_single.htm"]-->
+<!--[/foreach]-->
+</dl>
+<!--[/if]-->
