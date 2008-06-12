@@ -49,10 +49,10 @@ function MediaAttach_user_update($args)
         return pnRedirect($backurl);
     }
 
-    $file = array('objectid'       => $objectid,
-                  'title'          => $title,
-                  'desc'           => str_replace("\n", "<br />", $desc),
-                  '__CATEGORIES__' => $cats);
+    $file['objectid']       = $objectid;
+    $file['title']          = $title;
+    $file['desc']           = str_replace("\n", "<br />", $desc);
+    $file['__CATEGORIES__'] = $cats;
 
     if (pnModAPIFunc('MediaAttach', 'user', 'update', $file)) {
         LogUtil::registerStatus(_UPDATESUCCEDED);
