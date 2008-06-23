@@ -62,14 +62,14 @@
         <label for="MediaAttach_did" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
         <select id="MediaAttach_did" name="did" onchange="mediaAttach.find.onParamChanged()">
         <!--[foreach item="currentdef" from=$definitions]-->
-            <option value="<!--[$currentdef.did]-->"<!--[if $definitionid eq $currentdef.did]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
+            <option value="<!--[$currentdef.did]-->"<!--[if $currentdef.modname eq "MediaAttach"]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
         <!--[/foreach]-->
         </select>
         <br />
 
         <label for="MediaAttach_cid" class="maleft"><!--[pnml name="_CATEGORY"]-->:</label>
         <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
-        <!--[selector_category category=$mainCategory name="catid" field="id" defaultText=$lblDef editLink=false submit=true selectedValue=$catID]-->
+        <!--[selector_category category=$mainCategory name="cat_id" field="id" defaultText=$lblDef editLink=false submit=true selectedValue=$catID]-->
         <br />
 
     <!--[pnmodavailable modname="MultiHook" assign="mhavailable"]-->
