@@ -129,6 +129,7 @@ function _maIntImageThumb($params, &$smarty)
     if (empty($params['file']) || !file_exists($params['file'])) {
         return LogUtil::registerError(_MODARGSERROR);
     }
+    $srcFile = $params['file'];
 
     if (isset($params['thumbnr']) && is_numeric($params['thumbnr'])) {
         $thumbNumber = (int) $params['thumbnr'];
@@ -136,25 +137,14 @@ function _maIntImageThumb($params, &$smarty)
         $thumbNumber = pnModGetVar('MediaAttach', 'defaultthumb');
     }
 
-    ### get info about source (SRC)
-    $temp = getimagesize($params['file']);
+    $thumbHash = md5($srcFile . filemtime($srcFile) . $thumbNumber);
 
-    $_SRC['file']        = $params['file'];
-    $_SRC['width']       = $temp[0];
-    $_SRC['height']      = $temp[1];
-    $_SRC['type']        = $temp[2]; // 1=GIF, 2=JPG, 3=PNG, SWF=4
-    $_SRC['string']      = $temp[3];
-    $_SRC['filename']    = basename($params['file']);
-    $_SRC['modified']    = filemtime($params['file']);
-
-    // create hash
-    $_SRC['hash']        = md5($_SRC['file'] . $_SRC['modified'] . $thumbNumber);
-
+    // determine thumbnail filetype
+    $_CONFIG['types'] = array('','.gif','.jpg','.png');
     if (!empty($params['type'])) $_DST['type'] = $params['type'];
-    else $_DST['type']   = $_SRC['type'];
+    else $_DST['type'] = 3; // default to png
 
-    $_CONFIG['types']    = array('','.gif','.jpg','.png');
-    $_DST['file']        = $_SRC['hash'] . $_CONFIG['types'][$_DST['type']];
+    $destFilePath = $thumbHash . $_CONFIG['types'][$_DST['type']];
 
     $cachedir = pnModGetVar('MediaAttach', 'cachedir');
     $cachedir = str_replace(getenv('DOCUMENT_ROOT'), '', $cachedir);
@@ -162,20 +152,31 @@ function _maIntImageThumb($params, &$smarty)
         $cachedir = substr($cachedir, 1, strlen($cachedir) - 1);
     }
 
-    $filePath = $cachedir . '/' . $_DST['file'];
-    $_DST['file'] = $filePath;
+    $destFilePath = $cachedir . '/' . $destFilePath;
 
-    ### catch cache file
-    if (file_exists($filePath)) {
+    // catch cached file if existing
+    if (file_exists($destFilePath)) {
         if (isset($params['assign'])) {
-            $smarty->assign($params['assign'], $filePath);
+            $smarty->assign($params['assign'], $destFilePath);
             return;
         } else {
-            return $filePath;
+            return $destFilePath;
         }
     }
 
-    ### otherwise go on
+    // otherwise go on
+
+    // get info about source image
+    $temp = getimagesize($srcFile);
+    $_SRC['file']       = $srcFile;
+    $_SRC['filename']   = basename($srcFile);
+    $_SRC['width']      = $temp[0];
+    $_SRC['height']     = $temp[1];
+    $_SRC['type']       = $temp[2]; // 1=GIF, 2=JPG, 3=PNG, SWF=4
+    $_SRC['string']     = $temp[3];
+
+
+
     if (!isset($params['extrapolate']) || empty($params['extrapolate']))
         $params['extrapolate'] = true;
     if (!isset($params['crop']) || empty($params['crop']))
@@ -279,22 +280,22 @@ function _maIntImageThumb($params, &$smarty)
     // store thumbnail
     if ($_DST['type'] == 1) {
         imagetruecolortopalette($_DST['image'], false, 256);
-        imagegif($_DST['image'], $_DST['file']);
+        imagegif($_DST['image'], $destFilePath);
     }
     if ($_DST['type'] == 2) {
         if (empty($params['quality'])) $params['quality'] = 100; //80;
-        imagejpeg($_DST['image'], $_DST['file'], $params['quality']);
+        imagejpeg($_DST['image'], $destFilePath, $params['quality']);
     }
     if ($_DST['type'] == 3) {
-        imagepng($_DST['image'], $_DST['file']);
+        imagepng($_DST['image'], $destFilePath);
     }
 
     imagedestroy($_DST['image']);
     imagedestroy($_SRC['image']);
 
     if (isset($params['assign'])) {
-        $smarty->assign($params['assign'], $filePath);
+        $smarty->assign($params['assign'], $destFilePath);
     } else {
-        return $filePath;
+        return $destFilePath;
     }
 }
