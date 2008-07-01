@@ -112,7 +112,7 @@ function MediaAttach_newestfilesblock_display($blockinfo)
     $render->assign('files', $newestfiles);
 
     $blockinfo['content'] = $render->fetch('MediaAttach_block_newestfiles.htm');
-    return themesideblock($blockinfo);
+    return pnBlockThemeBlock($blockinfo);
 }
 
 

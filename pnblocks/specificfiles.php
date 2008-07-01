@@ -102,7 +102,7 @@ function MediaAttach_specificfilesblock_display($blockinfo)
     $render->assign('files', $specificfiles);
 
     $blockinfo['content'] = $render->fetch('MediaAttach_block_specificfiles.htm');
-    return themesideblock($blockinfo);
+    return pnBlockThemeBlock($blockinfo);
 }
 
 

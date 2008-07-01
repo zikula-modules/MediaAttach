@@ -118,7 +118,7 @@ function MediaAttach_inlineblock_display($blockinfo)
     $render->assign('files', $files);
 
     $blockinfo['content'] = $render->fetch('MediaAttach_block_inline.htm');
-    return themesideblock($blockinfo);
+    return pnBlockThemeBlock($blockinfo);
 }
 
 
