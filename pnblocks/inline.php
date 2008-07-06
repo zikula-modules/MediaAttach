@@ -12,7 +12,7 @@
 
 /**
  * initialise block
- * 
+ *
  */
 function MediaAttach_inlineblock_init()
 {
@@ -21,7 +21,7 @@ function MediaAttach_inlineblock_init()
 
 /**
  * get information on block
- * 
+ *
  * @return       array       The block information
  */
 function MediaAttach_inlineblock_info()
@@ -38,8 +38,8 @@ function MediaAttach_inlineblock_info()
 
 /**
  * display block
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       output      the rendered bock
  */
 function MediaAttach_inlineblock_display($blockinfo)
@@ -124,8 +124,8 @@ function MediaAttach_inlineblock_display($blockinfo)
 
 /**
  * modify block settings
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       output      the bock form
  */
 function MediaAttach_inlineblock_modify($blockinfo)
@@ -160,8 +160,8 @@ function MediaAttach_inlineblock_modify($blockinfo)
 
 /**
  * update block settings
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       $blockinfo  the modified blockinfo structure
  */
 function MediaAttach_inlineblock_update($blockinfo)

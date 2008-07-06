@@ -12,7 +12,7 @@
 
 /**
  * initialise block
- * 
+ *
  */
 function MediaAttach_specificfilesblock_init()
 {
@@ -21,7 +21,7 @@ function MediaAttach_specificfilesblock_init()
 
 /**
  * get information on block
- * 
+ *
  * @return       array       The block information
  */
 function MediaAttach_specificfilesblock_info()
@@ -38,8 +38,8 @@ function MediaAttach_specificfilesblock_info()
 
 /**
  * display block
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       output      the rendered bock
  */
 function MediaAttach_specificfilesblock_display($blockinfo)
@@ -108,8 +108,8 @@ function MediaAttach_specificfilesblock_display($blockinfo)
 
 /**
  * modify block settings
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       output      the bock form
  */
 function MediaAttach_specificfilesblock_modify($blockinfo)
@@ -142,8 +142,8 @@ function MediaAttach_specificfilesblock_modify($blockinfo)
 
 /**
  * update block settings
- * 
- * @param        array       $blockinfo     a blockinfo structure
+ *
+ * @param        blockinfo   array a blockinfo structure
  * @return       $blockinfo  the modified blockinfo structure
  */
 function MediaAttach_specificfilesblock_update($blockinfo)
