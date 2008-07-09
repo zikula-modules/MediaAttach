@@ -39,7 +39,7 @@ function smarty_function_showzipentries($params, &$smarty)
     }
 
     $menuname = 'treemenu' . $params['fileid'];
-    $treeimagepath = 'modules/MediaAttach/pnincludes/treemenu/';
+    $treeimagepath = $smarty->baseurl.'/modules/MediaAttach/pnincludes/treemenu/';
     $res = '<script type="text/javascript" language="javascript">' . "\n";
     $res .= '    var ' . $menuname . ' = new TREEMENU();' . "\n";
     $res .= '    ' . $menuname . '.entry(1, "Root folder");' . "\n";
