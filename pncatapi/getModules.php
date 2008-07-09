@@ -32,7 +32,7 @@ function MediaAttach_catapi_getModules()
         // transformation for unified handling with Categories
         $modInfo['display_name'] = array($currentLang => $modInfo['displayname']);
 
-        $where = $fcolumn['modname'] . " = '" . $def['modname'] . "'";
+        $where = $fcolumn['modname'].' = \''.$def['modname'].'\'';
         $filecount = DBUtil::selectObjectCount('ma_files', $where);
         $modInfo['filecount'] = $filecount;
 

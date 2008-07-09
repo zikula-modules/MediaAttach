@@ -156,6 +156,7 @@ function MediaAttach_user_main()
             switch ($catmode) {
                 case MEDIAATTACH_CATMODE_CATEGORIES:
                         $allCategories = pnModAPIFunc('MediaAttach', 'cat', 'getCategories');
+                        $allCategories = pnModAPIFunc('MediaAttach', 'cat', 'orderCategories', array('categories' => $allCategories));
                         break;
 
                 case MEDIAATTACH_CATMODE_MODULES:

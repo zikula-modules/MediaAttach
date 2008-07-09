@@ -33,7 +33,7 @@ function MediaAttach_catapi_getUsers()
 
             $newUname = pnUserGetVar('uname', $newUID);
 
-            $where = $fcolumn['uid'] . " = '" . $newUID . "'";
+            $where = $fcolumn['uid'].' = \''.$newUID.'\'';
             $filecount = DBUtil::selectObjectCount('ma_files', $where);
 
             $users[] = array('id' => $newUID,

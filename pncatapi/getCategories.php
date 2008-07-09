@@ -35,10 +35,10 @@ function MediaAttach_catapi_getCategories()
         $alreadyIncluded[$rootCat] = 1;
 
         // Get the subcategories
-        $allCats = CategoryUtil::getSubCategories($rootCat);
+        $subcats = CategoryUtil::getSubCategories($rootCat);
 
         // Get the number of files for each category
-        foreach ($allCats as $category) {
+        foreach ($subcats as $category) {
             $filecount = DBUtil::selectObjectCount('ma_files', '', '1', false, array($prop => $category['id']));
             $category['filecount'] = $filecount;
             $category['catprop'] = $prop;
