@@ -3,7 +3,7 @@
 
 <!--[if $file.fileInfo.zip]-->
     <!--[add_additional_header header='<script type="text/javascript" src="modules/MediaAttach/pnincludes/treemenu/treemenu.js"></script>']-->
-    <h5>Information</h5>
+    <h5><!--[pnml name='_MEDIAATTACH_FILEINFO']--></h5>
     <ul id="ma<!--[$idprefix]-->zip<!--[$file.fileid]-->" class="mazipfile">
         <li>Compressed size: <!--[mafilesize size=$file.fileInfo.zip.compressed_size]--></li>
         <li>Uncompressed size: <!--[mafilesize size=$file.fileInfo.zip.uncompressed_size]--></li>
