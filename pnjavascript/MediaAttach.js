@@ -443,7 +443,7 @@
         var uploadFrameDocument = getUploadFrameDocument();
         var resultText = pndejsonize(uploadFrameDocument.body.innerHTML);
 
-        if (resultText.message && resultText.message != '...') {
+        if (resultText && resultText.message && resultText.message != '...') {
             $(uploadFormName).setStyle({cursor: 'auto'});
             $(uploadFormName).hide();
             $('ajax_indicator').hide();
