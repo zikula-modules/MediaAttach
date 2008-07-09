@@ -204,6 +204,12 @@ function MediaAttach_user_main()
             $files[$i] = _maIntPrepFileForTemplate($files[$i], $currentUser, $ownHandling);
         }
 
+        $thumbnr = (int) FormUtil::getPassedValue('thumbnr', 0, 'GET');
+        if ($thumbnr == 0) {
+            $thumbnr = pnModGetVar('MediaAttach', 'defaultthumb');
+        }
+        $render->assign('thumbnr', $thumbnr);
+
         // Assign the category customized template if exists
         if (isset($matemplate) && $render->template_exists($matemplate)) {
             $render->assign('matemplate', $matemplate);
