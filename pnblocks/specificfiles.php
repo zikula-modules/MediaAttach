@@ -54,9 +54,9 @@ function MediaAttach_specificfilesblock_display($blockinfo)
 
     $vars = pnBlockVarsFromContent($blockinfo['content']);
 
-    $filefilter = '';
+    $fileFilter = '';
     if (!empty($vars['files'])) {
-        $filefilter = explode(':', $vars['files']);
+        $fileFilter = explode(':', $vars['files']);
     }
 
 
@@ -64,7 +64,7 @@ function MediaAttach_specificfilesblock_display($blockinfo)
                       array('startnum'     => 1,
                             'sortby'       => 'title',
                             'sortdir'      => 'asc',
-                            'filefilter'   => $filefilter));
+                            'fileFilter'   => $fileFilter));
 
     if (!$files) {
         return false;

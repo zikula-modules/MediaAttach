@@ -72,13 +72,13 @@ function MediaAttach_inlineblock_display($blockinfo)
                                                                           'numitems'     => $vars['numitems'],
                                                                           'sortby'       => 'date',
                                                                           'sortdir'      => 'desc',
-                                                                          'formatfilter' => $formatFilter));
+                                                                          'formatFilter' => $formatFilter));
     }
     elseif ($vars['displaytype'] == 1) {
         $uploads = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', array('startnum'     => 1,
                                                                           'numitems'     => $vars['numitems'],
                                                                           'sortby'       => 'RAND()',
-                                                                          'formatfilter' => $formatFilter));
+                                                                          'formatFilter' => $formatFilter));
     }
 
     if (!$uploads) {
