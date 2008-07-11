@@ -12,8 +12,9 @@
 
 /*
  * ---------------------------------------------------------------------------------------------------------
- * Popup selector for scribite plugin
- * based on mediashare implementation
+ * WARNING:
+ * The domains filed must contain the domain of the external media
+ * getinlinesnippet plugin will check the media URL and compare it with the domains providers
  * ---------------------------------------------------------------------------------------------------------
  */
 
@@ -77,6 +78,22 @@ function MediaAttach_extvideoapi_getproviders()
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
 
+    $providers[] = array('name' => 'SlideShare',
+                         'desc' => 'Share your presentations with the world.',
+                         'domains' => array('slideshare.net', 'static.slideshare.net'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 425,
+                         'playerHeight' => 355,
+                         'searchpattern' => array(
+                                'titleStart' => '<title>',
+                                'titleEnd'   => '</title>',
+                                'descStart'  => '<meta name=\"description\" content=\"',
+                                'descEnd'    => '\" />',
+                                'fileStart'  => '&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;',
+                                'fileEnd'    => '&quot;/&gt;&lt;param name=&quot;',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
+    
 /*
 
 MySpace (http://www.myspace.com) - (Video and Music part)
