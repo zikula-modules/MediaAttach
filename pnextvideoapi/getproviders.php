@@ -73,7 +73,7 @@ function MediaAttach_extvideoapi_getproviders()
                                 'descStart'  => '<meta name=\"description\" content=\"',
                                 'descEnd'    => '\">',
                                 'fileStart'  => '&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;',
-                                'fileEnd'    => '&quot;&gt;&lt;/param&gt;&lt;param name=&quot;wmode&quot; value=&quot;transparent',
+                                'fileEnd'    => '&quot;&gt;&lt;/param&gt;&lt;param name=&quot;',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
 
