@@ -18,7 +18,7 @@
 function MediaAttach_needleapi_mediaattach_info($args)
 {
     $info = array('module'  => 'MediaAttach',
-                  'info'    => 'MEDIAATTACH{P-fileid|I-fileid}',
+                  'info'    => 'FILEMANAGER{P-fileid|I-fileid}',
                   'inspect' => false);
     return $info;
 }

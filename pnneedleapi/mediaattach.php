@@ -63,7 +63,7 @@ function MediaAttach_needleapi_mediaattach($args)
                 $render = pnRender::getInstance('MediaAttach', false);
                 $render->assign('definition', $file['definition']);
                 $render->assign('currentuser', pnUserGetVar('uid'));
-                $render->assign('currentfile', $file);
+                $render->assign('file', $file);
 
                 $templateset = ($type == 'I') ? 'inlinelist' : 'filelist';
                 $cache[$nid] = $render->fetch(_maIntChooseTemplate($render, 'user', $templateset . '_single', $file['modname']));
