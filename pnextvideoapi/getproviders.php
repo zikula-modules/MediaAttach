@@ -150,6 +150,23 @@ function MediaAttach_extvideoapi_getproviders()
                                 'fileEnd'    => '&quot;&gt;"',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
+								
+    
+	$providers[] = array('name' => 'Hulu',
+                         'desc' => 'Watch your favorites. Anytime. For free.',
+                         'domains' => array('hulu.com', 'www.hulu.com'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 512,
+                         'playerHeight' => 296,
+                         'searchpattern' => array(
+                                'titleStart' => '<title>Hulu - ',
+                                'titleEnd'   => '</title>',
+                                'descStart'  => '<div class="description" style="padding-bottom:10px;">',
+                                'descEnd'    => '</div>',
+                                'fileStart'  => '<link rel="video_src" href="',
+                                'fileEnd'    => '"/>',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
 
 /*
 
