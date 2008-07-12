@@ -101,6 +101,24 @@ function MediaAttach_extvideoapi_getproviders()
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
 
+    $providers[] = array('name' => 'Broadcaster',
+                         'desc' => 'Best Videos & Funny Movies.',
+                         'domains' => array('broadcaster.com'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 425,
+                         'playerHeight' => 340,
+                         'searchpattern' => array(
+                                'titleStart' => '>Title:</td>
+										<td class=\"videoInfo\" align="left">',
+                                'titleEnd'   => '</td>',
+                                'descStart'  => '>Description:</td>
+										<td class=\"videoText\" align=\"left\">',
+                                'descEnd'    => '</td>',
+                                'fileStart'  => '&lt;embed src=\"',
+                                'fileEnd'    => '\" ',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
+
     $providers[] = array('name' => 'Metacafe',
                          'desc' => 'Best Videos & Funny Movies.',
                          'domains' => array('metacafe.com'),
