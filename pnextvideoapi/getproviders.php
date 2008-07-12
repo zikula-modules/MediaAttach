@@ -154,7 +154,7 @@ function MediaAttach_extvideoapi_getproviders()
     
 	$providers[] = array('name' => 'Hulu',
                          'desc' => 'Watch your favorites. Anytime. For free.',
-                         'domains' => array('hulu.com', 'www.hulu.com'),
+                         'domains' => array('hulu.com'),
                          'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
                          'playerWidth' => 512,
                          'playerHeight' => 296,
@@ -328,7 +328,7 @@ Violent Puppy - Where Violence, Sex and Humor Make Demon Babies (http://www.viol
 Television 2.0 - Beba by N.I.X. and Ventura (http://www.web2.0television.com) (Web 2.0 Television)
 Fight Dump - Fight Videos, Street Fights, UFC Fights, PRIDE Fights and Free Jiu Jitsu Training Videos (http://www.fightdump.com)
 BestCrazyVideos.com - the best crazy videos (http://www.bestcrazyvideos.com)
-Music Video Codes For Myspace Hi5 Bebo Facebook Piczo Offuhuge Html Music Codes - Free Music Video Codes Links Rock Dance Reggaeton Perreo Trance Pop Hip Hop Comedy Flash Game Codes Podcast Videos,Toronto NightClub Videos (http://www.offuhuge.com)
+-FORMAT INCONSISTENT- Music Video Codes For Myspace Hi5 Bebo Facebook Piczo Offuhuge Html Music Codes - Free Music Video Codes Links Rock Dance Reggaeton Perreo Trance Pop Hip Hop Comedy Flash Game Codes Podcast Videos,Toronto NightClub Videos (http://www.offuhuge.com)
 Collegeslackers.com - funny videos, forum, pictures, product reviews and more. (http://www.collegeslackers.com)
 http://www.eefoof.com
 Shizzville | Daily Updates of the Best Videos on the Internet! (http://www.shizzville.com)
