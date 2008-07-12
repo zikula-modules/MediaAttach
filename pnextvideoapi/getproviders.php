@@ -93,9 +93,26 @@ function MediaAttach_extvideoapi_getproviders()
                                 'fileEnd'    => '&quot;/&gt;&lt;param name=&quot;',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
+
+    $providers[] = array('name' => 'Revver',
+                         'desc' => 'Online Video Sharing Network.',
+                         'domains' => array('revver.com', 'flash.revver.com'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 480,
+                         'playerHeight' => 392,
+                         'searchpattern' => array(
+                                'titleStart' => '<meta name=\"title\" content=\"',
+                                'titleEnd'   => '\" />',
+                                'descStart'  => '<meta name=\"description\" content=\"',
+                                'descEnd'    => '\" />',
+                                'fileStart'  => '<link rel="video_src" href="',
+                                'fileEnd'    => '" />',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
     
 /*
 
+BubblePLY (www.bubbleply.com) - 
 MySpace (http://www.myspace.com) - (Video and Music part)
 hi5 - Who's in? (http://www.hi5.com) (Video part)
 Image hosting, free photo sharing & video sharing at Photobucket (http://www.photobucket.com)
@@ -108,7 +125,6 @@ Tagged (http://www.tagged.com)
 Metacafe â¤? Best Videos & Funny Movies (http://www.metacafe.com)
 MEGAVIDEO - I'm watchin' it (http://www.megavideo.com)
 blip.tv (beta) (http://www.blip.tv)
-Revver &#x00BB; (http://www.revver.com)
 http://www.archive.org
 Break.com - Free videos, pictures, and comedy for guys (http://www.break.com)
 crunchyroll - feed your need! (http://www.crunchyroll.com)
