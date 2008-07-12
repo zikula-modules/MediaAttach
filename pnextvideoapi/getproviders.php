@@ -100,7 +100,23 @@ function MediaAttach_extvideoapi_getproviders()
                                 'fileEnd'    => '" />',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
-    
+
+    $providers[] = array('name' => 'photobucket',
+                         'desc' => 'Online Video Sharing Network.',
+                         'domains' => array('photobucket.com'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 488,
+                         'playerHeight' => 361,
+                         'searchpattern' => array(
+                                'titleStart' => '<title>',
+                                'titleEnd'   => ' video by ',
+                                'descStart'  => '<meta name=\"description\" content=\"',
+                                'descEnd'    => '\"/>',
+                                'fileStart'  => '&quot; wmode=&quot;transparent&quot; src=&quot;',
+                                'fileEnd'    => '&quot;&gt;"',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
+
 /*
 
 BubblePLY (www.bubbleply.com) - 
