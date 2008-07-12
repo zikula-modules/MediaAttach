@@ -10,16 +10,7 @@
  */
 
 
-/*
- * ---------------------------------------------------------------------------------------------------------
- * WARNING:
- * The domains filed must contain the domain of the external media
- * getinlinesnippet plugin will check the media URL and compare it with the domains providers
- * ---------------------------------------------------------------------------------------------------------
- */
-
 Loader::requireOnce('modules/MediaAttach/common.php');
-
 
 /**
  * return array with supported providers for embedding external videos

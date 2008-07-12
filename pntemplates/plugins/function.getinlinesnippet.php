@@ -82,10 +82,17 @@ function smarty_function_getinlinesnippet($params, &$smarty)
             $proDomain = substr($proDomain, 4, strlen($proDomain) - 4);
         }
 
+        $fileDomains = array();
+        while (substr_count($proDomain, '.') > 0) {
+            $fileDomains[] = $proDomain;
+            $proDomain = substr($proDomain, strpos($proDomain, '.')+1);
+        }
+
         $supportedProviders = pnModAPIFunc('MediaAttach', 'extvideo', 'getproviders');
         $provider = array();
         foreach($supportedProviders as $currentprovider) {
-            if (in_array($proDomain, $currentprovider['domains'])) {
+            $result = array_intersect($currentprovider['domains'], $fileDomains);
+            if (!empty($result)) {
                 $provider = $currentprovider;
                 break;
             }
