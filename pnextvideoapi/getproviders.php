@@ -71,7 +71,7 @@ function MediaAttach_extvideoapi_getproviders()
 
     $providers[] = array('name' => 'SlideShare',
                          'desc' => 'Share your presentations with the world.',
-                         'domains' => array('slideshare.net', 'static.slideshare.net'),
+                         'domains' => array('slideshare.net'),
                          'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
                          'playerWidth' => 425,
                          'playerHeight' => 355,
@@ -87,7 +87,7 @@ function MediaAttach_extvideoapi_getproviders()
 
     $providers[] = array('name' => 'Revver',
                          'desc' => 'Online Video Sharing Network.',
-                         'domains' => array('revver.com', 'flash.revver.com'),
+                         'domains' => array('revver.com'),
                          'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
                          'playerWidth' => 480,
                          'playerHeight' => 392,
@@ -98,6 +98,22 @@ function MediaAttach_extvideoapi_getproviders()
                                 'descEnd'    => '\" />',
                                 'fileStart'  => '<link rel="video_src" href="',
                                 'fileEnd'    => '" />',
+                                'filePfix'   => '',
+                                'fileSfix'   => ''));
+
+    $providers[] = array('name' => 'Metacafe',
+                         'desc' => 'Best Videos & Funny Movies.',
+                         'domains' => array('metacafe.com'),
+                         'filetypes' => array('extension' => 'flv', 'mimetype' => 'application/x-shockwave-flash'),
+                         'playerWidth' => 400,
+                         'playerHeight' => 345,
+                         'searchpattern' => array(
+                                'titleStart' => '<meta name=\"title\" content=\"Metacafe - ',
+                                'titleEnd'   => '\" />',
+                                'descStart'  => '<meta name=\"description\" content=\"',
+                                'descEnd'    => '\" />',
+                                'fileStart'  => '&lt;embed src=&quot;',
+                                'fileEnd'    => '&quot; ',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
 
@@ -129,7 +145,6 @@ Netlog (http://www.netlog.com) (facebox.com) (Video part)
 Bebo (http://www.bebo.com) - (Video and Music part)
 Multiply - Share your life with your friends (http://www.multiply.com)
 Tagged (http://www.tagged.com)
-Metacafe â¤? Best Videos & Funny Movies (http://www.metacafe.com)
 MEGAVIDEO - I'm watchin' it (http://www.megavideo.com)
 blip.tv (beta) (http://www.blip.tv)
 http://www.archive.org
