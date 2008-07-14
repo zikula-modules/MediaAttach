@@ -20,6 +20,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 function MediaAttach_user_showfilelist($args)
 {
     $modname = pnModGetName();
+    if ($modname == 'MediaAttach' && FormUtil::getPassedValue('type', '', 'GET') == 'external') {
+        return false;   // we want only the upload form in the scribite/guppy popup
+    }
 
     if (!isset($args['objectid']) || empty($args['objectid'])) {
         return false;
