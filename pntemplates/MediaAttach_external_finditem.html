@@ -1,32 +1,11 @@
-<!--[* $Id: *]-->
+<!--[* $Id: MediaAttach_external_finditem.html 156 2008-07-18 23:30:32Z mateo $ *]-->
 <!--[* Purpose of this template: popup selector for scribite integration *]-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<!--[lang]-->" lang="<!--[lang]-->">
 <head>
     <title><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_TITLE"]--></title>
     <link type="text/css" rel="stylesheet" href="<!--[pngetbaseurl]-->modules/MediaAttach/pnstyle/style.css" />
-    <style type="text/css">
-        body {
-            margin: 10px;
-            text-align: left;
-        }
-        div#filecontainer {
-            width: 80%;
-            height: 300px;
-            overflow: auto;
-        }
-        div#filecontainer a {
-            margin: 0.1em 0.2em;
-        }
-        div#filecontainer a img.previmg {
-            border: 1px solid #000;
-            background-color: #CCC;
-            padding: 0.5em;
-        }
-        div#filecontainer a:hover img.previmg, div#filecontainer a:focus img.previmg, div#filecontainer a:active img.previmg {
-            background-color: #FFF;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="<!--[pngetbaseurl]-->modules/MediaAttach/pnstyle/finditem.css" />
     <!--[pnconfiggetvar name="entrypoint" assign="ourEntry"]-->
     <script type="text/javascript">/* <![CDATA[ */ document.location.entrypoint="<!--[$ourEntry|default:"index.php"]-->"; document.location.pnbaseURL="<!--[pngetbaseurl]-->"; /* ]]> */</script>
     <script type="text/javascript" src="<!--[pngetbaseurl]-->javascript/ajax/prototype.js"></script>
@@ -57,6 +36,14 @@
 
         <label for="MediaAttach_onlyimages" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALONLYIMAGES"]--></label>
         <input type="checkbox" id="MediaAttach_onlyimages" name="onlyimages" value="1" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaattach.find.onParamChanged()" <!--[if $onlyimages]--> checked="checked"<!--[/if]-->/>
+<!--[if $onlyimages]-->
+        <select id="MediaAttach_thumbnr" name="thumbnr" style="width: 100px" onchange="mediaAttach.find.onParamChanged()">
+            <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
+            <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
+                <option value="<!--[$smarty.foreach.thumbLoop.iteration]-->"<!--[if $smarty.foreach.thumbLoop.iteration eq $thumbnr]--> selected="selected"<!--[/if]-->><!--[$thumbsize[0]]--> x <!--[$thumbsize[1]]--> px&nbsp;</option>
+            <!--[/foreach]-->
+        </select>
+<!--[/if]-->
         <br />
 
         <label for="MediaAttach_did" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
@@ -161,15 +148,6 @@
         </div>
         <br />
 
-<!--[if $onlyimages]-->
-        <select id="MediaAttach_thumbnr" name="thumbnr" style="width: 100px" onchange="mediaAttach.find.onParamChanged()">
-            <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
-            <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
-                <option value="<!--[$smarty.foreach.thumbLoop.iteration]-->"<!--[if $smarty.foreach.thumbLoop.iteration eq $thumbnr]--> selected="selected"<!--[/if]-->><!--[$thumbsize[0]]--> x <!--[$thumbsize[1]]--> px&nbsp;</option>
-            <!--[/foreach]-->
-        </select>
-<!--[/if]-->
-
         <label for="MediaAttach_sortby" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADSORTBY"]-->:</label>
         <select id="MediaAttach_sortby" name="sortby" onchange="mediaAttach.find.onParamChanged()">
             <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYDATE"]--></option>
@@ -184,8 +162,9 @@
             <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRASC"]--></option>
             <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRDESC"]--></option>
         </select>
+		<br />
 
-        <label for="MediaAttach_perpage" style="display: inline; margin-left: 40px"><!--[pnml name="_MEDIAATTACH_UPLOADPERPAGE"]--></label>
+        <label for="MediaAttach_perpage" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADPERPAGE"]--></label>
         <select id="MediaAttach_perpage" name="itemsperpage" style="width: 50px; text-align: right" onchange="mediaAttach.find.onParamChanged()">
             <option value="5"<!--[if $itemsperpage eq 5]--> selected="selected"<!--[/if]-->>5</option>
             <option value="10"<!--[if $itemsperpage eq 10]--> selected="selected"<!--[/if]-->>10</option>
@@ -210,7 +189,11 @@
     </fieldset>
 </form>
 
-<!--[pnmodfunc modname="MediaAttach" type="user" func="viewupload"]-->
+<div class="maform">
+    <fieldset>
+    <!--[pnmodfunc modname="MediaAttach" type="user" func="viewupload"]-->
+    </fieldset>
+</div>
 
 <!--[/if]-->
 

@@ -3,19 +3,15 @@
 
 <!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
 
+<!--[insert name="getstatusmsg"]-->
 <br id="files" />
-<!--[insert name="getstatusmsg"]--><br /><br />
 <!--[if $definition.state eq 1]-->
     <!--[pnmodfunc modname="MediaAttach" type="user" func="showfilelist" objectid=$objectid]-->
     <!--[if $allowadd]-->
-        <a id="myuploadform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->" style="display: none">
-            <!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->
-        </a>
-<!--[if $activateExternalVideos]-->
-      | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]-->" style="display: none">
-            <!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]-->
-        </a>
-<!--[/if]-->
+        <a id="myuploadform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->" style="display: none"><!--[pnml name="_MEDIAATTACH_UPLOADFILES"]--></a>
+    <!--[if $activateExternalVideos]-->
+         | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]-->" style="display: none"><!--[pnml name="_MEDIAATTACH_LINKEXTVIDEO"]--></a>
+    <!--[/if]-->
         <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createupload"]-->" method="post" enctype="multipart/form-data" class="maform">
             <fieldset>
                 <legend><!--[pnml name="_MEDIAATTACH_UPLOADFILES"]--></legend>

@@ -1,0 +1,53 @@
+/* $Id: finditem.css 156 2008-07-18 23:30:32Z mateo $ */
+
+body {
+    background-color: #DDD;
+    margin: 10px;
+    text-align: left;
+}
+
+.maform fieldset,
+.maform fieldset legend {
+    background-color: #FFF;
+    border: none;
+}
+
+#filecontainer {
+    background-color: #EEE;
+    height: 300px;
+    overflow: auto;
+    padding: 5px;
+}
+
+#filecontainer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#filecontainer a {
+    color: #000;
+    margin: 0.1em 0.2em;
+    text-decoration: underline;
+}
+#filecontainer a:hover,
+#filecontainer a:focus,
+#filecontainer a:active {
+    color: #900;
+    text-decoration: none;
+}
+
+#filecontainer a img {
+    border: none;
+}
+
+#filecontainer a img.previmg {
+    border: 1px solid #CCC;
+    background-color: #F5F5F5;
+    padding: 0.5em;
+}
+#filecontainer a:hover img.previmg,
+#filecontainer a:focus img.previmg,
+#filecontainer a:active img.previmg {
+    background-color: #FFF;
+}

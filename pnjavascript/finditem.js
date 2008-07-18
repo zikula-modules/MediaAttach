@@ -59,7 +59,7 @@ mediaAttach.find.handleCancel = function() {
 
 function getPasteSnippet(mode, fileID) {
   var useMultiHookOutput = false;
-  if ($('MediaAttach_output') && $('MediaAttach_output').selectedIndex != 0 ) {
+  if ($('MediaAttach_output') && $('MediaAttach_output').tagName != "INPUT" && $('MediaAttach_output').selectedIndex != 0 ) {
       useMultiHookOutput = true;
   }
   if (useMultiHookOutput == false) {
