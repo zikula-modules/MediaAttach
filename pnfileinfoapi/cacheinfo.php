@@ -27,7 +27,7 @@ function MediaAttach_fileinfoapi_cacheinfo(&$args)
     $cacheDir = pnConfigGetVar('temp') . '/pnRender_cache';
     $cacheId = 'fileinfo_' . $args['fileid'];
     $cacheFile = $cacheDir . '/' . md5($cacheId) . '.ma';
-    $cacheFileOS = DataUtil::formatForOS($cacheFile);
+    $cacheFileOS = DataUtil::formatForOS($cacheFile, true);
 
     $cacheNeeded = false;
 
@@ -45,7 +45,7 @@ function MediaAttach_fileinfoapi_cacheinfo(&$args)
     if ($cacheNeeded) {
         array_walk($args['data'], 'base64_encoder_multi');
         Loader::loadClass('FileUtil');
-        return FileUtil::writeSerializedFile($cacheFile, $args['data']);
+        return FileUtil::writeSerializedFile($cacheFile, $args['data'], true);
     }
 
     return true;
