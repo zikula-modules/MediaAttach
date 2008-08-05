@@ -33,7 +33,7 @@
  * @author Justin Jones <j.nagash@gmail.com>
  * @author Markus Tacker <m@tacker.org>
  * @author barry hunter <geo@barryhunter.co.uk>
- * @version $Id: MakeTorrent.php 79 2008-01-12 10:45:02Z m $
+ * @version $Id: MakeTorrent.php 82 2008-06-12 09:47:04Z m $
  * @package File_Bittorrent2
  * @category File
  */
@@ -90,7 +90,7 @@ class File_Bittorrent2_MakeTorrent
     /**
      * @var string The .torrent created by string
      */
-    protected $created_by = 'File_Bittorrent2_MakeTorrent $Rev: 79 $. http://pear.php.net/package/File_Bittorrent';
+    protected $created_by = 'File_Bittorrent2_MakeTorrent $Rev: 82 $. http://pear.php.net/package/File_Bittorrent';
 
     /**
      * @var string The .torrent suggested name (file/dir)
@@ -131,6 +131,11 @@ class File_Bittorrent2_MakeTorrent
 	* @var bool Where or not we have a list of files
 	*/
 	protected $is_multifile = false;
+
+	/**
+    * @var bool     Torrent is marked as 'private'.
+    */
+    protected $is_private = false;
 
     /**
      * Constructor
@@ -284,11 +289,13 @@ class File_Bittorrent2_MakeTorrent
         $bencdata['info']['name']         = $this->name;
         $bencdata['info']['piece length'] = $this->piece_length;
         $bencdata['info']['pieces']       = $this->pieces;
+        if ($this->is_private === true) $bencdata['info'][ 'private' ] = 1;
         $bencdata['announce']             = $this->announce;
+        if (!empty($this->announce_list)) $bencdata['announce-list']        = $this->announce_list;
         $bencdata['creation date']        = time();
         $bencdata['comment']              = $this->comment;
         $bencdata['created by']           = $this->created_by;
-        // $bencdata['announce-list'] = array($this->announce)
+        
         // Encode it
         $Encoder = new File_Bittorrent2_Encode;
         return $Encoder->encode_array($bencdata);
@@ -522,6 +529,32 @@ class File_Bittorrent2_MakeTorrent
 			}
 		}
 		return true;
+	}
+
+	/**
+	* Sets whether the torrent is marked as 'private'
+	*
+	* Taken from http://www.azureuswiki.com/index.php/Secure_Torrents
+	*
+	* Tracker sites wanting to ensure that [clients] only obtains peers
+	* directly from the tracker itself (besides incoming connections)
+	* should embed the key "private" with the value "1" inside the
+	* "info" dict of the .torrent file:
+	* <code>infod6:lengthi136547e4:name6:a............7:privatei1ee</code>
+	*
+	* This new field will be ignored by [older] clients, so it does not
+	* break compatibility as long as they've properly implemented the BT
+	* spec. Also, this new field WILL change the torrent's infohash,
+	* which means that torrents made without the secure flag aren't
+	* compatible with torrents made with it. If you update all the torrents
+	* on your web site, you will have to ask users to re-download the torrent
+	* files in order to let them connect to your tracker.
+	*
+	* @param bool
+	*/
+	public function setIsPrivate( $bool )
+	{
+		$this->is_private = (bool)$bool;
 	}
 }
 

@@ -40,7 +40,7 @@
 * @category File
 * @author Markus Tacker <m@tacker.org>
 * @author Robin H. Johnson <robbat2@gentoo.org>
-* @version $Id: Decode.php 77 2007-08-26 09:42:22Z m $
+* @version $Id: Decode.php 82 2008-06-12 09:47:04Z m $
 */
 
 /**
@@ -139,6 +139,11 @@ class File_Bittorrent2_Decode
     * @var array    Decoded data from File_Bittorrent2_Decode::decodeFile()
     */
     protected $decoded = array();
+
+    /**
+    * @var bool     Torrent is marked as 'private'.
+    */
+    protected $is_private = false;
 
     /**
     * Decode a Bencoded string
@@ -249,6 +254,11 @@ class File_Bittorrent2_Decode
         // This contains a list of all known trackers for this torrent
         if (isset($this->decoded['announce-list']) and is_array($this->decoded['announce-list'])) {
             $this->announce_list = $this->decoded['announce-list'];
+        }
+
+        // Private flag
+        if (isset($this->decoded['info']['private']) and $this->decoded['info']['private']) {
+            $this->is_private = true;
         }
 
         // Currently, I'm not sure how to determine an error
@@ -573,6 +583,24 @@ class File_Bittorrent2_Decode
 	function getInfoHash()
 	{
 		return $this->info_hash;
+	}
+
+	/**
+	* Returns whether the torrent is marked as 'private'
+	*
+	* Taken from http://www.azureuswiki.com/index.php/Secure_Torrents
+	*
+	* Tracker sites wanting to ensure that [clients] only obtains peers
+	* directly from the tracker itself (besides incoming connections)
+	* should embed the key "private" with the value "1" inside the
+	* "info" dict of the .torrent file:
+	* <code>infod6:lengthi136547e4:name6:a............7:privatei1ee</code>
+	*
+	* @return bool
+	*/
+	public function isPrivate()
+	{
+		return $this->is_private;
 	}
 }
 
