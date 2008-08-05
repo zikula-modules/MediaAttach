@@ -56,19 +56,19 @@
         </tr>
     </thead>
     <tbody>
-        <!--[foreach item="currentformat" from=$formats]-->
+        <!--[foreach item="fileType" from=$formats]-->
             <tr>
                 <td headers="f">
-                    <!--[pnimg src="formats/`$currentformat.image`" modname="MediaAttach" alt=$currentformat.extension style="padding-right: 5px"]-->
-                    <!--[$currentformat.extension]-->
+                    <!--[pnimg src="formats/`$fileType.image`" modname="MediaAttach" alt=$fileType.extension style="padding-right: 5px"]-->
+                    <!--[$fileType.extension]-->
                     <!--[foreach item="currentdanger" from=$danger]-->
-                        <!--[if $currentformat.extension eq $currentdanger]-->
+                        <!--[if $fileType.extension eq $currentdanger]-->
                             <span style="color: red; font-weight: 700"><!--[pnml name="_MEDIAATTACH_FORMATDANGER"]--></span>
                         <!--[/if]-->
                     <!--[/foreach]-->
                 </td>
                 <td headers="g">
-                    <!--[foreach item="currentgroup" from=$currentformat.groups]-->
+                    <!--[foreach item="currentgroup" from=$fileType.groups]-->
                         <!--[pnimg src="folder/`$currentgroup.image`" modname="MediaAttach" alt="icon" style="padding-right: 5px"]-->
                         <!--[$currentgroup.groupname]-->
                         <br />
@@ -76,12 +76,12 @@
                 </td>
                 <td headers="a" style="text-align: center" nowrap="nowrap">
                     <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="editformat]-->" method="post" style="display: inline">
-                        <input type="hidden" name="fid" value="<!--[$currentformat.fid]-->" />
+                        <input type="hidden" name="fid" value="<!--[$fileType.fid]-->" />
                         <!--[pnimg src="edit.gif" modname="core" set="icons/extrasmall" assign="editimg"]-->
                         <input type="image" name="submit" src="<!--[$editimg.src]-->" alt="<!--[pnml name="_EDIT"]-->" />
                     </form>
                     <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" style="display: inline">
-                        <input type="hidden" name="fid" value="<!--[$currentformat.fid]-->" />
+                        <input type="hidden" name="fid" value="<!--[$fileType.fid]-->" />
                         <!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" assign="delimg"]-->
                         <input type="image" name="submit" src="<!--[$delimg.src]-->" alt="<!--[pnml name="_DELETE"]-->" />
                     </form>

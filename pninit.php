@@ -224,7 +224,7 @@ function MediaAttach_defaultdata()
     $formatgroups = Array(
             'Images'       => array('bmp', 'gif', 'jpeg', 'jpg', 'pcx', 'png', 'tga', 'tif'),
             'Compression'  => array('ace', 'arj', 'cab', 'gz', 'iso', 'jar', 'lha', 'lzh', 'rar', 'tar', 'zip'),
-            'Plain text'   => array('c', 'cpp', 'c', 'cpp', 'css', 'csv', 'h', 'htm', 'html', 'java', 'pas', 'txt', 'xml', 'xul'),
+            'Plain text'   => array('c', 'cpp', 'css', 'csv', 'h', 'htm', 'html', 'java', 'pas', 'txt', 'xml', 'xul'),
             'Documents'    => array('ai', 'pdf', 'ps', 'doc', 'xls', 'ppt', 'odt', 'ods', 'odp'),
             'Media'        => array('asf', 'avi', 'mid', 'mov', 'mp3', 'mp4', 'mpe', 'mpeg', 'mpg', 'ra', 'wav', 'wma', 'wmv', 'extvid'),
             'Flash'        => array('swf', 'flv', 'extvid'),

@@ -73,8 +73,7 @@
                     <!--[$currentgroup.directory]-->
                 </td>
                 <td headers="f">
-                    <!--[assign var="erster" value="1"]-->
-                    <!--[foreach item="currentformat" from=$currentgroup.formats]--><!--[if $erster eq 0]-->, <!--[else]--><!--[assign var="erster" value="0"]--><!--[/if]--><!--[$currentformat.extension]--><!--[/foreach]-->
+                    <!--[foreach name="maFileTypeLoop" item="fileType" from=$currentgroup.formats]--><!--[if !$smarty.foreach.maFileTypeLoop.first]-->, <!--[/if]--><!--[$fileType.extension]--><!--[/foreach]-->
                 </td>
                 <td headers="a" style="text-align: center" nowrap="nowrap">
                     <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="editgroup]-->" method="post" style="display: inline">

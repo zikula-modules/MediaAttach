@@ -44,8 +44,6 @@ function MediaAttach_filetypesapi_getgroupformats($args)
         return false;
     }
 
-    $formats = array();
-
     return $dbformats;
 }
 
