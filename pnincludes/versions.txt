@@ -11,7 +11,7 @@ getid3
         http://getid3.sourceforge.net/
 
 Highslide JS
-    3.2.11
+    3.3.22
         http://vikjavev.no/highslide/
 
 JavaScript Image Cropper UI

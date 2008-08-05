@@ -1,6 +1,6 @@
 /******************************************************************************
 Name:    Highslide JS
-Version: 3.3.11 (February 22 2008)
+Version: 3.3.22 (July 14 2008)
 Config:  default +positioning +events +unobtrusive +transitions +inline +ajax +iframe +flash
 Author:  Torstein Hønsi
 Support: http://vikjavev.no/highslide/forum
@@ -136,6 +136,7 @@ overrides : [
 	'fadeInOut'
 ],
 overlays : [],
+idCounter : 0,
 faders : [],
 
 pendingOutlines : {},
@@ -172,8 +173,10 @@ setAttribs : function (el, attribs) {
 setStyles : function (el, styles) {
 	for (var x in styles) {
 		try { 
-			if (hs.ie && x == 'opacity') 
-				el.style.filter = (styles[x] == 1) ? '' : 'alpha(opacity='+ (styles[x] * 100) +')';
+			if (hs.ie && x == 'opacity') {
+				if (styles[x] > 0.99) el.style.removeAttribute('filter');
+				else el.style.filter = 'alpha(opacity='+ (styles[x] * 100) +')';
+			}
 			else el.style[x] = styles[x]; 
 		}
 		catch (e) {}
@@ -181,8 +184,8 @@ setStyles : function (el, styles) {
 },
 
 ieVersion : function () {
-	arr = navigator.appVersion.split("MSIE");
-	return parseFloat(arr[1]);
+	var arr = navigator.appVersion.split("MSIE");
+	return arr[1] ? parseFloat(arr[1]) : null;
 },
 
 getPageSize : function () {
@@ -198,7 +201,7 @@ getPageSize : function () {
 			? window.innerHeight + window.scrollMaxY :
 				(b.scrollHeight > b.offsetHeight ? b.scrollHeight : b.offsetHeight),
 		pageWidth = hs.ie ? iebody.scrollWidth :
-			(document.documentElement.clientWidth || self.innerWidth);
+			(document.documentElement.clientWidth || self.innerWidth),
       	pageHeight = hs.ie ? iebody.clientHeight : 
 			(document.documentElement.clientHeight || self.innerHeight);
 	
@@ -241,7 +244,6 @@ expand : function(a, params, custom) {
 
 htmlExpand : function(a, params, custom) {
 	if (a.getParams) return params;
-	
 	for (var i = 0; i < hs.sleeping.length; i++) {
 		if (hs.sleeping[i] && hs.sleeping[i].a == a) {
 			hs.sleeping[i].awake();
@@ -261,10 +263,11 @@ htmlExpand : function(a, params, custom) {
 getElementByClass : function (el, tagName, className) {
 	var els = el.getElementsByTagName(tagName);
 	for (var i = 0; i < els.length; i++) {
-    	if (els[i].className == className) {
+    	if ((new RegExp(className)).test(els[i].className)) {
 			return els[i];
 		}
 	}
+	return null;
 },
 
 getSelfRendered : function() {
@@ -321,6 +324,7 @@ getCacheBinding : function (a) {
 			return c;
 		}
 	}
+	return null;
 },
 
 preloadAjax : function (e) {
@@ -378,15 +382,16 @@ getAdjacentAnchor : function(key, op) {
 			j++;
 		}
 	}
-	return hsAr[activeI + op];
+	return hsAr[activeI + op] || null;
 },
 
 getParam : function (a, param) {
 	a.getParams = a.onclick;
-	var p = a.getParams();
+	var p = a.getParams ? a.getParams() : null;
 	a.getParams = null;
 	
-	return (p && typeof p[param] != 'undefined') ? p[param] : hs[param];
+	return (p && typeof p[param] != 'undefined') ? p[param] : 
+		(typeof hs[param] != 'undefined' ? hs[param] : null);
 },
 
 getSrc : function (a) {
@@ -408,51 +413,46 @@ getNode : function (id) {
 	}
 },
 
-purge : function(d) {
-	if (!hs.ie) return;
-	var a = d.attributes, i, l, n;
-	if (a) {
-		l = a.length;
-		for (var i = 0; i < l; i += 1) {
-			n = a[i].name;
-			if (typeof d[n] === 'function') {
-				d[n] = null;
-			}
-		}
-	}
-	a = d.childNodes;
-	if (a) {
-		l = a.length;
-		for (var i = 0; i < l; i += 1) {
-			hs.purge(d.childNodes[i]);
-		}
-	}
+discardElement : function(d) {
+	hs.garbageBin.appendChild(d);
+	hs.garbageBin.innerHTML = '';
 },
 dim : function(exp) {
 	if (!hs.dimmer) {
 		hs.dimmer = hs.createElement ('div', 
-			{ className: 'highslide-dimming', onclick: function() { hs.close() } }, 
-			{ position: 'absolute' }, hs.container, true);
-		hs.addEventListener(window, 'resize', hs.setDimmerSize);		
+			{ 
+				className: 'highslide-dimming',
+				owner: '',
+				onclick: function() {
+					if (hs.fireEvent(hs, 'onDimmerClick'))
+					 
+						hs.close();
+				}
+			}, 
+			{ position: 'absolute', left: 0 }, hs.container, true);
+		hs.addEventListener(window, 'resize', hs.setDimmerSize);
 	}
 	hs.dimmer.style.display = '';
 	hs.setDimmerSize();
-	hs.dimmer.owner = exp.key;
+	hs.dimmer.owner += '|'+ exp.key;
 	if (hs.geckoMac && hs.dimmingGeckoFix) 
 		hs.dimmer.style.background = 'url('+ hs.graphicsDir + 'geckodimmer.png)';		
 	else
 		hs.fade(hs.dimmer, 0, exp.dimmingOpacity, hs.dimmingDuration); 
 },
-unDim : function(key) {
+undim : function(key) {
 	if (!hs.dimmer) return;
-	if (typeof key != 'undefined' && key != hs.dimmer.owner) return;
-	if (hs.upcoming && hs.getParam(hs.upcoming, 'dimmingOpacity')) return;
+	if (typeof key != 'undefined') hs.dimmer.owner = hs.dimmer.owner.replace('|'+ key, '');
+	if (
+		(typeof key != 'undefined' && hs.dimmer.owner != '')
+		|| (hs.upcoming && hs.getParam(hs.upcoming, 'dimmingOpacity'))
+	) return;
 	if (hs.geckoMac && hs.dimmingGeckoFix) 
 		hs.dimmer.style.background = 'none';
 	else hs.fade(hs.dimmer, hs.dimmingOpacity, 0, hs.dimmingDuration);
 	setTimeout( function() {
-			hs.dimmer.style.display = 'none';
-		}, 250);
+		hs.setStyles(hs.dimmer, { display: 'none', width: 0, height: 0 });
+	}, hs.dimmingDuration);
 },
 setDimmerSize : function() {
 	if (!hs.dimmer) return;
@@ -481,8 +481,8 @@ next : function (el) {
 keyHandler : function(e) {
 	if (!e) e = window.event;
 	if (!e.target) e.target = e.srcElement; // ie
-	if (e.target.form) return; // form element has focus
-	if (!hs.fireEvent(hs, 'onKeyDown', e)) return;
+	if (e.target.form) return true; // form element has focus
+	if (!hs.fireEvent(hs, 'onKeyDown', e)) return true;
 	
 	var op = null;
 	switch (e.keyCode) {
@@ -525,6 +525,7 @@ registerOverlay : function (overlay) {
 
 getWrapperKey : function (element) {
 	var el, re = /^highslide-wrapper-([0-9]+)$/;
+	
 	// 1. look in open expanders
 	el = element;
 	while (el.parentNode)	{
@@ -542,22 +543,22 @@ getWrapperKey : function (element) {
 		}
 		el = el.parentNode;
 	}
+	
+	return null;	
 },
 
 getExpander : function (el) {
-	try {	
-		if (!el) return hs.expanders[hs.focusKey];
-		if (typeof el == 'number') return hs.expanders[el];
-		if (typeof el == 'string') el = hs.$(el);
-		return hs.expanders[hs.getWrapperKey(el)];
-	} catch (e) {}
+	if (typeof el == 'undefined') return hs.expanders[hs.focusKey] || null;
+	if (typeof el == 'number') return hs.expanders[el] || null;
+	if (typeof el == 'string') el = hs.$(el);
+	return hs.expanders[hs.getWrapperKey(el)] || null;
 },
 
 isHsAnchor : function (a) {
 	return (a.onclick && a.onclick.toString().replace(/\s/g, ' ').match(/hs.(htmlE|e)xpand/));
 },
 
-cleanUp : function () {
+reOrder : function () {
 	for (var i = 0; i < hs.expanders.length; i++)
 		if (hs.expanders[i] && hs.expanders[i].isExpanded) hs.focusTopmost();
 },
@@ -578,16 +579,15 @@ mouseClickHandler : function(e)
 		el = el.parentNode;
 	}
 	var exp = hs.getExpander(el);
-	if (exp && (exp.isClosing || !exp.isExpanded)) return;
+	if (exp && (exp.isClosing || !exp.isExpanded)) return true;
 		
 	if (exp && e.type == 'mousedown') {
-		if (e.target.form) return;
+		if (e.target.form) return true;
 		var match = el.className.match(/highslide-(image|move|resize)/);
 		if (match) {
 			hs.dragArgs = { exp: exp , type: match[1], left: exp.x.min, width: exp.x.span, top: exp.y.min, 
 				height: exp.y.span, clickX: e.clientX, clickY: e.clientY };
 			
-			if (hs.dragArgs.type == 'image') exp.content.style.cursor = 'move';
 			
 			hs.addEventListener(document, 'mousemove', hs.dragHandler);
 			if (e.preventDefault) e.preventDefault(); // FF
@@ -607,11 +607,9 @@ mouseClickHandler : function(e)
 		hs.removeEventListener(document, 'mousemove', hs.dragHandler);
 		
 		if (hs.dragArgs) {
-			
 			if (hs.dragArgs.type == 'image')
 				hs.dragArgs.exp.content.style.cursor = hs.styleRestoreCursor;
-			
-			var hasDragged = (Math.abs(hs.dragArgs.dX) + Math.abs(hs.dragArgs.dY) > 0);
+			var hasDragged = hs.dragArgs.hasDragged;
 			
 			if (!hasDragged &&!hs.hasFocused && !/(move|resize)/.test(hs.dragArgs.type)) {
 				if (hs.fireEvent(exp, 'onImageClick'))
@@ -634,13 +632,14 @@ mouseClickHandler : function(e)
 			el.style.cursor = hs.styleRestoreCursor;		
 		}
 	}
+	return false;
 },
 
 dragHandler : function(e)
 {
-	if (!hs.dragArgs) return;
+	if (!hs.dragArgs) return true;
 	if (!e) e = window.event;
-	var exp = hs.dragArgs.exp;
+	var a = hs.dragArgs, exp = a.exp;
 	if (exp.iframe) {		
 		if (!exp.releaseMask) exp.releaseMask = hs.createElement('div', null, 
 			{ position: 'absolute', width: exp.x.span+'px', height: exp.y.span+'px', 
@@ -651,13 +650,42 @@ dragHandler : function(e)
 			exp.releaseMask.style.display = '';
 	}
 	
-	hs.dragArgs.dX = e.clientX - hs.dragArgs.clickX;
-	hs.dragArgs.dY = e.clientY - hs.dragArgs.clickY;
-	if (!hs.fireEvent(exp, 'onDrag', hs.dragArgs)) return false;
+	a.dX = e.clientX - a.clickX;
+	a.dY = e.clientY - a.clickY;	
 	
-	if (hs.dragArgs.type == 'resize') exp.resize(hs.dragArgs);
-	else exp.move(hs.dragArgs);
+	var distance = Math.sqrt(Math.pow(a.dX, 2) + Math.pow(a.dY, 2));
+	if (!a.hasDragged) a.hasDragged = (a.type != 'image' && distance > 0)
+		|| (distance > (hs.dragSensitivity || 5));
+	
+	if (a.hasDragged && e.clientX > 5 && e.clientY > 5) {
+		if (!hs.fireEvent(exp, 'onDrag', a)) return false;
+		
+		if (a.type == 'resize') exp.resize(a);
+		else exp.move(a);
+	}
 	return false;
+},
+
+wrapperMouseHandler : function (e) {
+	try {
+		if (!e) e = window.event;
+		var over = /mouseover/i.test(e.type); 
+		if (!e.target) e.target = e.srcElement; // ie
+		if (hs.ie) e.relatedTarget = 
+			over ? e.fromElement : e.toElement; // ie
+		var exp = hs.getExpander(e.target);
+		if (!exp || !e.relatedTarget || hs.getExpander(e.relatedTarget) == exp 
+			|| hs.dragArgs) return;
+		if (exp.isExpanded) hs.fireEvent(exp, over ? 'onMouseOver' : 'onMouseOut', e);
+		for (var i = 0; i < exp.overlays.length; i++) {
+			var o = hs.$('hsId'+ exp.overlays[i]);
+			if (o && o.getAttribute('hideOnMouseOut')) {
+				var from = over ? 0 : o.getAttribute('opacity'),
+					to = over ? o.getAttribute('opacity') : 0;			
+				hs.fade(o, from, to);
+			}
+		}	
+	} catch (e) {}
 },
 
 addEventListener : function (el, event, func) {
@@ -688,7 +716,10 @@ removeEventListener : function (el, event, func) {
 preloadFullImage : function (i) {
 	if (hs.continuePreloading && hs.preloadTheseImages[i] && hs.preloadTheseImages[i] != 'undefined') {
 		var img = document.createElement('img');
-		img.onload = function() { hs.preloadFullImage(i + 1); };
+		img.onload = function() { 
+			img = null;
+			hs.preloadFullImage(i + 1);
+		};
 		img.src = hs.preloadTheseImages[i];
 	}
 },
@@ -739,6 +770,7 @@ genContainer : function () {
 				zIndex: 1
 			}, hs.container
 		);
+		hs.garbageBin = hs.createElement('div', null, { display: 'none' }, hs.container);
 		hs.clearing = hs.createElement('div', null, 
 			{ clear: 'both', paddingTop: '1px' }, null, true);
 		
@@ -749,6 +781,7 @@ genContainer : function () {
 		Math.easeInQuad = function (t, b, c, d) {
 			return c*(t/=d)*t + b;
 		};
+		hs.ie6SSL = (hs.ie && hs.ieVersion() <= 6 && location.protocol == 'https:');
 		hs.fireEvent(this, 'onActivate');
 	}
 },
@@ -757,10 +790,7 @@ fade : function (el, o, oFinal, dur, i, dir) {
 	if (typeof i == 'undefined') { // new fader
 		if (typeof dur != 'number') dur = 250;
 		if (dur < 25) { // instant
-			hs.setStyles( el, {
-				opacity: oFinal,
-				visibility: (o < oFinal ? 'visible': 'hidden')
-			});
+			hs.setStyles( el, { opacity: oFinal	});
 			return;
 		}
 		i = hs.faders.length;
@@ -768,8 +798,11 @@ fade : function (el, o, oFinal, dur, i, dir) {
 		var step = (25 / (dur - dur % 25)) * Math.abs(o - oFinal);
 	}
 	o = parseFloat(o);
-	el.style.visibility = (o <= 0) ? 'hidden' : 'visible';
-	if (o < 0 || (dir == 1 && o > oFinal)) return;
+	var skip = (el.fade === 0 || el.fade === false || (el.fade == 2 && hs.ie));
+	el.style.visibility = ((skip ? oFinal : o) <= 0) ? 'hidden' : 'visible';
+	
+	if (skip || o < 0 || (dir == 1 && o > oFinal)) return;
+	
 	if (el.fading && el.fading.i != i) { // reverse
 		clearTimeout(hs.faders[el.fading.i]);
 		o = el.fading.o;
@@ -783,7 +816,8 @@ fade : function (el, o, oFinal, dur, i, dir) {
 },
 
 close : function(el) {
-	try { hs.getExpander(el).close(); } catch (e) {}
+	var exp = hs.getExpander(el);
+	if (exp) exp.close();
 	return false;
 }
 }; // end hs object
@@ -812,11 +846,11 @@ hs.Outline =  function (outlineType, onLoad) {
 		hs.container,
 		true
 	);
-	this.tbody = hs.createElement('tbody', null, null, this.table, 1);
+	var tbody = hs.createElement('tbody', null, null, this.table, 1);
 	
 	this.td = [];
 	for (var i = 0; i <= 8; i++) {
-		if (i % 3 == 0) tr = hs.createElement('tr', null, { height: 'auto' }, this.tbody, true);
+		if (i % 3 == 0) tr = hs.createElement('tr', null, { height: 'auto' }, tbody, true);
 		this.td[i] = hs.createElement('td', null, null, tr, true);
 		var style = i != 4 ? { lineHeight: 0, fontSize: 0} : { position : 'relative' };
 		hs.setStyles(this.td[i], style);
@@ -870,7 +904,8 @@ onGraphicLoad : function () {
 			hs.setStyles (this.td[i], dim);
 		}
 	}
-	
+	this.graphic = null;
+	if (hs.pendingOutlines[this.outlineType]) hs.pendingOutlines[this.outlineType].destroy();
 	hs.pendingOutlines[this.outlineType] = this;
 	if (this.onLoad) this.onLoad();
 },
@@ -891,10 +926,7 @@ setPosition : function (exp, x, y, w, h, vis) {
 	
 destroy : function(hide) {
 	if (hide) this.table.style.visibility = 'hidden';
-	else {
-		hs.purge(this.table);
-		try { this.table.parentNode.removeChild(this.table); } catch (e) {}
-	}
+	else hs.discardElement(this.table);
 }
 };
 
@@ -918,11 +950,13 @@ hs.Expander = function(a, params, custom, contentType) {
 			params[name] : hs[name];
 	}
 	
+	this.src = params && params.src ? params.src : a.href;
+	
 	// get thumb
-	var el = this.thumb = (params ? hs.$(params.thumbnailId) : null) 
-		|| a.getElementsByTagName('IMG')[0] || a;
+	var el = this.thumb = ((params && params.thumbnailId) ? hs.$(params.thumbnailId) : null) 
+		|| a.getElementsByTagName('img')[0] || a;
 	this.thumbsUserSetId = el.id || a.id;
-	if (!hs.fireEvent(this, 'onInit')) return;
+	if (!hs.fireEvent(this, 'onInit')) return true;
 	
 	// check if already open
 	for (var i = 0; i < hs.expanders.length; i++) {
@@ -939,16 +973,16 @@ hs.Expander = function(a, params, custom, contentType) {
 	}
 	hs.expanders[this.key] = this;
 	if (!hs.allowMultipleInstances) {
-		try { hs.expanders[key - 1].close(); } catch (e){}
-		try { hs.expanders[hs.focusKey].close(); } catch (e){} // preserved
+		if (hs.expanders[key-1]) hs.expanders[key-1].close();
+		if (typeof hs.focusKey != 'undefined' && hs.expanders[hs.focusKey])
+			hs.expanders[hs.focusKey].close();
 	}
-	this.overlays = [];
-
+	
 	var pos = hs.position(el);
 	
-	// store properties of thumbnail
-	this.thumbWidth = el.width ? el.width : el.offsetWidth;		
-	this.thumbHeight = el.height ? el.height : el.offsetHeight;
+	// thumbnail metrics		
+	this.thumbWidth = el.width ? parseInt(el.width) : el.offsetWidth;		
+	this.thumbHeight = el.height ? parseInt(el.height) : el.offsetHeight;
 	this.thumbLeft = pos.x;
 	this.thumbTop = pos.y;
 	this.thumbOffsetBorderW = (this.thumb.offsetWidth - this.thumbWidth) / 2;
@@ -967,12 +1001,7 @@ hs.Expander = function(a, params, custom, contentType) {
 			zIndex: hs.zIndexCounter++
 		}, null, true );
 	
-	this.wrapper.onmouseover = function (e) { 
-		try { hs.expanders[key].wrapperMouseHandler(e); } catch (e) {} 
-	};
-	this.wrapper.onmouseout = function (e) { 
-		try { hs.expanders[key].wrapperMouseHandler(e); } catch (e) {}
-	};
+	this.wrapper.onmouseover = this.wrapper.onmouseout = hs.wrapperMouseHandler;
 	if (this.contentType == 'image' && this.outlineWhileAnimating == 2)
 		this.outlineWhileAnimating = 0;
 	// get the outline
@@ -991,6 +1020,7 @@ hs.Expander = function(a, params, custom, contentType) {
 			} 
 		);
 	}
+	return true;
 };
 
 hs.Expander.prototype = {
@@ -1005,8 +1035,8 @@ connectOutline : function(x, y) {
 displayLoading : function() {
 	if (this.onLoadStarted || this.loading) return;
 		
-	this.originalCursor = this.a.style.cursor;
-	this.a.style.cursor = 'wait';
+	//this.originalCursor = this.a.style.cursor;
+	//this.a.style.cursor = 'wait';
 	
 	this.loading = hs.loading;
 	var exp = this;
@@ -1031,6 +1061,7 @@ imageCreate : function() {
     img.onload = function () {
     	if (hs.expanders[exp.key]) exp.contentLoaded(); 
 	};
+    if (hs.blockRightClick) img.oncontextmenu = function() { return false; };
     img.className = 'highslide-image';
     img.style.visibility = 'hidden'; // prevent flickering in IE
     img.style.display = 'block';
@@ -1039,57 +1070,61 @@ imageCreate : function() {
     img.style.zIndex = 3;
     img.title = hs.restoreTitle;
     if (hs.safari) hs.container.appendChild(img);
-    // uncomment this to flush img size:
-    // if (hs.ie) img.src = null;
-	img.src = hs.getSrc(this.a);
+    if (hs.ie && hs.flushImgSize) img.src = null;
+	img.src = this.src;
 	
 	this.displayLoading();
 },
 
 htmlCreate : function () {
 	if (!hs.fireEvent(this, 'onBeforeGetContent')) return;
-	this.tempContainer = hs.createElement('div', { className: this.wrapperClassName },
-		{
-			padding: '0 '+ hs.marginRight +'px 0 '+ hs.marginLeft +'px',
-			visibility: 'hidden'
-		}, hs.container
-	);
 	
 	this.content = hs.getCacheBinding(this.a);
 	if (!this.content) 
 		this.content = hs.getNode(this.contentId);
 	if (!this.content) 
 		this.content = hs.getSelfRendered();
+		
 	
 	hs.fireEvent(this, 'onAfterGetContent');
+	
 	this.innerContent = this.content;
 	
 	if (this.swfObject || this.objectType == 'iframe') this.setObjContainerSize(this.innerContent);
-	this.tempContainer.appendChild(this.innerContent); // to get full width
-	hs.setStyles (this.innerContent, { position: 'relative', visibility: 'hidden' });
-	this.innerContent.className += ' highslide-display-block';
-	if (this.width) this.innerContent.style.width = this.width+'px';
-	if (this.height) this.innerContent.style.height = this.height+'px';
-	if (this.innerContent.offsetWidth < this.minWidth)
-		this.innerContent.style.width = this.minWidth +'px';
 	
+	// the content tree
+	hs.container.appendChild(this.wrapper);
+	hs.setStyles( this.wrapper, { 
+		position: 'static',
+		padding: '0 '+ hs.marginRight +'px 0 '+ hs.marginLeft +'px'
+	});
 	this.content = hs.createElement(
     	'div',
     	{	className: 'highslide-html' },
 		{
 			position: 'relative',
 			zIndex: 3,
-			overflow: 'hidden',
-			width: this.thumbWidth +'px',
-			height: this.thumbHeight +'px'
-		}
+			overflow: 'hidden'
+		},
+		this.wrapper
 	);
+	this.mediumContent = hs.createElement('div', null, null, this.content, 1);
+	this.mediumContent.appendChild(this.innerContent);
+	
+	hs.setStyles (this.innerContent, { position: 'relative'});
+	this.innerContent.className += ' highslide-display-block';
+	if (this.width) this.innerContent.style.width = this.width+'px';
+	if (this.height) this.innerContent.style.height = this.height+'px';
+	if (this.innerContent.offsetWidth < this.minWidth)
+		this.innerContent.style.width = this.minWidth +'px';
+	
     
 	if (this.objectType == 'ajax' && !hs.getCacheBinding(this.a)) {
+		this.displayLoading();
     	var ajax = new hs.Ajax(this.a, this.innerContent);
     	var exp = this;
     	ajax.onLoad = function () {	if (hs.expanders[exp.key]) exp.contentLoaded(); };
-    	ajax.onError = function () { location.href = hs.getSrc(this.a); };
+    	ajax.onError = function () { location.href = this.src; };
     	ajax.run();
 	}
     else
@@ -1102,16 +1137,16 @@ htmlCreate : function () {
 },
 
 contentLoaded : function() {
-	try {	
+	try {
 		if (!this.content) return;
-		if (this.onLoadStarted) return; // old Gecko loop
+		this.content.onload = null;
+		if (this.onLoadStarted) return;
 		else this.onLoadStarted = true;
 		
-			   
 		if (this.loading) {
-			this.loading.style.left = '-9999px';
+			hs.setStyles(this.loading, { left: '-9999px', top: '-9999px' });
 			this.loading = null;
-			this.a.style.cursor = this.originalCursor || '';
+			//this.a.style.cursor = this.originalCursor || '';
 			hs.fireEvent(this, 'onHideLoading');
 		}
 		this.marginBottom = hs.marginBottom;
@@ -1124,8 +1159,7 @@ contentLoaded : function() {
 			this.content.style.width = this.thumbWidth +'px';
 			this.content.style.height = this.thumbHeight +'px';
 			this.getCaption();
-		} else if (this.htmlGetSize) this.htmlGetSize();	
-		
+		} else if (this.htmlGetSize) this.htmlGetSize();
 		
 		this.wrapper.appendChild(this.content);
 		this.content.style.position = 'relative'; // Saf
@@ -1197,10 +1231,9 @@ contentLoaded : function() {
 
 		var x = this.x;
 		var y = this.y;
-		
 		this.show();
 	} catch (e) {
-		window.location.href = hs.getSrc(this.a);
+		window.location.href = this.src;
 	}
 },
 
@@ -1218,30 +1251,26 @@ setObjContainerSize : function(parent, auto) {
 	}
 },
 
-writeExtendedContent : function (loadTime) {
+writeExtendedContent : function () {
 	if (this.hasExtendedContent) return;
 	var exp = this;
 	this.body = hs.getElementByClass(this.innerContent, 'DIV', 'highslide-body');
 	if (this.objectType == 'iframe') {
 		this.displayLoading();
-		this.ruler = hs.clearing.cloneNode(1);
-		this.body.appendChild(this.ruler);
+		var ruler = hs.clearing.cloneNode(1);
+		this.body.appendChild(ruler);
 		this.newWidth = this.innerContent.offsetWidth;
-		if (!this.objectWidth) this.objectWidth = this.ruler.offsetWidth;
-		var hDiff = this.innerContent.offsetHeight - this.body.offsetHeight;
-		var h = this.objectHeight || (hs.getPageSize()).height - hDiff - hs.marginTop - hs.marginBottom;
-		var onload = (hs.ie && this.objectLoadTime == 'before') ? 
-			'onload="if(hs.expanders['+ this.key +'])hs.expanders['+ this.key +'].contentLoaded();"' : '';
-		var tag = hs.ie ? '<iframe name="hsIframe'+ this.key+ '" '+ onload +'/>' : 'iframe';
-		this.iframe = hs.createElement(tag, 
-			{ name: 'hsIframe'+ this.key, frameBorder: 0, allowTransparency: true },
-			{ width: this.objectWidth +'px', height: h +'px' }, 
-			this.body);
-		if (this.objectLoadTime == 'before') {
-			if (!hs.ie) this.iframe.onload = function () { if (hs.expanders[exp.key]) exp.contentLoaded(); };
-		}
-		if (hs.safari) this.iframe.src = null;
-		this.iframe.src = hs.getSrc(this.a);
+		if (!this.objectWidth) this.objectWidth = ruler.offsetWidth;
+		var hDiff = this.innerContent.offsetHeight - this.body.offsetHeight,
+			h = this.objectHeight || (hs.getPageSize()).height - hDiff - hs.marginTop - hs.marginBottom,
+			onload = this.objectLoadTime == 'before' ? 
+				' onload="if (hs.expanders['+ this.key +']) hs.expanders['+ this.key +'].contentLoaded()" ' : '';
+		
+		this.body.innerHTML += '<iframe name="hsIframe'+ this.key +'" frameborder="0" key="'+ this.key +'" '
+			+' allowtransparency="true" style="width:'+ this.objectWidth +'px; height:'+ h +'px" '
+			+ onload +' src="'+ this.src +'" id="'+ (new Date()).getTime() + '"></iframe>';
+		this.ruler = this.body.getElementsByTagName('div')[0];
+		this.iframe = this.body.getElementsByTagName('iframe')[0];
 		
 		if (this.objectLoadTime == 'after') this.correctIframeSize();
 		
@@ -1249,10 +1278,11 @@ writeExtendedContent : function (loadTime) {
 		this.body.id = this.body.id || 'hs-flash-id-' + this.key;
 		this.swfObject.write(this.body.id);	
 	}
-	this.hasExtendedContent = true;	
+	this.hasExtendedContent = true;
 },
 htmlGetSize : function() {
 	if (this.iframe && !this.objectHeight) { // loadtime before
+		var h;
 		try {
 			var doc = this.iframe.contentDocument || this.iframe.contentWindow.document;
 			var clearing = doc.createElement('div');
@@ -1260,11 +1290,11 @@ htmlGetSize : function() {
 			doc.body.appendChild(clearing);
 			var h = clearing.offsetTop;
 			if (hs.ie) h += parseInt(doc.body.currentStyle.marginTop) 
-				+ parseInt(doc.body.currentStyle.marginBottom) - 1;		
-			this.iframe.style.height = this.body.style.height = h +'px';
+				+ parseInt(doc.body.currentStyle.marginBottom) - 1;
 		} catch (e) { // other domain
-			this.iframe.style.height = '300px';
+			h = 300;
 		}
+		this.iframe.style.height = this.body.style.height = h +'px';
 	}
 	this.innerContent.appendChild(hs.clearing);
 	if (!this.newWidth) this.newWidth = this.innerContent.offsetWidth;
@@ -1273,6 +1303,8 @@ htmlGetSize : function() {
     if (hs.ie && this.newHeight > parseInt(this.innerContent.currentStyle.height)) { // ie css bug
 		this.newHeight = parseInt(this.innerContent.currentStyle.height);
 	}
+	hs.setStyles( this.wrapper, { position: 'absolute',	padding: '0'});
+	hs.setStyles( this.content, { width: this.thumbWidth +'px',	height: this.thumbHeight +'px'});
 },
 
 correctIframeSize : function () {
@@ -1285,7 +1317,7 @@ correctIframeSize : function () {
 		height: (this.y.span - hDiff) +'px' });
     hs.setStyles(this.body, { width: this.iframe.style.width, 
     	height: this.iframe.style.height });
-    	
+    	  	
     this.scrollingContent = this.iframe;
     this.scrollerDiv = this.scrollingContent;
 },
@@ -1296,25 +1328,23 @@ htmlSizeOperations : function () {
 	
 	if (this.swfObject && this.objectLoadTime == 'before') this.writeExtendedContent();	
 	
-	
     // handle minimum size
     if (this.x.span < this.newWidth && !this.allowWidthReduction) this.x.span = this.newWidth;
     if (this.y.span < this.newHeight && !this.allowHeightReduction) this.y.span = this.newHeight;
     this.scrollerDiv = this.innerContent;
-    this.mediumContent = hs.createElement('div', null, 
-    	{ 
-    		width: this.x.span +'px',
-    		position: 'relative',
-    		left: (this.x.min - this.thumbLeft) +'px',
-    		top: (this.y.min - this.thumbTop) +'px'
-    	}, this.content, true);
-	
-    this.mediumContent.appendChild(this.innerContent);
-    hs.container.removeChild(this.tempContainer);
-    hs.setStyles(this.innerContent, { border: 'none', width: 'auto', height: 'auto' });
-    
-    var node = hs.getElementByClass(this.innerContent, 'DIV', 'highslide-body');
-    if (node && !this.swfObject && this.objectType != 'iframe') {    
+    hs.setStyles(this.mediumContent, { 
+		width: this.x.span +'px',
+		position: 'relative',
+		left: (this.x.min - this.thumbLeft) +'px',
+		top: (this.y.min - this.thumbTop) +'px'
+	});
+    hs.setStyles(this.innerContent, { 
+    	border: 'none', 
+    	width: 'auto', 
+    	height: 'auto'
+    });
+	var node = hs.getElementByClass(this.innerContent, 'DIV', 'highslide-body');
+    if (node && !this.swfObject && this.objectType != 'iframe') {
     	var cNode = node; // wrap to get true size
     	node = hs.createElement(cNode.nodeName, null, {overflow: 'hidden'}, null, true);
     	cNode.parentNode.insertBefore(node, cNode);
@@ -1353,7 +1383,6 @@ htmlSizeOperations : function () {
 },
 
 justify : function (p) {
-	
 	var tgt, dim = p == this.x ? 'x' : 'y';
 	
 	
@@ -1484,6 +1513,7 @@ show : function () {
 	
 	
 	if (this.x.imgSpan) this.content.style.margin = '0 auto';
+	this.overlays = [];
 	
 	hs.fireEvent(this, 'onBeforeExpand');
 	
@@ -1522,23 +1552,22 @@ changeSize : function(up, from, to, dur, steps) {
 		return;
 	}
 	
+	if (up) hs.setStyles(this.wrapper, { opacity: 1 });
+	
 	if (up && this.objOutline && !this.outlineWhileAnimating) 
 		this.objOutline.setPosition(this, this.x.min, this.y.min, this.x.span, this.y.span);
 	
-	else if (!up && this.objOutline) {
+	else if (!up && this.objOutline) {	
 		if (this.outlineWhileAnimating) this.objOutline.setPosition(this, from.x, from.y, from.w, from.h);
 		else this.objOutline.destroy(
 			(this.isHtml && this.preserveContent));
-	}	
+		}	
 			
 	if (!up) { // remove children
 		var n = this.wrapper.childNodes.length;
 		for (var i = n - 1; i >= 0 ; i--) {
 			var child = this.wrapper.childNodes[i];
-			if (child != this.content) {
-				hs.purge(child);
-				this.wrapper.removeChild(child);
-			}
+			if (child != this.content) hs.discardElement(child);
 		}
 	}
 		
@@ -1550,16 +1579,18 @@ changeSize : function(up, from, to, dur, steps) {
 	exp = this,
 	easing = Math[this.easing] || Math.easeInQuad;
 	if (!up) easing = Math[this.easingClose] || easing;
-	
+			
 	for (var i = 1; i <= steps; i++) {
 		t = Math.round(i * (dur / steps));
 		
 		(function(){
 			var pI = i, size = {};
 			
-			for (var x in from) 
+			for (var x in from) {
 				size[x] = easing(t, from[x], to[x] - from[x], dur);
-						
+				if (/[xywh]/.test(x)) size[x] = Math.round(size[x]);
+			}
+			
 			setTimeout ( function() {
 				if (up && pI == 1) {
 					exp.content.style.visibility = 'visible';
@@ -1633,8 +1664,11 @@ setSize : function (to) {
 	try {
 		if (this.isHtml) {
 			hs.setStyles(this.content, { width: to.w +'px', height: to.h +'px' });
-			hs.setStyles(this.mediumContent, { left: (this.x.min - to.x) +'px', 
-				top: (this.y.min - to.y) +'px' });
+			hs.setStyles(this.mediumContent, { 
+				left: (this.x.min - to.x) +'px',
+				top: (this.y.min - to.y) +'px' 
+			});
+			
 			this.innerContent.style.visibility = 'visible';
 		} else {
 			this.wrapper.style.width = (to.w + 2*this.offsetBorderW) +'px';
@@ -1643,7 +1677,6 @@ setSize : function (to) {
 			if (hs.safari) this.content.style.maxWidth = this.content.style.width;
 			this.content.style.height = to.h +'px';
 		}
-		
 		if (to.op) hs.setStyles(this.wrapper, { opacity: to.op });
 				
 		
@@ -1652,15 +1685,13 @@ setSize : function (to) {
 			this.objOutline.setPosition(this, to.x + o, to.y + o, to.w - 2 * o, to.h - 2 * o, 1);
 		}
 				
-		hs.setStyles ( this.wrapper,
-			{
-				'visibility': 'visible',
-				'left': to.x +'px',
-				'top': to.y +'px'
-			}
-		);
+		hs.setStyles ( this.wrapper, {
+			'visibility': 'visible',
+			'left': to.x +'px',
+			'top': to.y +'px'
+		});
 		
-	} catch (e) { window.location.href = hs.getSrc(this.a);	}
+	} catch (e) { window.location.href = this.src;	}
 },
 
 afterExpand : function() {
@@ -1685,9 +1716,10 @@ afterExpand : function() {
 	
 	this.createOverlays();
 	if (hs.showCredits) this.writeCredits();
-	if (this.fullExpandWidth > this.x.span) this.createFullExpand();
+	
+	if (this.isImage && this.fullExpandWidth > this.x.span) this.createFullExpand();
 	if (this.dimmingOpacity) hs.dim(this);
-	if (hs.upcoming == this.a) hs.upcoming = null;
+	if (hs.upcoming && hs.upcoming == this.a) hs.upcoming = null;
 	if (!this.caption) this.prepareNextOutline();
 	if (!this.caption) hs.fireEvent(this, 'onAfterExpand');
 },
@@ -1710,14 +1742,14 @@ preloadNext : function() {
 cancelLoading : function() {	
 	hs.expanders[this.key] = null;
 	if (hs.upcoming == this.a) hs.upcoming = null;
-	hs.unDim();
-	this.a.style.cursor = this.originalCursor;	
+	hs.undim();
+	//this.a.style.cursor = this.originalCursor;
 	if (this.loading) hs.loading.style.left = '-9999px';
 	hs.fireEvent(this, 'onHideLoading');
 },
 
 writeCredits : function () {
-	var credits = hs.createElement('a',
+	this.credits = hs.createElement('a',
 		{
 			href: hs.creditsHref,
 			className: 'highslide-credits',
@@ -1725,7 +1757,7 @@ writeCredits : function () {
 			title: hs.creditsTitle
 		}
 	);
-	this.createOverlay({ overlayId: credits, position: 'top left'});
+	this.createOverlay({ overlayId: this.credits, position: 'top left' });
 },
 
 getCaption : function() {
@@ -1742,7 +1774,7 @@ getCaption : function() {
 	if (!this.caption) {
 		var next = this.a.nextSibling;
 		while (next && !hs.isHsAnchor(next)) {
-			if (/highslide-caption/.test(next.className)) {
+			if (/highslide-caption/.test(next.className || null)) {
 				this.caption = next.cloneNode(1);
 				break;
 			}
@@ -1803,7 +1835,8 @@ placeCaption : function(height, end) {
 	
 	var o = this.objOutline;
 	if (o) {
-		o.td[4].style.height = (this.wrapper.offsetHeight - 2 * this.objOutline.offset) +'px';
+		var h = this.wrapper.offsetHeight - 2 * this.objOutline.offset;
+		if (h >= 0)	o.td[4].style.height = h +'px';
 		if (o.hasAlphaImageLoader) o.td[3].style.height = o.td[5].style.height = o.td[4].style.height;
 	}
 	if (end) this.prepareNextOutline();
@@ -1900,6 +1933,7 @@ move : function (e) {
 	this.x.min = e.left + e.dX;
 	this.y.min = e.top + e.dY;
 	
+	if (e.type == 'image') this.content.style.cursor = 'move';
 	hs.setStyles(this.wrapper, { left: this.x.min +'px', top: this.y.min +'px' });
 	
 	if (this.objOutline)
@@ -1930,8 +1964,9 @@ resize : function (e) {
 	hs.setStyles(this.body, { width: 'auto', height: 'auto' });
 	
 	
-	for (var i = 0; i < this.overlays.length; i++) 
-		this.positionOverlay(this.overlays[i]);
+	for (var i = 0; i < this.overlays.length; i++) {
+		this.positionOverlay(hs.$('hsId'+ this.overlays[i]));
+	}
 	if (this.objOutline)
 		this.objOutline.setPosition(this, this.x.min, this.y.min, this.x.span, this.y.span);
 	
@@ -1941,7 +1976,6 @@ close : function() {
 	if (this.isClosing || !this.isExpanded) return;
 	this.isClosing = true;
 	if (!hs.fireEvent(this, 'onBeforeClose')) return;
-	
 	hs.removeEventListener(document, 'keydown', hs.keyHandler);
 	
 	try {
@@ -2013,7 +2047,8 @@ awake : function() {
 	this.wrapper.style.zIndex = z;
 	this.isClosing = false;
 	
-	if (o = this.objOutline) {
+	var o = this.objOutline || 0;
+	if (o) {
 		if (!this.outlineWhileAnimating) o.table.style.visibility = 'hidden';
 		o.table.className = null;
 		o.table.style.zIndex = z;
@@ -2031,7 +2066,7 @@ createOverlay : function (o) {
 	
 	var overlay = hs.createElement(
 		'div',
-		null,
+		{ id: 'hsId'+ hs.idCounter++ },
 		{
 			'left' : 0,
 			'top' : 0,
@@ -2043,6 +2078,7 @@ createOverlay : function (o) {
 		true
 	);
 	if (o.opacity) hs.setStyles(el, { opacity: o.opacity });
+	el.style.styleFloat = 'none';
 	el.className += ' highslide-display-block';
 	overlay.appendChild(el);	
 	
@@ -2052,18 +2088,19 @@ createOverlay : function (o) {
 	if (o.hideOnMouseOut) overlay.setAttribute('hideOnMouseOut', true);
 	if (!o.opacity) o.opacity = 1;
 	overlay.setAttribute('opacity', o.opacity);
+	overlay.fade = o.fade;
 	hs.fade(overlay, 0, o.opacity);
 	
-	hs.push(this.overlays, overlay);
+	hs.push(this.overlays, hs.idCounter - 1);
 },
 
-positionOverlay : function(overlay) {
-	var left = this.offsetBorderW;
-	var dLeft = this.x.span - overlay.offsetWidth;
-	var top = this.offsetBorderH;
-	var dTop = parseInt(this.content.style.height) - overlay.offsetHeight;
-	
-	var p = overlay.hsPos || 'center center';
+positionOverlay : function(overlay, conH) {
+	var left = this.offsetBorderW,
+		dLeft = this.x.span - overlay.offsetWidth,
+		top = this.offsetBorderH,
+		dTop = (conH || parseInt(this.content.style.height)) - overlay.offsetHeight,
+		p = overlay.hsPos || 'center center';
+		
 	if (/^bottom/.test(p)) top += dTop;
 	if (/^center/.test(p)) top += dTop / 2;
 	if (/right$/.test(p)) left += dLeft;
@@ -2074,9 +2111,9 @@ positionOverlay : function(overlay) {
 
 createOverlays : function() {
 	for (var i = 0; i < hs.overlays.length; i++) {
-		var o = hs.overlays[i];
-		if ((!o.thumbnailId && !o.slideshowGroup) || o.thumbnailId == this.thumbsUserSetId
-				|| o.slideshowGroup === this.slideshowGroup) {
+		var o = hs.overlays[i], tId = o.thumbnailId, sg = o.slideshowGroup;
+		if ((!tId && !sg) || tId == this.thumbsUserSetId
+				|| sg === this.slideshowGroup) {
 			if (this.isImage || (this.isHtml && o.useOnHtml))
 			this.createOverlay(o);
 		}
@@ -2085,7 +2122,7 @@ createOverlays : function() {
 
 
 createFullExpand : function () {
-	var a = hs.createElement(
+	this.fullExpandLabel = hs.createElement(
 		'a',
 		{
 			href: 'javascript:hs.expanders['+ this.key +'].doFullExpand();',
@@ -2093,25 +2130,29 @@ createFullExpand : function () {
 			className: 'highslide-full-expand'
 		}
 	);
-	
-	this.fullExpandLabel = a;
 	if (!hs.fireEvent(this, 'onCreateFullExpand')) return;
-	this.createOverlay({ overlayId: a, position: hs.fullExpandPosition, 
-		hideOnMouseOut: true, opacity: hs.fullExpandOpacity });
+	
+	this.createOverlay({ 
+		overlayId: this.fullExpandLabel, 
+		position: hs.fullExpandPosition, 
+		hideOnMouseOut: true, 
+		opacity: hs.fullExpandOpacity
+	});
 },
 
 doFullExpand : function () {
 	try {
-		if (!hs.fireEvent(this, 'onDoFullExpand')) return;	
-		hs.purge(this.fullExpandLabel);
-		this.fullExpandLabel.parentNode.removeChild(this.fullExpandLabel);
+		if (!hs.fireEvent(this, 'onDoFullExpand')) return;
+		if (this.fullExpandLabel) hs.discardElement(this.fullExpandLabel);
+		else if (this.slideshow) this.slideshow.disable('full-expand');
+		
 		this.focus();
 		
 		this.x.min = parseInt(this.wrapper.style.left) - (this.fullExpandWidth - this.content.width) / 2;
 		if (this.x.min < hs.marginLeft) this.x.min = hs.marginLeft;		
 		this.wrapper.style.left = this.x.min +'px';
 		
-		hs.setStyles(this.content, { width: this.fullExpandWidth +'px', 
+		hs.setStyles(this.content, { width: this.fullExpandWidth +'px', maxWidth: this.fullExpandWidth +'px',
 			height: this.fullExpandHeight +'px'});
 		
 		this.x.span = this.fullExpandWidth;
@@ -2123,7 +2164,7 @@ doFullExpand : function () {
 			this.objOutline.setPosition(this, this.x.min, this.y.min, this.x.span, this.y.span);
 		
 		for (var i = 0; i < this.overlays.length; i++)
-			this.positionOverlay(this.overlays[i]);
+			this.positionOverlay(hs.$('hsId'+ this.overlays[i]));
 		
 		this.redoShowHide();
 		
@@ -2151,24 +2192,6 @@ redoShowHide : function() {
 
 },
 
-wrapperMouseHandler : function (e) {
-	if (!e) e = window.event;
-	var over = /mouseover/i.test(e.type); 
-	if (!e.target) e.target = e.srcElement; // ie
-	if (!e.relatedTarget) e.relatedTarget = 
-		over ? e.fromElement : e.toElement; // ie
-	if (hs.getExpander(e.relatedTarget) == this || hs.dragArgs) return;
-	if (this.isExpanded) hs.fireEvent(this, over ? 'onMouseOver' : 'onMouseOut', e);
-	for (var i = 0; i < this.overlays.length; i++) {
-		var o = this.overlays[i];
-		if (o.getAttribute('hideOnMouseOut')) {
-			var from = over ? 0 : o.getAttribute('opacity'),
-				to = over ? o.getAttribute('opacity') : 0;			
-			hs.fade(o, from, to);
-		}
-	}
-},
-
 afterClose : function () {
 	this.a.className = this.a.className.replace('highslide-active-anchor', '');
 	
@@ -2179,16 +2202,16 @@ afterClose : function () {
 	if (this.isHtml && this.preserveContent) this.sleep();
 	else {
 		if (this.objOutline && this.outlineWhileAnimating) this.objOutline.destroy();
-		hs.purge(this.wrapper);
-		if (hs.ie && hs.ieVersion() < 5.5) this.wrapper.innerHTML = ''; // crash
-		else this.wrapper.parentNode.removeChild(this.wrapper);
+	
+		hs.discardElement(this.wrapper);
 	}
 	if (hs.mask) hs.mask.style.display = 'none';
-	if (this.dimmingOpacity) hs.unDim(this.key);
+	if (this.dimmingOpacity) hs.undim(this.key);
 	hs.fireEvent(this, 'onAfterClose');
 	hs.expanders[this.key] = null;		
-	hs.cleanUp();
+	hs.reOrder();
 }
+
 };
 
 
@@ -2196,12 +2219,12 @@ afterClose : function () {
 hs.Ajax = function (a, content, pre) {
 	this.a = a;
 	this.content = content;
-	this.pre = pre; // preloading
+	this.pre = pre;
 };
 
 hs.Ajax.prototype = {
 run : function () {
-	this.src = hs.getSrc(this.a);
+	if (!this.src) this.src = hs.getSrc(this.a);
 	if (this.src.match('#')) {
 		var arr = this.src.split('#');
 		this.src = arr[0];
@@ -2223,7 +2246,7 @@ run : function () {
 	}
 	var pThis = this;
 	this.xmlHttp.onreadystatechange = function() {
-		if(pThis.xmlHttp.readyState == 4) {	
+		if(pThis.xmlHttp.readyState == 4) {
 			if (pThis.id) pThis.getElementContent();
 			else pThis.loadHTML();
 		}
@@ -2235,7 +2258,8 @@ run : function () {
 
 getElementContent : function() {
 	hs.genContainer();
-	var attribs = window.opera ? { src: this.src } : null; // Opera needs local src
+	var attribs = window.opera || hs.ie6SSL ? { src: 'blank.htm' } : null;
+	
 	this.iframe = hs.createElement('iframe', attribs, 
 		{ position: 'absolute', left: '-9999px' }, hs.container);
 		
@@ -2243,7 +2267,7 @@ getElementContent : function() {
 		this.loadHTML();
 	} catch (e) { // Opera security
 		var pThis = this;
-		setTimeout(function() {	pThis.loadHTML(); }, 1);
+		setTimeout(function() {	pThis.loadHTML(); }, 50);
 	}
 },
 
@@ -2262,14 +2286,13 @@ loadHTML : function() {
 			try { s = doc.getElementById(this.id).innerHTML; } catch (e) {
 				try { s = this.iframe.document.getElementById(this.id).innerHTML; } catch (e) {} // opera
 			}
-			hs.container.removeChild(this.iframe);
 		} else {
 			s = s.replace(new RegExp('^.*?<body[^>]*>(.*?)</body>.*?$', 'i'), '$1');
 		}
-		
 	}
 	hs.getElementByClass(this.content, 'DIV', 'highslide-body').innerHTML = s;
 	this.onLoad();
+	for (var x in this) this[x] = null;
 }
 };
 // history
