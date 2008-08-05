@@ -34,7 +34,7 @@ function MediaAttach_init()
     if (!pnModRegisterHook('item', 'update', 'GUI', 'MediaAttach', 'user', 'createupload')) {
         return LogUtil::registerError(_REGISTERFAILED . ', Nr. 3');
     }
-    if (!pnModRegisterHook('item', 'delete', 'API', 'MediaAttach', 'user', 'deleteupload')) {
+    if (!pnModRegisterHook('item', 'delete', 'API', 'MediaAttach', 'user', 'delete')) {
         return LogUtil::registerError(_REGISTERFAILED . ', Nr. 4');
     }
     if (!pnModRegisterHook('module', 'remove', 'API', 'MediaAttach', 'admin', 'removehook')) {
@@ -101,7 +101,7 @@ function MediaAttach_delete()
     if (!pnModUnregisterHook('item', 'update', 'GUI', 'MediaAttach', 'user', 'createupload')) {
         return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 3');
     }
-    if (!pnModUnregisterHook('item', 'delete', 'API', 'MediaAttach', 'user', 'deleteupload')) {
+    if (!pnModUnregisterHook('item', 'delete', 'API', 'MediaAttach', 'user', 'delete')) {
         return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 4');
     }
     if (!pnModUnregisterHook('module', 'remove', 'API', 'MediaAttach', 'admin', 'removehook')) {
