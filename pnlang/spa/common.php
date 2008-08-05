@@ -104,7 +104,7 @@ define('_MEDIAATTACH_UPLOADFILESIZE',           'Tamaño');
 define('_MEDIAATTACH_UPLOADDELETE',             'Birrar este archivo');
 define('_MEDIAATTACH_UPLOADEDIT',               'Editar este archivo');
 define('_MEDIAATTACH_UPLOADUPDATE',             'Subir este archivo');
-define('_MEDIAATTACH_UPLOADDLCOUNT',            'veces descargado');
+define('_MEDIAATTACH_UPLOADDLCOUNT',            '%count% veces descargado');
 define('_MEDIAATTACH_UPLOADNOUPLOADS',          'No se han subido archivos todavía');
 define('_MEDIAATTACH_UPLOADNOIMAGES',           'No hay imágenes disponibles todavía');
 define('_MEDIAATTACH_UPLOADFILTERBY',           'Filtrar por');
@@ -158,7 +158,7 @@ define('_MEDIAATTACH_ADMINTCONFIG',             'Configuración de MediaAttach');
 define('_MEDIAATTACH_ADMINTMANUAL',             'Lo valioso de leer el manual pdf');
 
 define('_MEDIAATTACH_WELCOME',                  'Bienvenido a el área de administración de MediaAttach');
-define('_MEDIAATTACH_FILESTOTAL',               'total de archivos');
+define('_MEDIAATTACH_FILESTOTAL',               '%count% total de archivos');
 define('_MEDIAATTACH_ACTIONS',                  'Acciones');
 define('_MEDIAATTACH_NONE',                     'Ninguno');
 define('_MEDIAATTACH_ONLYOWN',                  'Sólo el dueño');
@@ -370,7 +370,7 @@ define('_MEDIAATTACH_FILEINFOTAGINFO',          'Información de etiqueta');
 define('_MEDIAATTACH_FILEINFOEXIF',             'Información EXIF');
 
 define('_MEDIAATTACH_PROFILEUPLOADS',           'Estado de la subida');
-define('_MEDIAATTACH_PROFILEFILESUPLOADED',     'archivos subidos');
+define('_MEDIAATTACH_PROFILEFILESUPLOADED',     '%count% archivos subidos');
 define('_MEDIAATTACH_PROFILETOTAL',             'total');
 
 define('_MEDIAATTACH_EXTERNALONLYIMAGES',       'Sólo imágenes');

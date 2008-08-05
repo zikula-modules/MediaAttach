@@ -12,7 +12,7 @@
         <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
         <!--[pnml name="_MEDIAATTACH_FROM"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->,
         <!--[pnml name="_MEDIAATTACH_ON"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><!--[if $file.extension ne "extvid"]-->, 
-        <!--[$file.dlcount]--> <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT"]--><!--[/if]--><br />
+        <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT" count=$file.dlcount]--><!--[/if]--><br />
 
 <!--[*
 <!--[if $file.extension ne "extvid"]-->

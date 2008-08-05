@@ -104,7 +104,7 @@ define('_MEDIAATTACH_UPLOADFILESIZE',           'Taille');
 define('_MEDIAATTACH_UPLOADDELETE',             'Supprimer ce fichier');
 define('_MEDIAATTACH_UPLOADEDIT',               'Editer ce fichier');
 define('_MEDIAATTACH_UPLOADUPDATE',             'Mettre à jour ce fichier');
-define('_MEDIAATTACH_UPLOADDLCOUNT',            'temps de transfert');
+define('_MEDIAATTACH_UPLOADDLCOUNT',            '%count% temps de transfert');
 define('_MEDIAATTACH_UPLOADNOUPLOADS',          'Aucun fichier déposé actuellement');
 define('_MEDIAATTACH_UPLOADNOIMAGES',           'Aucune images actuellement');
 define('_MEDIAATTACH_UPLOADFILTERBY',           'Filtrer par');
@@ -158,7 +158,7 @@ define('_MEDIAATTACH_ADMINTCONFIG',             'Configuration de MediaAttach');
 define('_MEDIAATTACH_ADMINTMANUAL',             'Lire le manuel (pdf)');
 
 define('_MEDIAATTACH_WELCOME',                  'Bienvenue dans l\'aire Admin de MediaAttach admin area');
-define('_MEDIAATTACH_FILESTOTAL',               'fichiers total');
+define('_MEDIAATTACH_FILESTOTAL',               '%count% fichiers total');
 define('_MEDIAATTACH_ACTIONS',                  'Actions');
 define('_MEDIAATTACH_NONE',                     'Aucune');
 define('_MEDIAATTACH_ONLYOWN',                  'La sienne seulement');
@@ -370,7 +370,7 @@ define('_MEDIAATTACH_FILEINFOTAGINFO',          'Tag information');
 define('_MEDIAATTACH_FILEINFOEXIF',             'EXIF information');
 
 define('_MEDIAATTACH_PROFILEUPLOADS',           'Status de transfert');
-define('_MEDIAATTACH_PROFILEFILESUPLOADED',     'fichiers transférés');
+define('_MEDIAATTACH_PROFILEFILESUPLOADED',     '%count% fichiers transférés');
 define('_MEDIAATTACH_PROFILETOTAL',             'total');
 
 define('_MEDIAATTACH_EXTERNALONLYIMAGES',       'Seulement des images');

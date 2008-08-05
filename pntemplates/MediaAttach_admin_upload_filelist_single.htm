@@ -9,7 +9,7 @@
 </dt>
 <dd><!--[pnml name="_MEDIAATTACH_FROM"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, <!--[pnml name="_MEDIAATTACH_ON"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--></dd>
 <!--[if $file.extension ne "extvid"]-->
-<dd><!--[$file.dlcount]--> <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT"]--></dd>
+<dd><!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT" count=$file.dlcount]--></dd>
 <!--[/if]-->
 <!--[if $file.desc ne ""]--><dd><!--[$file.desc]--></dd><!--[/if]-->
 <dd><!--[include file="MediaAttach_file_categories.htm"]-->&nbsp;</dd>

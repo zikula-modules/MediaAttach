@@ -99,7 +99,7 @@ define('_MEDIAATTACH_UPLOADFILESIZE',           'Filesize');
 define('_MEDIAATTACH_UPLOADDELETE',             'Delete this file');
 define('_MEDIAATTACH_UPLOADEDIT',               'Edit this file');
 define('_MEDIAATTACH_UPLOADUPDATE',             'Update this file');
-define('_MEDIAATTACH_UPLOADDLCOUNT',            'times downloaded');
+define('_MEDIAATTACH_UPLOADDLCOUNT',            '%count% times downloaded');
 define('_MEDIAATTACH_UPLOADNOUPLOADS',          'No files were uploaded yet');
 define('_MEDIAATTACH_UPLOADNOIMAGES',           'No images available yet');
 define('_MEDIAATTACH_UPLOADFILTERBY',           'Filter by');
@@ -153,7 +153,7 @@ define('_MEDIAATTACH_ADMINTCONFIG',             'The MediaAttach configuration')
 define('_MEDIAATTACH_ADMINTMANUAL',             'The worth to read pdf manual');
 
 define('_MEDIAATTACH_WELCOME',                  'Welcome to the MediaAttach admin area');
-define('_MEDIAATTACH_FILESTOTAL',               'files total');
+define('_MEDIAATTACH_FILESTOTAL',               '%count% files total');
 define('_MEDIAATTACH_ACTIONS',                  'Actions');
 define('_MEDIAATTACH_NONE',                     'None');
 define('_MEDIAATTACH_ONLYOWN',                  'Only own');
@@ -365,7 +365,7 @@ define('_MEDIAATTACH_FILEINFOTAGINFO',          'Tag information');
 define('_MEDIAATTACH_FILEINFOEXIF',             'EXIF information');
 
 define('_MEDIAATTACH_PROFILEUPLOADS',           'Upload status');
-define('_MEDIAATTACH_PROFILEFILESUPLOADED',     'files uploaded');
+define('_MEDIAATTACH_PROFILEFILESUPLOADED',     '%count% files uploaded');
 define('_MEDIAATTACH_PROFILETOTAL',             'total');
 
 define('_MEDIAATTACH_EXTERNALONLYIMAGES',       'Only images');

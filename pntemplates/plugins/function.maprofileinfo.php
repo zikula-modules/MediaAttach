@@ -42,7 +42,7 @@ function smarty_function_maprofileinfo($params, &$smarty)
     $res .= '<td>' . _MEDIAATTACH_PROFILEUPLOADS . '</td>' . "\n";
 
     if (!$files) {
-        $res .= '<td>' . $numFiles . ' ' . _MEDIAATTACH_PROFILEFILESUPLOADED . '</td>' . "\n";
+        $res .= '<td>' . pnML('_MEDIAATTACH_PROFILEFILESUPLOADED', array('count' => $numFiles)) . '</td>' . "\n";
     }
     else {
         $numFiles = count($files);
@@ -54,7 +54,7 @@ function smarty_function_maprofileinfo($params, &$smarty)
         Loader::requireOnce('modules/MediaAttach/common.php');
         $sizeFiles = _maIntCalcReadableFilesize($sizeFiles);
 
-        $res .= '<td>' . $numFiles . ' ' . _MEDIAATTACH_PROFILEFILESUPLOADED . ' (' . $sizeFiles . ' ' . _MEDIAATTACH_PROFILETOTAL . ')' . '</td>' . "\n";
+        $res .= '<td>' . pnML('_MEDIAATTACH_PROFILEFILESUPLOADED', array('count' => $numFiles)) . ' (' . $sizeFiles . ' ' . _MEDIAATTACH_PROFILETOTAL . ')' . '</td>' . "\n";
     }
 
     $res .= '</tr>' . "\n";

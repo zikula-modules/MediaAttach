@@ -8,7 +8,7 @@
 <h3><!--[pnml name="_MEDIAATTACH_WELCOME"]--></h3>
 
 <!--[if $numUploads > 0 && $sizeUploads > "0"]-->
-    <p style="margin-left: 50px"><!--[$numUploads]--> <!--[pnml name="_MEDIAATTACH_FILESTOTAL"]--> (<!--[$sizeUploads]-->)</p>
+    <p style="margin-left: 50px"><!--[pnml name="_MEDIAATTACH_FILESTOTAL" count=$numUploads]--> (<!--[$sizeUploads]-->)</p>
 <!--[else]-->
     <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]--><br />
 <!--[/if]-->

@@ -16,7 +16,7 @@
             (<!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, &nbsp;<!--[$file.date|date_format:"%d.%m.%y, %H:%M"]-->)
 <!--[if $file.extension ne "extvid"]-->
            &nbsp;
-            <!--[$file.dlcount]--> <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT"]-->
+            <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT" count=$file.dlcount]-->
 
             <div id="fileinfo<!--[$file.fileid]-->" style="display: none">
                 <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
