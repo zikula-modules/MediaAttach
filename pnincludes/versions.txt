@@ -7,7 +7,7 @@ GeSHi
         http://qbnz.com/highlighter/
 
 getid3
-    1.7.7
+    1.7.7 (2006-06-24)
         http://getid3.sourceforge.net/
 
 Highslide JS
@@ -15,15 +15,15 @@ Highslide JS
         http://vikjavev.no/highslide/
 
 JavaScript Image Cropper UI
-    1.2.0
+    1.2.0 (2006-10-30)
         http://www.defusion.org.uk/code/javascript-image-cropper-ui-using-prototype-scriptaculous/
 
 JW FLV Player
-    3.15
+    4.0 (2007-07-02)
         http://www.jeroenwijering.com/?item=JW_FLV_Player
 
 Snoopy Class
-    1.2.3
+    1.2.3 (2005-11-08)
         http://sourceforge.net/projects/snoopy/
 
 SWFUpload
@@ -36,4 +36,4 @@ tarmanager
 
 treemenu
     2.1 (2007-01-10)
-        http://www.gerd-tentler.de/tools/treemenu/index.html
+        http://www.gerd-tentler.de/tools/treemenu/index.php
