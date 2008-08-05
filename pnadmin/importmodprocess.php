@@ -300,13 +300,13 @@ function MediaAttach_import_performsinglemoduleimport($file, $title, $descriptio
 
     // Extension check
     $extension_okay = 0;
-
-    foreach ($definition['formats'] as $currentformat) {
-        if (strtolower($currentformat['extension']) == strtolower($extension)) {
+    $lowerExtension = strtolower($extension);
+    foreach ($definition['formats'] as $currentFileType) {
+        if (strtolower($currentFileType['extension']) == $lowerExtension) {
             $extension_okay = 1;
+            break;
         }
     }
-
     if (!$extension_okay) {
         $msglog .= $msgpref . _MEDIAATTACH_ERRFORMAT . '</div></li>';
         return $msglog;

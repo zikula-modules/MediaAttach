@@ -237,16 +237,17 @@ function MediaAttach_user_performsingleupload($nr, $file, $title, $description, 
         return $msglog;
     }
 
-    // Extension check
-    $extension_okay = 0;
     $mimetype = $file['type'];
 
-    foreach ($definition['formats'] as $currentformat) {
-        if (strtolower($currentformat['extension']) == strtolower($extension)) {
+    // Extension check
+    $extension_okay = 0;
+    $lowerExtension = strtolower($extension);
+    foreach ($definition['formats'] as $currentFileType) {
+        if (strtolower($currentFileType['extension']) == $lowerExtension) {
             $extension_okay = 1;
+            break;
         }
     }
-
     if (!$extension_okay) {
         $msglog .= $msgpref . _MEDIAATTACH_ERRFORMAT . '</div></li>';
         return $msglog;

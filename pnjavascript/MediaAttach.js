@@ -283,9 +283,9 @@
         allowedExtensions.each(function(entry) {
             if (fileName.lastIndexOf(entry) != -1) {
                 extensionAllowed = true;
+                break;
             }
         });
-
         if (extensionAllowed == false) {
             alert(errorExtensionNotAllowed);
             Event.stop(event);
