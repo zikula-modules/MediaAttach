@@ -4,13 +4,15 @@
  * -----
  * Author: Alberto 'Birckin' de Areba (Birckin@hotmail.com)
  * Copyright: (c) 2006 Alberto de Areba
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.7.22
  * Date Started: 2006/05/29
  *
  * mIRC Scripting language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *   -  Added description of extra language features (SF#1970248)
  * 2006/05/29 (1.0.0)
  *   -  First Release
  *
@@ -49,39 +51,38 @@ $language_data = array (
 			'if', 'elseif', 'else', 'while', 'return', 'goto',
 			),
 		3 => array(
-			'/action','/ajinvite','/alias','/amsg','/ame','/anick','/aop',
-			'/auser','/avoice','/auto','/autojoin','/away','/background','/ban',
-			'/beep','/channel','/clear','/clearall','/clipboard','/close',
-			'/closemsg','/color','/copy','/creq','/ctcp','/ctcpreply','/ctcps',
-			'/dcc','/dde','/ddeserver','/debug','/describe','/disable',
-			'/disconnect','/dlevel','/dll','/dns','/dqwindow','/ebeeps','/echo',
-			'/editbox','/emailaddr','/enable','/events','/exit','/filter',
-			'/findtext','/finger','/flash','/flood','/flush','/flushini',
-			'/font','/fsend','/fserve','/fullname','/ghide','/gload','/gmove',
-			'/gopts','/gplay','/gpoint','/gqreq','/groups','/gshow','/gsize',
-			'/gstop','/gtalk','/gunload','/guser','/help','/hop','/ignore',
-			'/invite','/join','/kick','/linesep','/links','/list','/load',
-			'/loadbuf','/localinfo','/log','/me','/mdi','/mkdir','/mnick',
-			'/mode','/msg','/names','/nick','/noop','/notice','/notify',
-			'/omsg','/onotice','/part','/partall','/pdcc','/perform','/ping',
-			'/play','/pop','/protect','/pvoice','/qmsg','/qme','/query',
-			'/queryrn','/quit','/raw','/remini','/remote','/remove','/rename',
-			'renwin','/resetidle','/rlevel','/rmdir','/run','/ruser','/save',
-			'/savebuf','/save','/saveini','/say','/server','/showmirc','/sline',
-			'/sound','/speak','/splay','/sreq','/strip','/time',
-			//'/timer[N/name]', //Handled as a regular expression below ...
-			'/timers','/timestamp','/titlebar','/tnick','/tokenize','/topic',
-			'/ulist','/unload','/updatenl','/url','/uwho','window','/winhelp',
-			'/write','/writeini','/who','/whois','/whowas'
+			'action','ajinvite','alias','amsg','ame','anick','aop','auser',
+			'avoice','auto','autojoin','away','background','ban','beep',
+			'channel','clear','clearall','clipboard','close','closemsg','color',
+			'copy','creq','ctcp','ctcpreply','ctcps','dcc','dde','ddeserver',
+			'debug','describe','disable','disconnect','dlevel','dll','dns',
+			'dqwindow','ebeeps','echo','editbox','emailaddr','enable','events',
+			'exit','filter','findtext','finger','flash','flood','flush',
+			'flushini',	'font','fsend','fserve','fullname','ghide','gload',
+			'gmove','gopts','gplay','gpoint','gqreq','groups','gshow','gsize',
+			'gstop','gtalk','gunload','guser','help','hop','ignore','invite',
+			'join','kick','linesep','links','list','load','loadbuf','localinfo',
+			'log','me','mdi','mkdir','mnick','mode','msg','names','nick','noop',
+			'notice','notify','omsg','onotice','part','partall','pdcc',
+			'perform','ping','play','pop','protect','pvoice','qmsg','qme',
+			'query','queryrn','quit','raw','remini','remote','remove','rename',
+			'enwin','resetidle','rlevel','rmdir','run','ruser','save','savebuf',
+			'saveini','say','server','showmirc','sline','sound','speak','splay',
+			'sreq','strip','time',
+			//'timer[N/name]', //Handled as a regular expression below ...
+			'timers','timestamp','titlebar','tnick','tokenize','topic','ulist',
+			'unload','updatenl','url','uwho','window','winhelp','write',
+			'writeini','who','whois','whowas'
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '{', '}', '[', ']', '|',
+		'(', ')', '{', '}', '[', ']',
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
 		1 => false,
 		2 => false,
+		3 => false,
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
@@ -129,11 +130,15 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		0 => '\$[^$][^ ,\(\)]*',
-		1 => '(%|&).+?[^ ,\)]*',
-		2 => '(#|@).+?[^ ,\)]*',
+        //Variable names
+		0 => '\$[a-zA-Z0-9]+',
+        //Variable names
+		1 => '(%|&amp;)[a-zA-Z0-9]+',
+		//Channel names
+        2 => '(#|@)[a-zA-Z0-9]+',
 		3 => '-[a-z\d]+',
-		4 => '(on|ctcp) (!|@|&)?(\d|\*):[a-zA-Z]+:',
+        //Client to Client Protocol handling
+		4 => '(on|ctcp) (!|@|&amp;)?(\d|\*):[a-zA-Z]+:',
 		/*4 => array(
 			GESHI_SEARCH => '((on|ctcp) (!|@|&)?(\d|\*):(Action|Active|Agent|AppActive|Ban|Chat|Close|Connect|Ctcp|CtcpReply|DccServer|DeHelp|DeOp|DeVoice|Dialog|Dns|Error|Exit|FileRcvd|FileSent|GetFail|Help|Hotlink|Input|Invite|Join|KeyDown|KeyUp|Kick|Load|Logon|MidiEnd|Mode|Mp3End|Nick|NoSound|Notice|Notify|Op|Open|Part|Ping|Pong|PlayEnd|Quit|Raw|RawMode|SendFail|Serv|ServerMode|ServerOp|Signal|Snotice|Start|Text|Topic|UnBan|Unload|Unotify|User|Mode|Voice|Wallops|WaveEnd):)',
 			GESHI_REPLACE => '\\1',
@@ -141,8 +146,10 @@ $language_data = array (
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),*/
+        //Raw protocol handling
         5 => 'raw (\d|\*):',
-		6 => '\/timer(?!s\b)[0-9a-zA-Z_]+',
+        //Timer handling
+		6 => '/timer(?!s\b)[0-9a-zA-Z_]+',
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
@@ -151,4 +158,7 @@ $language_data = array (
 		)
 );
 
+if (isset($this) && is_a($this, 'GeSHi')) {
+    $this->set_numbers_highlighting(false);
+}
 ?>

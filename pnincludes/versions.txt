@@ -3,7 +3,7 @@ File_Bittorrent2
         http://pear.php.net/package/File_Bittorrent2
 
 GeSHi
-    1.0.7.20 (2007-07-02)
+    1.0.7.22 (2008-06-08)
         http://qbnz.com/highlighter/
 
 getid3

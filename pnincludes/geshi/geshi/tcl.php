@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Reid van Melle (rvanmelle@gmail.com)
  * Copyright: (c) 2004 Reid van Melle (sorry@nowhere)
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.7.22
  * Date Started: 2006/05/05
  *
  * TCL/iTCL language file for GeSHi.
@@ -16,12 +16,14 @@
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2006/05/05 (1.0.0)
  *  -  First Release
  *
  * TODO (updated 2006/05/05)
  * -------------------------
- * - Get TCL built-in special variables hilighted with a new color..
+ * - Get TCL built-in special variables highlighted with a new color..
  *   currently, these are listed in //special variables in the keywords
  *   section, but they get covered by the general REGEXP for symbols
  * - General cleanup, testing, and verification
@@ -62,7 +64,7 @@ $language_data = array (
 		1 => array(
 			'proc', 'global', 'upvar', 'if', 'then', 'else', 'elseif', 'for', 'foreach',
 			'break', 'continue', 'while', 'set', 'eval', 'case', 'in', 'switch',
-			'default', 'exit', 'error', 'proc', 'return', 'uplevel', 'loop', 
+			'default', 'exit', 'error', 'proc', 'return', 'uplevel', 'loop',
 			'for_array_keys', 'for_recursive_glob', 'for_file', 'unwind_protect',
 			'expr', 'catch', 'namespace', 'rename', 'variable',
 			// itcl
@@ -75,7 +77,7 @@ $language_data = array (
 		2 => array(
 			// string handling
 			'append', 'binary', 'format', 're_syntax', 'regexp', 'regsub',
-			'scan', 'string', 'subst', 
+			'scan', 'string', 'subst',
 			// list handling
 			'concat', 'join', 'lappend', 'lindex', 'list', 'llength', 'lrange',
 			'lreplace', 'lsearch', 'lset', 'lsort', 'split',
@@ -83,7 +85,7 @@ $language_data = array (
 			'expr',
 			// procedures and output
 			'incr', 'close', 'eof', 'fblocked', 'fconfigure', 'fcopy', 'file',
-			'fileevent', 'flush', 'gets', 'open', 'puts', 'read', 'seek', 
+			'fileevent', 'flush', 'gets', 'open', 'puts', 'read', 'seek',
 			'socket', 'tell',
 			// packages and source files
 			'load', 'loadTk', 'package', 'pgk::create', 'pgk_mkIndex', 'source',
@@ -96,9 +98,9 @@ $language_data = array (
 			// platform specified
 			'dde', 'registry', 'resource',
 			// special variables
-			'$argc', '$argv', '$errorCode', '$errorInfo', '$argv0', 
-			'$auto_index', '$auto_oldpath', '$auto_path', '$env', 
-			'$tcl_interactive', '$tcl_libpath', '$tcl_library', 
+			'$argc', '$argv', '$errorCode', '$errorInfo', '$argv0',
+			'$auto_index', '$auto_oldpath', '$auto_path', '$env',
+			'$tcl_interactive', '$tcl_libpath', '$tcl_library',
 			'$tcl_pkgPath', '$tcl_platform', '$tcl_precision', '$tcl_traceExec',
 			),
 
@@ -169,6 +171,7 @@ $language_data = array (
 		1 => '::'
 		),
 	'REGEXPS' => array(
+        //Special variables
 		0 => '[\\$]+[a-zA-Z_][a-zA-Z0-9_]*',
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
