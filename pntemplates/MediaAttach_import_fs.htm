@@ -33,14 +33,14 @@
         <!--[foreach name="fileloop" item="curFile" from=$files]-->
             <!--[assign var="filenr" value=$filenr+1]-->
             <input type="checkbox" id="file<!--[$filenr]-->" name="file<!--[$filenr]-->" value="1" class="maright" />
-            <label for="file<!--[$filenr]-->" style="text-align: left; margin-left: 2em"><!--[$curFile.filename]--> (<!--[mafilesize size=$curFile.filesize]-->)</label><br />
+            <label for="file<!--[$filenr]-->" style="text-align: left; margin-left: 2em"><!--[$curFile.filename|pnvarprepfordisplay]--> (<!--[mafilesize size=$curFile.filesize]-->)</label><br />
 
             <div id="filedesc<!--[$filenr]-->">
                 <label for="title<!--[$filenr]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_TITLE"]--></label>
-                <input id="title<!--[$filenr]-->" name="title<!--[$filenr]-->" type="text" maxlength="32" /><br />
+                <input id="title<!--[$filenr]-->" name="title<!--[$filenr]-->" type="text" maxlength="32" value="<!--[$curFile.filename|pnvarprepfordisplay]-->" /><br />
 
                 <label for="description<!--[$filenr]-->" class="maleft"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]--></label>
-                <textarea id="description<!--[$filenr]-->" name="description<!--[$filenr]-->" rows="3" cols="30"></textarea><br />
+                <textarea id="description<!--[$filenr]-->" name="description<!--[$filenr]-->" rows="3" cols="30"><!--[$curFile.filename|pnvarprepfordisplay]--></textarea><br />
 
                 <label for="mafilecats_Main_"><!--[pnml name="_CATEGORIES"]-->:</label><br />
                 <!--[nocache]-->
