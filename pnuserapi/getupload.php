@@ -45,7 +45,7 @@ function MediaAttach_userapi_getupload($args)
                           'instance_left'    => 'modname',
                           'instance_middle'  => 'objectid',
                           'instance_right'   => 'fileid',
-                          'level'            => ACCESS_READ);
+                          'level'            => ACCESS_OVERVIEW);
 
     $file = DBUtil::selectExpandedObjectByID('ma_files', $joinArray, $fileid, 'fileid', null, $permFilter);
 
