@@ -47,6 +47,7 @@ function MediaAttach_init()
     pnModSetVar('MediaAttach', 'usequota',       '0');
     pnModSetVar('MediaAttach', 'ownhandling',    '0');
     pnModSetVar('MediaAttach', 'usefrontpage',   '0');
+    pnModSetVar('MediaAttach', 'useaccountpage', '1');
     pnModSetVar('MediaAttach', 'thumbsizes',     array(array(100, 64), array(150, 113)));
     pnModSetVar('MediaAttach', 'defaultthumb',   '2');
     pnModSetVar('MediaAttach', 'shrinkimages',   '0');

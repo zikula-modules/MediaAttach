@@ -246,6 +246,7 @@ define('_MEDIAATTACH_MAXMAILSIZE',              'Tamaño de archivo máximo en los
 define('_MEDIAATTACH_USEQUOTA',                 'Activar cuotas');
 define('_MEDIAATTACH_OWNHANDLING',              'Los usuarios pueden editar y borrar sus propios archivos');
 define('_MEDIAATTACH_USEFRONTPAGE',             'Activar página de entrada en la sección de usuarios');
+define('_MEDIAATTACH_USEACCOUNTPAGE',           'Activar página de account en la sección de usuarios');
 define('_MEDIAATTACH_ALLOWOWNHANDLING',         'Permitir esta opción');
 define('_MEDIAATTACH_DEFAULTTHUMBSIZE',         'Tamaño predeterminado de las miniaturas:');
 define('_MEDIAATTACH_SHRINKIMAGES',             'Disminuir las imágenes grandes');

@@ -246,6 +246,7 @@ define('_MEDIAATTACH_MAXMAILSIZE',              'Taille maximum par courriel:');
 define('_MEDIAATTACH_USEQUOTA',                 'Activer les quotas');
 define('_MEDIAATTACH_OWNHANDLING',              'Les utilisateurs peuvent éditer et supprimer leurs propres fichiers');
 define('_MEDIAATTACH_USEFRONTPAGE',             'Activer la page de démarrage dans la partie utilisateurs');
+define('_MEDIAATTACH_USEACCOUNTPAGE',           'Activer la page de account dans la partie utilisateurs');
 define('_MEDIAATTACH_ALLOWOWNHANDLING',         'Autoriser cette option');
 define('_MEDIAATTACH_DEFAULTTHUMBSIZE',         'Taille par défaut des vignettes (Vous pouvez créer autant de formats que nécessaires):');
 define('_MEDIAATTACH_SHRINKIMAGES',             'Adapter les grosses images');

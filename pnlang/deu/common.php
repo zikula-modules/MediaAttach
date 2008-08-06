@@ -241,6 +241,7 @@ define('_MEDIAATTACH_MAXMAILSIZE',              'Maximale Dateigröße in Mails:')
 define('_MEDIAATTACH_USEQUOTA',                 'Quotas aktivieren');
 define('_MEDIAATTACH_OWNHANDLING',              'Benutzer haben das Recht ihre eigenen Dateien zu verwalten');
 define('_MEDIAATTACH_USEFRONTPAGE',             'Startseite im Userbereich aktivieren');
+define('_MEDIAATTACH_USEACCOUNTPAGE',           'Account-Seite im Userbereich aktivieren');
 define('_MEDIAATTACH_ALLOWOWNHANDLING',         'Diese Option erlauben');
 define('_MEDIAATTACH_DEFAULTTHUMBSIZE',         'Standardgrößen von Thumbnails (Sie können beliebig viele Formate anlegen):');
 define('_MEDIAATTACH_SHRINKIMAGES',             'Große Bilder verkleinern');

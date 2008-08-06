@@ -241,6 +241,7 @@ define('_MEDIAATTACH_MAXMAILSIZE',              'Maximum filesize for mails:');
 define('_MEDIAATTACH_USEQUOTA',                 'Activate quotas');
 define('_MEDIAATTACH_OWNHANDLING',              'Users are able to edit and delete their own files');
 define('_MEDIAATTACH_USEFRONTPAGE',             'Activate frontpage in user section');
+define('_MEDIAATTACH_USEACCOUNTPAGE',           'Activate account page in user section');
 define('_MEDIAATTACH_ALLOWOWNHANDLING',         'Allow this option');
 define('_MEDIAATTACH_DEFAULTTHUMBSIZE',         'Default sizes of thumbnails (you can create as many formats as desired):');
 define('_MEDIAATTACH_SHRINKIMAGES',             'Shrink big images');

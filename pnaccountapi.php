@@ -25,13 +25,18 @@ function MediaAttach_accountapi_getall($args)
 {
     unset($args);
 
-    // Create an array of links to return
-    $items = array(array('url'     => pnModURL('MediaAttach', 'account', 'viewuploads'),
-                         'module'  => 'MediaAttach',
-                         'set'     => '',
-                         'title'   => pnML(_MEDIAATTACH_MYUPLOADS),
-                         'icon'    => 'profile_myuploads.png'));
+    $items = array();
 
-    // Return the items
+    $useAccountPage = pnModGetVar('MediaAttach', 'useaccountpage', '1');
+    if ($useAccountPage) {
+        // Create an array of links to return
+        $items = array(array('url'     => pnModURL('MediaAttach', 'account', 'viewuploads'),
+                            'module'  => 'MediaAttach',
+                            'set'     => '',
+                            'title'   => pnML(_MEDIAATTACH_MYUPLOADS),
+                            'icon'    => 'profile_myuploads.png'));
+    }
+
+    // return the items
     return $items;
 }

@@ -23,6 +23,11 @@ function MediaAttach_account_viewuploads()
         return LogUtil::registerPermissionError();
     }
 
+    $useAccountPage = pnModGetVar('MediaAttach', 'useaccountpage', '1');
+    if (!$useAccountPage) {
+        return LogUtil::registerPermissionError();
+    }
+
     if (!pnModAPIFunc('MediaAttach', 'filesystem', 'checkdirectory', array('directory' => pnModGetVar('MediaAttach', 'uploaddir')))
       || !pnModAPIFunc('MediaAttach', 'filesystem', 'checkdirectory', array('directory' => pnModGetVar('MediaAttach', 'cachedir')))) {
         return false;

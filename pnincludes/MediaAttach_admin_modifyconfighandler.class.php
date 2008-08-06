@@ -144,6 +144,7 @@ class MediaAttach_admin_modifyconfighandler
             pnModSetVar('MediaAttach', 'usequota', $data['usequota']);
             pnModSetVar('MediaAttach', 'ownhandling', $data['ownhandling']);
             pnModSetVar('MediaAttach', 'usefrontpage', $data['usefrontpage']);
+            pnModSetVar('MediaAttach', 'useaccountpage', $data['useaccountpage']);
 
             $thumbsizes = Array();
             $i = 1;
