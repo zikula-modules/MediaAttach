@@ -43,6 +43,8 @@ function MediaAttach_userapi_getalluploads($args)
     $sortby         = (isset($args['sortby'])       && !empty($args['sortby']))         ? $args['sortby']       : 'date';
     $sortdir        = (isset($args['sortdir'])      && !empty($args['sortdir']))        ? $args['sortdir']      : 'asc';
 
+    $assocKey       = (isset($args['assocKey'])     && !empty($args['assocKey']))       ? $args['assocKey']     : '';
+
     $fileFilter     = (isset($args['fileFilter'])   && is_array($args['fileFilter']))   ? $args['fileFilter']   : '';
     $formatFilter   = (isset($args['formatFilter']) && is_array($args['formatFilter'])) ? $args['formatFilter'] : '';
     $catFilter      = (isset($args['catFilter'])    && is_array($args['catFilter']))    ? $args['catFilter']    : null;
@@ -108,7 +110,9 @@ function MediaAttach_userapi_getalluploads($args)
 
     $orderBy .= ' ' . strtoupper($sortdir);
 
-    $files = DBUtil::selectExpandedObjectArray('ma_files', $joinArray, $where, $orderBy, $startnum-1, $numitems, '', $permFilter, $catFilter);
+    if ($assocKey != '' && !isset($filescolumn[$assocKey])) $assocKey = '';
+
+    $files = DBUtil::selectExpandedObjectArray('ma_files', $joinArray, $where, $orderBy, $startnum-1, $numitems, $assocKey, $permFilter, $catFilter);
 
     if ($files === false || !$files) {
         return $files;
@@ -123,11 +127,11 @@ function MediaAttach_userapi_getalluploads($args)
     $categories = pnModAPIFunc('MediaAttach', 'cat', 'getCategoryTree');
     ObjectUtil::postProcessExpandedObjectArrayCategories($files, $categories);
 
-    $numFiles = count($files);
-    for($i = 0; $i < $numFiles; $i++) {
-        $files[$i]['url'] = str_replace('&amp;', '&', urldecode($files[$i]['url']));
-        if ($files[$i]['extension'] != 'extvid') {
-            $files[$i]['fileInfo'] = pnModAPIFunc('MediaAttach', 'fileinfo', 'retrievefileinfo', array('file' => $files[$i]));
+    $ak = array_keys($files);
+    foreach ($ak as $k) {
+        $files[$k]['url'] = str_replace('&amp;', '&', urldecode($files[$k]['url']));
+        if ($files[$k]['extension'] != 'extvid') {
+            $files[$k]['fileInfo'] = pnModAPIFunc('MediaAttach', 'fileinfo', 'retrievefileinfo', array('file' => $files[$k]));
         }
     }
 
