@@ -21,7 +21,7 @@ function MediaAttach_filesystemapi_deletefile($args) {
         return false;
     }
 
-    $file = realpath($args['file']);
+    $file = realpath(DataUtil::formatForOS($args['file'], true));
     unset($args);
 
     return unlink($file);

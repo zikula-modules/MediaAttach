@@ -21,7 +21,7 @@ function MediaAttach_filesystemapi_createdirectory($args) {
         return false;
     }
 
-    $directory = realpath($args['directory']);
+    $directory = realpath(DataUtil::formatForOS($args['directory'], true));
     unset($args);
 
     if (!file_exists($directory)) {

@@ -9,8 +9,8 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 Loader::requireOnce('modules/MediaAttach/common.php');
+Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
 
 /**
  * delete a file
@@ -60,15 +60,27 @@ function MediaAttach_user_delete($args)
     }
 
     if (pnModAPIFunc('MediaAttach', 'user', 'delete', array('fileid' => $fileid))) {
-        if ($file['extension'] != 'extvid') {
-            $fullfile = pnModGetVar('MediaAttach', 'uploaddir') . '/' . $file['filename'];
-            if (pnModAPIFunc('MediaAttach', 'filesystem', 'deletefile', array('file' => $fullfile))) {
+        if ($file['extension'] == 'extvid') {
+            LogUtil::registerStatus(_DELETESUCCEDED);
+        } else {
+            // delete file physically
+            $fullFileName = pnModGetVar('MediaAttach', 'uploaddir') . '/' . $file['filename'];
+
+            // start with thumbnails
+            $thumbSizes = pnModGetVar('MediaAttach', 'thumbsizes');
+            $numThumbSizes = count($thumbSizes);
+            for($thumbNumber = 1; $thumbNumber <= $numThumbSizes; $thumbNumber++) {
+                $thumbFilePath = _maIntImageThumb(array('file' => $fullFileName,
+                                                        'thumbnr' => $thumbNumber));
+                pnModAPIFunc('MediaAttach', 'filesystem', 'deletefile', array('file' => $thumbFilePath));
+            }
+
+            // now delete original file
+            if (pnModAPIFunc('MediaAttach', 'filesystem', 'deletefile', array('file' => $fullFileName))) {
                 LogUtil::registerStatus(_DELETESUCCEDED);
             } else {
                 LogUtil::registerError(_DELETEFAILED);
             }
-        } else {
-            LogUtil::registerStatus(_DELETESUCCEDED);
         }
     }
 

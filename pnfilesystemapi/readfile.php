@@ -21,7 +21,7 @@ function MediaAttach_filesystemapi_readfile($args) {
         return false;
     }
 
-    $file = realpath($args['file']);
+    $file = realpath(DataUtil::formatForOS($args['file'], true));
     unset($args);
 
     return file_get_contents($file);

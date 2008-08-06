@@ -21,7 +21,7 @@ function MediaAttach_filesystemapi_readdirectory($args) {
         return false;
     }
 
-    $directory = realpath($args['directory']);
+    $directory = realpath(DataUtil::formatForOS($args['directory'], true));
     unset($args);
 
     $dirs = array();
