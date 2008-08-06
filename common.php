@@ -215,7 +215,7 @@ function _maIntBuildWhereString($args)
     if ($args['moduleFilter'] != '') {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['modname'] . " = '" . DataUtil::formatForStore($args['moduleFilter']) . "'";
-    } else {
+    } elseif ($args['moduleFilter'] != false) {
         $currentType = FormUtil::getPassedValue('type', '', 'GETPOST');
         $currentFunc = FormUtil::getPassedValue('func', '', 'GETPOST');
         $currentMod = pnModGetName();
