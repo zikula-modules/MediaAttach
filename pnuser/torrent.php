@@ -77,7 +77,8 @@ function MediaAttach_user_torrent($args)
     header("Cache-Control: public", false);
     header("Content-Description: File Transfer");
 
-    $data = pnModAPIFunc('MediaAttach', 'filesystem', 'readfile', array('file' => $torrentFile));
+    Loader::loadClass('FileUtil');
+    $data = FileUtil::readFile($torrentFile/*, true*/);
 
     echo $data;
 

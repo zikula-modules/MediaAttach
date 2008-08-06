@@ -64,12 +64,12 @@ function MediaAttach_user_download($args)
         } else {
             return $thumbFilePath;
         }
-    } else {
-        pnModAPIFunc('MediaAttach', 'user', 'incdlcounter', array('fileid' => $fileid));
-
-        $fullfilename = $uploaddir . '/' . $file['filename'];
-        $data = pnModAPIFunc('MediaAttach', 'filesystem', 'readfile', array('file' => $fullfilename));
     }
+
+    pnModAPIFunc('MediaAttach', 'user', 'incdlcounter', array('fileid' => $fileid));
+
+    Loader::loadClass('FileUtil');
+    $data = FileUtil::readFile($uploaddir . '/' . $file['filename'], true);
 
     $useCompression = pnConfigGetVar('UseCompression');
     if ($useCompression == 1) {

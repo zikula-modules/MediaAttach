@@ -28,8 +28,9 @@ function smarty_function_macodesource($params, &$smarty)
         return false;
     }
 
+    Loader::loadClass('FileUtil');
     $uploaddir = pnModGetVar('MediaAttach', 'uploaddir');
-    $filedata = pnModAPIFunc('MediaAttach', 'filesystem', 'readfile', array('file' => $uploaddir . '/' . $params['file']['filename']));
+    $filedata = FileUtil::readFile($uploaddir . '/' . $params['file']['filename'], true);
 
     // decide which language to use
     switch ($params['file']['mimetype']) {
