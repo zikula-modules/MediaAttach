@@ -410,6 +410,7 @@ define('_MEDIAATTACH_EXTVIDCREATED',            'The video has been embedded suc
 define('_MEDIAATTACH_EXTVIDERRORDOMAIN',        'Error: this is an invalid or unsupported URL.');
 define('_MEDIAATTACH_EXTVIDERRORGRAB',          'Sorry, could not determine video information.');
 
+define('_MEDIAATTACH_CROPTHUMBDEACTIVATED',     'Thumbnail cropping is deactivated.');
 define('_MEDIAATTACH_CROPTHUMB',                'Recadrer la vignette');
 define('_MEDIAATTACH_CROPCHOOSE',               'Choisir l\'image de prévisualisation.');
 define('_MEDIAATTACH_CROPFIXEDSIZE',            'La taille de la fenêtre de sélection est inchangeable.');

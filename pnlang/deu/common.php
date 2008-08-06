@@ -406,6 +406,7 @@ define('_MEDIAATTACH_EXTVIDCREATED',            'Das Video wurde erfolgreich ein
 define('_MEDIAATTACH_EXTVIDERRORDOMAIN',        'Fehler: dies ist eine ungültige oder nicht unterstützte URL.');
 define('_MEDIAATTACH_EXTVIDERRORGRAB',          'Sorry, konnte die Video-Informationen nicht ermitteln.');
 
+define('_MEDIAATTACH_CROPTHUMBDEACTIVATED',     'Das Ausschneiden von Vorschaubildern ist deaktiviert.');
 define('_MEDIAATTACH_CROPTHUMB',                'Vorschaubild ausschneiden');
 define('_MEDIAATTACH_CROPCHOOSE',               'Wählen Sie Ihr gewünschtes Vorschaubild aus.');
 define('_MEDIAATTACH_CROPFIXEDSIZE',            'Die Größe des Auswahlfensters ist nicht veränderbar.');

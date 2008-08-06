@@ -410,6 +410,7 @@ define('_MEDIAATTACH_EXTVIDCREATED',            'El medio ha sido insertado exit
 define('_MEDIAATTACH_EXTVIDERRORDOMAIN',        'Error: esta URL no es válida o no está soportada.');
 define('_MEDIAATTACH_EXTVIDERRORGRAB',          'Disculpa, no se pudo determinar la información del medio.');
 
+define('_MEDIAATTACH_CROPTHUMBDEACTIVATED',     'Thumbnail cropping is deactivated.');
 define('_MEDIAATTACH_CROPTHUMB',                'Ajustar thumbnail');
 define('_MEDIAATTACH_CROPCHOOSE',               'Escoje tu imágen de previsualización deseada.');
 define('_MEDIAATTACH_CROPFIXEDSIZE',            'El tamaño de la ventana de selección no es modificable.');

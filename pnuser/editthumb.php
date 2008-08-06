@@ -42,7 +42,9 @@ function MediaAttach_user_editthumb($args)
 
     $usethumbcropper = pnModGetVar('MediaAttach', 'usethumbcropper');
     if ($usethumbcropper == 0) {
-        return LogUtil::registerPermissionError();
+        $backurl = str_replace('&amp;', '&', base64_decode($backurl)) . '#file' . $fileid;
+        LogUtil::registerError(_MEDIAATTACH_CROPTHUMBDEACTIVATED);
+        return pnRedirect($backurl);
     }
 
     $isOwner = (pnModGetVar('MediaAttach', 'ownhandling') && (pnUserGetVar('uid') == $file['uid']));
