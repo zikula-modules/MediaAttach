@@ -30,7 +30,7 @@ function MediaAttach_user_viewupload($args)
     $extrainfo = $args['extrainfo'];
     unset($args);
 
-    pnModAPIFunc('MediaAttach', 'user', 'add_stylesheet_header');
+    PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
 
     $definition = pnModAPIFunc('MediaAttach', 'definitions', 'getmoduledefinition', array('modname' => $modname));
 

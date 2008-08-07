@@ -176,7 +176,7 @@ function MediaAttach_user_main()
         $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', $fetchArgs);
     }
 
-    pnModAPIFunc('MediaAttach', 'user', 'add_stylesheet_header');
+    PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
 
     $render = pnRender::getInstance('MediaAttach', false);
     // Categorization vars

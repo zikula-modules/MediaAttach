@@ -35,7 +35,7 @@ function MediaAttach_user_showfilelist($args)
         return LogUtil::registerPermissionError();
     }
 
-    pnModAPIFunc('MediaAttach', 'user', 'add_stylesheet_header');
+    PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
 
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', array('moduleFilter'   => $modname,
                                                                         'objectidFilter' => $objectid));
