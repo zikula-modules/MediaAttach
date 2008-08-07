@@ -4,7 +4,7 @@
  *
  * @version      $Id: getalluploads.php 114 2008-05-05 6:42:14Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,19 +15,20 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * get all uploaded files
  *
- * @param    int    $args['startnum']       First upload
- * @param    int    $args['numitems']       number of uploads
- * @param    string $args['sortby']         sorting field
- * @param    string $args['sortdir']        sorting direction
- * @param    array  $args['fileFilter']     optional filter by file ids
- * @param    array  $args['formatFilter']   optional filter by file formats
- * @param    array  $args['catFilter']      optional filter by category ids
- * @param    int    $args['userFilter']     optional filter by given user id
- * @param    string $args['moduleFilter']   optional filter by module name
- * @param    string $args['objectidFilter'] optional filter by object id
- * @param    string $args['searchfor']      optional search term string
- * @param    string $args['bool']           optional string 'AND' or 'OR'
- * @return   array                          array of uploads, or false on failure
+ * @param    startnum             int     offset of first file to fetch
+ * @param    numitems             int     number of files to fetch
+ * @param    sortby               string  sorting field
+ * @param    sortdir              string  sorting direction
+ * @param    assocKey             string  key field to use to build the associative index (optional) (default='')
+ * @param    fileFilter           array   optional filter by file ids
+ * @param    formatFilter         array   optional filter by file formats
+ * @param    catFilter            array   optional filter by category ids
+ * @param    userFilter           int     optional filter by given user id
+ * @param    moduleFilter         string  optional filter by module name
+ * @param    objectidFilter       string  optional filter by object id
+ * @param    searchfor            string  optional search term string
+ * @param    bool                 string  optional string 'AND' or 'OR'
+ * @return                        array of uploads, or false on failure
  */
 function MediaAttach_userapi_getalluploads($args)
 {
@@ -110,7 +111,7 @@ function MediaAttach_userapi_getalluploads($args)
 
     $orderBy .= ' ' . strtoupper($sortdir);
 
-    if ($assocKey != '' && !isset($filescolumn[$assocKey])) $assocKey = '';
+    if (!empty($assocKey) && !isset($filescolumn[$assocKey])) $assocKey = '';
 
     $files = DBUtil::selectExpandedObjectArray('ma_files', $joinArray, $where, $orderBy, $startnum-1, $numitems, $assocKey, $permFilter, $catFilter);
 

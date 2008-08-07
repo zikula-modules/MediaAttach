@@ -13,10 +13,10 @@
 /**
  * create a new file type
  *
- * @param    string    $args['extension']    extension of the format
- * @param    int       $args['image']        image of the format
- * @param    array     $args['groups']       groups of the format
- * @return   int                             File type ID on success, false on failure
+ * @param    extension    string  extension of the format
+ * @param    image        int     image of the format
+ * @param    groups       array   groups of the format
+ * @return   int          File type ID on success, false on failure
  */
 function MediaAttach_filetypesapi_createformat($args)
 {

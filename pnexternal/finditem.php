@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -23,8 +23,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * find files / items
  *
- * @param        int     did     definition id for selected module
- * @return       output          The definition page
+ * @param        did     int     definition id for selected module
+ * @return       output  The external item finder page
  */
 function MediaAttach_external_finditem($args)
 {

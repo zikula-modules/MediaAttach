@@ -10,11 +10,11 @@
  */
 
 
-/*
+/**
  * Deletes a file
  *
- * @param   string   file           file name
- * @return  bool                    true on success or false on failure
+ * @param   file     string   file name
+ * @return  bool     true on success or false on failure
  */
 function MediaAttach_filesystemapi_deletefile($args) {
     if (!isset($args['file'])) {

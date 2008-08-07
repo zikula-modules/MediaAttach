@@ -13,8 +13,8 @@
 /**
  * returns dirs and files of a given directory
  *
- * @param    string   directory      directory name
- * @return   array                   folder content
+ * @param    directory     string   directory name
+ * @return   array         folder content
  */
 function MediaAttach_filesystemapi_readdirectory($args) {
     if (!isset($args['directory'])) {

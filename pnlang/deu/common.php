@@ -21,7 +21,7 @@
  *
  * @version      $Id: common.php 223 2007-08-12 09:22:59Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

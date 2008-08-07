@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -18,10 +18,10 @@
 
 
 /**
- * display file information for an upload
+ * display file information for a file
  *
- * @param    int     fileid        upload id to display information for
- * @return   output                the data
+ * @param    fileid     int     file id to display information for
+ * @return   output     the data
  */
 function MediaAttach_fileinfo_showfileinfo($args)
 {

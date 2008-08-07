@@ -13,8 +13,8 @@
 /**
  * get allowed quota for a user
  *
- * @param    int    $args['uid']  id of user
- * @return   array                amount of quota
+ * @param    uid      int   id of user
+ * @return   array    amount of quota
  */
 function MediaAttach_quotaapi_getallowedquota($args)
 {
@@ -29,11 +29,11 @@ function MediaAttach_quotaapi_getallowedquota($args)
 
 
     $quotaJoin = array();
-    $quotaJoin[] = array('join_table'          =>  'group_membership',        // table to join with
-                         'join_field'          =>  'gid',          // field selected through LEFT JOIN
-                         'object_field_name'   =>  'qguid2',          // fieldname in the resulting object
-                         'compare_field_table' =>  'qguid',              // field to join on from main table
-                         'compare_field_join'  =>  'gid');           // field to join on from the join table
+    $quotaJoin[] = array('join_table'          =>  'group_membership', // table to join with
+                         'join_field'          =>  'gid',              // field selected through LEFT JOIN
+                         'object_field_name'   =>  'qguid2',           // fieldname in the resulting object
+                         'compare_field_table' =>  'qguid',            // field to join on from main table
+                         'compare_field_join'  =>  'gid');             // field to join on from the join table
 
     $pntables = pnDBGetTables();
     $gmcolumn  = $pntables['group_membership_column'];

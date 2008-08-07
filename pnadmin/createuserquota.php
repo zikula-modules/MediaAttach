@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,9 +15,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * Create an user quota
  *
- * @param    int       uid          (optional) the user id
- * @param    string    uname        (optional) the user name
- * @param    int       amount       the amount of the user quota
+ * @param    uid          int       (optional) the user id
+ * @param    uname        string    (optional) the user name
+ * @param    amount       int       the amount of the user quota
  */
 function MediaAttach_admin_createuserquota($args)
 {

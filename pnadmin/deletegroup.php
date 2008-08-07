@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,9 +15,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * delete a group
  *
- * @param     int     gid            the id of the group to be modified
- * @param     int     objectid       generic object id mapped onto gid if present
- * @param     bool    confirmation   confirmation that this group can be deleted
+ * @param     gid            int     the id of the group to be modified
+ * @param     objectid       int     generic object id mapped onto gid if present
+ * @param     confirmation   bool    confirmation that this group can be deleted
  */
 function MediaAttach_admin_deletegroup($args)
 {

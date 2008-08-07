@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,9 +15,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * Create a file type
  *
- * @param   string    extension    the extension of the format to be created
- * @param   string    image        the image of the format to be created
- * @param   array     groups       the groups of the format
+ * @param   extension    string    the extension of the format to be created
+ * @param   image        string    the image of the format to be created
+ * @param   groups       array     the groups of the format
  */
 function MediaAttach_admin_createformat($args)
 {

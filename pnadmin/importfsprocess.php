@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -17,11 +17,11 @@ Loader::requireOnce('modules/MediaAttach/common_mimetypes.php');
 /**
  * starts import from a server directory
  *
- * @param    string   curd                current directory
- * @param    array    fileX               file x selected? (X = 1,2,3,...n)
- * @param    string   titleX              title (if any) (X = 1,2,3,...n)
- * @param    string   descriptionX        description (if any) (X = 1,2,3,...n)
- * @param    int      numfiles            number of files available ( = n)
+ * @param    curd                string   current directory
+ * @param    fileX               array    file x selected? (X = 1,2,3,...n)
+ * @param    titleX              string   title (if any) (X = 1,2,3,...n)
+ * @param    descriptionX        string   description (if any) (X = 1,2,3,...n)
+ * @param    numfiles            int      number of files available ( = n)
  */
 function MediaAttach_admin_importfsprocess($args)
 {

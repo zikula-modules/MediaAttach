@@ -4,7 +4,7 @@
  *
  * @version      $Id: countuploads.php 22 2008-02-23 21:30:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,15 +15,15 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * get the amount of all uploaded files
  *
- * @param    string $args['fileFilter']     optional filter by file id
- * @param    string $args['formatFilter']   optional filter by file format
- * @param    string $args['catFilter']      optional filter by category
- * @param    int    $args['userFilter']     optional filter by given user id
- * @param    string $args['moduleFilter']   optional filter by module name
- * @param    string $args['objectidFilter'] optional filter by object id
- * @param    string $args['searchfor']      optional search term string
- * @param    string $args['bool']           optional string 'AND' or 'OR'
- * @return   int       upload count
+ * @param    fileFilter      string    optional filter by file id
+ * @param    formatFilter    string    optional filter by file format
+ * @param    catFilter       string    optional filter by category
+ * @param    userFilter      int       optional filter by given user id
+ * @param    moduleFilter    string    optional filter by module name
+ * @param    objectidFilter  string    optional filter by object id
+ * @param    searchfor       string    optional search term string
+ * @param    bool            string    optional string 'AND' or 'OR'
+ * @return   int             upload count
  */
 function MediaAttach_userapi_countuploads($args)
 {

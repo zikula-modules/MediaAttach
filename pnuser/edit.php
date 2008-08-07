@@ -4,7 +4,7 @@
  *
  * @version      $Id: edit.php 59 2008-03-02 09:57:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,10 +15,10 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * edit an upload
  *
- * @param    int      fileid     the id of the upload file to be modified
- * @param    int      objectid   generic object id mapped onto fileid if present
- * @param    string   backurl    url to return to
- * @return   output              the modification page
+ * @param    fileid     int      the id of the upload file to be modified
+ * @param    objectid   int      generic object id mapped onto fileid if present
+ * @param    backurl    string   url to return to
+ * @return   output     the modification page
  */
 function MediaAttach_user_edit($args)
 {

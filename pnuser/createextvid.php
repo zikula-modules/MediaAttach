@@ -4,7 +4,7 @@
  *
  * @version      $Id: createextvid.php 59 2008-03-02 09:57:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -21,9 +21,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  * It can be called by other modules like pnForum if they
  * want to integrate upload functionality during a create process.
  *
- * @param   string   MediaAttach_videourl       URL of video page
- * @param   string   MediaAttach_objectid       ID of the item the upload is for (taken from HTTP put)
- * @param   string   MediaAttach_redirect       URL to return to (taken from HTTP put)
+ * @param   MediaAttach_videourl    string   URL of video page
+ * @param   MediaAttach_objectid    string   ID of the item the upload is for (taken from HTTP put)
+ * @param   MediaAttach_redirect    string   URL to return to (taken from HTTP put)
  */
 function MediaAttach_user_createextvid($args)
 {
@@ -161,14 +161,14 @@ function _maGrabPageInfo($pageContent, $searchPattern)
 /**
  * outsourced part of the create function - the real upload functionality
  *
- * @param    array   file              the file array
- * @param    string  title             title field
- * @param    string  description       description field
- * @param    array   categories        category array
- * @param    string  modname           the current module name
- * @param    string  objectid          the object id
- * @param    string  url               redirect url for db save
- * @param    array   definition        definition for the current module
+ * @param    file           array    the file array
+ * @param    title          string   title field
+ * @param    description    string   description field
+ * @param    categories     array    category array
+ * @param    modname        string   the current module name
+ * @param    objectid       string   the object id
+ * @param    url            string   redirect url for db save
+ * @param    definition     array    definition for the current module
  */
 function MediaAttach_user_addExternalVideo($file, $title, $description, $categories, $modname, $objectid, $url, $definition)
 {

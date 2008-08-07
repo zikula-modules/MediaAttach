@@ -13,8 +13,8 @@
 /**
  * retrieve file information
  *
- * @param    array    $args['file']         the file array
- * @return   array                          file information array
+ * @param    file     array    the file array
+ * @return   array    file information array
  */
 function MediaAttach_fileinfoapi_retrievefileinfo($args)
 {

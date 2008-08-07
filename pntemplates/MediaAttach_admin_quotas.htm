@@ -20,7 +20,7 @@
             <input type="text" id="MediaAttach_amountg<!--[$currentgroupnum]-->" name="amountg<!--[$currentgroupnum]-->" maxlength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_MB"]--><br />
         <!--[/foreach]-->
         <br />
-        <input type="hidden" name="anzgroups" value="<!--[$currentgroupnum]-->" />
+        <input type="hidden" name="numgroups" value="<!--[$currentgroupnum]-->" />
 
         <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_QUOTASUPDATE"]-->" class="maright" />
     </fieldset>
@@ -42,7 +42,7 @@
                 <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteuserquota" uid=$currentquota.uid]-->" title="<!--[pnml name="_DELETE"]-->"><!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" alt="_DELETE" altml=true]--></a><br />
             <!--[/foreach]-->
             <br />
-            <input type="hidden" name="anzusers" value="<!--[$currentusernum]-->" />
+            <input type="hidden" name="numusers" value="<!--[$currentusernum]-->" />
 
             <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_QUOTASUPDATE"]-->" class="maright" />
         <!--[/if]-->

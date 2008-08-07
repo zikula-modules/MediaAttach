@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -16,11 +16,11 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * display one file in a separate template
  *
- * @param    int     fileid        file id to show
- * @param    string  displaymode   link or embed
- * @param    string  floatmode     none, left or right
- * @param    int     thumbnr       thumbnail number: 1..x (optional, default = modvar setting)
- * @return   output                the data
+ * @param    fileid        int     file id to show
+ * @param    displaymode   string  link or embed
+ * @param    floatmode     string  none, left or right
+ * @param    thumbnr       int     thumbnail number: 1..x (optional, default = modvar setting)
+ * @return   output        the data
  */
 function MediaAttach_external_display($args)
 {

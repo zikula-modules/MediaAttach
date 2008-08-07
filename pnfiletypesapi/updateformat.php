@@ -13,10 +13,10 @@
 /**
  * update a filetype
  *
- * @param    int       $args['fid']          the ID of the format
- * @param    int       $args['image']        image of the format
- * @param    array     $args['groups']       groups of the format
- * @return   bool                            true on success, false on failure
+ * @param    fid          int    the ID of the format
+ * @param    image        int    image of the format
+ * @param    groups       array  groups of the format
+ * @return   bool         true on success, false on failure
  */
 function MediaAttach_filetypesapi_updateformat($args)
 {

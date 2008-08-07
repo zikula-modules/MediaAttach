@@ -13,8 +13,8 @@
 /**
  * get all groups of a format
  *
- * @param    int    $args['fid']  id of file type
- * @return   array                group array, or false on failure
+ * @param    fid    int    id of file type
+ * @return   array  group array, or false on failure
  */
 function MediaAttach_filetypesapi_getformatgroups($args)
 {

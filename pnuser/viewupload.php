@@ -4,7 +4,7 @@
  *
  * @version      $Id: viewupload.php 114 2008-05-05 06:24:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,8 +15,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * display the upload formular
  *
- * @param    int      objectid     ID of the item to refer to
- * @return   output                the uploads
+ * @param    objectid     int      ID of the item to refer to
+ * @return   output       upload form
  */
 function MediaAttach_user_viewupload($args)
 {

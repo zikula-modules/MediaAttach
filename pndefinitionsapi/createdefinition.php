@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,17 +13,17 @@
 /**
  * create a new definition
  *
- * @param    string    $args['modname']         module name of the definition
- * @param    array     $args['groups']          file group of the definition
- * @param    int       $args['displayfiles']    display files 0/1
- * @param    int       $args['sendmails']       send mails 0/1
- * @param    string    $args['recipient']       mail address
- * @param    int       $args['maxsize']         maximum file size in bytes
- * @param    int       $args['downloadmode']    0/1 physical/inline
- * @param    int       $args['naming']          0/1/2
- * @param    string    $args['namingprefix']    prefix
- * @param    int       $args['numfiles']        number of files during an upload
- * @return   int                                File type ID on success, false on failure
+ * @param    modname         string    module name of the definition
+ * @param    groups          array     file group of the definition
+ * @param    displayfiles    int       display files 0/1
+ * @param    sendmails       int       send mails 0/1
+ * @param    recipient       string    mail address
+ * @param    maxsize         int       maximum file size in bytes
+ * @param    downloadmode    int       0/1 physical/inline
+ * @param    naming          int       0/1/2
+ * @param    namingprefix    string    prefix
+ * @param    numfiles        int       number of files during an upload
+ * @return   int             definition ID on success, false on failure
  */
 function MediaAttach_definitionsapi_createdefinition($args)
 {

@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,9 +15,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * delete file type
  *
- * @param     int     fid            the id of the file format to be deleted
- * @param     int     objectid       generic object id mapped onto fid if present
- * @param     bool    confirmation   confirmation that this file type can be deleted
+ * @param     fid            int     the id of the file format to be deleted
+ * @param     objectid       int     generic object id mapped onto fid if present
+ * @param     confirmation   bool    confirmation that this file type can be deleted
  */
 function MediaAttach_admin_deleteformat($args)
 {

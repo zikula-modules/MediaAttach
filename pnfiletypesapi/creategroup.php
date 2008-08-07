@@ -13,11 +13,11 @@
 /**
  * create a new group
  *
- * @param    string    $args['groupname']    name of the group
- * @param    string    $args['directory']    directory of the group
- * @param    int       $args['image']        image of the group
- * @param    array     $args['formats']      formats of the group
- * @return   int                             File type ID on success, false on failure
+ * @param    groupname    string    name of the group
+ * @param    directory    string    directory of the group
+ * @param    image        int       image of the group
+ * @param    formats      array     formats of the group
+ * @return   int          File type ID on success, false on failure
  */
 function MediaAttach_filetypesapi_creategroup($args)
 {

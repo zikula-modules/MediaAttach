@@ -13,8 +13,8 @@
 /**
  * get a specific format
  *
- * @param    int     $args['fid']  id of file type to get
- * @return   array                 format array
+ * @param    fid    int    id of file type to get
+ * @return   array  format array
  */
 function MediaAttach_filetypesapi_getformat($args)
 {

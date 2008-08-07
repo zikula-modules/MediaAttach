@@ -4,7 +4,7 @@
  *
  * @version      $Id: common.php 110 2008-04-19 9:17:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -69,10 +69,10 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
 /**
  * display a given file size in a readable format
  *
- * @param        string      size         file size in bytes
- * @param        boolean     nodesc       if set to true the description will not be appended
- * @param        boolean     onlydesc     if set to true only the description will be returned
- * @return       string      file size in a readable form
+ * @param    size      string      file size in bytes
+ * @param    nodesc    boolean     if set to true the description will not be appended
+ * @param    onlydesc  boolean     if set to true only the description will be returned
+ * @return   string  file size in a readable form
  */
 function _maIntCalcReadableFilesize($size, $nodesc = false, $onlydesc = false)
 {
@@ -113,9 +113,9 @@ function _maIntCalcReadableFilesize($size, $nodesc = false, $onlydesc = false)
 /**
  * perform some checks and modifications on a given file object
  *
- * @param      array    file           input object
- * @param      string   currentuser      current username
- * @param      bool     ownHandling      shall users modify their own files
+ * @param    file          array    input object
+ * @param    currentUser   string   current username
+ * @param    ownHandling   bool     shall users modify their own files
  * @return     array    modified object
  */
 function _maIntPrepFileForTemplate($file, $currentUser, $ownHandling)
@@ -157,15 +157,15 @@ function _maIntMBToByte($amount) {
 /**
  * create appropriate WHERE string
  *
- * @param    string $args['filefilter']     optional filter by file id
- * @param    string $args['formatfilter']   optional filter by file format
- * @param    int    $args['userfilter']     optional filter by given user id
- * @param    string $args['modulefilter']   optional filter by module name
- * @param    string $args['objectidfilter'] optional filter by object id
- * @param    string $args['searchfor']      optional search term string
- * @param    string $args['bool']           optional string 'AND' or 'OR'
- * @param    bool   $args['noexpand']       not used within selectExpanded* (default: false)
- * @return   string                         built string for $where
+ * @param    fileFilter      string  optional filter by file id
+ * @param    formatFilter    string  optional filter by file format
+ * @param    userFilter      int     optional filter by given user id
+ * @param    moduleFilter    string  optional filter by module name
+ * @param    objectidFilter  string  optional filter by object id
+ * @param    searchfor       string  optional search term string
+ * @param    bool            string  optional string 'AND' or 'OR'
+ * @param    noexpand        bool    not used within selectExpanded* (default: false)
+ * @return   string        built string for $where
  */
 function _maIntBuildWhereString($args)
 {
@@ -177,13 +177,12 @@ function _maIntBuildWhereString($args)
     $filescolumn = $pntables['ma_files_column'];
     $formatscolumn = $pntables['ma_formats_column'];
 
-    if (isset($args['noexpand']) && $args['noexpand'] == true) {
-        $prefix = '';
-    } else {
+    $prefix = '';
+    if (!isset($args['noexpand']) || $args['noexpand'] != true) {
         $prefix = 'tbl.';
     }
 
-    if ($args['fileFilter'] != '') {
+    if (!empty($args['fileFilter'])) {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['fileid'] . ' IN (';
         $firstone = 1;
@@ -195,7 +194,7 @@ function _maIntBuildWhereString($args)
         $where .= ')';
     }
 
-    if ($args['formatFilter'] != '') {
+    if (!empty($args['formatFilter'])) {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['extension'] . ' IN (';
         $firstone = 1;
@@ -207,12 +206,12 @@ function _maIntBuildWhereString($args)
         $where .= ')';
     }
 
-    if ($args['userFilter'] != '') {
+    if (!empty($args['userFilter'])) {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['uid'] . ' = ' . (int) DataUtil::formatForStore($args['userFilter']);
     }
 
-    if ($args['moduleFilter'] != '') {
+    if (!empty($args['moduleFilter'])) {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['modname'] . " = '" . DataUtil::formatForStore($args['moduleFilter']) . "'";
     } elseif ($args['moduleFilter'] != false) {
@@ -222,18 +221,18 @@ function _maIntBuildWhereString($args)
 
         if ($currentMod != 'MediaAttach' && $currentMod != 'Profile' && $currentMod != 'content'
             || ($currentMod == 'MediaAttach' && $currentType != 'account' && $currentType != 'ajax' && $currentType != 'external'
-            && ($currentFunc != 'view' && $currentFunc != 'main' && $currentFunc != '' && $currentFunc != 'getfilelist'))) {
+            && ($currentFunc != 'view' && $currentFunc != 'main' && !empty($currentFunc) && $currentFunc != 'getfilelist'))) {
                 if (!empty($where)) $where .= ' AND ';
                 $where .= $prefix . $filescolumn['modname'] . " != 'MediaAttach'";
         }
     }
 
-    if ($args['objectidFilter'] != '') {
+    if (!empty($args['objectidFilter'])) {
         if (!empty($where)) $where .= ' AND ';
         $where .= $prefix . $filescolumn['objectid'] . " = '" . DataUtil::formatForStore($args['objectidFilter']) . "'";
     }
 
-    if ($args['searchfor'] != '') {
+    if (!empty($args['searchfor'])) {
         $args['searchfor'] = DataUtil::formatForStore(trim($args['searchfor']));
 
         if (!empty($where)) $where .= ' AND ';

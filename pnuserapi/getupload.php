@@ -4,7 +4,7 @@
  *
  * @version      $Id: getupload.php 39 2008-03-01 02:32:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,8 +13,8 @@
 /**
  * get a specific upload
  *
- * @param    int   $args['fileid']  id of file to get
- * @return   array                  file array, or false on failure
+ * @param    fileid     int    id of file to get
+ * @return   array      file array, or false on failure
  */
 function MediaAttach_userapi_getupload($args)
 {

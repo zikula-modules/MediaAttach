@@ -4,7 +4,7 @@
  *
  * @version      $Id: pnadminapi.php 57 2008-03-02 08:54:43Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

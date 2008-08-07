@@ -13,10 +13,10 @@
 /**
  * create a new quota item
  *
- * @param    int    $args['qtype']     0/1 (group/user)
- * @param    int    $args['qguid']     gid/uid
- * @param    int    $args['qamount']   amount in bytes
- * @return   int                       quota id on success, false on failure
+ * @param    qtype     int     0/1 (group/user)
+ * @param    qguid     int     gid/uid
+ * @param    qamount   int     amount in bytes
+ * @return   int       quota id on success, false on failure
  */
 function MediaAttach_quotaapi_createquota($args)
 {

@@ -13,9 +13,9 @@
 /**
  * create a new definition - group relation
  *
- * @param    int    $args['did']    definition
- * @param    int    $args['gid']    group
- * @return   int                    true on success, false on failure
+ * @param    did    int    definition id
+ * @param    gid    int    group id
+ * @return   int    true on success, false on failure
  */
 function MediaAttach_filetypesapi_createdefgroup($args)
 {

@@ -4,7 +4,7 @@
  *
  * @version      $Id: createupload.php 59 2008-03-02 09:57:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -21,12 +21,12 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  * It can be called by other modules like pnForum if they
  * want to integrate upload functionality during a create process.
  *
- * @param   string   MediaAttach_modname        the name of the module the upload is for (taken from HTTP put)
- * @param   string   MediaAttach_objectid       ID of the item the upload is for (taken from HTTP put)
- * @param   string   MediaAttach_redirect       URL to return to (taken from HTTP put)
- * @param   array    MediaAttach_uploadfileX    the upload (taken from HTTP put) (X = 1,2,3,...n)
- * @param   string   MediaAttach_titleX         The title of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
- * @param   string   MediaAttach_descriptionX   The description of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_modname        string   the name of the module the upload is for (taken from HTTP put)
+ * @param   MediaAttach_objectid       string   ID of the item the upload is for (taken from HTTP put)
+ * @param   MediaAttach_redirect       string   URL to return to (taken from HTTP put)
+ * @param   MediaAttach_uploadfileX    array    the upload (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_titleX         string   The title of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_descriptionX   string   The description of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
  */
 function MediaAttach_user_createupload($args)
 {
@@ -151,10 +151,10 @@ function MediaAttach_user_createupload($args)
 /**
  * returns dependant from if it was called by create hook or normal create form
  *
- * @param    int      hookcall            called  by hook (0 or 1)
- * @param    string   redirect            url for redirect (normal call)
- * @param    array    extrainfo           extrainfo to return (hook call)
- * @param    string   error               error message to set (optional)
+ * @param    hookcall            int      called  by hook (0 or 1)
+ * @param    redirect            string   url for redirect (normal call)
+ * @param    extrainfo           array    extrainfo to return (hook call)
+ * @param    error               string   error message to set (optional)
  */
 function MediaAttach_user_returnFromCreate($hookcall, $redirect, $extrainfo, $error = '')
 {
@@ -172,16 +172,16 @@ function MediaAttach_user_returnFromCreate($hookcall, $redirect, $extrainfo, $er
 /**
  * outsourced part of the create function - the real upload functionality
  *
- * @param    int     nr                file index (for multiple files)
- * @param    array   file              the file array
- * @param    string  title             title field
- * @param    string  description       description field
- * @param    array   categories        category array
- * @param    string  modname           the current module name
- * @param    string  objectid          the object id
- * @param    string  url               redirect url for db save
- * @param    array   definition        definition for the current module
- * @param    int      hookcall            called  by hook (0 or 1)
+ * @param    nr                int     file index (for multiple files)
+ * @param    file              array   the file array
+ * @param    title             string  title field
+ * @param    description       string  description field
+ * @param    categories        array   category array
+ * @param    modname           string  the current module name
+ * @param    objectid          string  the object id
+ * @param    url               string  redirect url for db save
+ * @param    definition        array   definition for the current module
+ * @param    hookcall          int     called  by hook (0 or 1)
  */
 function MediaAttach_user_performsingleupload($nr, $file, $title, $description, $categories, $modname, $objectid, $url, $definition, $hookcall)
 {

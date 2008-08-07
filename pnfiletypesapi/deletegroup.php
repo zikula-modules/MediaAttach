@@ -13,8 +13,8 @@
 /**
  * delete a group
  *
- * @param    int      $args['gid']   ID of the group
- * @return   bool                    true on success, false on failure
+ * @param    gid   int    ID of the group
+ * @return   bool  true on success, false on failure
  */
 function MediaAttach_filetypesapi_deletegroup($args)
 {

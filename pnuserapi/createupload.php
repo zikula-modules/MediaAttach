@@ -4,7 +4,7 @@
  *
  * @version      $Id: createupload.php 42 2008-03-01 14:59:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -16,19 +16,19 @@
  * This function creates a new upload and returns its ID.
  * Access checking is done.
  *
- * @param    string    $args['modname']     Name of the module to create upload for
- * @param    int       $args['objectid']    ID of the item to create upload for
- * @param    int       $args['definition']  The definition id of the upload
- * @param    int       $args['uid']         The user id of the uploader
- * @param    string    $args['title']       The title of the upload
- * @param    string    $args['desc']        The description id of the upload
- * @param    string    $args['extension']   The extension of the upload file
- * @param    string    $args['mimetype']    The mimetype of the upload
- * @param    string    $args['filename']    The original file name of the upload file
- * @param    int       $args['filesize']    The file size of the upload file
- * @param    string    $args['url']         The url to redirect to
- * @param    array     $args['__CATEGORIES__']   categories array
- * @return   integer                        ID of new upload file on success, false on failure
+ * @param    modname         string  Name of the module to create upload for
+ * @param    objectid        int     ID of the item to create upload for
+ * @param    definition      int     The definition id of the upload
+ * @param    uid             int     The uploader's user id
+ * @param    title           string  The title of the upload
+ * @param    desc            string  The description of the upload
+ * @param    extension       string  The extension of the upload file
+ * @param    mimetype        string  The mimetype of the upload
+ * @param    filename        string  The original file name of the upload file
+ * @param    filesize        int     The file size of the upload file
+ * @param    url             string  The url to redirect to
+ * @param    __CATEGORIES__  array   categories array
+ * @return   integer         ID of new upload file on success, false on failure
  */
 function MediaAttach_userapi_createupload($args)
 {

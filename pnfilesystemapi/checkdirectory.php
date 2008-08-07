@@ -10,11 +10,11 @@
  */
 
 
-/*
+/**
  * Checks if the given directory exists and if it is writable
  *
- * @param   string   directory      directory name
- * @return  bool                    true on success or false on failure
+ * @param   directory      string   directory name
+ * @return  bool           true on success or false on failure
  */
 function MediaAttach_filesystemapi_checkdirectory($args) {
     if (!isset($args['directory'])) {

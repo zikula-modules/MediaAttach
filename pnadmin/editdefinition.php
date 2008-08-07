@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,9 +15,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * edit a definition
  *
- * @param     int     did          the id of the definition to be modified
- * @param     int     objectid     generic object id mapped onto did if present
- * @return    output               the modification page
+ * @param     did          int     the id of the definition to be modified
+ * @param     objectid     int     generic object id mapped onto did if present
+ * @return    output       the modification page
  */
 function MediaAttach_admin_editdefinition($args)
 {

@@ -13,8 +13,8 @@
 /**
  * get a specific group
  *
- * @param    int     $args['gid']  id of group to get
- * @return   array                 group array
+ * @param    gid    int    id of group to get
+ * @return   array  group array
  */
 function MediaAttach_filetypesapi_getgroup($args)
 {

@@ -8,7 +8,7 @@
  *
  * @version      $Id: pnversion.php 1 2007-11-17 12:08:45Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2007 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

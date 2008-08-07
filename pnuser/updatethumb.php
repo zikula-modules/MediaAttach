@@ -4,7 +4,7 @@
  *
  * @version      $Id: updatethumb.php 97 2008-03-10 15:02:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -16,16 +16,16 @@ Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
 /**
  * Recreate a thumbnail following specific parameters
  *
- * @param    int      fileid     the id of the file to be modified
- * @param    int      objectid   generic object id mapped onto fileid if present
- * @param    int      thumbnr    thumbnail number: 1..x (optional, default to modvar setting)
- * @param    int      x1         x1 coordinate
- * @param    int      y1         y1 coordinate
- * @param    int      x2         x2 coordinate
- * @param    int      y2         y2 coordinate
- * @param    int      width      dimension width
- * @param    int      height     dimension height
- * @param    string   backurl    url to return to
+ * @param    fileid     int      the id of the file to be modified
+ * @param    objectid   int      generic object id mapped onto fileid if present
+ * @param    thumbnr    int      thumbnail number: 1..x (optional, default to modvar setting)
+ * @param    x1         int      x1 coordinate
+ * @param    y1         int      y1 coordinate
+ * @param    x2         int      x2 coordinate
+ * @param    y2         int      y2 coordinate
+ * @param    width      int      dimension width
+ * @param    height     int      dimension height
+ * @param    backurl    string   url to return to
  */
 function MediaAttach_user_updatethumb($args)
 {

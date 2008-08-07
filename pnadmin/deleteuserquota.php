@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,7 +15,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * delete user quota
  *
- * @param    int    uid            the id of the user
+ * @param    uid     int    the id of the user
  */
 function MediaAttach_admin_deleteuserquota($args)
 {

@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,16 +15,16 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * Create a definition
  *
- * @param    string   modname             module name of the definition
- * @param    array    groups              file groups of the definition
- * @param    int      displayfiles        display files 0/1/2
- * @param    int      sendmails           send mails 0/1
- * @param    string   recipient           mail address
- * @param    int      maxsize             maximum file size
- * @param    int      downloadmode        0/1 physical/inline
- * @param    int      naming              0/1/2
- * @param    string   namingprefix        counter prefix
- * @param    int      numfiles            number of files during an upload
+ * @param    modname             string   module name of the definition
+ * @param    groups              array    file groups of the definition
+ * @param    displayfiles        int      display files 0/1/2
+ * @param    sendmails           int      send mails 0/1
+ * @param    recipient           string   mail address
+ * @param    maxsize             int      maximum file size
+ * @param    downloadmode        int      0/1 physical/inline
+ * @param    naming              int      0/1/2
+ * @param    namingprefix        string   counter prefix
+ * @param    numfiles            int      number of files during an upload
  */
 function MediaAttach_admin_createdefinition($args)
 {

@@ -13,8 +13,8 @@
 /**
  * delete a file type
  *
- * @param    int    $args['fid']   ID of the format
- * @return   bool                  true on success, false on failure
+ * @param    fid   int    ID of the format
+ * @return   bool  true on success, false on failure
  */
 function MediaAttach_filetypesapi_deleteformat($args)
 {

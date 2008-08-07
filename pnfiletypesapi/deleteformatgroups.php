@@ -13,9 +13,9 @@
 /**
  * delete relations of either a format or a group
  *
- * @param    int    $args['fid']    (optional) format
- * @param    int    $args['gid']    (optional) group
- * @return   int                    true on success, false on failure
+ * @param    fid    int    (optional) format
+ * @param    gid    int    (optional) group
+ * @return   int    true on success, false on failure
  */
 function MediaAttach_filetypesapi_deleteformatgroups($args)
 {

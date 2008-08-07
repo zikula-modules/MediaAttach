@@ -4,7 +4,7 @@
  *
  * @version      $Id: getCategories.php 114 2008-05-05 06:42:14Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -41,7 +41,7 @@ function MediaAttach_catapi_orderCategories($args)
         $index = 0;
         $property = '';
 
-        // Check the top level categories
+        // check the top level categories
         $ak = array_keys($array);
         foreach ($ak as $k) {
             $depth = StringUtil::countInstances($array[$k]['ipath_relative'], '/');
@@ -55,13 +55,13 @@ function MediaAttach_catapi_orderCategories($args)
             $index++;
         }
         $temp_array[] = $array[$top_id];
-        
-        // Add the childs to the parent
+
+        // add the childs to the parent
         $bottom_id = $top_id+1;
         while ($bottom_id <= $index) {
             $depth = StringUtil::countInstances($array[$bottom_id]['ipath_relative'], '/');
             if ($depth == 0) {
-                // Another top level category reached
+                // another top level category reached
                 break;
             }
             $temp_array[] = $array[$bottom_id];

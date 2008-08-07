@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,8 +15,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * Modify the group quotas
  *
- * @param    int     anzgroups    the number of groups
- * @param    int     amountx      the amount of the quota of group x (x = 1 to anzgroups)
+ * @param    numgroups    int     the number of groups
+ * @param    amountx      int     the amount of the quota of group x (x = 1 to numgroups)
  */
 function MediaAttach_admin_updategroupquotas($args)
 {
@@ -24,7 +24,7 @@ function MediaAttach_admin_updategroupquotas($args)
         return LogUtil::registerPermissionError();
     }
 
-    $anzgroups = (int) FormUtil::getPassedValue('anzgroups', isset($args['anzgroups']) ? $args['anzgroups'] : null, 'POST');
+    $numgroups = (int) FormUtil::getPassedValue('numgroups', isset($args['numgroups']) ? $args['numgroups'] : null, 'POST');
     unset($args);
 
     if (!SecurityUtil::confirmAuthKey()) {
@@ -37,7 +37,7 @@ function MediaAttach_admin_updategroupquotas($args)
         LogUtil::registerError(_UPDATEFAILED);
     }
 
-    for ($i = 1; $i <= $anzgroups; $i++){
+    for ($i = 1; $i <= $numgroups; $i++){
         $gid    = (int) FormUtil::getPassedValue('gid' . $i,     isset($args['gid'])          ? $args['gid']          : null, 'POST');
         $amount = (int) FormUtil::getPassedValue('amountg' . $i, isset($args['amountg' . $i]) ? $args['amountg' . $i] : null, 'POST');
 

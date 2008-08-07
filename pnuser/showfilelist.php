@@ -3,7 +3,8 @@
  * MediaAttach
  *
  * @version      $Id: edit.php 45 2008-03-01 04:40:48Z weckamc $
- * @link         http://www.guite.de
+ * @author       Axel Guckelsberger
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -14,8 +15,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * display a list of files
  *
- * @param    string   objectid     object id of current page item
- * @return   output                the data
+ * @param    objectid     string   object id of current page item
+ * @return   output       the data
  */
 function MediaAttach_user_showfilelist($args)
 {

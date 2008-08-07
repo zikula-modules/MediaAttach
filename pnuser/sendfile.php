@@ -4,7 +4,7 @@
  *
  * @version      $Id: display.php 22 2008-02-23 09:57:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,8 +15,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * send upload in a mail to a user
  *
- * @param    int    $fileid       upload id to send
- * @return   output               the confirmation
+ * @param    fileid    int   id of file to send
+ * @return   output    the confirmation
  */
 function MediaAttach_user_sendfile($args)
 {

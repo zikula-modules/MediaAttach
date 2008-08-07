@@ -4,7 +4,7 @@
  *
  * @version      $Id: getlastuploadbymodnameandobjectid.php 39 2008-03-01 02:32:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,9 +13,9 @@
 /**
  * get the last upload for a given modname / objectid pair
  *
- * @param    string   $args['modname']   name of current module
- * @param    int      $args['objectid']  current objectid
- * @return   array                  file array, or false on failure
+ * @param    modname   string   name of current module
+ * @param    objectid  int      current objectid
+ * @return   array     file array, or false on failure
  */
 function MediaAttach_userapi_getlastuploadbymodnameandobjectid($args)
 {

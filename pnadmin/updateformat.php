@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,11 +15,11 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * Modify the file type
  *
- * @param     int     fid          the id of the format to be modified
- * @param     int     objectid     generic object id mapped onto fid if present
- * @param     string  extension    the extension of the format to be updated
- * @param     string  image        the image of the format to be updated
- * @param     array   groups       the groups of the format
+ * @param     fid          int     the id of the format to be modified
+ * @param     objectid     int     generic object id mapped onto fid if present
+ * @param     extension    string  the extension of the format to be updated
+ * @param     image        string  the image of the format to be updated
+ * @param     groups       array   the groups of the format
  */
 function MediaAttach_admin_updateformat($args)
 {

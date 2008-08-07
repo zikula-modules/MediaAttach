@@ -4,7 +4,7 @@
  *
  * @version      $Id: mediaattach.php 114 2008-05-05 6:24:14Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -14,8 +14,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 
 /**
  * replace a given MediaAttach needle
- * @param $args['nid'] needle id
- * @return string     result      replaced value for the needle
+ * @param  nid      int   needle id
+ * @return string   replaced value for the needle
  */
 function MediaAttach_needleapi_mediaattach($args)
 {

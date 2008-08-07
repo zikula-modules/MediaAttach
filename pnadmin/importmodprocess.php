@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -17,7 +17,7 @@ Loader::requireOnce('modules/MediaAttach/common_mimetypes.php');
 /**
  * starts import from another module
  *
- * @param  string      importmod     name of module to import from
+ * @param  importmod     string      name of module to import from
  */
 function MediaAttach_admin_importmodprocess($args)
 {

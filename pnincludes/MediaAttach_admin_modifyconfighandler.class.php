@@ -4,7 +4,7 @@
  *
  * @version      $Id: MediaAttach_admin_modifyconfighandler.class.php 218 2007-08-10 11:41:45Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

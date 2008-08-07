@@ -4,7 +4,7 @@
  *
  * @version      $Id: pninit.php 96 2008-03-09 10:49:43Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2007 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

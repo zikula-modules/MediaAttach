@@ -13,8 +13,8 @@
 /**
  * delete all quotas
  *
- * @param    int    $args['qtype']   0 = groups, 1 = user
- * @return   int                     true on success, false on failure
+ * @param    qtype      int     0 = groups, 1 = user
+ * @return   int        true on success, false on failure
  */
 function MediaAttach_quotaapi_deleteallquotas($args)
 {

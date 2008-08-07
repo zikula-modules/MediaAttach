@@ -13,12 +13,12 @@
 /**
  * update a group
  *
- * @param    int       $args['gid']          the ID of the group
- * @param    string    $args['groupname']    name of the group
- * @param    string    $args['directory']    directory of the group
- * @param    int       $args['image']        image of the group
- * @param    array     $args['formats']      formats of the group
- * @return   bool                            true on success, false on failure
+ * @param    gid          int     the ID of the group
+ * @param    groupname    string  name of the group
+ * @param    directory    string  directory of the group
+ * @param    image        int     image of the group
+ * @param    formats      array   formats of the group
+ * @return   bool         true on success, false on failure
  */
 function MediaAttach_filetypesapi_updategroup($args)
 {

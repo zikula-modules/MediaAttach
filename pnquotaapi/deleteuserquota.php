@@ -13,8 +13,8 @@
 /**
  * delete one user quota
  *
- * @param    int     uid     uid of user
- * @return   int             true on success, false on failure
+ * @param    uid     int     uid of user
+ * @return   int     true on success, false on failure
  */
 function MediaAttach_quotaapi_deleteuserquota($args)
 {

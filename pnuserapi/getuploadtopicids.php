@@ -4,7 +4,7 @@
  *
  * @version      $Id: getuploadtopicids.php 22 2008-02-23 21:30:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,8 +13,8 @@
 /**
  * this method determines if uploads are existing for all entries in a given topic array (pnForum)
  *
- * @param    array    $args['topics']     the topics
- * @return   array                        array('id' => boolean) showing which object has uploads
+ * @param    topics       array        the topics
+ * @return   array        array('id' => boolean) showing which object has uploads
  */
 function MediaAttach_userapi_getuploadtopicids($args)
 {

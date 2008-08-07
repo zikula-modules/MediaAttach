@@ -4,7 +4,7 @@
  *
  * @version      $Id: common_mimetypes.php 100 2008-03-12 16:30:43Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

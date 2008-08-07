@@ -4,7 +4,7 @@
  *
  * @version      $Id: torrent.php 37 2008-02-29 20:39:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -18,8 +18,8 @@ Loader::requireOnce('modules/MediaAttach/pnincludes/File_Bittorrent2/MakeTorrent
 /**
  * display data of an upload
  *
- * @param    int     fileid        upload id to display data for
- * @return   output                the data
+ * @param    fileid      int     upload id to display data for
+ * @return   output      the data
  */
 function MediaAttach_user_torrent($args)
 {

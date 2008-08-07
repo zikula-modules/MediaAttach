@@ -4,7 +4,7 @@
  *
  * @version      $Id: shrinkimage.php 22 2008-02-23 21:30:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -14,7 +14,7 @@
  * this method creates a shrinked copy of a given image file
  * based on implementation of the Avatar module
  *
- * @param    string    $imagefile          filepath to input image
+ * @param    imagefile    string    filepath to input image
  */
 function MediaAttach_userapi_shrinkimage($imagefile)
 {

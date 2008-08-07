@@ -13,9 +13,9 @@
 /**
  * create a new format - group relation
  *
- * @param    int    $args['fid']    format
- * @param    int    $args['gid']    group
- * @return   int                    true on success, false on failure
+ * @param    fid    int    format id
+ * @param    gid    int    group id
+ * @return   int    true on success, false on failure
  */
 function MediaAttach_filetypesapi_createformatgroup($args)
 {

@@ -13,8 +13,8 @@
 /**
  * get used quota for a user
  *
- * @param    int    $args['uid']  id of user
- * @return   array                amount of quota
+ * @param    uid      int   id of user
+ * @return   array    amount of quota
  */
 function MediaAttach_quotaapi_getusedquota($args)
 {

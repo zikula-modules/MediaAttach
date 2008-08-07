@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,8 +13,8 @@
 /**
  * get a specific definition
  *
- * @param    int     $args['did']  id of definition to get
- * @return   array                 definition array
+ * @param    did        int     id of definition to get
+ * @return   array      definition array
  */
 function MediaAttach_definitionsapi_getdefinition($args)
 {

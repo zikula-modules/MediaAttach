@@ -3,7 +3,8 @@
  * MediaAttach
  *
  * @version      $Id: download.php 96 2008-03-09 22:49:48Z weckamc $
- * @link         http://www.guite.de
+ * @author       Axel Guckelsberger
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,12 +16,12 @@ Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
 /**
  * display data of an upload
  *
- * @param    int     fileid        upload id to display data for (mandatory)
- * @param    int     inline        if set to 1 then inline else physical
- * @param    int     thumb         if set to 1 then the thumbnail image is being returned
- * @param    int     thumbraw      if set to 1 then the thumbnail filepath is being returned
- * @param    int     thumbnr       thumbnail number: 1..x (optional, default to modvar setting)
- * @return   output                the data
+ * @param    fileid        int     upload id to display data for (mandatory)
+ * @param    inline        int     if set to 1 then inline else physical
+ * @param    thumb         int     if set to 1 then the thumbnail image is being returned
+ * @param    thumbraw      int     if set to 1 then the thumbnail filepath is being returned
+ * @param    thumbnr       int     thumbnail number: 1..x (optional, default to modvar setting)
+ * @return   output        the data
  */
 function MediaAttach_user_download($args)
 {

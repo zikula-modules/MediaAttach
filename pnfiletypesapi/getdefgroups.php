@@ -13,8 +13,8 @@
 /**
  * get all groups of a definition
  *
- * @param    int    $args['did']  id of definition
- * @return   array                group array, or false on failure
+ * @param    did     int    id of definition
+ * @return   array   group array, or false on failure
  */
 function MediaAttach_filetypesapi_getdefgroups($args)
 {

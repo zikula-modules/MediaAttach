@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -20,9 +20,9 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  * It can be called by other modules like pnForum if they
  * want to integrate upload functionality during a create process.
  *
- * @param   array    MediaAttach_uploadfileX    the upload (taken from HTTP put) (X = 1,2,3,...n)
- * @param   string   MediaAttach_titleX         The title of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
- * @param   string   MediaAttach_descriptionX   The description of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_uploadfileX    array    the upload (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_titleX         string   The title of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
+ * @param   MediaAttach_descriptionX   string   The description of the upload (if any) (taken from HTTP put) (X = 1,2,3,...n)
  */
 function MediaAttach_admin_createupload($args)
 {

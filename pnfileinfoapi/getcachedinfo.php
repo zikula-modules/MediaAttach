@@ -13,8 +13,8 @@
 /**
  * get cached content
  *
- * @param        fileid       fileid of examined upload
- * @return       data array or false on failure
+ * @param   fileid       int   fileid of examined upload
+ * @return               data array or false on failure
  */
 function MediaAttach_fileinfoapi_getcachedinfo($args)
 {

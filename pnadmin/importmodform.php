@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -15,8 +15,8 @@ Loader::requireOnce('modules/MediaAttach/common.php');
 /**
  * form for import from another module
  *
- * @param    string   importmod     id of module to import from (optional)
- * @return       output       form template output
+ * @param    importmod     string   id of module to import from (optional)
+ * @return    output       form template output
  */
 function MediaAttach_admin_importmodform($args)
 {

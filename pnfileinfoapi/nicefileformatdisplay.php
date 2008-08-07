@@ -13,8 +13,8 @@
 /**
  * return string with enhanced file format string
  *
- * @param    array    $args['fileinfo']     the file information array
- * @return   string                         beauty format
+ * @param    fileinfo   array     the file information array
+ * @return   string     beauty formatted output
  */
 function MediaAttach_fileinfoapi_nicefileformatdisplay($args) {
     if (!isset($args['fileinfo']) || !is_array($args['fileinfo'])) {

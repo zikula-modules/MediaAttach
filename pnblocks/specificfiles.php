@@ -4,7 +4,7 @@
  *
  * @version      $Id: specificfiles.php 217 2007-08-09 20:28:42Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

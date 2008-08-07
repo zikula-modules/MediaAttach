@@ -4,7 +4,7 @@
  *
  * @version      $Id: update.php 22 2008-02-23 21:30:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,11 +13,11 @@
 /**
  * update a file
  *
- * @param    int      $args['fileid']       the ID of the file
- * @param    string   $args['title']        the file title
- * @param    string   $args['desc']         the file description
- * @param    array    $args['__CATEGORIES__']   categories array
- * @return   bool                           true on success, false on failure
+ * @param    fileid             int     the ID of the file
+ * @param    title              string  the file title
+ * @param    desc               string  the file description
+ * @param    __CATEGORIES__     array   categories array
+ * @return   bool               true on success, false on failure
  */
 function MediaAttach_userapi_update($args)
 {

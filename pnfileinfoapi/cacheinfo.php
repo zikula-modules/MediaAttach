@@ -13,8 +13,8 @@
 /**
  * cache given array
  *
- * @param        fileid       fileid of examined upload
- * @param        data         array with data to cache
+ * @param        fileid     int     fileid of examined upload
+ * @param        data       array   data to cache
  * @return       true
  */
 function MediaAttach_fileinfoapi_cacheinfo(&$args)

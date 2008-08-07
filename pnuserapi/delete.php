@@ -4,7 +4,7 @@
  *
  * @version      $Id: delete.php 22 2008-02-23 21:30:48Z weckamc $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,10 +13,10 @@
 /**
  * delete a file
  *
- * @param    int      $args['fileid']       the ID of the file
- * @param    int      $args['objectid']     the ID of the file (hook call)
- * @param    array    $args['extrainfo']    hook info (hook call)
- * @return   bool                           true on success, false on failure
+ * @param    fileid     int      the ID of the file
+ * @param    objectid   int      the ID of the file (hook call)
+ * @param    extrainfo  array    hook info (hook call)
+ * @return   bool       true on success, false on failure
  */
 function MediaAttach_userapi_delete($args)
 {

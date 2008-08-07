@@ -4,7 +4,7 @@
  *
  * @version      $Id: $
  * @author       Axel Guckelsberger
- * @link         http://www.guite.de
+ * @link         http://guite.de
  * @copyright    Copyright (C) 2008 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -13,8 +13,8 @@
 /**
  * get definition of the current module
  *
- * @param    string    $args['modname']   Name of the module to get upload definition for
- * @return   array                        the definition or false on failure
+ * @param    modname   string    Name of the module to get upload definition for
+ * @return   array     the definition or false on failure
  */
 function MediaAttach_definitionsapi_getmoduledefinition($args)
 {

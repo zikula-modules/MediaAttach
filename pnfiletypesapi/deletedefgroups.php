@@ -13,9 +13,9 @@
 /**
  * delete relations of either a definition or a group
  *
- * @param    int    $args['did']    (optional) definition
- * @param    int    $args['gid']    (optional) group
- * @return   int                    true on success, false on failure
+ * @param    did    int    (optional) definition
+ * @param    gid    int    (optional) group
+ * @return   int    true on success, false on failure
  */
 function MediaAttach_filetypesapi_deletedefgroups($args)
 {
