@@ -76,7 +76,7 @@ function MediaAttach_external_finditem($args)
     $cat_id = (int) FormUtil::getPassedValue('catid', 0, 'GET');
     $render->assign('catID', $cat_id);
     if ($cat_id != 0) {
-        $fetchArgs['catFilter'] = array($cat_id);
+        $fetchArgs['catFilter'] = array('Main' => $cat_id);
     }
 
     _maIntProcessFileList($render, 50, $fetchArgs);

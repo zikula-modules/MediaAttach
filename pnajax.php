@@ -158,7 +158,7 @@ function MediaAttach_ajax_getfilelist($args)
 
     $cat_id = (int) FormUtil::getPassedValue('catid', 0);
     if ($cat_id != 0) {
-        $fetchArgs['catFilter'] = array($cat_id);
+        $fetchArgs['catFilter'] = array('Main' => $cat_id);
     }
 
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', $fetchArgs);

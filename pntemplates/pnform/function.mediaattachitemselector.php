@@ -60,8 +60,6 @@ class mediaattachItemSelector extends pnFormPlugin
         PageUtil::AddVar('javascript', 'modules/MediaAttach/pnjavascript/finditem.js');
         PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
 
-        $html = '';
-
         $ownRenderer = pnRender::getInstance('MediaAttach', false);
         $ownRenderer->assign('baseID', $this->inputName);
 
