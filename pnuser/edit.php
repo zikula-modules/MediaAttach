@@ -35,6 +35,8 @@ function MediaAttach_user_edit($args)
         return LogUtil::registerError(_GETFAILED);
     }
 
+    $file['desc'] = str_replace("<br />", "\n", $file['desc']);
+
     $isOwner = (pnModGetVar('MediaAttach', 'ownhandling') && (pnUserGetVar('uid') == $file['uid']));
     if (!$isOwner && !SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$objectid:$fileid", ACCESS_EDIT)) {
         return LogUtil::registerPermissionError();
