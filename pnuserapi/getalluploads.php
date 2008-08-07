@@ -61,6 +61,10 @@ function MediaAttach_userapi_getalluploads($args)
     $allowedSortdir = array('asc', 'desc');
     if (!in_array($sortdir, $allowedSortdir)) $sortdir = 'asc';
 
+    if ($catFilter != null) {
+        $catFilter['__META__'] = array('module' => 'MediaAttach');
+    }
+
     $joinArray = array();
     $joinArray[] = array('join_table'           => 'ma_defs',
                          'join_field'           => array('displayfiles', 'sendmails', 'recipient', 'maxsize', 'downloadmode', 'naming', 'namingprefix', 'numfiles'),
