@@ -283,6 +283,9 @@ dl#inilist {
     margin: 2em 0;
     padding: 0;
     font-size: 0.9em;
+    width: 60.1em;
+    overflow-x: visible;
+
 }
 dl#macatlist dt,
 dl#configlist dt,
@@ -322,7 +325,7 @@ dl#configlist2 dd,
 dl#configlist3 dd,
 dl#inilist dd {
     float: left;
-    width: 20em;
+    width: 30em;
     margin: 0 0 0 0;
     border-top: 1px solid #999;
 }
