@@ -24,7 +24,7 @@ function MediaAttach_filesystemapi_checkdirectory($args) {
     $directory = realpath(DataUtil::formatForOS($args['directory'], true));
     unset($args);
 
-    if (substr($directory, -1) != '/') {
+    if (StringUtil::right($directory, 1) != '/') {
         $directory .= '/';
     }
 

@@ -55,7 +55,7 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
             $filename = $namingprefix . mt_rand(1, 999999) . '.' . $extension;
         }
 
-        if (substr($filename, 0, 1) == '/' || substr($filename, 0, 1) == '\\') {
+        if (StringUtil::left($filename, 1) == '/' || StringUtil::left($filename, 1) == '\\') {
             $filename = substr($filename, 1, strlen($filename)-1);
         }
     }

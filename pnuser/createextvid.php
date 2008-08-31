@@ -62,7 +62,7 @@ function MediaAttach_user_createextvid($args)
     $urlInfos  = parse_url($videoURL);
     $proDomain = $urlInfos['host'];
     // strip out www subdomain
-    if (substr($proDomain, 0, 4) == 'www.') {
+    if (StringUtil::left($proDomain, 4) == 'www.') {
         $proDomain = substr($proDomain, 4, strlen($proDomain) - 4);
     }
 

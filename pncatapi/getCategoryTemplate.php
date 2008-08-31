@@ -44,7 +44,7 @@ function MediaAttach_catapi_getCategoryTemplate($args)
 
     // clean the path to get the parent categories IDs only
     $upperpath = substr($category['ipath'], strpos($category['ipath'], $rootCat) + 1);
-    $upperpath = substr($upperpath, 0, strlen($upperpath) - strlen('/'.$category['id']));
+    $upperpath = StringUtil::left($upperpath, strlen($upperpath) - strlen('/'.$category['id']));
 
     // extract the parent categories IDs
     $parentIDs = explode('/', $upperpath);

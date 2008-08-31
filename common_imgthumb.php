@@ -148,7 +148,7 @@ function _maIntImageThumb($params, &$smarty)
 
     $cachedir = pnModGetVar('MediaAttach', 'cachedir');
     $cachedir = str_replace(getenv('DOCUMENT_ROOT'), '', $cachedir);
-    if (substr($cachedir, 0, 1) == '/') {
+    if (StringUtil::left($cachedir, 1) == '/') {
         $cachedir = substr($cachedir, 1, strlen($cachedir) - 1);
     }
 

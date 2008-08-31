@@ -103,8 +103,8 @@ class MediaAttach_admin_modifyconfighandler
             }
             $data = $render->pnFormGetValues();
 
-            if (substr($data['uploaddir'], -1) == '/') {
-                $data['uploaddir'] = substr($data['uploaddir'], 0, strlen($data['uploaddir']) - 1);
+            if (StringUtil::right($data['uploaddir'], 1) == '/') {
+                $data['uploaddir'] = StringUtil::left($data['uploaddir'], strlen($data['uploaddir']) - 1);
             }
             pnModSetVar('MediaAttach', 'uploaddir', $data['uploaddir']);
             $uploaddir = $data['uploaddir'];
@@ -124,8 +124,8 @@ class MediaAttach_admin_modifyconfighandler
             }
             else $render->assign('updirexists', '0');
 
-            if (substr($data['cachedir'], -1) == '/') {
-                $data['cachedir'] = substr($data['cachedir'], 0, strlen($data['cachedir']) - 1);
+            if (StringUtil::right($data['cachedir'], 1) == '/') {
+                $data['cachedir'] = StringUtil::left($data['cachedir'], strlen($data['cachedir']) - 1);
             }
             pnModSetVar('MediaAttach', 'cachedir', $data['cachedir']);
             $cachedir = $data['cachedir'];
