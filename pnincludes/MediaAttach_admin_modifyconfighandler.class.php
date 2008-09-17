@@ -22,7 +22,7 @@ class MediaAttach_admin_modifyconfighandler
         $render->caching = false;
         $render->add_core_data();
 
-        $render->assign('docroot', DataUtil::formatForDisplay(getenv('DOCUMENT_ROOT')));
+        $render->assign('docroot', DataUtil::formatForDisplay(pnServerGetVar('DOCUMENT_ROOT')));
 
         $uploaddir = pnModGetVar('MediaAttach', 'uploaddir');
         if (file_exists($uploaddir . '/')) {
