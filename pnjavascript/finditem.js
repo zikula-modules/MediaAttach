@@ -159,7 +159,7 @@ function getPasteSnippet(mode, fileID) {
       if ($('MediaAttach_output').selectedIndex == 1) {
           needleMode = 'I';
       }
-      return 'FILEMANAGER' + needleMode + '-' + fileID;
+      return 'MEDIAATTACH' + needleMode + '-' + fileID;
   }
 }
 
