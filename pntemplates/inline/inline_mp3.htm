@@ -1,0 +1,37 @@
+<!--[* Purpose of this template: Shows mp3-files within the jw-media-player inline *]-->
+
+<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid assign="fileurl"]-->
+
+<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
+            width="300" 
+            height="20"
+            type="application/x-shockwave-flash" 
+            data="<!--[pngetbaseurl]-->modules/MediaAttach/pnincludes/flvplayer/player.swf">
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+
+<!--[literal]--><!--[if IE]><!--[/literal]-->
+    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->" 
+            width="<!--[$file.fileInfo.meta.onMetaData.width]-->" 
+            height="<!--[$file.fileInfo.meta.onMetaData.height+20]-->"
+            classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000"
+            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0">
+            <param name="movie" value="<!--[pngetbaseurl]-->modules/MediaAttach/pnincludes/flvplayer/player.swf" />
+<!--[literal]--><!--><!----><!--[/literal]-->
+
+            <param name="flashvars" value="file=/<!--[$fileurl|urlencode]-->&amp;type=sound&amp;duration=<!--[$file.fileInfo.playtime_seconds|replace:",":"."]-->" />
+            <param name="type" value="sound" />
+            <param name="height" value="20" />
+            <param name="width" value="300" />
+            <param name="allowfullscreen" value="true" />
+            <param name="shownavigation" value="true" />
+
+            <p>
+                Your browser does not support embedded flash files.<br />
+                Please click <a href="<!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
+                <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" title="Download Flash Player" target="_blank">
+                    <!--[pnimg src="logo_flash.png" alt="Download Flash Player"]-->
+                </a>
+            </p>
+</object>
+<!--[literal]--><!-- <![endif]--><!--[/literal]-->
