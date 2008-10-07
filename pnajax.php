@@ -146,19 +146,21 @@ function MediaAttach_ajax_getfilelist($args)
 
         if (empty($modname)) {
             return false;
-        } else if (!SecurityUtil::checkPermission('MediaAttach::', "$modname:: ", ACCESS_READ)) {
+        } else if (!SecurityUtil::checkPermission('MediaAttach::', $modname.'::', ACCESS_READ)) {
             AjaxUtil::error(_MODULENOAUTH);
         }
 
         $fetchArgs['moduleFilter'] = $modname;
 
-    } else if (!SecurityUtil::checkPermission('MediaAttach::', "::", ACCESS_COMMENT)) {
+    } else if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_COMMENT)) {
         AjaxUtil::error(_MODULENOAUTH);
     }
 
-    $cat_id = (int) FormUtil::getPassedValue('catid', 0);
-    if ($cat_id != 0) {
-        $fetchArgs['catFilter'] = array('Main' => $cat_id);
+    $cat_prop = FormUtil::getPassedValue('catprop', 'Main');
+    $cat_id   = (int) FormUtil::getPassedValue('catid', 0);
+    if ($cat_prop != '' && $cat_id != 0) {
+        $fetchArgs['catFilter'] = array($cat_prop => $cat_id);
+        $fetchArgs['catFilter']['__META__'] = array('module' => 'MediaAttach');
     }
 
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', $fetchArgs);

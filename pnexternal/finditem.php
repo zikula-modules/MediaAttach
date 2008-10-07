@@ -73,10 +73,13 @@ function MediaAttach_external_finditem($args)
     $fetchArgs = array();
     $fetchArgs['moduleFilter'] = $modname;
 
-    $cat_id = (int) FormUtil::getPassedValue('catid', 0, 'GET');
+    $cat_prop = FormUtil::getPassedValue('catprop', 'Main', 'GET');
+    $cat_id   = (int) FormUtil::getPassedValue('catid', 0, 'GET');
+    $render->assign('catPROP', $cat_prop);
     $render->assign('catID', $cat_id);
-    if ($cat_id != 0) {
-        $fetchArgs['catFilter'] = array('Main' => $cat_id);
+    if ($cat_prop != '' && $cat_id != 0) {
+        $fetchArgs['catFilter'] = array($cat_prop => $cat_id);
+        $fetchArgs['catFilter']['__META__'] = array('module' => 'MediaAttach');
     }
 
     _maIntProcessFileList($render, 50, $fetchArgs);
