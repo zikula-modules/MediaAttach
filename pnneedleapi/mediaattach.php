@@ -61,7 +61,17 @@ function MediaAttach_needleapi_mediaattach($args)
                 $file['definition']['hookcall'] = true;
 
                 $render = pnRender::getInstance('MediaAttach', false);
-                $render->assign('definition', $file['definition']);
+
+                $definition = array('displayfiles' => $file['defdisplayfiles'],
+                                    'sendmails'    => $file['defsendmails'],
+                                    'downloadmode' => $file['defdownloadmode'],
+                                    'recipient'    => $file['defrecipient'],
+                                    'maxsize'      => $file['defmaxsize'],
+                                    'naming'       => $file['defnaming'],
+                                    'namingprefix' => $file['defnamingprefix'],
+                                    'numfiles'     => $file['defnumfiles']);
+                $render->assign('definition', $definition);
+
                 $render->assign('currentuser', pnUserGetVar('uid'));
                 $render->assign('file', $file);
 
