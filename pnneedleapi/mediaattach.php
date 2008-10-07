@@ -69,7 +69,8 @@ function MediaAttach_needleapi_mediaattach($args)
                                     'maxsize'      => $file['defmaxsize'],
                                     'naming'       => $file['defnaming'],
                                     'namingprefix' => $file['defnamingprefix'],
-                                    'numfiles'     => $file['defnumfiles']);
+                                    'numfiles'     => $file['defnumfiles'],
+                                    'hookcall'     => true);
                 $render->assign('definition', $definition);
 
                 $render->assign('currentuser', pnUserGetVar('uid'));
