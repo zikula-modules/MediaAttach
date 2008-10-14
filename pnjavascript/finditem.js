@@ -93,8 +93,7 @@ function getPasteSnippet(mode, fileID) {
             // original image
             return "<img src=\"" + inlineUrl + "\" alt=\"" + titleText + "\" />";
         }
-
-        else if (selIndex > 1 && selIndex < 6) {
+        else if (selIndex > 3 && selIndex < 6) {
             if (mode == "url") {
                 // plugin mode
                 if (selIndex == 4) {
@@ -115,22 +114,13 @@ function getPasteSnippet(mode, fileID) {
                     // link to thumbnail
                     return "<a href=\"" + thumbUrl + "\" title=\"" + descText + "\">" + titleText + "</a>";
                 }
-                else if (selIndex > 4) {
+                else if (selIndex == 5) {
                     // link to original
                     return "<a href=\"" + fileUrlEnc + "\" title=\"" + descText + "\">" + titleText + "</a>";
                 }
             }
         }
         else if (selIndex == 6) {
-            // link to original download
-            if (mode == "url") {
-                return fileUrl;
-            }
-            else {
-                return "<a href=\"" + fileUrlEnc + "\" title=\"" + descText + "\">" + titleText + "</a>";
-            }
-        }
-        else if (selIndex == 7) {
             return fileID;
         }
     }
