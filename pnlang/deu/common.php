@@ -383,6 +383,7 @@ define('_MEDIAATTACH_EXTERNALPASTEORIGINAL',    'Originalbild');
 define('_MEDIAATTACH_EXTERNALPASTETHUMBLINK',   'Link zum Thumbnail');
 define('_MEDIAATTACH_EXTERNALPASTEORIGINALLINK', 'Link zum Originalbild');
 define('_MEDIAATTACH_EXTERNALPASTEID',           'ID der Datei');
+define('_MEDIAATTACH_EXTERNALPASTEORIGINALWITHLINK',    'Originalbild mit Link');
 
 define('_MEDIAATTACH_CATMODE',                  'Anzeigemodus:');
 define('_MEDIAATTACH_PREVIEW',                  'Vorschau');

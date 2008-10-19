@@ -123,6 +123,10 @@ function getPasteSnippet(mode, fileID) {
         else if (selIndex == 6) {
             return fileID;
         }
+        else if (selIndex == 7) {
+            // original with link to itself
+            return "<a href=\"" + fileUrlEnc + "\" title=\"" + descText + "\"><img src=\"" + inlineUrl + "\" alt=\"" + titleText + "\" /></a>";
+        }
     }
     else if (fromGuppy == 1) {
         var mylist = $('MediaAttach_pasteas');

@@ -387,6 +387,7 @@ define('_MEDIAATTACH_EXTERNALPASTEORIGINAL',    'Image originale');
 define('_MEDIAATTACH_EXTERNALPASTETHUMBLINK',   'Lien vers la vignette');
 define('_MEDIAATTACH_EXTERNALPASTEORIGINALLINK', 'Lien vers image originale');
 define('_MEDIAATTACH_EXTERNALPASTEID',           'ID du fichier');
+define('_MEDIAATTACH_EXTERNALPASTEORIGINALWITHLINK',    'Original image with link to itself');
 
 define('_MEDIAATTACH_CATMODE',                  'Mode d\'affichage:');
 define('_MEDIAATTACH_PREVIEW',                  'Previsualiser');
