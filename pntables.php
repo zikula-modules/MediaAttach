@@ -148,7 +148,7 @@ function MediaAttach_pntables()
                                             'extension'    => "C(10)  NOTNULL DEFAULT ''",
                                             'mimetype'     => "C(100) NOTNULL DEFAULT ''",
                                             'filename'     => "C(255) NOTNULL DEFAULT ''",
-                                            'filesize'     => "I(11)  NOTNULL DEFAULT 0",
+                                            'filesize'     => "I4     NOTNULL DEFAULT 0",
                                             'dlcount'      => "I      NOTNULL DEFAULT 0",
                                             'url'          => "C(255) NOTNULL DEFAULT ''");
 
