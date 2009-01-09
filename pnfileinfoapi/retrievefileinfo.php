@@ -9,6 +9,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
+@ini_set('memory_limit', '512M');
 
 /**
  * retrieve file information
