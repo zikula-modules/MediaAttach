@@ -133,8 +133,8 @@
         var newFormatSwitch = $('new_format_switch');
         newFormatSwitch.show();
 
-        newFormatSwitch.observe('click', maSwitchDisplayNewFormatForm, false);
-        newFormatSwitch.observe('keypress', maSwitchDisplayNewFormatForm, false);
+        newFormatSwitch.observe('click', maSwitchDisplayNewFormatForm);
+        newFormatSwitch.observe('keypress', maSwitchDisplayNewFormatForm);
 
         var valid = new Validation('newformatform');
         //var result = valid.validate(); //true or false
@@ -149,8 +149,8 @@
         var newGroupSwitch = $('new_group_switch');
         newGroupSwitch.show();
 
-        newGroupSwitch.observe('click', maSwitchDisplayNewGroupForm, false);
-        newGroupSwitch.observe('keypress', maSwitchDisplayNewGroupForm, false);
+        newGroupSwitch.observe('click', maSwitchDisplayNewGroupForm);
+        newGroupSwitch.observe('keypress', maSwitchDisplayNewGroupForm);
 
         var valid = new Validation('newgroupform');
         //var result = valid.validate(); //true or false
@@ -190,28 +190,28 @@
         $('allowedformats').hide();
         var allowedFormatsSwitch = $('allowedformats_switch');
         allowedFormatsSwitch.show();
-        allowedFormatsSwitch.observe('click', maCheckFormatsLink, false);
-        allowedFormatsSwitch.observe('keypress', maCheckFormatsLink, false);
+        allowedFormatsSwitch.observe('click', maCheckFormatsLink);
+        allowedFormatsSwitch.observe('keypress', maCheckFormatsLink);
 
         $('myuploadform').hide();
         var myUploadFormSwitch = $('myuploadform_switch');
         myUploadFormSwitch.show();
-        myUploadFormSwitch.observe('click', maSwitchDisplayUploadForm, false);
-        myUploadFormSwitch.observe('keypress', maSwitchDisplayUploadForm, false);
+        myUploadFormSwitch.observe('click', maSwitchDisplayUploadForm);
+        myUploadFormSwitch.observe('keypress', maSwitchDisplayUploadForm);
     }
 
     function maInitExtVideoFormView() {
         $('supportedproviders').hide();
         var supportedProvidersSwitch = $('supportedproviders_switch');
         supportedProvidersSwitch.show();
-        supportedProvidersSwitch.observe('click', maCheckProvidersLink, false);
-        supportedProvidersSwitch.observe('keypress', maCheckProvidersLink, false);
+        supportedProvidersSwitch.observe('click', maCheckProvidersLink);
+        supportedProvidersSwitch.observe('keypress', maCheckProvidersLink);
 
         $('myextvidform').hide();
         var myExtVideoFormSwitch = $('myextvidform_switch');
         myExtVideoFormSwitch.show();
-        myExtVideoFormSwitch.observe('click', maSwitchDisplayExtVidForm, false);
-        myExtVideoFormSwitch.observe('keypress', maSwitchDisplayExtVidForm, false);
+        myExtVideoFormSwitch.observe('click', maSwitchDisplayExtVidForm);
+        myExtVideoFormSwitch.observe('keypress', maSwitchDisplayExtVidForm);
     }
 
     var withinForum = false;
@@ -228,8 +228,8 @@
             }
         });
 
-        $('addNewUploadFile').observe('click', maAddNewUploadFile, false);
-        $('addNewUploadFile').observe('keypress', maAddNewUploadFile, false);
+        $('addNewUploadFile').observe('click', maAddNewUploadFile);
+        $('addNewUploadFile').observe('keypress', maAddNewUploadFile);
     }
 
     var uploadFormName = 'myuploadform';
@@ -244,8 +244,8 @@
             });
         }
 
-        Event.observe(uploadFormName, 'submit', maSubmitUploadForm, false);
-        $('myuploadframe').observe('load', maResponseUpload, false);
+        Event.observe(uploadFormName, 'submit', maSubmitUploadForm);
+        $('myuploadframe').observe('load', maResponseUpload);
     }
 
     function maAddNewUploadFile(event) {

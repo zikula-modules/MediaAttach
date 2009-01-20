@@ -191,8 +191,8 @@
 
             var errorNoFilesSelected = "<!--[pnml name="_MEDIAATTACH_ERRORNOFILESSELECTED"]-->";
             var errorAlreadyRunning = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYRUNNING"]-->";
-            $('myuploadform').observe('submit', maSubmitUploadForm, false);
-            $('myuploadframe').observe('load', maResponseUpload, false);
+            $('myuploadform').observe('submit', maSubmitUploadForm);
+            $('myuploadframe').observe('load', maResponseUpload);
         <!--[/if]-->
 
         <!--[if $activateExternalVideos]-->

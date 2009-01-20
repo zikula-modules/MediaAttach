@@ -144,10 +144,10 @@
             }
         });
 
-        $('addNewUploadFile').observe('click', maAddNewUploadFile, false);
-        $('addNewUploadFile').observe('keypress', maAddNewUploadFile, false);
-        $('myuploadform').observe('submit', maSubmitUploadForm, false);
-        $('myuploadframe').observe('load', maResponseUpload, false);
+        $('addNewUploadFile').observe('click', maAddNewUploadFile);
+        $('addNewUploadFile').observe('keypress', maAddNewUploadFile);
+        $('myuploadform').observe('submit', maSubmitUploadForm);
+        $('myuploadframe').observe('load', maResponseUpload);
     <!--[/if]-->
 
     <!--[if $activateExternalVideos]-->

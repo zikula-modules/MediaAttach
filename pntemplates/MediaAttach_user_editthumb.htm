@@ -77,8 +77,8 @@
         );
     } );
 
-    $('saveThumb').observe('click', maStartThumbUpdate, false);
-    $('saveThumb').observe('keyup', maStartThumbUpdate, false);
+    $('saveThumb').observe('click', maStartThumbUpdate);
+    $('saveThumb').observe('keyup', maStartThumbUpdate);
 
     function maStartThumbUpdate() {
         $('cropform').submit();

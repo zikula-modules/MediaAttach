@@ -89,24 +89,24 @@
 /* <![CDATA[ */
 <!--[if $categorization == true]-->
     <!--[if $cat_use_categories || $cat_use_modules || $cat_use_users]-->
-        $('MediaAttach_catmode').observe('change', maSubmitNaviForm, false);
+        $('MediaAttach_catmode').observe('change', maSubmitNaviForm);
     <!--[/if]-->
 <!--[/if]-->
 <!--[if $sorting == true]-->
-    $('MediaAttach_sortby').observe('change', maSubmitNaviForm, false);
-    $('MediaAttach_sortdir').observe('change', maSubmitNaviForm, false);
+    $('MediaAttach_sortby').observe('change', maSubmitNaviForm);
+    $('MediaAttach_sortdir').observe('change', maSubmitNaviForm);
 <!--[/if]-->
 <!--[if $perpage == true]-->
-    $('MediaAttach_perpage').observe('change', maSubmitNaviForm, false);
+    $('MediaAttach_perpage').observe('change', maSubmitNaviForm);
 <!--[/if]-->
 <!--[if $displayswitch == true]-->
-    $('MediaAttach_preview').observe('click', maSubmitNaviForm, false);
-    $('MediaAttach_preview').observe('keypress', maSubmitNaviForm, false);
-    $('MediaAttach_onlyimages').observe('click', maSubmitNaviForm, false);
-    $('MediaAttach_onlyimages').observe('keypress', maSubmitNaviForm, false);
+    $('MediaAttach_preview').observe('click', maSubmitNaviForm);
+    $('MediaAttach_preview').observe('keypress', maSubmitNaviForm);
+    $('MediaAttach_onlyimages').observe('click', maSubmitNaviForm);
+    $('MediaAttach_onlyimages').observe('keypress', maSubmitNaviForm);
 <!--[/if]-->
 <!--[if $preview && $onlyimages]-->
-    $('MediaAttach_thumbnr').observe('change', maSubmitNaviForm, false);
+    $('MediaAttach_thumbnr').observe('change', maSubmitNaviForm);
 <!--[/if]-->
 
     $('MediaAttach_submit').hide();

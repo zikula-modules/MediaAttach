@@ -124,31 +124,31 @@
         $('mailerdt').hide();
         $('mailerdd').hide();
     <!--[/if]-->
-    $('mailfiles').observe('click', maCheckMailerEntry, false);
-    $('mailfiles').observe('keyup', maCheckMailerEntry, false);
+    $('mailfiles').observe('click', maCheckMailerEntry);
+    $('mailfiles').observe('keyup', maCheckMailerEntry);
 
     <!--[if $pncore.MediaAttach.shrinkimages eq 0]-->
         $('shrinksizedt').hide();
         $('shrinksizedd').hide();
     <!--[/if]-->
-    $('shrinkimages').observe('click', maCheckShrinkEntry, false);
-    $('shrinkimages').observe('keyup', maCheckShrinkEntry, false);
+    $('shrinkimages').observe('click', maCheckShrinkEntry);
+    $('shrinkimages').observe('keyup', maCheckShrinkEntry);
 
     <!--[if $pncore.MediaAttach.usethumbcropper eq 0]-->
         $('cropsizemodedt').hide();
         $('cropsizemodedd').hide();
     <!--[/if]-->
-    $('usethumbcropper').observe('click', maCheckCropSizeEntry, false);
-    $('usethumbcropper').observe('keyup', maCheckCropSizeEntry, false);
+    $('usethumbcropper').observe('click', maCheckCropSizeEntry);
+    $('usethumbcropper').observe('keyup', maCheckCropSizeEntry);
 
-    $('catmodecategories').observe('change', maCheckCatMode1, false);
-    $('catmodecategories').observe('keyup', maCheckCatMode1, false);
-    $('catmodemodules').observe('change', maCheckCatMode2, false);
-    $('catmodemodules').observe('keyup', maCheckCatMode2, false);
-    $('catmodeusers').observe('change', maCheckCatMode3, false);
-    $('catmodeusers').observe('keyup', maCheckCatMode3, false);
-    $('catdefaultmode').observe('change', maCheckCatModes, false);
-    $('catdefaultmode').observe('keyup', maCheckCatModes, false);
+    $('catmodecategories').observe('change', maCheckCatMode1);
+    $('catmodecategories').observe('keyup', maCheckCatMode1);
+    $('catmodemodules').observe('change', maCheckCatMode2);
+    $('catmodemodules').observe('keyup', maCheckCatMode2);
+    $('catmodeusers').observe('change', maCheckCatMode3);
+    $('catmodeusers').observe('keyup', maCheckCatMode3);
+    $('catdefaultmode').observe('change', maCheckCatModes);
+    $('catdefaultmode').observe('keyup', maCheckCatModes);
 /* ]]> */
 </script>
 <br />
