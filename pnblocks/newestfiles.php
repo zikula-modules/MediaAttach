@@ -92,7 +92,7 @@ function MediaAttach_newestfilesblock_display($blockinfo)
             $shown_results++;
             if ($shown_results <= $vars['numitems']) {
                    if (SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$file[fileid]", ACCESS_READ)) {
-                       $newestfiles[] = array('url'       => pnModURL('MediaAttach', 'user', 'displayfile', array('fileid' => $file['fileid'])),
+                       $newestfiles[] = array('url'       => pnModURL('MediaAttach', 'user', 'display', array('fileid' => $file['fileid'])),
                                               'title'     => $file['title'],
                                               'filesize'  => $file['filesize'],
                                               'extension' => $file['extension'],
