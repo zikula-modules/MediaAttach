@@ -38,7 +38,7 @@ function MediaAttach_needleapi_mediaattach($args)
                 $cache[$nid] = '<em>' . DataUtil::formatForDisplay(pnML(_MODULENOTAVAILABLE, array('s' => 'MediaAttach'))) . '</em>';
             }
 
-            $result = '<em title="' . DataUtil::formatForDisplay(sprintf(_MH_NEEDLEDATAERROR, $nid, 'MediaAttach')) . '">FILEMANAGER' . $nid . '</em>';
+            $result = '<em title="' . DataUtil::formatForDisplay(sprintf(_MH_NEEDLEDATAERROR, $nid, 'MediaAttach')) . '">MEDIAATTACH' . $nid . '</em>';
 
             //set default type
             $type = 'P';
