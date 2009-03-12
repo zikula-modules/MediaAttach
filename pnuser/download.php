@@ -69,13 +69,11 @@ function MediaAttach_user_download($args)
 
     pnModAPIFunc('MediaAttach', 'user', 'incdlcounter', array('fileid' => $fileid));
 
-    Loader::loadClass('FileUtil');
-    $data = FileUtil::readFile($uploaddir . '/' . $file['filename'], true);
-
     $useCompression = pnConfigGetVar('UseCompression');
     if ($useCompression == 1) {
         // erase output buffer because the gzip destroys binary data
         ob_end_clean();
+        header("Content-Encoding: identity");
     }
 
     header("Pragma: public");
@@ -98,6 +96,8 @@ function MediaAttach_user_download($args)
         // TODO: work out better solution (like getting rid of gzip with the above output buffer cleaning)
     }
 
-    echo $data;
+    Loader::loadClass('FileUtil');
+    echo FileUtil::readFile($uploaddir . '/' . $file['filename'], true);
+
     return true;
 }
