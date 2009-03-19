@@ -80,13 +80,14 @@ function MediaAttach_user_download($args)
     header("Expires: 0");
     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
     header("Cache-Control: public");
-
+    header("Content-Length: " . $file['filesize']);
+    
     if ($inline == 1) {
         header("Content-Description: MediaAttach inline file");
-        header("Content-Disposition: inline; filename=" . $file['filename'] . ";");
+        header("Content-Disposition: inline; filename=" . $file['filename'] . "; filesize=" . $file['filesize'] . ";");
     } else {
         header("Content-Description: MediaAttach file download");
-        header("Content-Disposition: attachment; filename=" . $file['filename'] . ";");
+        header("Content-Disposition: attachment; filename=" . $file['filename'] . "; filesize=" . $file['filesize'] . ";");
     }
     header("Content-type: " . $file['mimetype']);
     header("Content-Transfer-Encoding: binary");
