@@ -98,16 +98,21 @@ function _maGetInlineSnippetName($mimetype)
         case 'audio/mid':             // MID
         case 'audio/wav':             // WAV
         case 'audio/mpg':             // MPG
+        
+                                $res = 'quicktime';
+                                break;
+         /*let mp3 files get played back by a fancy flash player  http://flash-mp3-player.net/players/maxi/ */
+        case 'audio/mpeg4':
+        case 'audio/mpg4':
+        case 'audio/mp4':
+        case 'video/mpeg':
         case 'audio/mpeg':
         case 'audio/mpeg3':
         case 'audio/mpg3':
         case 'audio/mp3':             // MP3
-        case 'audio/mpeg4':
-        case 'audio/mpg4':
-        case 'audio/mp4':             // MP3
-        case 'video/mpeg':
-                                $res = 'quicktime';
+                                $res = 'mp3';
                                 break;
+
         case 'application/vnd.rn-realmedia':
         case 'audio/vnd.rn-realvideo':                // RA
         case 'video/vnd.rn-realvideo':
