@@ -212,6 +212,7 @@ function _maGuessMimetypeFromExtension($extension) {
         case 'php':                            // PHP
         case 'txt':                            // TXT
         case 'xml':                            // XML
+        case 'reg':                            // windows regsitry @todo which mimetype has ms registry files ?
                 $res = 'text/xml';
                 break;
         case 'xul':                            // XUL

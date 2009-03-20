@@ -187,6 +187,7 @@ function MediaAttach_defaultdata()
             array('extension' => 'html', 'image' => 'html.gif'),
             array('extension' => 'java', 'image' => 'plain.gif'),
             array('extension' => 'pas',  'image' => 'plain.gif'),
+            array('extension' => 'reg',  'image' => 'plain.gif'),
             array('extension' => 'txt',  'image' => 'plain.gif'),
             array('extension' => 'xml',  'image' => 'xml.gif'),
             array('extension' => 'xul',  'image' => 'xul.gif'),
@@ -229,7 +230,7 @@ function MediaAttach_defaultdata()
             'Documents'    => array('ai', 'pdf', 'ps', 'doc', 'xls', 'ppt', 'odt', 'ods', 'odp'),
             'Media'        => array('asf', 'avi', 'mid', 'mov', 'mp3', 'mp4', 'mpe', 'mpeg', 'mpg', 'ra', 'wav', 'wma', 'wmv', 'extvid'),
             'Flash'        => array('swf', 'flv', 'extvid'),
-            'User defined' => array('jpg', 'gif', 'zip', 'pdf', 'doc', 'xls', 'html', 'htm', 'mp3'),
+            'User defined' => array('jpg', 'gif', 'zip', 'pdf', 'doc', 'xls', 'html', 'htm', 'mp3', 'reg'),
             'PDF only'     => array('pdf')
     );
 
