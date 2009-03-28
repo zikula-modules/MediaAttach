@@ -11,20 +11,171 @@
 
         ª  denotes a major feature addition/change
         §  denotes a change in the returned structure
+        !  denotes a cry for help from developers
 * Bugfix:  denotes a fixed bug
 
 Version History
 ===============
 
+1.7.9: [2009-03-08] James Heinrich
+    ª Added DSS (Digital Speech Standard) support
+      new file: module.audio.dss.php
+      (thanks luke*wilkinsÿdtsam*com)
+    ª Added MPC (Musepack) SV8 support
+      (thanks WaldoMonster)
+    § some MPC [header] keys renamed to be the same between SV7/SV8
+    § start aligning demos CSS styling with v2.x styles
+      new file: demos/getid3.css
+    § JPEG now returns parsed IPTC tags in [iptc]
+    § getid3_lib::GetDataImageSize now requires $imageinfo parameter
+    § better support for Matroska files with AC3/DTS/MP3/OGG audio
+      (support still lacking for AAC)
+    § standardize ID3v2 TCMP key to 'part_of_a_set' between reading
+      and writing  (thanks aaron_stormÿyahoo*com)
+    § added ID3v2 keys 'TCMP','TCP' to for writing iTunes-style tags
+      (thanks aaron_stormÿyahoo*com)
+    § back-ported PICTURE tag handling in FLAC tags
+      (thanks WaldoMonster)
+    § added alternate method to get [video][frame_rate] from QuickTime
+    * added partial support for "TCMP"/"TCP" ID3v2 frames (iTunes
+      non-standard part-of-a-compilation tag)
+      (thanks aaron_stormÿyahoo*com)
+    * slightly improved scanning through FLV files speed
+      (thanks franki)
+    * faster Matroska scanning by stopping at cluster chunks once
+      needed header chunks are found (much faster for large files)
+    * added workaround for broken tagging programs that miss terminating
+      null byte for numeric ID3v2.4 genres
+      (thanks yam655ÿgmail*com)
+    * Bugfix: MultiByteCharString2HTML() did not escape common HTML
+      special characters like & and ?
+    * Bugfix: cleaned up some malformed HTML errors in demo.browse.php
+    * Bugfix: under Windows files >2GB might not be processed due to
+      "dir" command not finding file with double directory slashes
+    * Bugfix: "MODule (assorted sub-formats)" was falsely matching
+      some random files (e.g. JPEGs)  (thanks qwertywin)
+    * Bugfix: suppress PHP_notice on failed SWF-compressed
+      decompression failure  (thanks mkron)
+
+
+1.7.8b3: [2008-07-13] James Heinrich
+    ª Experimental partial support for files > 2GB (gets filesize
+      from shell call to "dir" or "ls", parse files with PHP only
+      up to 2GB limit). See readme.txt for details on what formats
+      work properly and other limitations
+    ª Initial support for Matroska. Has only been tested with a
+      limited number of sample files, please report any bugs
+    ª Experimental support for PHP-RAR reading. Known buggy, disabled
+      by default, enable with care
+    § getid3_lib::CastAsInt() now returns ints up to 2^31 (not 2^30)
+    § Quicktime: [video] now returns [frame_rate] and [fourcc] for MP4
+      video files
+    * MP3: headerless VBR files now only have up to 10 blocks of 5000
+      frames each scanned by default and bitrate extrapolated from that
+      distribution for speed  (thanks glau*stuffÿridiculousprods*com)
+    * Quicktime: support "co64" atom
+    * SWF: lower memory use when compressed SWF files processed
+      (thanks doughammondÿblueyonder*co*uk)
+    * Bugfix: FLV height and width was calculated incorrectly
+      (thanks moysevichÿgmail*com)
+    * Bugfix: FLV GETID3_FLV_TAG_META parsed incorrectly
+      (thanks moysevichÿgmail*com)
+    * Bugfix: Quicktime: 'tkhd' matrix_v and matrix_d were switched
+      (thanks rjjmoroÿhotmail*com)
+    * Bugfix: Quicktime: frame_rate was often incorrect for MP4 video
+    * Bugfix: getid3_lib::CastAsInt returned -2147483648 when passed
+      2147483648 (0x80000000)
+
+
+1.7.8b2: [2007-10-15] James Heinrich, Allan Hansen
+    * Video bitrate now calculated even if not explicitly stated in
+      file metadata, but if overall and audio bitrates are known
+    * Bugfix: 'comments_html' missing last letter in id3v2 tags.
+    * Bugfix: module objects (e.g. getid3_riff) that are instantiated
+      in other modules are explicitly disposed once no longer needed.
+    * Bugfix: some AVI files were not returning audio information
+      because "strh" chunk was not being read in
+    * Bugfix: asf [audio][<streamnumber>][dataformat] should be set
+      to "wma" but wasn't
+    * Bugfix: [mpeg][audio][bitrate_mode] should always be one of
+      ("cbr", "vbr", "abr") but wasn't for some values in
+      LAMEvbrMethodLookup()
+    * Bugfix: MP3 audio in AVI files could show "cbr" instead of
+      correct audio bitrate_mode, and audio bitrate could be slightly
+      incorrect if multiple files were scanned in a loop (scanning
+      single files produced correct values).
+    * Bugfix: remove [audio/video][bitrate] key if falsely set to zero
+    * Bugfix: PlaytimeString returned non-matching value for negative
+      playtimes (which shouldn't happen either, but now they're at
+      least shown correctly, if they happen due to other bugs)
+    * Bugfix: Several ASF header values are invalid if the broadcast
+      flag is set, getID3() now calculates these values in other
+      ways if the broadcast flag is set  (thanks fletchÿpobox*com)
+    * Bugfix: lyrics3-flags-lyrics field was always false, and there
+      never was a lyrics3-flags-timestamp field present even though
+      the lyrics3-raw-IND field consisted of "10" (lyrics present,
+      timestamp not present).  (thanks i*f*schulzÿweb*de)
+    * Bugfix: TAR.GZ files produce PHP errors when
+      option_gzip_parse_contents == true in module.archive.gzip.php
+      (thanks alan*harderÿsun*com)
+
+
+1.7.8b1: [2007-01-08] Allan Hansen
+    ª Major update to readme.txt
+    ª PHP 4.2.0 required
+    ª Tagwriter requires metaflac 1.1.1+ in order to write FLAC tags.
+    ª Removed broken and non-fixable tagwriting module for real format.
+    ! Developers please help fix the above module:
+      http://www.getid3.org/phpBB2/viewtopic.php?t=677
+    ª Avoided security issues with demo.browse.php, demo.write.php and
+      demo.mysql.php. These demos are now disabled by default and has
+      to be enabled in the source.
+    * Bugfix: id3v2 genre broken since 1.7.7.
+    ª Added DTS module (module.audio.dts.php)
+    § ASF/WMV files now return largest video stream dimensions in
+      [video][resolution_x] and [video][resolution_y]
+    * Bugfix: Minor issues with midi module (avoid PHP_NOTICE).
+    * Bugfix: Minor issues with lyrics3 (avoid PHP_NOTICE).
+    * Bugfix: PHP_NOTICE issues in MultiByteCharString2HTML()
+    * Bugfix: PHP_NOTICE issue  in BigEndian2Float()
+    * Bugfix: fread() zero bytes issue in real module.
+    * Bugfix: ASF module returned mime type video/x-ms-wma instead of
+      video/x-ms-wmv for certain FourCCs.
+    * Bugfix: PHP_NOTICE issues with broken ID3v2 tag/garbage.
+    * Bugfix: PNG module broken in regards to gIFg and gIFx chunks.
+    ª Removed detection of short filenames 8dot3 under windows, as
+      it only worked for English versions of windows and has other
+      problems.
+    * Bugfix: Some CBR MP3 files detected as VBR with plenty of warnings.
+    * Bugfix: PHP_NOTICE issues in MP3 module.
+    * Bugfix: Quicktime returned incorrect frame rate.
+    * Bugfix: DivByZero on zero length FLV files.
+    * Bugfix: PHP_NOTICE one some FLV files.
+    * Bugfix: ID3v2 UTF-8/16 encoded frames terminated by \x00
+    * Bugfix: ID3v2 LINK frames iconv error.
+    * Bugfix: ID3v2 padding length calculated incorrectly.
+    * Bugfix: ID3v2.3 extended headers non-conformance
+    ª SVG file detection.
+    ª Added SVG user module (user_modules/module.graphic.svg.php).
+      Thanks to Roan Horning.
+    ª PAR2 file detection (no parsing)
+    * Bugfix: Wave files being detected as MP3.
+    * Bugfix: ASF padding offset bug.
+    * Bugfix: Shorten module not working for wav files with fmt
+      chunks <> 16 bytes.
+    § RIFF: Zero sized chunk invokes warning instead of error.
+    § FLAC: Removed some ['raw'] keys.
+    § MPC: Mime type returned: audio/x-musepack
+
 1.7.7: [2006-06-25] Allan Hansen
-    * Bugfix: AAC static bitrate cache wrong result when parsing 
+    * Bugfix: AAC static bitrate cache wrong result when parsing
       several files.
     * Bugfix: Do not return NULL video bitrate for ASF v3.
     * Bugfix: getid3_lib::GetImageSize() broken => JPG module broken.
     * Bugfix: Encoder options should now be returned with correct
-      "--alt-preset n" /  "--alt-preset cbr n" when scanning more files. 
+      "--alt-preset n" /  "--alt-preset cbr n" when scanning more files.
     * Bugfix: Shorten module not escapeshellarg() filenames (UNIX only).
-    * Bugfix: Filenames not escapeshellarg() for md5_data and 
+    * Bugfix: Filenames not escapeshellarg() for md5_data and
       sha1_data (UNIX only).
     * Bugfix: UNIX: head and tail called with -cNNN instead of "-c NNN".
     ª Added detection support for PDF and MS Office documents
@@ -45,11 +196,11 @@ Version History
       (thanks towbÿgmx*net)
     * Bugfix: Error message when padding in FLAC files were used up.
     * Bugfix: Shorten module not working under windows.
-    § Bugfix: gmmktime() instead of mktime(). 
+    § Bugfix: gmmktime() instead of mktime().
     § Using gmmktime() instead of mktime() in ISO, ZIP, PNG and RIFF
-      modules to avoid E_STRICT notices with PHP5.1+. 
+      modules to avoid E_STRICT notices with PHP5.1+.
     * Bugfix: ['comments_html'] and ['comments'] contains different
-      value when having multiple tags (one of them ID3v1) and the 
+      value when having multiple tags (one of them ID3v1) and the
       long field names.
 
 1.7.6: [2006-03-12] James Heinrich
@@ -2282,207 +2433,3 @@ Version History
 1.00:  [May-04-2001] James Heinrich
    ª Initial public release
 
-
-///////////////////////////////////////////////////////////////////////
-
-Future Plans
-============
-
- Features
- --------
-
-  * Writing support for Real
-  * Better support for MP4 container format
-  * Support for Matroska (www.matroska.org)  (thanks ahÿartemis*dk)
-    http://corecodec.com/modules.php?op=modload&name=PNphpBB2&file=viewtopic&t=227
-  * scan for appended ID3v2 tag at end of file per ID3v2.4 specs (Section 5.0)
-  * Support for JPEG-2000 (http://www.morgan-multimedia.com/jpeg2000_overview.htm)
-  * Support for MOD (mod/stm/s3m/it/xm/mtm/ult/669) (thanks ahÿartemis*dk)
-  * Support for FROG (http://ghido.shelter.ro/FROG.php)
-  * Lyrics3 v1 & v2 writing support
-  * Support for gzip
-  * Support for ACE (thanks Vince)
-  * Support for Ogg other than Vorbis, Speex and OggFlac (ie. Ogg+Xvid)
-    (thanks ahÿartemis*dk)
-  * Ability to create Xing/LAME VBR header for VBR MP3s that are missing VBR header
-  * Ability to "clean" ID3v2 padding (replace invalid padding with valid padding)
-  * Ability to convert RIFF-MP3 to regular MP3 (strip RIFF headers)
-  * Warn if MP3s change version mid-stream (in full-scan mode)
-  * check for corrupt/broken mid-file MP3 streams in histogram scan
-  * Support for lossless-compression formats
-    (http://www.firstpr.com.au/audiocomp/lossless/#Links)
-    (http://compression.ca/act-sound.html)
-    (http://web.inter.nl.net/users/hvdh/lossless/lossless.htm)
-    * Support for Sonarc (http://www.firstpr.com.au/audiocomp/lossless/sonarc/)
-    * Support for WavArc (http://www.firstpr.com.au/audiocomp/lossless/wavarc/)
-    * Support for WaveZip/MUSICompress (http://hometown.aol.com/sndspace)
-    * Support for LTAC (http://www.nue.tu-berlin.de/wer/liebchen/ltac.html)
-  * Support for RIFF-INFO chunks
-    * http://lotto.st-andrews.ac.uk/~njh/tag_interchange.html
-      (thanks Nick Humfrey <njhÿsurgeradio*co*uk>)
-    * http://abcavi.narod.ru/sof/abcavi/infotags.htm
-      (thanks Kibi)
-  * Better support for Bink video
-  * http://www.hr/josip/DSP/AudioFile2.html
-  * http://www.pcisys.net/~melanson/codecs/
-  * http://sox.sourceforge.net/AudioFormats-11.html
-    * DiamondWare Digitized .dwd
-    * Tandy Deskmate .snd
-    * Sample Vision
-  * Detect mp3PRO
-  * Support for PSD
-  * Support for JPC
-  * Support for JP2
-  * Support for JPX
-  * Support for JB2
-  * Support for IFF
-  * Support for ICO
-  * Support for ANI
-  * Support for EXE (comments, author, etc) (thanks p*quaedackersÿplanet*nl)
-  * Support for DVD-IFO (region, subtitles, aspect ratio, etc)
-    (thanks p*quaedackersÿplanet*nl)
-  * More complete support for SWF - parsing encapsulated MP3 and/or JPEG content
-      (thanks n8n8ÿyahoo*com)
-  * Support for a2b
-  * MPC-SV8 (http://www.uni-jena.de/~pfk/mpp/sv8/components.html)
-    http://www.personal.uni-jena.de/~pfk/mpp/
-  * Optional scan-through-frames for AVI verification
-    (thanks rockcohenÿmassive-interactive*nl)
-  * Support for TTF (thanks infoÿbutterflyx*com)
-  * Support for DSS (http://www.getid3.org/phpBB2/viewtopic.php?t=171)
-  * Support for SMAF (http://smaf-yamaha.com/what/demo.html)
-    http://www.getid3.org/phpBB2/viewtopic.php?t=182
-  * Support for AMR (http://www.getid3.org/phpBB2/viewtopic.php?t=195)
-  * Support for 3gpp (http://www.getid3.org/phpBB2/viewtopic.php?t=195)
-  * Support for ID4 (http://www.wackysoft.cjb.net grizlyY2Kÿhotmail*com)
-  * Parse XML data returned in Ogg comments
-  * Parse XML data from Quicktime SMIL metafiles (klausrathÿmac*com)
-  * ID3v2.2 tag writing support
-  * ID3v2 genre string creator function
-  * Support for optional XML-format output (thanks moisei for the idea)
-  * More complete parsing of JPG
-  * Support for all old-style ASF packets
-  * ASF framerate guess
-  * ASF/WMA/WMV tag writing
-  * Parse declared T??? ID3v2 text information frames, where appropriate
-      (thanks Christian Fritz for the idea)
-  * Recognize encoder:
-    http://www.guerillasoft.com/EncSpot2/index.html
-    http://ff123.net/identify.html
-    http://www.hydrogenaudio.org/?act=ST&f=16&t=9414
-    http://www.hydrogenaudio.org/?showtopic=11785
-  * Support for other OS/2 bitmap structures: Bitmap Array('BA'),
-    Color Icon('CI'), Color Pointer('CP'), Icon('IC'), Pointer ('PT')
-    http://netghost.narod.ru/gff/graphics/summary/os2bmp.htm
-  * Support for WavPack RAW mode
-  * ASF/WMA/WMV data packet parsing
-  * ID3v2FrameFlagsLookupTagAlter()
-  * ID3v2FrameFlagsLookupFileAlter()
-  * obey ID3v2 tag alter/preserve/discard rules
-  * http://www.geocities.com/SiliconValley/Sector/9654/Softdoc/Illyrium/Aolyr.htm
-  * proper checking for LINK/LNK frame validity in ID3v2 writing
-  * proper checking for ASPI-TLEN frame validity in ID3v2 writing
-  * proper checking for COMR frame validity in ID3v2 writing
-  * http://www.geocities.co.jp/SiliconValley-Oakland/3664/index.html
-  * decode GEOB ID3v2 structure as encoded by RealJukebox,
-    decode NCON ID3v2 structure as encoded by MusicMatch
-    (probably won't happen - the formats are proprietary)
-
-
- Known Bugs/Issues in getID3() that may be fixed eventually
- -----------------------------------------------------------
-
-  * Cannot determine bitrate for MPEG video with VBR video data
-    (need documentation)
-  * Interlace/progressive cannot be determined for MPEG video
-    (need documentation)
-  * MIDI playtime is sometimes inaccurate
-  * AAC-RAW mode files cannot be identified
-  * WavPack-RAW mode files cannot be identified
-  * mp4 files report lots of "Unknown QuickTime atom type"
-     (need documentation)
-  * Encrypted ASF/WMA/WMV files warn about "unhandled GUID
-    ASF_Content_Encryption_Object"
-  * Bitrate split between audio and video cannot be calculated for
-    NSV, only the total bitrate. (need documentation)
-  * All Ogg formats (Vorbis, OggFLAC, Speex) are affected by the
-    problem of large VorbisComments spanning multiple Ogg pages, but
-    but only OggVorbis files can be processed with vorbiscomment.
-  * The version of "head" supplied with Mac OS 10.2.8 (maybe other
-    versions too) does only understands a single option (-n) and
-    therefore fails. getID3 ignores this and returns wrong md5_data.
-
-
-
- Known Bugs/Issues in getID3() that cannot be fixed
- --------------------------------------------------
-
-  * Files larger than 2GB (of any format) cannot be parsed by
-    getID3() due to limitations in the PHP filesystem functions
-
-
- Known Bugs/Issues in other programs
- -----------------------------------
-
-  * Winamp (before v5.20) does not support ID3v2.4 tags, only ID3v2.3
-  * Some versions of Helium2 (www.helium2.com) do not write
-      ID3v2.4-compliant Frame Sizes, even though the tag is marked
-      as ID3v2.4)  (detected by getID3())
-  * MP3ext V3.3.17 places a non-compliant padding string at the end
-      of the ID3v2 header. This is supposedly fixed in v3.4b21 but
-      only if you manually add a registry key. This fix is not yet
-      confirmed.  (detected by getID3())
-  * CDex v1.40 (fixed by v1.50b7) writes non-compliant Ogg comment
-      strings, supposed to be in the format "NAME=value" but actually
-      written just "value"  (detected by getID3())
-  * Oggenc 0.9-rc3 flags the encoded file as ABR whether it's
-      actually ABR or VBR.
-  * iTunes (versions "X v2.0.3", "v3.0.1" are known-guilty, probably
-      other versions are too) writes ID3v2.3 comment tags using a
-      frame name 'COM ' which is not valid for ID3v2.3+ (it's an
-      ID3v2.2-style frame name)  (detected by getID3())
-  * MP2enc does not encode mono CBR MP2 files properly (half speed
-      sound and double playtime)
-  * MP2enc does not encode mono VBR MP2 files properly (actually
-      encoded as stereo)
-  * tooLAME does not encode mono VBR MP2 files properly (actually
-      encoded as stereo)
-  * AACenc encodes files in VBR mode (actually ABR) even if CBR is
-     specified
-  * AAC/ADIF - bitrate_mode = cbr for vbr files
-  * LAME 3.90-3.92 prepends one frame of null data (space for the
-    LAME/VBR header, but it never gets written) when encoding in CBR
-    mode with the DLL
-  * Ahead Nero encodes TwinVQF with a DSIZ value (which is supposed
-    to be the filesize in bytes) of "0" for TwinVQF v1.0 and "1" for
-    TwinVQF v2.0  (detected by getID3())
-  * Ahead Nero encodes TwinVQF files 1 second shorter than they
-    should be
-  * AAC-ADTS files are always actually encoded VBR, even if CBR mode
-    is specified (the CBR-mode switches on the encoder enable ABR
-    mode, not CBR as such, but it's not possible to tell the
-    difference between such ABR files and true VBR)
-  * STREAMINFO.audio_signature in OggFLAC is always null. "The reason
-    it's like that is because there is no seeking support in
-    libOggFLAC yet, so it has no way to go back and write the
-    computed sum after encoding. Seeking support in Ogg FLAC is the
-    #1 item for the next release." - Josh Coalson (FLAC developer)
-    NOTE: getID3() will calculate md5_data in a method similar to
-    other file formats, but that value cannot be compared to the
-    md5_data value from FLAC data in a FLAC file format.
-  * STREAMINFO.audio_signature is not calculated in FLAC v0.3.0 &
-    v0.4.0 - getID3() will calculate md5_data in a method similar to
-    other file formats, but that value cannot be compared to the
-    md5_data value from FLAC v0.5.0+
-  * RioPort (various versions including 2.0 and 3.11) tags ID3v2 with
-    a WCOM frame that has no data portion
-  * Earlier versions of Coolplayer adds illegal ID3 tags to Ogg Vorbis
-    files, thus making them corrupt.
-  * Meracl ID3 Tag Writer v1.3.4 (and older) incorrectly truncates the
-    last byte of data from an MP3 file when appending a new ID3v1 tag.
-    (detected by getID3())
-  * Lossless-Audio files encoded with and without the -noseek switch
-    do actually differ internally and therefore cannot match md5_data
-  * iTunes has been known to append a new ID3v1 tag on the end of an
-    existing ID3v1 tag when ID3v2 tag is also present
-    (detected by getID3())

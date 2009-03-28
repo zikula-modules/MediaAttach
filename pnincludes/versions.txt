@@ -3,11 +3,11 @@ File_Bittorrent2
         http://pear.php.net/package/File_Bittorrent2
 
 GeSHi
-    1.0.7.22 (2008-06-08)
+    1.0.8.3 (2009-03-22)
         http://qbnz.com/highlighter/
 
 getid3
-    1.7.7 (2006-06-24)
+    1.7.9 (2009-03-08)
         http://getid3.sourceforge.net/
 
 Highslide JS
