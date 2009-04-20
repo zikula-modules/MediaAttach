@@ -31,9 +31,9 @@ function MediaAttach_user_display($args)
         return LogUtil::registerPermissionError();
     }
 
-    //special check for pnForum: has current user access to topic the upload belongs to?
-    if ($file['modname'] == 'pnForum') {
-        if (!pnModAPIFunc('pnForum', 'user', 'gettopicreadpermission', array('topic_id' => $file['objectid']))) {
+    //special check for Dizkus: has current user access to topic the upload belongs to?
+    if ($file['modname'] == 'Dizkus') {
+        if (!pnModAPIFunc('Dizkus', 'user', 'gettopicreadpermission', array('topic_id' => $file['objectid']))) {
             return LogUtil::registerPermissionError();
         }
     }

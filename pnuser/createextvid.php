@@ -18,7 +18,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  * This function is called with the results of the form
  * supplied by MediaAttach_user_viewupload to create a new upload
  * This function is also a create hook.
- * It can be called by other modules like pnForum if they
+ * It can be called by other modules like Dizkus if they
  * want to integrate upload functionality during a create process.
  *
  * @param   MediaAttach_videourl    string   URL of video page

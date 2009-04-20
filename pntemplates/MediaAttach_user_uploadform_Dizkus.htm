@@ -1,0 +1,135 @@
+<!--[* $Id: MediaAttach_user_uploadform_pnForum.htm 242 2007-09-22 23:30:32Z weckamc $ *]-->
+<!--[* Purpose of this template: shows upload form elements for a special module (here Dizkus) *]-->
+<!--[* note that this template is being included within a form of Dizkus so we do not need an own form tag *]-->
+
+<!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
+
+<!--[if $definition.state eq 1]-->
+<!--[if $allowadd]-->
+<a id="myuploadform_switch" href="javascript:void(0);" title="<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->" style="display: none">
+    <!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->
+</a>
+<div id="myuploadform">
+    <p class="maboldfont">
+        <!--[pnml name="_MEDIAATTACH_ALLOWEDFORMATS"]-->:
+        <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
+            <span id="showformats"><!--[pnml name="_MEDIAATTACH_FORMATSSHOW"]--></span>
+            <span id="hideformats" style="display: none"><!--[pnml name="_MEDIAATTACH_FORMATSHIDE"]--></span>
+        </a>
+    </p>
+    <p id="allowedformats">
+        <!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]-->
+    </p>
+
+    <p>
+        <span class="maboldfont"><!--[pnml name="_MEDIAATTACH_MAXSIZE"]-->:</span>
+        <input type="hidden" name="MAX_FILE_SIZE" value="<!--[$definition.maxsize]-->" />
+        <!--[mafilesize size=$definition.maxsize]-->
+    </p>
+    <!--[if $usequota eq 1]-->
+    <p>
+        <span class="maboldfont"><!--[pnml name="_MEDIAATTACH_QUOTA"]-->:</span>
+        <!--[pnml name="_MEDIAATTACH_QUOTAYOUHAVE"]--> <!--[mafilesize size=$usedquota]--> <!--[pnml name="_MEDIAATTACH_QUOTAOF"]--> <!--[mafilesize size=$allowedquota]--> <!--[pnml name="_MEDIAATTACH_QUOTAUSED"]-->
+    </p>
+    <!--[/if]-->
+    <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+    <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+    <div id="uploadformwrappernonjs">
+        <!--[foreach item="currentfilenum" from=$numArr]-->
+        <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->" class="maboldfont"><!--[pnml name="_MEDIAATTACH_FILE"]--><!--[if $definition.numfiles > 1]--> <!--[$currentfilenum]--><!--[/if]-->:</label><br />
+        <input id="MediaAttach_uploadfile<!--[$currentfilenum]-->" name="MediaAttach_uploadfile<!--[$currentfilenum]-->" type="file" size="13" /><br />
+
+        <label for="MediaAttach_title<!--[$currentfilenum]-->" class="maboldfont"><!--[pnml name="_MEDIAATTACH_TITLE"]-->:</label><br />
+        <input id="MediaAttach_title<!--[$currentfilenum]-->" name="MediaAttach_title<!--[$currentfilenum]-->" type="text" size="30" maxlength="32" /><br />
+
+        <label for="MediaAttach_description<!--[$currentfilenum]-->" class="maboldfont"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]-->:</label><br />
+        <textarea id="MediaAttach_description<!--[$currentfilenum]-->" name="MediaAttach_description<!--[$currentfilenum]-->" rows="3" cols="30" ></textarea><br />
+
+        <label for="mafilecats_<!--[$currentfilenum]-->_Main_"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+        <!--[nocache]-->
+        <ul class="maCatSelector">
+            <!--[foreach from=$categories key=property item=category]-->
+            <li><!--[selector_category category=$category name="mafilecats_`$currentfilenum`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+            <!--[/foreach]-->
+        </ul>
+        <!--[/nocache]-->
+        <br />
+        <!--[/foreach]-->
+    </div>
+
+    <div id="uploadformwrapperjs" style="display: none">
+        <div id="fileInputFrame">
+            <input type="hidden" name="MediaAttach_redirect" id="MediaAttach_redirect" value="<!--[$redirect]-->" />
+            <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="<!--[$modname]-->" />
+            <input type="hidden" name="MediaAttach_objectid" id="MediaAttach_objectid" value="<!--[$objectid]-->" />
+            <p>
+                <label><!--[pnml name="_MEDIAATTACH_MAXFILES"]-->:</label>
+                <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="<!--[$definition.numfiles]-->" />
+                <!--[$definition.numfiles]--><br />
+            </p>
+
+            <label id="labelfile" for="MediaAttach_uploadfile" style="display: block"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+            <input id="MediaAttach_uploadfile" type="file" size="13" /><br />
+
+            <label id="labeltitle" for="MediaAttach_title" style="display: block"><!--[pnml name="_MEDIAATTACH_TITLE"]-->:</label>
+            <input id="MediaAttach_title" type="text" size="30" maxlength="32" /><br />
+
+            <label id="labeldesc" for="MediaAttach_description" style="display: block"><!--[pnml name="_MEDIAATTACH_DESCRIPTION"]-->:</label>
+            <textarea id="MediaAttach_description" rows="3" cols="30"></textarea><br />
+
+            <label for="mafilecats_Main_"><!--[pnml name="_CATEGORIES"]-->:</label><br />
+            <!--[nocache]-->
+            <ul id="maCatSelector" class="maCatSelector">
+                <!--[foreach from=$categories key=property item=category]-->
+                <li><!--[selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+                <!--[/foreach]-->
+            </ul>
+            <!--[/nocache]-->
+            <br />
+
+            <input type="button" id="addNewUploadFile" value="<!--[pnml name="_MEDIAATTACH_ADDFILE"]-->" style="margin-left: 80px" /><br />
+        </div>
+
+        <ul id="addedUploadList">
+            <li><!--[pnml name="_MEDIAATTACH_INFOFORATTACHMENTBOX"]--></li>
+        </ul>
+
+        <ul class="" style="position: relative" id="uploadRemoveBox">
+            <li><!--[pnml name="_MEDIAATTACH_INFOFORDROPBOX"]--></li>
+        </ul>
+    </div>
+
+    <iframe id="myuploadframe" name="myuploadframe" src="ajax.php?module=MediaAttach&amp;func=performupload" style="display: none"></iframe>
+
+    <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
+    <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]-->
+    <span id="myuploadresult" style="display: none"><!--[pnml name="_MEDIAATTACH_UPLOADING"]--></span>
+    <input id="btnUpload" type="submit" value="<!--[pnml name="_MEDIAATTACH_UPLOAD"]-->" style="display: none" />
+    <!--[else]-->
+    <p style="font-weight: 700; text-align: center">
+        <!--[pnml name="_MEDIAATTACH_QUOTAFULL"]-->
+    </p>
+    <!--[/if]-->
+</div>
+
+<script type="text/javascript" language="javascript">
+    /* <![CDATA[ */
+    maInitUploadFormView();
+
+    <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+    var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]-->);
+    var errorAllowedFilenum = "<!--[pnml name="_MEDIAATTACH_ERRORALLOWEDFILENUM" m=$definition.numfiles]-->";
+    var errorAlreadySelected = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYSELECTED"]-->";
+    var errorExtensionNotAllowed = "<!--[pnml name="_MEDIAATTACH_ERROREXTENSIONNOTALLOWED"]-->";
+    withinForum = true;
+    maInitUploadFormFunction();
+
+    var errorAlreadyRunning = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYRUNNING"]-->";
+    maInitUploadFormAsynchronous();
+    <!--[/if]-->
+    /* ]]> */
+</script>
+<!--[*    <!--[else]-->
+<p><!--[pnml name="_MEDIAATTACH_NORIGHTS"]--></p> *]-->
+<!--[/if]-->
+<!--[/if]-->

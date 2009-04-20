@@ -18,7 +18,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  * This function is called with the results of the form
  * supplied by MediaAttach_user_viewupload to create a new upload
  * This function is also a create hook.
- * It can be called by other modules like pnForum if they
+ * It can be called by other modules like Dizkus if they
  * want to integrate upload functionality during a create process.
  *
  * @param   MediaAttach_modname        string   the name of the module the upload is for (taken from HTTP put)
@@ -39,7 +39,7 @@ function MediaAttach_user_createupload($args)
     if (isset($objectid) && !empty($objectid)) {
         $hookcall = 1;
 
-        //return if ajax process is running (pnForum)
+        //return if ajax process is running (Dizkus)
         if (pnSessionGetVar('pn_ajax_call') == 'ajax') {
             return;
         }
@@ -58,7 +58,7 @@ function MediaAttach_user_createupload($args)
         }
 
         $urlfunc = $urlparams = '';
-        if ($MediaAttach_modname == 'pnForum') {
+        if ($MediaAttach_modname == 'Dizkus') {
             $urlfunc = 'viewtopic';
             $urlparams = array('topic' => $MediaAttach_objectid);
         }

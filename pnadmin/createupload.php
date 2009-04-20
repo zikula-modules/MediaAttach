@@ -17,7 +17,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  *
  * This function is called with the results of the form
  * supplied by MediaAttach_admin_viewupload to create a new upload
- * It can be called by other modules like pnForum if they
+ * It can be called by other modules like Dizkus if they
  * want to integrate upload functionality during a create process.
  *
  * @param   MediaAttach_uploadfileX    array    the upload (taken from HTTP put) (X = 1,2,3,...n)

@@ -236,8 +236,8 @@
 
     function maInitUploadFormAsynchronous() {
         if (withinForum) {
-            var pnForumForms = new Array('newtopicform', 'quickreplyform', 'replyform');
-            pnForumForms.each(function(entry) {
+            var DizkusForms = new Array('newtopicform', 'quickreplyform', 'replyform');
+            DizkusForms.each(function(entry) {
                 if ($(entry)) {
                     uploadFormName = entry;
                 }

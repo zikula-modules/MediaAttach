@@ -11,7 +11,7 @@
 
 
 /**
- * this method determines if uploads are existing for all entries in a given topic array (pnForum)
+ * this method determines if uploads are existing for all entries in a given topic array (Dizkus)
  *
  * @param    topics       array        the topics
  * @return   array        array('id' => boolean) showing which object has uploads
@@ -22,7 +22,7 @@ function MediaAttach_userapi_getuploadtopicids($args)
         return LogUtil::registerError(_MODARGSERROR);
     }
 
-    if (!SecurityUtil::checkPermission('MediaAttach::', 'pnForum::', ACCESS_OVERVIEW)) {
+    if (!SecurityUtil::checkPermission('MediaAttach::', 'Dizkus::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
     }
 
@@ -36,7 +36,7 @@ function MediaAttach_userapi_getuploadtopicids($args)
     $pntables    = pnDBGetTables();
     $filescolumn = $pntables['ma_files_column'];
 
-    $where     = "$filescolumn[modname] = 'pnForum' AND $filescolumn[objectid] IN (";
+    $where     = "$filescolumn[modname] = 'Dizkus' AND $filescolumn[objectid] IN (";
     $firstOver = false;
     foreach ($topicstates as $topicid => $state) {
         if ($firstOver) $where .= ', ';

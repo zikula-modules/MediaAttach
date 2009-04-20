@@ -1,5 +1,5 @@
 <!--[* $Id: MediaAttach_user_filelist_pnForum.htm 155 2006-09-11 20:11:19Z weckamc $ *]-->
-<!--[* Purpose of this template: The filelist for pnForum *]-->
+<!--[* Purpose of this template: The filelist for Dizkus *]-->
 
 <!--[* let IE execute a js directly after rendering the DOM - this fixes that the user has to click for activating activeX for flash *]-->
 <!--[add_additional_header header='<!--']-->
@@ -12,13 +12,11 @@
 <!--[if $isLoggedIn || $numFiles > 0]-->
     <a name="files"></a>
     <strong><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></strong>
-    <div id="myfilelist" style="margin: 10px 0 10px 0;">
+    <div id="myfilelist" style="margin: 1em 0;">
         <!--[pnusergetvar name="uid" assign="currentuser"]-->
         <!--[foreach item="file" from=$files]-->
-            <!--[include file="MediaAttach_user_filelist_single_pnForum.htm"]-->
+            <!--[include file="MediaAttach_user_filelist_single_Dizkus.htm"]-->
         <!--[/foreach]-->
     </div>
-    <br />
-    <br />
 <!--[/if]-->
 <!--[/if]-->

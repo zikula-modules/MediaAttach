@@ -383,3 +383,9 @@ form#maNavForm {
 ul.maCatSelector {
     list-style-type: none !important;
 }
+
+#myfilelist .mafilebox {
+    border: 1px solid #999;
+    padding: 1em;
+    margin: 1em 0;
+}
