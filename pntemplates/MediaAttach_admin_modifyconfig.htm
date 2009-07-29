@@ -66,6 +66,7 @@
         <dl id="configlist2">
             <dt><!--[pnformlabel for="thumb1width" text="_MEDIAATTACH_DEFAULTTHUMBSIZE"]--></dt>
             <dd><ol style="margin-left: 0">
+            <!--[pnformvolatile]-->
             <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
                 <li>
                     <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxLength="4" text=$thumbsize[0]]--> x
@@ -77,6 +78,7 @@
                     <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxLength="4" text=""]--> x
                     <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxLength="4" text=""]--> <!--[pnml name="_MEDIAATTACH_CONFIGPIXEL"]-->
                 </li>
+            <!--[/pnformvolatile]-->
             </ol></dd>
 
             <dt><!--[pnformlabel for="shrinkimages" text="_MEDIAATTACH_SHRINKIMAGES"]--></dt>
