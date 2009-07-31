@@ -13,22 +13,14 @@
     <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
 <!--[/if]-->
 
-<!--[if $thumbnr ne "original"]-->
-    <!--[pnmodgetvar module="MediaAttach" name="cropsizemode" assign="cropsizemode"]-->
-    <!--[if $cropsizemode eq 2]-->
-        <!--[maimagesize imgref=$previewfile assign="previewSizeArr"]-->
-        <!--[assign var="imgSize" value=$previewSizeArr[3]]-->
-    <!--[/if]-->
-<!--[/if]-->
-
+<a href="<!--[$fileurl|pnvarprepfordisplay]-->" target="_blank" title="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->">
 <!--[if $externalPreview || ($thumbnr ne "original" && $imgSize eq "")]-->
     <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
     <!--[assign var="thumbIndex" value=$thumbnr-1]-->
     <!--[assign var="thumbwidth" value=$thumbsizes[$thumbIndex][0]]-->
     <!--[assign var="thumbheight" value=$thumbsizes[$thumbIndex][1]]-->
-    <!--[assign var="imgSize" value=" width=\"`$thumbwidth`\" height=\"`$thumbheight`\""]-->
+    <!--[mathumb id="ma`$idprefix`img`$file.fileid`" src=$previewfile alt=_MEDIAATTACH_VIEWIT altml=true width=$thumbwidth]-->
+<!--[else]-->
+    <!--[mathumb id="ma`$idprefix`img`$file.fileid`" src=$previewfile alt=_MEDIAATTACH_VIEWIT altml=true]-->
 <!--[/if]-->
-
-<a href="<!--[$fileurl|pnvarprepfordisplay]-->" target="_blank" title="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->">
-    <img id="ma<!--[$idprefix]-->img<!--[$file.fileid]-->" src="<!--[$previewfile]-->"<!--[$imgSize]--> alt="<!--[pnml name="_MEDIAATTACH_VIEWIT"]-->" />
 </a>

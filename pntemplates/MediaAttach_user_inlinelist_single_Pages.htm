@@ -4,17 +4,12 @@
 <!--[if ($definition.displayfiles eq 1 && $currentuser eq $file.uid) || $definition.displayfiles eq 2]-->
 <!--[if $file.extension eq "gif" || $file.extension eq "jpg" || $file.extension eq "jpeg" || $file.extension eq "png"]-->
 
-<!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
-<!--[assign var="thumbIndex" value=$thumbnr-1]-->
-<!--[assign var="thumbwidth" value=$thumbsizes[$thumbIndex][0]]-->
-<!--[assign var="thumbheight" value=$thumbsizes[$thumbIndex][1]]-->
-
 <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
 
-<div style="float: left">
+<div style="float: left; margin-right: 3px">
     <a href="<!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid inline=1]-->" class="highslide" onclick="return hs.expand(this, 
         {wrapperClassName : 'highslide-white', spaceForCaption: 30, captionId: 'description<!--[$file.fileid]-->', outlineType: 'rounded-white'})">
-        <img id="maimg<!--[$file.fileid]-->" src="<!--[$previewfile]-->" width="<!--[$thumbwidth]-->" height="<!--[$thumbheight]-->" alt="<!--[$file.title]-->" title="<!--[$file.title]-->" />
+        <!--[mathumb id="maimg`$file.fileid`" src=$previewfile alt=$file.title title=$file.title]-->
     </a>
     <br />
     <!--[mafilebuttons file=$file view=1 dl=1 edit=1 delete=1]-->

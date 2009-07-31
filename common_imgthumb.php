@@ -189,8 +189,26 @@ function _maIntImageThumb($params, &$smarty)
         $params['height'] = $thumbsizes[$thumbNumber-1][1];
     }
 
-    $_DST['width'] = $params['width'];
-    $_DST['height']= $params['height'];
+    $tmpX = 0;
+    $tmpY = 0;
+    if ($_SRC['width'] > $_SRC['height']) {
+        $tmpX = $params['width'];
+        $tmpY = ($_SRC['height'] * $params['height']) / $_SRC['width'];
+    }
+    else {
+        $tmpY = $params['height'];
+        $tmpX = ($_SRC['width'] * $params['width']) / $_SRC['height'];
+    }
+
+    // If thumbnail area becomes bigger than original, then use original's size
+    if ($tmpX * $tmpY >= $_SRC['width'] * $_SRC['height']) {
+        $tmpX = $_SRC['width'];
+        $tmpY = $_SRC['height'];
+    }
+
+    $_DST['width'] = $tmpX;
+    $_DST['height']= $tmpY;
+
 
     $_SRC['offset_w'] = $_SRC['offset_h'] = 0;
 
@@ -246,6 +264,7 @@ function _maIntImageThumb($params, &$smarty)
 
     if (!$isUserDefinedCrop) {
         // if the image is very big, scale down
+
         if ($_DST['width'] * 4 < $_SRC['width'] && $_DST['height'] * 4 < $_SRC['height'])
         {
             // multiplikator for destination size
@@ -276,7 +295,7 @@ function _maIntImageThumb($params, &$smarty)
 
         $_DST['image'] = imagecreatetruecolor($_DST['width'], $_DST['height']);
         if (!$_DST['image']) {
-            $_DST['image'] = ImageCreate($_DST['width'], $_DST['height']); // Create white background image
+            $_DST['image'] = ImageCreate($_DST['width'], $_DST['height']);
         }
 
         // some default settings borrowed from Mediashare
@@ -287,18 +306,12 @@ function _maIntImageThumb($params, &$smarty)
 
         imagecopyresampled($_DST['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_DST['width'], $_DST['height'], $_SRC['width'], $_SRC['height']);
 
+        //LogUtil::registerError('Original: ' . $_SRC['width'] . 'x' . $_SRC['height'] . ', Thumb: ' . $_DST['width'] . 'x' . $_DST['height']);
     } else {
         $_SRC['offset_w'] = $params['offset_w'];
         $_SRC['offset_h'] = $params['offset_h'];
 
         $_DST['image'] = imagecreatetruecolor($_DST['width'], $_DST['height']);
-
-        // some default settings borrowed from Mediashare
-        imagealphablending($_DST['image'], false);
-        imagesavealpha($_DST['image'], true);
-        $white = imagecolorallocate($thumbnail, 255, 255, 255); // First allocated - becomes background
-        $gray = imagecolorallocate($thumbnail, 100, 100, 100);
-
         imagecopy($_DST['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_DST['width'], $_DST['height']);
     }
 
