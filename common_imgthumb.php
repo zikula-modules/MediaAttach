@@ -253,7 +253,17 @@ function _maIntImageThumb($params, &$smarty)
             $_TMP['height'] = round($_DST['height'] * 4);
 
             $_TMP['image'] = imagecreatetruecolor($_TMP['width'], $_TMP['height']);
-            imagecopyresized($_TMP['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_TMP['width'], $_TMP['height'], $_SRC['width'], $_SRC['height']);
+            if (!$_TMP['image']) {
+                $_TMP['image'] = ImageCreate($_TMP['width'], $_TMP['height']);
+            }
+
+            // some default settings borrowed from Mediashare
+            imagealphablending($_TMP['image'], false);
+            imagesavealpha($_TMP['image'], true);
+            $white = imagecolorallocate($_TMP['image'], 255, 255, 255); // First allocated - becomes background
+            $gray = imagecolorallocate($_TMP['image'], 100, 100, 100);
+
+            imagecopyresampled($_TMP['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_TMP['width'], $_TMP['height'], $_SRC['width'], $_SRC['height']);
             $_SRC['image'] = $_TMP['image'];
             $_SRC['width'] = $_TMP['width'];
             $_SRC['height'] = $_TMP['height'];
@@ -263,8 +273,20 @@ function _maIntImageThumb($params, &$smarty)
             $_SRC['offset_h'] = 0;
             unset($_TMP['image']);
         }
+
         $_DST['image'] = imagecreatetruecolor($_DST['width'], $_DST['height']);
+        if (!$_DST['image']) {
+            $_DST['image'] = ImageCreate($_DST['width'], $_DST['height']); // Create white background image
+        }
+
+        // some default settings borrowed from Mediashare
+        imagealphablending($_DST['image'], false);
+        imagesavealpha($_DST['image'], true);
+        $white = imagecolorallocate($thumbnail, 255, 255, 255); // First allocated - becomes background
+        $gray = imagecolorallocate($thumbnail, 100, 100, 100);
+
         imagecopyresampled($_DST['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_DST['width'], $_DST['height'], $_SRC['width'], $_SRC['height']);
+
     } else {
         $_SRC['offset_w'] = $params['offset_w'];
         $_SRC['offset_h'] = $params['offset_h'];
