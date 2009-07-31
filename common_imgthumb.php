@@ -270,6 +270,13 @@ function _maIntImageThumb($params, &$smarty)
         $_SRC['offset_h'] = $params['offset_h'];
 
         $_DST['image'] = imagecreatetruecolor($_DST['width'], $_DST['height']);
+
+        // some default settings borrowed from Mediashare
+        imagealphablending($_DST['image'], false);
+        imagesavealpha($_DST['image'], true);
+        $white = imagecolorallocate($thumbnail, 255, 255, 255); // First allocated - becomes background
+        $gray = imagecolorallocate($thumbnail, 100, 100, 100);
+
         imagecopy($_DST['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_DST['width'], $_DST['height']);
     }
 
