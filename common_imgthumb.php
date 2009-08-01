@@ -189,26 +189,11 @@ function _maIntImageThumb($params, &$smarty)
         $params['height'] = $thumbsizes[$thumbNumber-1][1];
     }
 
-    $tmpX = 0;
-    $tmpY = 0;
-    if ($_SRC['width'] > $_SRC['height']) {
-        $tmpX = $params['width'];
-        $tmpY = ($_SRC['height'] * $params['height']) / $_SRC['width'];
-    }
-    else {
-        $tmpY = $params['height'];
-        $tmpX = ($_SRC['width'] * $params['width']) / $_SRC['height'];
-    }
+    $_DST['width'] = $params['width'];
+    $_DST['height']= $params['height'];
 
-    // If thumbnail area becomes bigger than original, then use original's size
-    if ($tmpX * $tmpY >= $_SRC['width'] * $_SRC['height']) {
-        $tmpX = $_SRC['width'];
-        $tmpY = $_SRC['height'];
-    }
-
-    $_DST['width'] = $tmpX;
-    $_DST['height']= $tmpY;
-
+    // temporary fix until #50 has been solved
+    $params['longside'] = ($_DST['width'] > $_DST['height']) ? $_DST['width'] : $_DST['height'];
 
     $_SRC['offset_w'] = $_SRC['offset_h'] = 0;
 
@@ -271,16 +256,7 @@ function _maIntImageThumb($params, &$smarty)
             $_TMP['width'] = round($_DST['width'] * 4);
             $_TMP['height'] = round($_DST['height'] * 4);
 
-            $_TMP['image'] = imagecreatetruecolor($_TMP['width'], $_TMP['height']);
-            if (!$_TMP['image']) {
-                $_TMP['image'] = ImageCreate($_TMP['width'], $_TMP['height']);
-            }
-
-            // some default settings borrowed from Mediashare
-            imagealphablending($_TMP['image'], false);
-            imagesavealpha($_TMP['image'], true);
-            $white = imagecolorallocate($_TMP['image'], 255, 255, 255); // First allocated - becomes background
-            $gray = imagecolorallocate($_TMP['image'], 100, 100, 100);
+            $_TMP['image'] = _maIntNewImage($_TMP['width'], $_TMP['height']);
 
             imagecopyresampled($_TMP['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_TMP['width'], $_TMP['height'], $_SRC['width'], $_SRC['height']);
             $_SRC['image'] = $_TMP['image'];
@@ -293,16 +269,7 @@ function _maIntImageThumb($params, &$smarty)
             unset($_TMP['image']);
         }
 
-        $_DST['image'] = imagecreatetruecolor($_DST['width'], $_DST['height']);
-        if (!$_DST['image']) {
-            $_DST['image'] = ImageCreate($_DST['width'], $_DST['height']);
-        }
-
-        // some default settings borrowed from Mediashare
-        imagealphablending($_DST['image'], false);
-        imagesavealpha($_DST['image'], true);
-        $white = imagecolorallocate($thumbnail, 255, 255, 255); // First allocated - becomes background
-        $gray = imagecolorallocate($thumbnail, 100, 100, 100);
+        $_DST['image'] = _maIntNewImage($_DST['width'], $_DST['height']);
 
         imagecopyresampled($_DST['image'], $_SRC['image'], 0, 0, $_SRC['offset_w'], $_SRC['offset_h'], $_DST['width'], $_DST['height'], $_SRC['width'], $_SRC['height']);
 
@@ -341,3 +308,21 @@ function _maIntImageThumb($params, &$smarty)
         return $destFilePath;
     }
 }
+
+
+function _maIntNewImage($w, $h)
+{
+    $image = imagecreatetruecolor($w, $h);
+    if (!$image) {
+        $image = ImageCreate($w, $h);
+    }
+
+    // some default settings borrowed from Mediashare
+    imagealphablending($image, false);
+    imagesavealpha($image, true);
+    $white = imagecolorallocate($image, 255, 255, 255); // First allocated - becomes background
+    $gray = imagecolorallocate($image, 100, 100, 100);
+
+    return $image;
+}
+
