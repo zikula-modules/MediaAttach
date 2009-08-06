@@ -76,12 +76,27 @@ function MediaAttach_user_download($args)
         header("Content-Encoding: identity");
     }
 
-    header("Pragma: public");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: public");
+    //header("Pragma: public");
+    //header("Expires: 0");
+    //header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    //header("Cache-Control: public");
+
+    $expireSeconds = 10800;
+    header("Expires: " . gmdate("D, d M Y H:i:s", strtotime("+$expireSeconds seconds")) . " GMT");
+    header("Cache-Control: public, max-age=$expireSeconds, pre-check=$expireSeconds");
+    header("Pragma: cache", true);
+
+    if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+        // use cached version in the browser if available - and sent corresponding 304 code
+        header('Last-Modified: ' . $_SERVER['HTTP_IF_MODIFIED_SINCE'], true, 304);
+        exit;
+    }
+    else {
+        header("Last-Modified: " . gmdate('D, d M Y H:i:s', filemtime($file['filename'])) . ' GMT');
+    }
+
     header("Content-Length: " . $file['filesize']);
-    
+
     if ($inline == 1) {
         header("Content-Description: MediaAttach inline file");
         header("Content-Disposition: inline; filename=" . $file['filename'] . "; filesize=" . $file['filesize'] . ";");
