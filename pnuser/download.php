@@ -95,7 +95,7 @@ function MediaAttach_user_download($args)
         header("Last-Modified: " . gmdate('D, d M Y H:i:s', filemtime($file['filename'])) . ' GMT');
     }
 
-    header("Content-Length: " . $file['filesize']);
+    //header("Content-Length: " . $file['filesize']);
 
     if ($inline == 1) {
         header("Content-Description: MediaAttach inline file");
