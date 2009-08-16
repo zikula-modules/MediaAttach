@@ -18,9 +18,15 @@ JavaScript Image Cropper UI
     1.2.0 (2006-10-30)
         http://www.defusion.org.uk/code/javascript-image-cropper-ui-using-prototype-scriptaculous/
 
-JW FLV Player
-    4.0 (2007-07-02)
-        http://www.jeroenwijering.com/?item=JW_FLV_Player
+#JW FLV Player (Removed because of Licensing Issues (CC-by-non Commercial))
+#    4.0 (2007-07-02)
+#        http://www.jeroenwijering.com/?item=JW_FLV_Player
+# Replaced By
+
+FlowPlayer
+    3.1.2
+      http://flowplayer.org/
+      GPL-V3
 
 Snoopy Class
     1.2.3 (2005-11-08)

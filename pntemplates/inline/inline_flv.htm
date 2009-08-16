@@ -1,37 +1,10 @@
 <!--[* Purpose of this template: Shows flv-files within the jw-flv-player inline *]-->
 
 <!--[pnmodurl modname="MediaAttach" func="download" fileid=$file.fileid assign="fileurl"]-->
+<!--[pnpagesetvar name="javascript" value="modules/MediaAttach/pnincludes/flowplayer/example/flowplayer-3.1.2.min.js"]-->
+<a href="<!--[pngetbaseurl]--><!--[$fileurl|urlencode]-->" style="display:block;width:520px;height:330px" id="player<!--[$file.fileid]-->"></a>
 
-<!--[literal]--><!--[if !IE]> --><!--[/literal]-->
-    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->"
-            width="<!--[$file.fileInfo.meta.onMetaData.width]-->" 
-            height="<!--[$file.fileInfo.meta.onMetaData.height+20]-->" 
-            type="application/x-shockwave-flash" 
-            data="<!--[pngetbaseurl]-->modules/MediaAttach/pnincludes/flvplayer/player.swf">
-<!--[literal]--><!-- <![endif]--><!--[/literal]-->
 
-<!--[literal]--><!--[if IE]><!--[/literal]-->
-    <object id="ma<!--[$idprefix]-->media<!--[$file.fileid]-->" 
-            width="<!--[$file.fileInfo.meta.onMetaData.width]-->" 
-            height="<!--[$file.fileInfo.meta.onMetaData.height+20]-->"
-            classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000"
-            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0">
-            <param name="movie" value="<!--[pngetbaseurl]-->modules/MediaAttach/pnincludes/flvplayer/player.swf" />
-<!--[literal]--><!--><!----><!--[/literal]-->
-
-            <param name="flashvars" value="file=<!--[pngetbaseurl]--><!--[$fileurl|urlencode]-->&amp;type=flv&amp;description=<!--[$file.description|pnvarprepfordisplay]-->" />
-            <param name="type" value="flv" />
-            <param name="height" value="<!--[$file.fileInfo.meta.onMetaData.height]-->" />
-            <param name="width" value="<!--[$file.fileInfo.meta.onMetaData.width]-->" />
-            <param name="allowfullscreen" value="true" />
-            <param name="shownavigation" value="true" />
-
-            <p>
-                Your browser does not support embedded flash files.<br />
-                Please click <a href="<!--[pngetbaseurl]--><!--[$fileurl|pnvarprepfordisplay]-->">here</a> to download the file you requested.<br />
-                <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" title="Download Flash Player" target="_blank">
-                    <!--[pnimg src="logo_flash.png" alt="Download Flash Player"]-->
-                </a>
-            </p>
-</object>
-<!--[literal]--><!-- <![endif]--><!--[/literal]-->
+        <script>
+            flowplayer("player<!--[$file.fileid]-->", "modules/MediaAttach/pnincludes/flowplayer/flowplayer-3.1.2.swf");
+	</script>
