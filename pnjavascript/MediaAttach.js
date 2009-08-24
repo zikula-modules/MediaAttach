@@ -334,7 +334,9 @@
         $(thisInputFile).hide();
         $(thisInputTitle).hide();
         $(thisInputDesc).hide();
-        $(thisInputCats).hide();
+        if ($('maCatSelector')) {
+            $(thisInputCats).hide();
+        }
 
         //the "un-named" inputs are now named with their field array names
         thisInputFile.setAttribute('name', 'MediaAttach_uploadfiles[]');
@@ -343,20 +345,22 @@
 
 
 
-        var categoryInfo = '';
-        var categoryFields = $A($('maCatSelector').getElementsByTagName('select'));
-        var catCounter = 0;
-        if (categoryFields.length > 0) {
-            categoryFields.each(function(categoryField) {
-                var catFieldID = categoryField.id;
-                var catProperty = catFieldID.gsub('mafilecats_', '').gsub('_', '');
-                if (catCounter > 0) categoryInfo += ',';
-                categoryInfo += catProperty + ':' + $F(catFieldID);
-                catCounter++;
-            });
-        }
+        if ($('maCatSelector')) {
+            var categoryInfo = '';
+            var categoryFields = $A($('maCatSelector').getElementsByTagName('select'));
+            var catCounter = 0;
+            if (categoryFields.length > 0) {
+                categoryFields.each(function(categoryField) {
+                    var catFieldID = categoryField.id;
+                    var catProperty = catFieldID.gsub('mafilecats_', '').gsub('_', '');
+                    if (catCounter > 0) categoryInfo += ',';
+                    categoryInfo += catProperty + ':' + $F(catFieldID);
+                    catCounter++;
+                });
+            }
 
-        $(thisInputCats).value = categoryInfo;                         // assign id list
+            $(thisInputCats).value = categoryInfo;                         // assign id list
+        }
 
         //li node is created with the selected file path inside
         var li = Builder.node('li', {className: 'addedUpload'}, $F(thisInputTitle) + ' (' + $F(thisInputFile) + ')');
@@ -365,7 +369,9 @@
         li.appendChild(thisInputFile);
         li.appendChild(thisInputTitle);
         li.appendChild(thisInputDesc);
-        li.appendChild(thisInputCats);
+        if ($('maCatSelector')) {
+            li.appendChild(thisInputCats);
+        }
 
         //the li node is appended to list of added upload files
         $('addedUploadList').appendChild(li);

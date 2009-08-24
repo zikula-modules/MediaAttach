@@ -51,13 +51,13 @@ function MediaAttach_ajax_performupload()
     $jsfield_files  = FormUtil::getPassedValue('MediaAttach_uploadfiles',  null, 'FILES');
     $jsfield_titles = FormUtil::getPassedValue('MediaAttach_titles',       null, 'POST');
     $jsfield_descs  = FormUtil::getPassedValue('MediaAttach_descriptions', null, 'POST');
-    $jsfield_cats   = FormUtil::getPassedValue('MediaAttach_categories',   null, 'POST');
+    $jsfield_cats   = FormUtil::getPassedValue('MediaAttach_categories',   array(), 'POST');
     if (!is_array($jsfield_files) || !is_array($jsfield_titles) || !is_array($jsfield_descs) || !is_array($jsfield_cats)) {
         AjaxUtil::error(_MODARGSERROR);
     }
 
     $numfiles = count($jsfield_files['name']);
-    if (($numfiles != count($jsfield_titles)) || ($numfiles != count($jsfield_descs)) || ($numfiles != count($jsfield_cats))) {
+    if (($numfiles != count($jsfield_titles)) || ($numfiles != count($jsfield_descs))) {
         AjaxUtil::error(_MODARGSERROR);
     }
 
@@ -75,10 +75,12 @@ function MediaAttach_ajax_performupload()
         $desc = $jsfield_descs[$i];
 
         $cats = array();
-        $rawCats = explode(',', $jsfield_cats[$i]);
-        foreach($rawCats as $rawCat) {
-            $catParts = explode(':', $rawCat);
-            $cats[$catParts[0]] = $catParts[1];
+        if ($jsfield_cats[$i]) {
+            $rawCats = explode(',', $jsfield_cats[$i]);
+            foreach($rawCats as $rawCat) {
+                $catParts = explode(':', $rawCat);
+                $cats[$catParts[0]] = $catParts[1];
+            }
         }
 
         $upload['name'] = $jsfield_files['name'][$i];
