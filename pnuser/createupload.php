@@ -63,7 +63,7 @@ function MediaAttach_user_createupload($args)
             $urlparams = array('topic' => $MediaAttach_objectid);
         }
         $MediaAttach_redirect = pnModURL($MediaAttach_modname, 'user', $urlfunc, $urlparams);
-
+        $MediaAttach_redirect = base64_encode($MediaAttach_redirect);
     } else {
         $extrainfo = '';
 
