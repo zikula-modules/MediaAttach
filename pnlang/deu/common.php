@@ -151,6 +151,7 @@ define('_MEDIAATTACH_ADMINTGROUPS',             'Dateiformat-Gruppen');
 define('_MEDIAATTACH_ADMINTQUOTAS',             'Quotas');
 define('_MEDIAATTACH_ADMINTCONFIG',             'Die Konfiguration von MediaAttach');
 define('_MEDIAATTACH_ADMINTMANUAL',             'Das lesenswerte PDF-Handbuch');
+define('_MEDIAATTACH_ADMINUPGRADEFAIL',         'Update ist fehlgeschlage. Version:');
 
 define('_MEDIAATTACH_WELCOME',                  'Willkommen im MediaAttach-Adminbereich');
 define('_MEDIAATTACH_FILESTOTAL',               '%count% Dateien insgesamt');
