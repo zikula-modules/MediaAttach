@@ -140,7 +140,7 @@ function MediaAttach_pntables()
     $pntable['ma_files_column_def'] = array('fileid'       => "I      AUTO PRIMARY",
                                             'definition'   => "I      NOTNULL DEFAULT 0",
                                             'modname'      => "C(64)  NOTNULL DEFAULT ''",
-                                            'objectid'     => "C(20)  NOTNULL DEFAULT ''",
+                                            'objectid'     => "C(32)  NOTNULL DEFAULT ''",
                                             'uid'          => "I      NOTNULL DEFAULT 0",
                                             'date'         => "T      NOTNULL DEFAULT 0",
                                             'title'        => "C(64)  NOTNULL DEFAULT ''",

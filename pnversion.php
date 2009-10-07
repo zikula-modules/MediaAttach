@@ -17,7 +17,7 @@
 $modversion['name']           = _MEDIAATTACH_NAME;
 $modversion['description']    = _MEDIAATTACH_DESCRIPTION;
 $modversion['displayname']    = _MEDIAATTACH_DISPLAYNAME;
-$modversion['version']        = '1.0.0.1';
+$modversion['version']        = '1.0.0.2';
 
 $modversion['changelog']      = '';
 $modversion['credits']        = 'pndocs/credits.txt';
