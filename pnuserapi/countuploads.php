@@ -40,6 +40,10 @@ function MediaAttach_userapi_countuploads($args)
     $searchfor      = (isset($args['searchfor'])    && !empty($searchfor))              ? $args['searchfor']    : '';
     $bool           = (isset($args['bool'])         && !empty($args['bool']))           ? $args['bool']         : 'AND';
 
+    if (!is_null($catFilter)) {
+        $catFilter['__META__']['module'] = 'MediaAttach';
+    }
+
     $where = _maIntBuildWhereString(array('fileFilter'     => $fileFilter,
                                           'formatFilter'   => $formatFilter,
                                           'userFilter'     => $userFilter,
