@@ -1,0 +1,1982 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-09 10:41-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pnfileinfoapi/retrievefileinfo.php:24 pnfileinfoapi/retrievefileinfo.php:33
+#: pnfileinfoapi/nicefileformatdisplay.php:22 pnfileinfoapi/cacheinfo.php:23
+#: pnfileinfoapi/getcachedinfo.php:23 pndefinitionsapi/updatedefinition.php:43
+#: pndefinitionsapi/getdefinition.php:23
+#: pndefinitionsapi/getmoduledefinition.php:23
+#: pndefinitionsapi/createdefinition.php:43 pnadmin/importmodprocess.php:36
+#: pnadmin/createupload.php:74 pnadmin/importfsprocess.php:42
+#: pnexternal/finditem.php:68 pnquotaapi/createquota.php:31
+#: pnquotaapi/deleteallquotas.php:27 pnquotaapi/getallowedquota.php:23
+#: pnquotaapi/getusedquota.php:23 pnquotaapi/deleteuserquota.php:27
+#: pnuserapi/getupload.php:23
+#: pnuserapi/getlastuploadbymodnameandobjectid.php:24
+#: pnuserapi/getuploadtopicids.php:23 pnuserapi/createupload.php:45
+#: pnuserapi/shrinkimage.php:23 pnuserapi/delete.php:40
+#: pnuserapi/delete.php:71 pnuserapi/incdlcounter.php:23
+#: pnuserapi/update.php:28 pncatapi/getCategoryTemplate.php:23
+#: pnuser/createextvid.php:42 pnuser/createupload.php:51
+#: pnuser/createupload.php:58 pnuser/createupload.php:112
+#: pnfiletypesapi/creategroup.php:30 pnfiletypesapi/getformatgroups.php:27
+#: pnfiletypesapi/updategroup.php:31 pnfiletypesapi/getdefgroups.php:23
+#: pnfiletypesapi/updateformat.php:29 pnfiletypesapi/getgroupformats.php:23
+#: pnfiletypesapi/createdefgroup.php:28 pnfiletypesapi/deletedefgroups.php:28
+#: pnfiletypesapi/createformatgroup.php:28 pnfiletypesapi/createformat.php:29
+#: pnfiletypesapi/getgroup.php:27 pnfiletypesapi/deleteformatgroups.php:28
+#: pnfiletypesapi/deletegroup.php:27 pnfiletypesapi/getformat.php:27
+#: pnfiletypesapi/deleteformat.php:27 common_imgthumb.php:131 pnajax.php:57
+#: pnajax.php:62 pntemplates/pnform/function.mediaattachitemselector.php:87
+#: common_imgthumb.php:131 pnajax.php:57 pnajax.php:62
+msgid "Error! Could not do what you wanted. Please check your input."
+msgstr ""
+
+#: pnaccountapi.php:37 pnaccountapi.php:37
+#: pntemplates/MediaAttach_profile_myuploads.htm:4
+msgid "My uploads"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:59
+msgid "Enforce default size"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:60
+msgid "Keep size variable and enforce aspect ratio"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:61
+msgid "Keep size and aspect ratio variable"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:69
+#: pntemplates/MediaAttach_navform.html:17
+msgid "No categorization"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:70
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:48
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:80
+#: pntemplates/MediaAttach_user_uploadform.htm:54
+#: pntemplates/MediaAttach_user_uploadform.htm:82
+#: pntemplates/MediaAttach_user_uploadform.htm:137
+#: pntemplates/MediaAttach_admin_view.htm:71
+#: pntemplates/MediaAttach_admin_view.htm:99
+#: pntemplates/MediaAttach_admin_view.htm:155
+#: pntemplates/MediaAttach_file_categories.htm:17
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:58
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:86
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:141
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:57
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:115
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:33
+#: pntemplates/MediaAttach_navform.html:19
+#: pntemplates/MediaAttach_import_fs.htm:45
+msgid "Categories"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:71
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:106
+#: pntemplates/MediaAttach_user_main.htm:14
+#: pntemplates/MediaAttach_navform.html:22
+msgid "Modules"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:72
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:109
+#: pntemplates/MediaAttach_user_main.htm:15
+#: pntemplates/MediaAttach_admin_quotas.htm:30
+#: pntemplates/MediaAttach_navform.html:25
+msgid "Users"
+msgstr ""
+
+#: pnincludes/MediaAttach_admin_modifyconfighandler.class.php:176
+msgid "Done! Module configuration updated."
+msgstr ""
+
+#: pndefinitionsapi/getalldefinitions.php:53
+#: pndefinitionsapi/updatedefinition.php:59
+#: pndefinitionsapi/getmoduledefinition.php:35 pnadmin/viewdefinitions.php:33
+#: pnadmin/updategroup.php:50 pnadmin/editgroup.php:38
+#: pnadmin/editgroup.php:44 pnadmin/editdefinition.php:38
+#: pnadmin/editdefinition.php:44 pnadmin/editformat.php:38
+#: pnadmin/editformat.php:44 pnadmin/deletegroup.php:39 pnadmin/display.php:33
+#: pnadmin/viewgroups.php:33 pnadmin/deleteformat.php:39
+#: pnadmin/viewformats.php:33 pnexternal/display.php:41
+#: pnuserapi/getlastuploadbymodnameandobjectid.php:49
+#: pnuserapi/getlastuploadbymodnameandobjectid.php:60 pnuserapi/delete.php:58
+#: pnuserapi/delete.php:89 pnuserapi/update.php:38 common.php:311
+#: pnfileinfo/showfileinfo.php:33 pnuser/torrent.php:31
+#: pnuser/updatethumb.php:66 pnuser/editthumb.php:41 pnuser/download.php:37
+#: pnuser/edit.php:36 pnuser/delete.php:37 pnuser/display.php:28
+#: pnuser/sendfile.php:32 pnuser/update.php:49
+#: pnfiletypesapi/getallformats.php:32 pnfiletypesapi/updategroup.php:42
+#: pnfiletypesapi/updateformat.php:38 pnfiletypesapi/getallgroups.php:32
+#: pnfiletypesapi/deletegroup.php:34 pnfiletypesapi/deleteformat.php:34
+#: pnsearchapi.php:73 pnsearchapi.php:102 pnajax.php:172 common.php:311
+#: pnajax.php:172 pnsearchapi.php:73 pnsearchapi.php:102
+msgid "Error! Could not load items."
+msgstr ""
+
+#: pndefinitionsapi/updatedefinition.php:74
+#: pndefinitionsapi/updatedefinition.php:78
+#: pndefinitionsapi/updatedefinition.php:83 pnadmin/createuserquota.php:55
+#: pnadmin/updategroupquotas.php:38 pnadmin/updategroupquotas.php:50
+#: pnadmin/updateuserquotas.php:38 pnadmin/updateuserquotas.php:50
+#: pnuserapi/update.php:48 pnfiletypesapi/updategroup.php:52
+#: pnfiletypesapi/updategroup.php:57 pnfiletypesapi/updategroup.php:62
+#: pnfiletypesapi/updateformat.php:46 pnfiletypesapi/updateformat.php:51
+#: pnfiletypesapi/updateformat.php:56
+msgid "Error! Update attempt failed."
+msgstr ""
+
+#: pndefinitionsapi/createdefinition.php:71
+#: pndefinitionsapi/createdefinition.php:78 pnquotaapi/createquota.php:46
+#: pnuserapi/createupload.php:84 pnfiletypesapi/creategroup.php:45
+#: pnfiletypesapi/creategroup.php:51 pnfiletypesapi/createdefgroup.php:40
+#: pnfiletypesapi/createformatgroup.php:40 pnfiletypesapi/createformat.php:42
+#: pnfiletypesapi/createformat.php:48
+msgid "Error! Creation attempt failed."
+msgstr ""
+
+#: pncontenttypesapi/mediasnippet.php:35
+msgid "MediaAttach file"
+msgstr ""
+
+#: pncontenttypesapi/mediasnippet.php:40
+msgid "Display a single MediaAttach file."
+msgstr ""
+
+#: pncontenttypesapi/mediasnippet.php:72
+msgid "No media file selected"
+msgstr ""
+
+#: pnadmin/creategroup.php:37 pnadmin/updategroup.php:45
+#: pnadmin/importmodprocess.php:28 pnadmin/createupload.php:47
+#: pnadmin/updateformat.php:43 pnadmin/updatedefinition.php:55
+#: pnadmin/createuserquota.php:47 pnadmin/updategroupquotas.php:32
+#: pnadmin/createformat.php:35 pnadmin/updateuserquotas.php:32
+#: pnadmin/deletegroup.php:50 pnadmin/importfsprocess.php:34
+#: pnadmin/deleteformat.php:50 pnadmin/createdefinition.php:49
+#: pnuser/createextvid.php:56 pnuser/updatethumb.php:61
+#: pnuser/createupload.php:87 pnuser/delete.php:59 pnuser/update.php:44
+#: pnajax.php:47 pnajax.php:47
+msgid ""
+"Invalid 'authkey':  this probably means that you pressed the 'Back' button, "
+"or that the page 'authkey' expired. Please refresh the page and try again."
+msgstr ""
+
+#: pnadmin/creategroup.php:54 pnadmin/createformat.php:45
+#: pnadmin/createdefinition.php:69
+msgid "Done! Item created."
+msgstr ""
+
+#: pnadmin/updategroup.php:65 pnadmin/updateformat.php:52
+#: pnadmin/updatedefinition.php:74 pnadmin/createuserquota.php:58
+#: pnadmin/updateuserquotas.php:55 pnuser/updatethumb.php:86
+#: pnuser/update.php:59
+msgid "Done! Item updated."
+msgstr ""
+
+#: pnadmin/importmodprocess.php:303 pnadmin/importmodprocess.php:314
+#: pnadmin/importfsprocess.php:131 pnuser/createextvid.php:199
+#: pnuser/createupload.php:316
+msgid "Sorry, the data of your file could not be written into the database"
+msgstr ""
+
+#: pnadmin/importmodprocess.php:303
+msgid "To"
+msgstr ""
+
+#: pnadmin/importmodprocess.php:317 pnadmin/importfsprocess.php:135
+msgid "The file has been imported successfully"
+msgstr ""
+
+#: pnadmin/createupload.php:101 pnadmin/importfsprocess.php:57
+#: pnblocks/specificfiles.php:77 common.php:124 pnuser/createextvid.php:125
+#: pnuser/createupload.php:139 pnuser/createuploadflash.php:46 common.php:124
+msgid "No title"
+msgstr ""
+
+#: pnadmin/updategroupquotas.php:55 pnadmin/deleteuserquota.php:36
+#: pnadmin/deletegroup.php:55 pnadmin/deleteformat.php:55 pnuser/delete.php:65
+#: pnuser/delete.php:81
+msgid "Done! Item deleted."
+msgstr ""
+
+#: pnneedleapi/mediaattach.php:38
+msgid "Sorry! The MediaAttach module is not available."
+msgstr ""
+
+#: pnneedleapi/mediaattach.php:86
+msgid "No correct needle id given"
+msgstr ""
+
+#: pnquotaapi/deleteallquotas.php:40 pnquotaapi/deleteuserquota.php:41
+#: pnuserapi/delete.php:94 pnuser/delete.php:83
+#: pnfiletypesapi/deletedefgroups.php:52
+#: pnfiletypesapi/deleteformatgroups.php:48 pnfiletypesapi/deletegroup.php:40
+#: pnfiletypesapi/deletegroup.php:45 pnfiletypesapi/deleteformat.php:40
+#: pnfiletypesapi/deleteformat.php:45
+msgid "Error! Sorry! Deletion attempt failed."
+msgstr ""
+
+#: pnversion.php:18 pnversion.php:18
+msgid "Uploads and file management"
+msgstr ""
+
+#: pnversion.php:19 pnversion.php:19
+msgid "MediaAttach"
+msgstr ""
+
+#: pninit.php:67 pninit.php:67
+msgid "An error occured while creating the category registries."
+msgstr ""
+
+#: pninit.php:72 pninit.php:72
+msgid "Admin uploads could not be prepared. This is not critical."
+msgstr ""
+
+#: pninit.php:127 pninit.php:127
+msgid "An error occured while deleting the category registries."
+msgstr ""
+
+#: pnuserapi/getalluploads.php:128 pnuserapi/getupload.php:58
+#: pnuserapi/delete.php:98
+msgid "Error! Unable to load class ObjectUtil"
+msgstr ""
+
+#: common.php:77 common.php:77
+msgid "Bytes"
+msgstr ""
+
+#: common.php:80 common.php:80 pntemplates/MediaAttach_admin_def_view.htm:58
+#: pntemplates/MediaAttach_admin_def_view.htm:138
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:48
+#: pntemplates/MediaAttach_admin_def_edit.htm:52
+msgid "KB"
+msgstr ""
+
+#: common.php:84 common.php:84 pntemplates/MediaAttach_admin_quotas.htm:20
+#: pntemplates/MediaAttach_admin_quotas.htm:41
+#: pntemplates/MediaAttach_admin_quotas.htm:69
+msgid "MB"
+msgstr ""
+
+#: common.php:88 common.php:88
+msgid "GB"
+msgstr ""
+
+#: pncatapi/getMainCat.php:25 pncatapi/getCategoryTree.php:22
+#: pnuser/main.php:83
+msgid "Error! Unable to load class CategoryRegistryUtil"
+msgstr ""
+
+#: pncatapi/getCategories.php:22 pncatapi/getCategoryTemplate.php:40
+#: pnuser/main.php:113
+msgid "Error! Unable to load class CategoryUtil"
+msgstr ""
+
+#: pnuser/createextvid.php:83
+msgid "Error: this is an invalid or unsupported URL."
+msgstr ""
+
+#: pnuser/createextvid.php:95
+msgid "Sorry, could not determine video information."
+msgstr ""
+
+#: pnuser/createextvid.php:202
+msgid "The video has been embedded successfully"
+msgstr ""
+
+#: pnuser/createextvid.php:207 pnuser/createupload.php:325
+msgid "A new file has been uploaded"
+msgstr ""
+
+#: pnuser/createupload.php:197 pnuser/createupload.php:217
+msgid "There was a problem with the upload"
+msgstr ""
+
+#: pnuser/createupload.php:200 pnuser/createupload.php:203
+msgid "The file is too big"
+msgstr ""
+
+#: pnuser/createupload.php:206
+msgid "The file was only partially uploaded"
+msgstr ""
+
+#: pnuser/createupload.php:210
+msgid "No file selected"
+msgstr ""
+
+#: pnuser/createupload.php:214
+msgid "There is no temporary folder specified"
+msgstr ""
+
+#: pnuser/createupload.php:320
+msgid "The file has been uploaded successfully"
+msgstr ""
+
+#: pnuser/editthumb.php:47
+msgid "Thumbnail cropping is deactivated."
+msgstr ""
+
+#: pnuser/main.php:28
+msgid "Sorry! This module cannot be accessed directly."
+msgstr ""
+
+#: pnuser/sendfile.php:47
+msgid "Hi! Here is the file which you sent yourself on our site"
+msgstr ""
+
+#: pnuser/sendfile.php:51
+msgid "The mail has been sent to you successfully"
+msgstr ""
+
+#: pnuser/sendfile.php:53
+msgid "Sorry, the mail could not be sent to you"
+msgstr ""
+
+#: pnuser/viewupload.php:26
+msgid "Sorry, MediaAttach has not been configured yet"
+msgstr ""
+
+#: pnadminapi.php:27 pnadminapi.php:27
+msgid "Start"
+msgstr ""
+
+#: pnadminapi.php:28 pnadminapi.php:28
+msgid "Go the start page of MediaAttach admin section"
+msgstr ""
+
+#: pnadminapi.php:31 pnadminapi.php:31
+msgid "Admin uploads"
+msgstr ""
+
+#: pnadminapi.php:32 pnadminapi.php:32
+msgid "Upload and import admin files"
+msgstr ""
+
+#: pnadminapi.php:35 pnadminapi.php:35
+#: pntemplates/MediaAttach_admin_upload_view.htm:9
+msgid "User uploads"
+msgstr ""
+
+#: pnadminapi.php:36 pnadminapi.php:36
+msgid "Management of user files"
+msgstr ""
+
+#: pnadminapi.php:39 pnadminapi.php:39
+msgid "Definitions"
+msgstr ""
+
+#: pnadminapi.php:40 pnadminapi.php:40
+msgid "Manage module definitions"
+msgstr ""
+
+#: pnadminapi.php:43 pnadminapi.php:43
+#: pntemplates/MediaAttach_admin_group_view.htm:61
+msgid "Formats"
+msgstr ""
+
+#: pnadminapi.php:44 pnadminapi.php:44
+#: pntemplates/MediaAttach_admin_group_view.htm:33
+#: pntemplates/MediaAttach_admin_group_edit.htm:28
+#: pntemplates/MediaAttach_admin_format_view.htm:7
+#: pntemplates/MediaAttach_admin_format_view.htm:9
+#: pntemplates/MediaAttach_admin_format_view.htm:45
+msgid "File formats"
+msgstr ""
+
+#: pnadminapi.php:47 pnadminapi.php:47
+#: pntemplates/MediaAttach_admin_def_view.htm:35
+#: pntemplates/MediaAttach_admin_def_view.htm:118
+#: pntemplates/MediaAttach_admin_def_edit.htm:18
+#: pntemplates/MediaAttach_admin_quotas.htm:12
+#: pntemplates/MediaAttach_admin_format_edit.htm:22
+#: pntemplates/MediaAttach_admin_format_view.htm:28
+#: pntemplates/MediaAttach_admin_format_view.htm:54
+msgid "Groups"
+msgstr ""
+
+#: pnadminapi.php:48 pnadminapi.php:48
+msgid "File format groups"
+msgstr ""
+
+#: pnadminapi.php:52 pnadminapi.php:53 pnadminapi.php:52 pnadminapi.php:53
+msgid "Quotas"
+msgstr ""
+
+#: pnadminapi.php:57 pnadminapi.php:57
+msgid "Config"
+msgstr ""
+
+#: pnadminapi.php:58 pnadminapi.php:58
+msgid "The MediaAttach configuration"
+msgstr ""
+
+#: pnadminapi.php:68 pnadminapi.php:68
+msgid "Manual"
+msgstr ""
+
+#: pnadminapi.php:69 pnadminapi.php:69
+msgid "The worth to read pdf manual"
+msgstr ""
+
+#: pnajax.php:41 pnajax.php:154 pnajax.php:160 pnajax.php:41 pnajax.php:154
+#: pnajax.php:160
+msgid "Sorry! No authorization to access this module."
+msgstr ""
+
+#: pntemplates/pnform/function.mediaattachitemselector.php:126
+msgid "A selection here is mandatory."
+msgstr ""
+
+#: pntemplates/plugins/function.maprofileinfo.php:46
+#: pntemplates/plugins/function.maprofileinfo.php:58
+#, php-format
+msgid "%s files uploaded"
+msgstr ""
+
+#: pntemplates/MediaAttach_import_mod.htm:9
+#: pntemplates/MediaAttach_admin_view.htm:28
+#: pntemplates/MediaAttach_admin_view.htm:29
+msgid "Import files from another module"
+msgstr ""
+
+#: pntemplates/MediaAttach_import_mod.htm:11
+msgid ""
+"MediaAttach has found the following modules from which files can be imported."
+msgstr ""
+
+#: pntemplates/MediaAttach_import_mod.htm:11
+#: pntemplates/MediaAttach_import_fs.htm:11
+msgid "The upload filesize limits are not being used here."
+msgstr ""
+
+#: pntemplates/MediaAttach_import_mod.htm:22
+#: pntemplates/MediaAttach_import_fs.htm:75
+msgid "Start import"
+msgstr ""
+
+#: pntemplates/MediaAttach_import_mod.htm:26
+msgid "Existing hierarchies are converted in the form of Categories."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_display.htm:16
+#: pntemplates/MediaAttach_user_inlinelist_single_Pages.htm:28
+#: pntemplates/MediaAttach_admin_upload_filelist_single.htm:10
+#: pntemplates/MediaAttach_user_filelist_single.htm:13
+#: pntemplates/MediaAttach_external_fileinfo.htm:12
+#: pntemplates/MediaAttach_admin_display.htm:19
+#: pntemplates/MediaAttach_external_display.htm:30
+#: pntemplates/MediaAttach_user_inlinelist_single_Pages2.htm:14
+#: pntemplates/MediaAttach_admin_upload_inline_single.htm:12
+#: pntemplates/MediaAttach_user_inlinelist_single.htm:14
+#: pntemplates/MediaAttach_user_listgallery_single.htm:28
+#: pntemplates/MediaAttach_user_filelist_single_pagesetter.htm:13
+msgid "from"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_display.htm:17
+#: pntemplates/MediaAttach_user_inlinelist_single_Pages.htm:28
+#: pntemplates/MediaAttach_admin_upload_filelist_single.htm:10
+#: pntemplates/MediaAttach_user_filelist_single.htm:14
+#: pntemplates/MediaAttach_external_fileinfo.htm:13
+#: pntemplates/MediaAttach_admin_display.htm:20
+#: pntemplates/MediaAttach_external_display.htm:31
+#: pntemplates/MediaAttach_user_inlinelist_single_Pages2.htm:15
+#: pntemplates/MediaAttach_admin_upload_inline_single.htm:13
+#: pntemplates/MediaAttach_user_inlinelist_single.htm:15
+#: pntemplates/MediaAttach_user_listgallery_single.htm:28
+#: pntemplates/MediaAttach_user_filelist_single_pagesetter.htm:14
+msgid "on"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_display.htm:34
+#: pntemplates/MediaAttach_user_display.htm:35
+#: pntemplates/MediaAttach_user_display.htm:36
+#: pntemplates/MediaAttach_user_main.htm:68
+#: pntemplates/MediaAttach_admin_display.htm:37
+#: pntemplates/MediaAttach_admin_display.htm:38
+#: pntemplates/MediaAttach_admin_display.htm:39
+msgid "Back"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:16
+msgid "General information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:17
+msgid "Filetype:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:21
+msgid "Filesize:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:25
+msgid "Mimetype:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:37
+msgid "Encoding:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:41
+#: pntemplates/MediaAttach_file_information.htm:83
+#: pntemplates/MediaAttach_file_information.htm:130
+msgid "Average bitrate:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:41
+#: pntemplates/MediaAttach_file_information.htm:83
+#: pntemplates/MediaAttach_file_information.htm:130
+msgid "kbps"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:44
+msgid "Playtime:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:48
+#: pntemplates/MediaAttach_file_information.htm:51
+msgid "sec."
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:57
+msgid "Hash information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:59
+msgid "md5 entire file:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:63
+msgid "md5 compressed raw data:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:65
+msgid "md5 uncompressed raw data:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:68
+msgid "md5 raw data:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:72
+msgid "sha1 entire file:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:75
+msgid "sha1 raw data:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:80
+msgid "Audio information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:86
+#: pntemplates/MediaAttach_file_information.htm:133
+msgid "Bitrate mode:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:87
+#: pntemplates/MediaAttach_file_information.htm:134
+msgid "CBR (Constant Bit Rate)"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:88
+#: pntemplates/MediaAttach_file_information.htm:135
+msgid "VBR (Variable Bit Rate)"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:94
+msgid "Sample rate:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:94
+msgid "Hertz"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:97
+#: pntemplates/MediaAttach_file_information.htm:141
+msgid "Bits per sample:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:101
+msgid "Channelmode:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:104
+msgid "No. of channels:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:107
+msgid "Audio compression codec:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:110
+#: pntemplates/MediaAttach_file_information.htm:164
+msgid "Encoder:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:113
+#: pntemplates/MediaAttach_file_information.htm:167
+msgid "Compression ratio:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:116
+#: pntemplates/MediaAttach_file_information.htm:170
+msgid "Lossless:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:116
+#: pntemplates/MediaAttach_file_information.htm:170
+msgid "lossless compression"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:116
+#: pntemplates/MediaAttach_file_information.htm:170
+msgid "lossy compression"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:124
+msgid "Image information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:126
+msgid "Video information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:144
+msgid "Frame rate:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:144
+msgid "fps"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:148
+msgid "Size:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:148
+#: pntemplates/MediaAttach_file_information.htm:151
+#: pntemplates/MediaAttach_file_information.htm:154
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:73
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:79
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:89
+msgid "pixels"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:151
+msgid "Width:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:154
+msgid "Height:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:158
+msgid "Pixel display aspect ratio:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:161
+msgid "Video compression codec:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:174
+msgid "Background colour:"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:179
+msgid "EXIF information"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_information.htm:194
+msgid "Tag information"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:4
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:6
+msgid "Edit this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:7
+msgid "Content"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:14
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:39
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:71
+#: pntemplates/MediaAttach_user_uploadform.htm:43
+#: pntemplates/MediaAttach_user_uploadform.htm:45
+#: pntemplates/MediaAttach_user_uploadform.htm:73
+#: pntemplates/MediaAttach_admin_view.htm:60
+#: pntemplates/MediaAttach_admin_view.htm:62
+#: pntemplates/MediaAttach_admin_view.htm:90
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:47
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:49
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:77
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:19
+#: pntemplates/MediaAttach_external_selectitem.html:42
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:12
+#: pntemplates/MediaAttach_user_delete.htm:12
+#: pntemplates/MediaAttach_external_finditem.html:97
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:48
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:12
+msgid "File"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:20
+#: pntemplates/MediaAttach_admin_def_view.htm:31
+#: pntemplates/MediaAttach_admin_def_view.htm:116
+#: pntemplates/MediaAttach_admin_def_edit.htm:15
+#: pntemplates/MediaAttach_external_selectitem.html:26
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:18
+#: pntemplates/MediaAttach_user_delete.htm:18
+#: pntemplates/MediaAttach_external_finditem.html:49
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:18
+msgid "Module"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:23
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:21
+#: pntemplates/MediaAttach_user_delete.htm:21
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:21
+msgid "User"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:26
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:24
+#: pntemplates/MediaAttach_user_delete.htm:24
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:24
+msgid "Date"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:29
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:42
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:74
+#: pntemplates/MediaAttach_user_uploadform.htm:48
+#: pntemplates/MediaAttach_user_uploadform.htm:76
+#: pntemplates/MediaAttach_admin_view.htm:65
+#: pntemplates/MediaAttach_admin_view.htm:93
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:52
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:80
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:27
+#: pntemplates/MediaAttach_user_delete.htm:27
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:51
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:27
+#: pntemplates/MediaAttach_import_fs.htm:39
+msgid "Title"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:32
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:45
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:77
+#: pntemplates/MediaAttach_user_uploadform.htm:51
+#: pntemplates/MediaAttach_user_uploadform.htm:79
+#: pntemplates/MediaAttach_admin_view.htm:68
+#: pntemplates/MediaAttach_admin_view.htm:96
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:55
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:83
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:30
+#: pntemplates/MediaAttach_user_delete.htm:30
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:54
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:30
+#: pntemplates/MediaAttach_import_fs.htm:42
+msgid "Description"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:52
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:33
+#: pntemplates/MediaAttach_user_delete.htm:33
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:50
+msgid "Mime type"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:55
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:36
+#: pntemplates/MediaAttach_user_delete.htm:36
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:53
+msgid "Filesize"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:59
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:57
+msgid "Update this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:60
+#: pntemplates/MediaAttach_admin_def_edit.htm:93
+#: pntemplates/MediaAttach_admin_group_edit.htm:40
+#: pntemplates/MediaAttach_admin_format_edit.htm:34
+#: pntemplates/MediaAttach_user_editthumb.htm:40
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:58
+msgid "Cancel item edits."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:60
+#: pntemplates/MediaAttach_admin_def_edit.htm:93
+#: pntemplates/MediaAttach_admin_group_edit.htm:40
+#: pntemplates/MediaAttach_admin_group_delete.htm:22
+#: pntemplates/MediaAttach_admin_format_edit.htm:34
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:40
+#: pntemplates/MediaAttach_user_delete.htm:40
+#: pntemplates/MediaAttach_user_editthumb.htm:40
+#: pntemplates/MediaAttach_external_finditem.html:188
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:58
+#: pntemplates/MediaAttach_admin_format_delete.htm:22
+msgid "Cancel"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:63
+#: pntemplates/MediaAttach_user_delete.htm:43
+msgid "Meta data"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:66
+#, php-format
+msgid "Created by %s"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:67
+#, php-format
+msgid "Created on %s"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:69
+#, php-format
+msgid "Last updated by %s"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_edit.htm:70
+#, php-format
+msgid "Updated on %s"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:9
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:10
+#: pntemplates/MediaAttach_user_uploadform.htm:11
+#: pntemplates/MediaAttach_user_uploadform.htm:17
+#: pntemplates/MediaAttach_admin_view.htm:13
+#: pntemplates/MediaAttach_admin_view.htm:14
+#: pntemplates/MediaAttach_admin_view.htm:36
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:11
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:12
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:21
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:65
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:8
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:9
+msgid "Upload files"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:14
+#: pntemplates/MediaAttach_user_uploadform.htm:23
+#: pntemplates/MediaAttach_admin_view.htm:40
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:27
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:29
+msgid "Allowed formats"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:16
+#: pntemplates/MediaAttach_user_uploadform.htm:25
+#: pntemplates/MediaAttach_user_uploadform.htm:127
+#: pntemplates/MediaAttach_admin_view.htm:42
+#: pntemplates/MediaAttach_admin_view.htm:145
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:29
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:131
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:31
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:105
+msgid "show"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:17
+#: pntemplates/MediaAttach_user_uploadform.htm:26
+#: pntemplates/MediaAttach_user_uploadform.htm:128
+#: pntemplates/MediaAttach_admin_view.htm:43
+#: pntemplates/MediaAttach_admin_view.htm:146
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:30
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:132
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:32
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:106
+msgid "hide"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:25
+#: pntemplates/MediaAttach_user_uploadform.htm:30
+#: pntemplates/MediaAttach_admin_view.htm:47
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:34
+msgid "Max. size"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:31
+#: pntemplates/MediaAttach_user_uploadform.htm:35
+#: pntemplates/MediaAttach_admin_view.htm:52
+#: pntemplates/MediaAttach_admin_quotas.htm:68
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:39
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:37
+msgid "Quota"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:32
+#: pntemplates/MediaAttach_user_uploadform.htm:36
+#: pntemplates/MediaAttach_admin_view.htm:53
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:40
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:38
+msgid "You have"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:32
+#: pntemplates/MediaAttach_user_uploadform.htm:36
+#: pntemplates/MediaAttach_admin_view.htm:53
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:40
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:48
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:38
+msgid "of"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:32
+#: pntemplates/MediaAttach_user_uploadform.htm:36
+#: pntemplates/MediaAttach_admin_view.htm:53
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:40
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:38
+msgid "used"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:36
+#: pntemplates/MediaAttach_user_uploadform.htm:39
+#: pntemplates/MediaAttach_admin_view.htm:56
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:43
+#: pntemplates/MediaAttach_external_selectitem.html:37
+#: pntemplates/MediaAttach_external_finditem.html:58
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:41
+#: pntemplates/MediaAttach_user_edit_Dizkus.htm:34
+#: pntemplates/MediaAttach_import_fs.htm:32
+msgid "Choose Category"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:66
+#: pntemplates/MediaAttach_user_uploadform.htm:69
+#: pntemplates/MediaAttach_admin_view.htm:86
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:73
+msgid "Max. files"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:90
+#: pntemplates/MediaAttach_user_uploadform.htm:92
+#: pntemplates/MediaAttach_admin_view.htm:109
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:96
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:67
+msgid "Add file"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:94
+#: pntemplates/MediaAttach_user_uploadform.htm:96
+#: pntemplates/MediaAttach_admin_view.htm:113
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:100
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:77
+msgid "Added files will be listed here."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:98
+#: pntemplates/MediaAttach_user_uploadform.htm:100
+#: pntemplates/MediaAttach_admin_view.htm:117
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:104
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:81
+msgid "Drop any added files here to remove them."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:106
+#: pntemplates/MediaAttach_user_uploadform.htm:110
+#: pntemplates/MediaAttach_admin_view.htm:127
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:114
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:89
+msgid "Uploading..."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:107
+#: pntemplates/MediaAttach_user_uploadform.htm:108
+#: pntemplates/MediaAttach_admin_view.htm:125
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:112
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:22
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:87
+msgid "Upload"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:110
+#: pntemplates/MediaAttach_user_uploadform.htm:112
+#: pntemplates/MediaAttach_admin_view.htm:129
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:116
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:87
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:70
+msgid "You have no more memory for uploads available"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:121
+#: pntemplates/MediaAttach_user_uploadform.htm:154
+#: pntemplates/MediaAttach_admin_view.htm:187
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:158
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:38
+#, php-format
+msgid "You are not allowed to upload more than %s files at once."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:122
+#: pntemplates/MediaAttach_user_uploadform.htm:155
+#: pntemplates/MediaAttach_admin_view.htm:188
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:159
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:39
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:133
+msgid "This file has already been selected."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:123
+#: pntemplates/MediaAttach_user_uploadform.htm:156
+#: pntemplates/MediaAttach_admin_view.htm:189
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:160
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:40
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:134
+msgid "The filetype of this file is not allowed."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:127
+#: pntemplates/MediaAttach_user_uploadform.htm:160
+#: pntemplates/MediaAttach_admin_view.htm:193
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:164
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:42
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:136
+msgid "There is already a file being uploaded."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Dizkus.htm:133
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:90
+msgid "Sorry, you have no permission for uploading files"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:11
+#: pntemplates/MediaAttach_external_selectitem.html:8
+#: pntemplates/MediaAttach_external_finditem.html:24
+msgid ""
+"MediaAttach could not find a module, for which it has been activated. Please "
+"go to the module settings and activate MediaAttach for one or more modules "
+"of your choice."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:14
+msgid "Upload definitions"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:23
+msgid "Create a new definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:28
+#: pntemplates/MediaAttach_admin_def_view.htm:90
+msgid "Add definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:42
+#: pntemplates/MediaAttach_admin_def_view.htm:120
+#: pntemplates/MediaAttach_admin_def_edit.htm:29
+msgid "Show uploaded files in the user section"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:44
+#: pntemplates/MediaAttach_admin_def_view.htm:122
+#: pntemplates/MediaAttach_admin_def_edit.htm:31
+msgid "None"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:45
+#: pntemplates/MediaAttach_admin_def_view.htm:123
+#: pntemplates/MediaAttach_admin_def_edit.htm:32
+msgid "Only own"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:46
+#: pntemplates/MediaAttach_admin_def_view.htm:124
+#: pntemplates/MediaAttach_admin_def_edit.htm:33
+#: pntemplates/MediaAttach_external_selectitem.html:28
+msgid "All"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:50
+#: pntemplates/MediaAttach_admin_def_view.htm:127
+#: pntemplates/MediaAttach_admin_def_edit.htm:37
+msgid "Send a mail after uploading"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:52
+#: pntemplates/MediaAttach_admin_def_view.htm:134
+#: pntemplates/MediaAttach_admin_def_edit.htm:39
+msgid "Recipient of the mail"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:57
+#: pntemplates/MediaAttach_admin_def_view.htm:137
+#: pntemplates/MediaAttach_admin_def_edit.htm:51
+msgid "Maximum file size during upload"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:60
+#: pntemplates/MediaAttach_admin_def_view.htm:139
+#: pntemplates/MediaAttach_admin_def_edit.htm:54
+msgid "Download mode"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:62
+#: pntemplates/MediaAttach_admin_def_view.htm:142
+#: pntemplates/MediaAttach_admin_def_edit.htm:56
+msgid "Physical"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:63
+#: pntemplates/MediaAttach_admin_def_view.htm:141
+#: pntemplates/MediaAttach_admin_def_edit.htm:57
+msgid "Inline"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:66
+#: pntemplates/MediaAttach_admin_def_view.htm:145
+#: pntemplates/MediaAttach_admin_def_edit.htm:60
+msgid "Naming convention"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:68
+#: pntemplates/MediaAttach_admin_def_view.htm:147
+#: pntemplates/MediaAttach_admin_def_edit.htm:62
+msgid "Original filename"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:69
+#: pntemplates/MediaAttach_admin_def_view.htm:148
+#: pntemplates/MediaAttach_admin_def_edit.htm:63
+msgid "Random filename"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:70
+#: pntemplates/MediaAttach_admin_def_view.htm:149
+#: pntemplates/MediaAttach_admin_def_edit.htm:64
+msgid "Numbered with prefix"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:73
+#: pntemplates/MediaAttach_admin_def_edit.htm:67
+msgid "Prefix"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:77
+#: pntemplates/MediaAttach_admin_def_view.htm:152
+#: pntemplates/MediaAttach_admin_def_edit.htm:79
+msgid "Number of files"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:110
+msgid "Show definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:111
+msgid "Hide definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:114
+msgid "Definition for"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:129
+msgid "Yes"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:130
+msgid "No"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_view.htm:157
+#: pntemplates/MediaAttach_admin_def_edit.htm:7
+#: pntemplates/MediaAttach_admin_def_edit.htm:11
+msgid "Edit this definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_filelist_pagesetter.htm:13
+#: pntemplates/MediaAttach_user_filelist.htm:13
+#: pntemplates/MediaAttach_user_inlinelist.htm:10
+#: pntemplates/MediaAttach_user_filelist_Dizkus.htm:14
+#: pntemplates/MediaAttach_user_inlinelist_Pages2.htm:10
+msgid "File attachments"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_main.htm:8
+msgid "Welcome to the MediaAttach admin area"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_main.htm:11
+#, php-format
+msgid "%s files total"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_main.htm:13
+#: pntemplates/MediaAttach_user_main.htm:47
+#: pntemplates/MediaAttach_profile_myuploads.htm:11
+#: pntemplates/MediaAttach_import_fs.htm:69
+#: pntemplates/MediaAttach_admin_upload_view.htm:15
+msgid "No files were uploaded yet"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:7
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:9
+msgid "Configuration"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:16
+msgid "General Settings"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:19
+msgid "MediaAttach installation directory"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:22
+msgid "HTML root"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:25
+msgid "Upload folder (absolute, ideally outside the HTML root):"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:27
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:36
+msgid "This directory does not exist"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:28
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:37
+msgid "This is not a directory"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:29
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:38
+msgid "This directory is not writable for the web server"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:30
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:39
+msgid "Everything allright"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:34
+msgid "Cache folder (relative from HTML root):"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:44
+msgid "Allow users sending files in mails to theirselves"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:47
+msgid "Maximum filesize for mails:"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:50
+msgid "Activate quotas"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:53
+msgid "Users are able to edit and delete their own files"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:56
+msgid "Activate frontpage in user section"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:59
+msgid "Activate account page in user section"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:64
+msgid "Image settings"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:67
+msgid ""
+"Default sizes of thumbnails (you can create as many formats as desired):"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:84
+msgid "Shrink big images"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:87
+msgid "Maximum image size:"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:92
+msgid "Allow cropping of thumbnails"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:95
+msgid "Behaviour of the selection tool"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:100
+msgid "Categorization settings"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:103
+#: pntemplates/MediaAttach_user_main.htm:13
+msgid "MediaAttach categories (Categories module)"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:112
+msgid "Default mode:"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:117
+#: pntemplates/MediaAttach_user_editthumb.htm:21
+msgid "Action"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:120
+msgid "Settings"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:162
+msgid ""
+"MediaAttach can automatically write a .htaccess file into your upload "
+"directory to avoid direct access to uploaded files. Notice that not all "
+"webservers support .htaccess files."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:164
+msgid "Generate .htaccess"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:172
+msgid "Important settings in php.ini, which are relevant for uploads"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:191
+msgid "Version-Check"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:193
+msgid "Your Version"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:195
+msgid "There is a new Version available"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:196
+msgid "Download the newest version of MediaAttach"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:196
+msgid "Download now"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_modifyconfig.htm:198
+msgid "Your version is the newest"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_upload_filelist_single.htm:5
+#: pntemplates/MediaAttach_user_filelist_single.htm:6
+#: pntemplates/MediaAttach_user_filelist_single_Dizkus.htm:10
+#: pntemplates/MediaAttach_file_buttons.htm:15
+#: pntemplates/MediaAttach_file_buttons.htm:16
+#: pntemplates/MediaAttach_user_filelist_single_pagesetter.htm:6
+msgid "Download this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_upload_filelist_single.htm:12
+#: pntemplates/MediaAttach_user_filelist_single.htm:15
+#: pntemplates/MediaAttach_user_filelist_single_Dizkus.htm:19
+#: pntemplates/MediaAttach_user_filelist_single_pagesetter.htm:15
+#, php-format
+msgid "%s times downloaded"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_main.htm:37
+msgid "View"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:13
+#: pntemplates/MediaAttach_user_uploadform.htm:119
+#: pntemplates/MediaAttach_admin_view.htm:17
+#: pntemplates/MediaAttach_admin_view.htm:18
+#: pntemplates/MediaAttach_admin_view.htm:137
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:15
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:16
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:123
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:12
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:13
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:97
+msgid "Embed external video"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:109
+msgid "indicator"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:125
+#: pntemplates/MediaAttach_admin_view.htm:143
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:129
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:103
+msgid "Supported providers"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:132
+#: pntemplates/MediaAttach_admin_view.htm:150
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:136
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:110
+msgid "Video Page URL"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:134
+#: pntemplates/MediaAttach_admin_view.htm:152
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:138
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:112
+msgid "Submit"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform.htm:159
+#: pntemplates/MediaAttach_admin_view.htm:192
+#: pntemplates/MediaAttach_user_uploadform_pagesetter.htm:163
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:41
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:135
+msgid "No file has been chosen yet."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_view.htm:7
+#: pntemplates/MediaAttach_admin_view.htm:10
+msgid "Admin files"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_view.htm:22
+#: pntemplates/MediaAttach_admin_view.htm:23
+#: pntemplates/MediaAttach_import_fs.htm:9
+msgid "Import files from a server directory"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_view.htm:204
+msgid ""
+"To use admin files a definition must be created for MediaAttach. Therefore "
+"click in the menu on \"definitions\"."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_def_edit.htm:92
+msgid "Update this definition"
+msgstr ""
+
+#: pntemplates/MediaAttach_block_newestfiles_modify.htm:5
+#: pntemplates/MediaAttach_block_inline_modify.htm:5
+msgid "Number of files to display"
+msgstr ""
+
+#: pntemplates/MediaAttach_block_newestfiles_modify.htm:9
+#: pntemplates/MediaAttach_block_inline_modify.htm:16
+msgid "Show only files of these formats (optional)"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:7
+#: pntemplates/MediaAttach_admin_group_view.htm:9
+#: pntemplates/MediaAttach_admin_group_view.htm:50
+msgid "File groups"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:12
+msgid "Create a new group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:17
+#: pntemplates/MediaAttach_admin_group_view.htm:40
+msgid "Add group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:20
+#: pntemplates/MediaAttach_admin_group_view.htm:59
+#: pntemplates/MediaAttach_admin_quotas.htm:56
+#: pntemplates/MediaAttach_admin_group_edit.htm:15
+msgid "Name"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:22
+#: pntemplates/MediaAttach_admin_group_edit.htm:17
+msgid "Please enter a name for the new group."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:23
+#: pntemplates/MediaAttach_admin_group_edit.htm:18
+msgid "The group name may only contain letters and numbers."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:25
+#: pntemplates/MediaAttach_admin_group_view.htm:60
+#: pntemplates/MediaAttach_admin_group_edit.htm:20
+msgid "Directory"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:27
+#: pntemplates/MediaAttach_admin_group_edit.htm:22
+msgid "Please enter a directory for the new group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:28
+#: pntemplates/MediaAttach_admin_group_edit.htm:23
+msgid "The directory may only contain letters and numbers."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:30
+#: pntemplates/MediaAttach_admin_group_edit.htm:25
+#: pntemplates/MediaAttach_admin_format_edit.htm:19
+#: pntemplates/MediaAttach_admin_format_view.htm:25
+msgid "Image"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:62
+#: pntemplates/MediaAttach_admin_format_view.htm:55
+msgid "Actions"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:69
+#: pntemplates/MediaAttach_admin_format_view.htm:72
+msgid "icon"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:82
+#: pntemplates/MediaAttach_file_buttons.htm:35
+#: pntemplates/MediaAttach_file_buttons.htm:36
+#: pntemplates/MediaAttach_admin_format_view.htm:81
+msgid "Edit"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_view.htm:87
+#: pntemplates/MediaAttach_admin_quotas.htm:42
+#: pntemplates/MediaAttach_file_buttons.htm:40
+#: pntemplates/MediaAttach_file_buttons.htm:41
+#: pntemplates/MediaAttach_admin_format_view.htm:86
+msgid "Delete"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_quotas.htm:25
+#: pntemplates/MediaAttach_admin_quotas.htm:47
+msgid "Change quotas"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_quotas.htm:34
+msgid "No user quotas defined"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_quotas.htm:53
+msgid "New user quota"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_quotas.htm:71
+msgid "Create Quota"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:27
+msgid "Queue is empty"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:31
+msgid "Cancel queue"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:44
+msgid "File queue"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:45
+msgid "cancelled"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:46
+msgid "files queued"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:47
+msgid "Uploading file"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:49
+msgid "All files uploaded..."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:63
+msgid "MediaAttach files..."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages2.htm:64
+msgid "Browse files"
+msgstr ""
+
+#: pntemplates/MediaAttach_block_specificfiles_modify.htm:5
+msgid "Files to show"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_edit.htm:7
+#: pntemplates/MediaAttach_admin_group_edit.htm:11
+msgid "Edit this group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_edit.htm:39
+msgid "Update this group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_delete.htm:7
+#: pntemplates/MediaAttach_admin_group_delete.htm:11
+msgid "Delete this group"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_delete.htm:21
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:39
+#: pntemplates/MediaAttach_user_delete.htm:39
+#: pntemplates/MediaAttach_admin_format_delete.htm:21
+msgid "Confirm deletion?"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_group_delete.htm:22
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:40
+#: pntemplates/MediaAttach_user_delete.htm:40
+#: pntemplates/MediaAttach_admin_format_delete.htm:22
+msgid "Cancel item deletion."
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:13
+#: pntemplates/MediaAttach_file_buttons.htm:10
+#: pntemplates/MediaAttach_file_buttons.htm:11
+#: pntemplates/inline/inline_comp_zip.htm:6
+msgid "Information about this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:36
+#: pntemplates/MediaAttach_external_finditem.html:57
+msgid "Category"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:49
+#: pntemplates/MediaAttach_external_finditem.html:139
+msgid "no uploads found"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:55
+#: pntemplates/MediaAttach_external_finditem.html:152
+#: pntemplates/MediaAttach_navform.html:33
+msgid "Sort by"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:57
+#: pntemplates/MediaAttach_external_finditem.html:154
+#: pntemplates/MediaAttach_navform.html:36
+msgid "date"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:58
+#: pntemplates/MediaAttach_external_finditem.html:155
+#: pntemplates/MediaAttach_navform.html:37
+msgid "title"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:59
+#: pntemplates/MediaAttach_external_finditem.html:156
+#: pntemplates/MediaAttach_navform.html:38
+msgid "module"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:60
+#: pntemplates/MediaAttach_external_finditem.html:157
+#: pntemplates/MediaAttach_navform.html:39
+msgid "username"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:61
+#: pntemplates/MediaAttach_external_finditem.html:158
+#: pntemplates/MediaAttach_navform.html:40
+msgid "filename"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:62
+#: pntemplates/MediaAttach_external_finditem.html:159
+#: pntemplates/MediaAttach_navform.html:41
+msgid "filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:63
+#: pntemplates/MediaAttach_external_finditem.html:160
+#: pntemplates/MediaAttach_navform.html:42
+msgid "filesize"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:66
+#: pntemplates/MediaAttach_external_finditem.html:163
+#: pntemplates/MediaAttach_navform.html:45
+msgid "ascending"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:67
+#: pntemplates/MediaAttach_external_finditem.html:164
+#: pntemplates/MediaAttach_navform.html:46
+msgid "descending"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:72
+#: pntemplates/MediaAttach_external_finditem.html:180
+msgid "Filter by"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_selectitem.html:74
+msgid "Search"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_edit.htm:7
+#: pntemplates/MediaAttach_admin_format_edit.htm:11
+msgid "Edit this filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_edit.htm:15
+#: pntemplates/MediaAttach_admin_format_view.htm:20
+#: pntemplates/MediaAttach_admin_format_view.htm:53
+msgid "File type"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_edit.htm:33
+msgid "Update this filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_delete_Dizkus.htm:6
+#: pntemplates/MediaAttach_user_delete.htm:6
+msgid "Delete this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_delete.htm:46
+msgid "Created by %username%"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_delete.htm:47
+msgid "Created on %date%"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_delete.htm:49
+msgid "Last updated by %username%"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_delete.htm:50
+msgid "Updated on %date%"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_buttons.htm:5
+#: pntemplates/MediaAttach_file_buttons.htm:6
+#: pntemplates/MediaAttach_block_inline.htm:19
+#: pntemplates/MediaAttach_block_inline.htm:20
+#: pntemplates/inline/inline_image.htm:16
+#: pntemplates/inline/inline_image.htm:22
+#: pntemplates/inline/inline_image.htm:27
+#: pntemplates/inline/inline_imagegd.htm:16
+#: pntemplates/inline/inline_imagegd.htm:22
+#: pntemplates/inline/inline_imagegd.htm:27
+msgid "View this file"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_buttons.htm:20
+#: pntemplates/MediaAttach_file_buttons.htm:21
+msgid "Send this file to your mail address"
+msgstr ""
+
+#: pntemplates/MediaAttach_file_buttons.htm:31
+#: pntemplates/MediaAttach_file_buttons.htm:32
+#: pntemplates/MediaAttach_user_editthumb.htm:23
+msgid "Crop thumbnail"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:15
+#: pntemplates/MediaAttach_navform.html:70
+msgid "Preview"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:24
+msgid "Choose your desired preview image."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:24
+msgid "The selection window size is not changeable."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:24
+msgid "The selection window size is changeable, the aspect ratio will be kept."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:24
+msgid "The selection window size and the aspect ratio are changeable."
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:39
+msgid "Save"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_editthumb.htm:100
+msgid "This function requires JavaScript."
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:6
+#: pntemplates/MediaAttach_external_finditem.html:35
+#: pntemplates/MediaAttach_search.htm:6
+msgid "Files and media"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:37
+#: pntemplates/MediaAttach_navform.html:73
+msgid "Only images"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:64
+msgid "Display mode"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:66
+msgid "Link to the file"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:67
+msgid "Embed the item inline"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:68
+msgid "Embed the item physically"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:76
+#: pntemplates/MediaAttach_external_finditem.html:89
+msgid "Paste as"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:78
+msgid "Thumbnail with link to view original image"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:79
+msgid "Thumbnail with link to download original image"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:80
+msgid "Thumbnail"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:81
+msgid "Original image"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:82
+msgid "Link to thumbnail"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:83
+#: pntemplates/MediaAttach_external_finditem.html:91
+msgid "Link to original image"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:84
+#: pntemplates/MediaAttach_external_finditem.html:92
+msgid "File ID"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:85
+msgid "Original image with link to itself"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:168
+#: pntemplates/MediaAttach_navform.html:55
+msgid "Entries per page"
+msgstr ""
+
+#: pntemplates/MediaAttach_external_finditem.html:182
+msgid "Filter"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:43
+msgid "Maximums"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:46
+msgid "files"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_uploadform_Pages.htm:132
+msgid "You are not allowed to upload more than %m% files at once."
+msgstr ""
+
+#: pntemplates/MediaAttach_block_inline_modify.htm:9
+msgid "Sorting"
+msgstr ""
+
+#: pntemplates/MediaAttach_block_inline_modify.htm:11
+msgid "Newest files"
+msgstr ""
+
+#: pntemplates/MediaAttach_block_inline_modify.htm:12
+msgid "Random files"
+msgstr ""
+
+#: pntemplates/MediaAttach_navform.html:15
+msgid "Display mode:"
+msgstr ""
+
+#: pntemplates/MediaAttach_navform.html:84
+msgid "OK"
+msgstr ""
+
+#: pntemplates/MediaAttach_user_listgallery.htm:27
+#: pntemplates/MediaAttach_user_inlinelist_Pages.htm:27
+msgid "No images available yet"
+msgstr ""
+
+#: pntemplates/MediaAttach_import_fs.htm:11
+msgid ""
+"Simply go to the desired directory, select the files to import and start. "
+"The upload filesize limit is not being used here."
+msgstr ""
+
+#: pntemplates/MediaAttach_import_fs.htm:21
+msgid "Folder"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_delete.htm:7
+#: pntemplates/MediaAttach_admin_format_delete.htm:11
+msgid "Delete this filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_view.htm:12
+msgid "Create a new filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_view.htm:17
+#: pntemplates/MediaAttach_admin_format_view.htm:35
+msgid "Add filetype"
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_view.htm:22
+msgid "Please enter an extension for the new filetype."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_view.htm:23
+msgid "The extension may only contain letters and numbers."
+msgstr ""
+
+#: pntemplates/MediaAttach_admin_format_view.htm:66
+msgid "Warning: Allowing this filetype can be a potential security risk!"
+msgstr ""
