@@ -25,6 +25,7 @@ Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
  */
 function MediaAttach_user_download($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid      = (int) FormUtil::getPassedValue('fileid', (isset($args['fileid'])) ? $args['fileid'] : 0, 'GET');
     $inline      = (int) FormUtil::getPassedValue('inline', (isset($args['inline'])) ? $args['inline'] : 0, 'GET');
     $thumb       =  (int) FormUtil::getPassedValue('thumb', (isset($args['thumb'])) ? $args['thumb'] : 0, 'GET');
@@ -33,7 +34,7 @@ function MediaAttach_user_download($args)
     unset($args);
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$fileid", ACCESS_READ)) {

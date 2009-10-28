@@ -44,6 +44,7 @@
  */
 function _maIntImageThumb($params, &$smarty)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     // unsharp function
     if (!function_exists('UnsharpMask'))
     {
@@ -127,7 +128,7 @@ function _maIntImageThumb($params, &$smarty)
 
     ### validate given parameters
     if (empty($params['file']) || !file_exists($params['file'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
     $srcFile = $params['file'];
 

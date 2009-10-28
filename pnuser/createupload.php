@@ -30,6 +30,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_createupload($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (isset($args) && is_array($args)) {
         extract($args);
         unset($args);
@@ -47,14 +48,14 @@ function MediaAttach_user_createupload($args)
 
     if ($hookcall == 1) {
         if (!isset($extrainfo) || !is_array($extrainfo)) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         $MediaAttach_modname  = (!empty($extrainfo['module'])) ? $extrainfo['module'] : pnModGetName();
         $MediaAttach_objectid = (!empty($extrainfo['itemid'])) ? $extrainfo['itemid'] : $objectid;
 
         if (empty($MediaAttach_objectid)) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         $urlfunc = $urlparams = '';
@@ -83,7 +84,7 @@ function MediaAttach_user_createupload($args)
     }
 
     if ($hookcall == 0 && !SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect($MediaAttach_redirect);
     }
 
@@ -108,7 +109,7 @@ function MediaAttach_user_createupload($args)
 
         $numfiles = count($jsfield_files['name']);
         if (($numfiles != count($jsfield_titles)) || ($numfiles != count($jsfield_descs)) || ($numfiles != count($jsfield_cats))) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         if ($numfiles > $definition['numfiles']) {
@@ -135,7 +136,7 @@ function MediaAttach_user_createupload($args)
         //process fields from non-JS upload form
 
         for ($i = 1; $i <= $definition['numfiles']; $i++) {
-            $title = FormUtil::getPassedValue('MediaAttach_title' . $i, _MEDIAATTACH_NOTITLE, 'POST');
+            $title = FormUtil::getPassedValue('MediaAttach_title' . $i, __('No title', $dom), 'POST');
             $desc  = FormUtil::getPassedValue('MediaAttach_description' . $i, '', 'POST');
             $cats  = FormUtil::getPassedValue('mafilecats_' . $i,      null, 'POST');
 
@@ -193,27 +194,27 @@ function MediaAttach_user_performsingleupload($nr, $file, $title, $description, 
             // only php version 4.2.0+
             switch ($file['error']) {
                 case UPLOAD_ERR_OK: //no error; possible file attack!
-                    $errmsg = _MEDIAATTACH_ERROK;
+                    $errmsg = __('There was a problem with the upload', $dom);
                     break;
                 case UPLOAD_ERR_INI_SIZE: //uploaded file exceeds the upload_max_filesize directive in php.ini
-                    $errmsg = _MEDIAATTACH_ERRINISIZE;
+                    $errmsg = __('The file is too big', $dom);
                     break;
                 case UPLOAD_ERR_FORM_SIZE: //uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form
-                    $errmsg = _MEDIAATTACH_ERRFORMSIZE;
+                    $errmsg = __('The file is too big', $dom);
                     break;
                 case UPLOAD_ERR_PARTIAL: //uploaded file was only partially uploaded
-                    $errmsg = _MEDIAATTACH_ERRPARTIAL;
+                    $errmsg = __('The file was only partially uploaded', $dom);
                     break;
                 case UPLOAD_ERR_NO_FILE: //no file was uploaded
                     if ($hookcall == 0) {
-                        $errmsg = _MEDIAATTACH_ERRNOFILE;
+                        $errmsg = __('No file selected', $dom);
                     }
                     break;
                 case UPLOAD_ERR_NO_TMP_DIR: //missing a temporary folder
-                    $errmsg = _MEDIAATTACH_ERRNOTMPDIR;
+                    $errmsg = __('There is no temporary folder specified', $dom);
                     break;
                 default: //a default error, just in case!  :)
-                    $errmsg = _MEDIAATTACH_ERROK;
+                    $errmsg = __('There was a problem with the upload', $dom);
                     break;
             }
             if ($errmsg != '') {
@@ -312,16 +313,16 @@ function MediaAttach_user_performsingleupload($nr, $file, $title, $description, 
     $fileid = pnModAPIFunc('MediaAttach', 'user', 'createupload', $upload);
 
     if ($fileid == false) {
-        $msglog .= $msgpref . _MEDIAATTACH_ERRINSERTFILE;
+        $msglog .= $msgpref . __('Sorry, the data of your file could not be written into the database', $dom);
 
     } else {
         $upload['fileid'] = $fileid;
-        $msglog .= $msgpref . _MEDIAATTACH_UPLOADCREATED;
+        $msglog .= $msgpref . __('The file has been uploaded successfully', $dom);
 
         if ($definition['sendmails'] == 1) {
             $mailheaders =  'From:' . pnConfigGetVar('sitename') . '<' . pnConfigGetVar('adminmail') . ">\n";
             $mailheaders .= "X-Mailer: MediaAttach using PHP/" . phpversion() . "\n";
-            $mailsubject = _MEDIAATTACH_NEWMAILSUBJECT;
+            $mailsubject = __('A new file has been uploaded', $dom);
             $mailbody    = _MEDIAATTACH_NEWMAILBODY . ":\n\n\nModule:" . $modname . "\n";
             if ($title != '') {
                 $mailbody .= _MEDIAATTACH_TITLE . ': ' . $title . "\n\n";

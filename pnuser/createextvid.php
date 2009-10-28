@@ -27,6 +27,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_createextvid($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (isset($args) && is_array($args)) {
         extract($args);
         unset($args);
@@ -38,7 +39,7 @@ function MediaAttach_user_createextvid($args)
     $MediaAttach_redirect = FormUtil::getPassedValue('MediaAttach_redirect', null, 'POST');
 
     if (!$videoURL || !$MediaAttach_modname || !$MediaAttach_objectid || !$MediaAttach_redirect) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $MediaAttach_redirect = str_replace('&amp;', '&', base64_decode($MediaAttach_redirect)) . '#files';
@@ -52,7 +53,7 @@ function MediaAttach_user_createextvid($args)
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect($MediaAttach_redirect);
     }
 
@@ -79,7 +80,7 @@ function MediaAttach_user_createextvid($args)
     }
 
     if ($domainIsSupported == false) {
-        LogUtil::registerError(_MEDIAATTACH_EXTVIDERRORDOMAIN);
+        LogUtil::registerError(__('Error: this is an invalid or unsupported URL.', $dom));
         return pnRedirect($MediaAttach_redirect);
     }
 
@@ -91,7 +92,7 @@ function MediaAttach_user_createextvid($args)
     $snoopy->fetch($videoURL);
     $pageInfo = _maGrabPageInfo($snoopy->results, $provider['searchpattern']);
     if ($pageInfo === false || !is_array($pageInfo)) {
-        LogUtil::registerError(_MEDIAATTACH_EXTVIDERRORGRAB);
+        LogUtil::registerError(__('Sorry, could not determine video information.', $dom));
         return pnRedirect($MediaAttach_redirect);
     }
 //die(print_r($pageInfo));
@@ -120,7 +121,8 @@ function MediaAttach_user_createextvid($args)
  */
 function _maGrabPageInfo($pageContent, $searchPattern)
 {
-    $title    = _MEDIAATTACH_NOTITLE;
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
+    $title    = __('No title', $dom);
     $desc     = '';
     $filepath = '';
 
@@ -172,6 +174,7 @@ function _maGrabPageInfo($pageContent, $searchPattern)
  */
 function MediaAttach_user_addExternalVideo($file, $title, $description, $categories, $modname, $objectid, $url, $definition)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $msglog = '';
     $errmsg = '';
 
@@ -193,15 +196,15 @@ function MediaAttach_user_addExternalVideo($file, $title, $description, $categor
     $fileid = pnModAPIFunc('MediaAttach', 'user', 'createupload', $upload);
 
     if ($fileid == false) {
-        $msglog .= $msgpref . _MEDIAATTACH_ERRINSERTFILE;
+        $msglog .= $msgpref . __('Sorry, the data of your file could not be written into the database', $dom);
     } else {
         $upload['fileid'] = $fileid;
-        $msglog .= $msgpref . _MEDIAATTACH_EXTVIDCREATED;
+        $msglog .= $msgpref . __('The video has been embedded successfully', $dom);
 
         if ($definition['sendmails'] == 1) {
             $mailheaders =  'From:' . pnConfigGetVar('sitename') . '<' . pnConfigGetVar('adminmail') . ">\n";
             $mailheaders .= "X-Mailer: MediaAttach using PHP/" . phpversion() . "\n";
-            $mailsubject = _MEDIAATTACH_NEWMAILSUBJECT;
+            $mailsubject = __('A new file has been uploaded', $dom);
             $mailbody    = _MEDIAATTACH_NEWMAILBODY . ":\n\n\nModule:" . $modname . "\n";
             if ($title != '') {
                 $mailbody .= _MEDIAATTACH_TITLE . ': ' . $title . "\n\n";

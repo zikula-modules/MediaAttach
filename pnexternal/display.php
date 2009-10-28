@@ -24,6 +24,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_external_display($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid      = (int) FormUtil::getPassedValue('fileid', (isset($args['fileid'])) ? $args['fileid'] : null, 'GET');
     $displaymode = FormUtil::getPassedValue('displaymode', (isset($args['displaymode'])) ? $args['displaymode'] : 'embed', 'GET');
     if ($displaymode != 'link' && $displaymode != 'embed') $displaymode = 'embed';
@@ -37,7 +38,7 @@ function MediaAttach_external_display($args)
     unset($args);
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$fileid", ACCESS_OVERVIEW)) {

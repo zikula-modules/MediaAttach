@@ -12,16 +12,16 @@
 <form id="cropform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="updatethumb"]-->" method="post" class="maform">
 <!--[if $cropsizemode ne 2]-->
     <fieldset style="float: right; width: 42%">
-        <legend><!--[pnml name=_MEDIAATTACH_PREVIEW]--></legend>
+        <legend><!--[gt text="Preview"]--></legend>
 
         <div id="previewWrap"></div>
     </fieldset>
 <!--[/if]-->
     <fieldset style="float: left; width: 42%">
-        <legend><!--[pnml name=_MEDIAATTACH_ACTION]--></legend>
+        <legend><!--[gt text="Action"]--></legend>
 
-<h2><!--[pnml name="_MEDIAATTACH_CROPTHUMB"]--></h2>
-<p><!--[pnml name="_MEDIAATTACH_CROPCHOOSE"]--> <!--[if $cropsizemode eq 0]--><!--[pnml name="_MEDIAATTACH_CROPFIXEDSIZE"]--><!--[elseif $cropsizemode eq 1]--><!--[pnml name="_MEDIAATTACH_CROPVARSIZEAR"]--><!--[else]--><!--[pnml name="_MEDIAATTACH_CROPVARSIZE"]--><!--[/if]--></p>
+<h2><!--[gt text="Crop thumbnail"]--></h2>
+<p><!--[gt text="Choose your desired preview image."]--> <!--[if $cropsizemode eq 0]--><!--[gt text="The selection window size is not changeable."]--><!--[elseif $cropsizemode eq 1]--><!--[gt text="The selection window size is changeable, the aspect ratio will be kept."]--><!--[else]--><!--[gt text="The selection window size and the aspect ratio are changeable."]--><!--[/if]--></p>
 
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
         <input type="hidden" id="fileid" name="fileid" value="<!--[$file.fileid]-->" />
@@ -36,8 +36,8 @@
         <input type="hidden" name="height" id="height" size="4" />
 
         <ul style="list-style-type: none">
-            <li><a href="#" id="saveThumb" title="<!--[pnml name="_SAVE"]-->"><!--[pnimg src="cropthumb.png" modname="MediaAttach"]--> <!--[pnml name="_SAVE"]--></a></li>
-            <li><a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[pnml name="_CANCELEDIT"]-->"><!--[pnimg src="button_cancel.gif" modname="core" set="icons/extrasmall"]--> <!--[pnml name="_CANCEL"]--></a></li>
+            <li><a href="#" id="saveThumb" title="<!--[gt text="Save"]-->"><!--[pnimg src="cropthumb.png" modname="MediaAttach"]--> <!--[gt text="Save"]--></a></li>
+            <li><a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[gt text="Cancel item edits."]-->"><!--[pnimg src="button_cancel.gif" modname="core" set="icons/extrasmall"]--> <!--[gt text="Cancel"]--></a></li>
         </ul>
     </fieldset>
     <br style="clear: both" />
@@ -97,4 +97,4 @@
     }
 /* ]]> */
 </script>
-<noscript><p><!--[pnml name="_MEDIAATTACH_CROPNOSCRIPT"]--></p></noscript>
+<noscript><p><!--[gt text="This function requires JavaScript."]--></p></noscript>

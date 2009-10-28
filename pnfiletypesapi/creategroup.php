@@ -21,12 +21,13 @@
  */
 function MediaAttach_filetypesapi_creategroup($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!isset($args['groupname']) || !isset($args['directory']) || !isset($args['image']) || !isset($args['formats'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $groupname = $args['groupname'];
@@ -41,13 +42,13 @@ function MediaAttach_filetypesapi_creategroup($args)
 
     $result = DBUtil::insertObject($group, 'ma_groups', 'gid');
     if (!$result) {
-        return LogUtil::registerError(_CREATEFAILED);
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
     foreach ($formats as $currentformat) {
         if (!pnModAPIFunc('MediaAttach', 'filetypes', 'createformatgroup',
                             array('fid' => $currentformat, 'gid' => $group['gid']))) {
-            return LogUtil::registerError(_CREATEFAILED);
+            return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
         }
     }
 

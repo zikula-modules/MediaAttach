@@ -10,9 +10,9 @@
 
 <h2><!--[pnimg src="attach.gif" modname="core" set="icons/small" style="margin-right: 5px"]--><!--[pnmodgetinfo modname="MediaAttach" info="displayname"]--> v<!--[pnmodgetinfo modname="MediaAttach" info="version"]-->
 <!--[if $showcatlist == 1]-->
-    <!--[if $catmode eq 1]--> . <!--[pnml name="_MEDIAATTACH_CATMODECATEGORIES"]-->
-    <!--[elseif $catmode eq 2]--> . <!--[pnml name="_MEDIAATTACH_CATMODEMODULES"]-->
-    <!--[elseif $catmode eq 4]--> . <!--[pnml name="_MEDIAATTACH_CATMODEUSERS"]-->
+    <!--[if $catmode eq 1]--> . <!--[gt text="MediaAttach categories (Categories module)"]-->
+    <!--[elseif $catmode eq 2]--> . <!--[gt text="Modules"]-->
+    <!--[elseif $catmode eq 4]--> . <!--[gt text="Users"]-->
     <!--[/if]-->
 <!--[/if]-->
 </h2>
@@ -34,7 +34,7 @@
             <!--[assign var="indentpx" value=$numLevel*35]-->
             <div<!--[if $indentpx > 0]--> style="margin-left: <!--[$indentpx]-->px"<!--[/if]-->>
             <h3><!--[$catname|pnvarprepfordisplay]--> (<!--[$cat.filecount|default:0]-->)</h3>
-            <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_prop=$cat.catprop cat_id=$cat.id sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[pnml name="_VIEW"]--> <!--[$catname|pnvarprepfordisplay]--></a></p>
+            <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_prop=$cat.catprop cat_id=$cat.id sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[gt text="View"]--> <!--[$catname|pnvarprepfordisplay]--></a></p>
             <!--[if !$smarty.foreach.categoryloop.last]--><hr /><!--[/if]--><br />
             </div>
         <!--[*/if*]-->
@@ -44,7 +44,7 @@
     <!--[if $pagetitle]--><h2 class="ma_pagetitle"><!--[$pagetitle]--></h2><!--[/if]-->
     <!--[if $files eq 0]-->
         <p class="centered" style="margin-top: 50px">
-            <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]-->
+            <!--[gt text="No files were uploaded yet"]-->
         </p>
     <!--[else]-->
 		<!--[if $matemplate]-->
@@ -65,5 +65,5 @@
 <!--[/if]-->
 
 <!--[if $pagetitle]-->
-    <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_id="0" sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[pnml name="_BACK"]--></a></p>
+    <p><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=$catmode cat_id="0" sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[gt text="Back"]--></a></p>
 <!--[/if]-->

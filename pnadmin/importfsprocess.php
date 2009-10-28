@@ -25,12 +25,13 @@ Loader::requireOnce('modules/MediaAttach/common_mimetypes.php');
  */
 function MediaAttach_admin_importfsprocess($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'importfsform'));
     }
 
@@ -38,7 +39,7 @@ function MediaAttach_admin_importfsprocess($args)
     $currentDir = realpath($currentDir);
     $numFiles = (int) FormUtil::getPassedValue('numfiles', isset($args['numfiles']) ? $args['numfiles'] : 0, 'POST');
     if ($numFiles == 0) {
-        LogUtil::registerError(_MODARGSERROR);
+        LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'importfsform'));
     }
 
@@ -53,7 +54,7 @@ function MediaAttach_admin_importfsprocess($args)
         $isFileSelected = (int) FormUtil::getPassedValue('file' . $i, 0, 'POST');
         if ($isFileSelected == 1) {
             $filenr++;
-            $title = FormUtil::getPassedValue('title' . $i,       _MEDIAATTACH_NOTITLE, 'POST');
+            $title = FormUtil::getPassedValue('title' . $i,       __('No title', $dom), 'POST');
             $desc  = FormUtil::getPassedValue('description' . $i, '',              'POST');
 
             $cats = FormUtil::getPassedValue('mafilecats_' . $i,      null, 'POST');
@@ -127,11 +128,11 @@ function MediaAttach_import_performsingleimport($nr, $file, $title, $description
         $fileid = pnModAPIFunc('MediaAttach', 'user', 'createupload', $upload);
 
         if ($fileid == false) {
-            $msglog .= $msgpref . _MEDIAATTACH_ERRINSERTFILE;
+            $msglog .= $msgpref . __('Sorry, the data of your file could not be written into the database', $dom);
         }
         else {
             $upload['fileid'] = $fileid;
-            $msglog .= $msgpref . _MEDIAATTACH_IMPORTCREATED;
+            $msglog .= $msgpref . __('The file has been imported successfully', $dom);
         }
     }
     $msglog .= '</div></li>';

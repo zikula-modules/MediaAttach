@@ -28,6 +28,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_external_finditem($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $formatfilter = '';
     $definitionid = (int) FormUtil::getPassedValue('did', 0, 'GET');
 
@@ -64,7 +65,7 @@ function MediaAttach_external_finditem($args)
     }
 
     if (empty($modname)) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
     else if (!SecurityUtil::checkPermission('MediaAttach::', "$modname:: ", ACCESS_COMMENT)) {
         return LogUtil::registerPermissionError();

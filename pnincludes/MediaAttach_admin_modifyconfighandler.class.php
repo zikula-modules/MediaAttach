@@ -18,6 +18,7 @@ class MediaAttach_admin_modifyconfighandler
 
     function initialize(&$render)
     {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
         $this->id = (int) FormUtil::getPassedValue('id', 0, 'GETPOST');
         $render->caching = false;
         $render->add_core_data();
@@ -55,9 +56,9 @@ class MediaAttach_admin_modifyconfighandler
         $render->assign('thumbsizes', pnModGetVar('MediaAttach', 'thumbsizes'));
         $render->assign('defaultthumb', pnModGetVar('MediaAttach', 'defaultthumb'));
 
-        $render->assign('cropsizemodeItems', array(array('text' => _MEDIAATTACH_USECROPFIXEDSIZE, 'value' => 0),
-                                                   array('text' => _MEDIAATTACH_USECROPVARSIZEAR, 'value' => 1),
-                                                   array('text' => _MEDIAATTACH_USECROPVARSIZE,   'value' => 2)));
+        $render->assign('cropsizemodeItems', array(array('text' => __('Enforce default size', $dom), 'value' => 0),
+                                                   array('text' => __('Keep size variable and enforce aspect ratio', $dom), 'value' => 1),
+                                                   array('text' => __('Keep size and aspect ratio variable', $dom),   'value' => 2)));
         $render->assign('cropsizemode', pnModGetVar('MediaAttach', 'cropsizemode'));
 
         $usedcatmodes = pnModGetVar('MediaAttach', 'usedcatmodes');
@@ -65,10 +66,10 @@ class MediaAttach_admin_modifyconfighandler
         $render->assign('cat_use_modules',    ($usedcatmodes & MEDIAATTACH_CATMODE_MODULES));
         $render->assign('cat_use_users',      ($usedcatmodes & MEDIAATTACH_CATMODE_USERS));
 
-        $render->assign('catdefaultmodeItems', array(array('text' => _MEDIAATTACH_CATDEFAULTMODENONE,        'value' => MEDIAATTACH_CATMODE_NONE),
-                                                     array('text' => _MEDIAATTACH_CATDEFAULTMODECATEGORIES,  'value' => MEDIAATTACH_CATMODE_CATEGORIES),
-                                                     array('text' => _MEDIAATTACH_CATDEFAULTMODEMODULES,     'value' => MEDIAATTACH_CATMODE_MODULES),
-                                                     array('text' => _MEDIAATTACH_CATDEFAULTMODEUSERS,       'value' => MEDIAATTACH_CATMODE_USERS)));
+        $render->assign('catdefaultmodeItems', array(array('text' => __('No categorization', $dom),        'value' => MEDIAATTACH_CATMODE_NONE),
+                                                     array('text' => __('Categories', $dom),  'value' => MEDIAATTACH_CATMODE_CATEGORIES),
+                                                     array('text' => __('Modules', $dom),     'value' => MEDIAATTACH_CATMODE_MODULES),
+                                                     array('text' => __('Users', $dom),       'value' => MEDIAATTACH_CATMODE_USERS)));
         $render->assign('catdefaultmode', pnModGetVar('MediaAttach', 'defaultcatmode'));
 
         $render->assign('mediaattachdir',      DataUtil::formatForDisplay(str_replace('/pnincludes', '', dirname(__FILE__))));
@@ -93,6 +94,7 @@ class MediaAttach_admin_modifyconfighandler
 
     function handleCommand(&$render, &$args)
     {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
         if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
         }
@@ -171,7 +173,7 @@ class MediaAttach_admin_modifyconfighandler
             pnModSetVar('MediaAttach', 'usedcatmodes', $usedcatmodes);
             pnModSetVar('MediaAttach', 'defaultcatmode', $data['catdefaultmode']);
 
-            LogUtil::registerStatus(_CONFIGUPDATED);
+            LogUtil::registerStatus(__('Done! Module configuration updated.', $dom));
             pnModCallHooks('module', 'updateconfig', 'MediaAttach', array('module' => 'MediaAttach'));
         }
 

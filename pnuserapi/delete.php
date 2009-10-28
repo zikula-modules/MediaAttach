@@ -20,6 +20,7 @@
  */
 function MediaAttach_userapi_delete($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid    = (isset($args['fileid']) && is_numeric($args['fileid'])) ? $args['fileid'] : 0;
     $objectid  = (isset($args['objectid']) && $args['objectid']) ? $args['objectid'] : 0;
     $extrainfo = (isset($args['extrainfo'])) ? $args['extrainfo'] : 0;
@@ -36,7 +37,7 @@ function MediaAttach_userapi_delete($args)
 
     if ($hookcall == 1) {
         if (!is_array($extrainfo)) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         $modname = (!empty($extrainfo['module'])) ? $extrainfo['module'] : pnModGetName();
@@ -54,7 +55,7 @@ function MediaAttach_userapi_delete($args)
 
         $files = DBUtil::selectObjectArray('ma_files', $where);
         if ($files === false) {
-            return LogUtil::registerError(_GETFAILED);
+            return LogUtil::registerError(__('Error! Could not load items.', $dom));
         }
 
         // delete all affected files
@@ -67,7 +68,7 @@ function MediaAttach_userapi_delete($args)
     } else {
         // normal deletion - only one file at once
         if (!$fileid) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         return _MediaAttachDeleteFileInternal($fileid);
@@ -85,16 +86,16 @@ function MediaAttach_userapi_delete($args)
 function _MediaAttachDeleteFileInternal($fileid)
 {
     if (!($file = DBUtil::selectObjectByID('ma_files', $fileid, 'fileid'))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $result = DBUtil::deleteObjectByID('ma_files', $fileid, 'fileid');
     if (!$result) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     if (!($class = Loader::loadClass('ObjectUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'ObjectUtil')));
+        pn_exit (__f('Error! Unable to load class ObjectUtil'));
     }
 
     // delete any object category mappings for this item

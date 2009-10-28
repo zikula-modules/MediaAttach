@@ -17,6 +17,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_createuploadflash()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (pnSessionGetVar('MediaAttachCreateLock') == '1') {
         header("HTTP/1.0 500 Server Error");
         echo 'Already in action';
@@ -42,7 +43,7 @@ function MediaAttach_user_createuploadflash()
     $redirect = FormUtil::getPassedValue('redirect', null, 'GET');
     $redirect = str_replace('&amp;', '&', base64_decode($redirect)) . '#files';
 
-    $msglog = MediaAttach_user_performsingleupload(1, $_FILES['Filedata'], _MEDIAATTACH_NOTITLE, '', array(0), $modname, $objectid, $redirect, $definition, '');
+    $msglog = MediaAttach_user_performsingleupload(1, $_FILES['Filedata'], __('No title', $dom), '', array(0), $modname, $objectid, $redirect, $definition, '');
 
     header("HTTP/1.0 200 OK");
     return true;

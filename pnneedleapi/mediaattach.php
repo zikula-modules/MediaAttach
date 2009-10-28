@@ -35,7 +35,7 @@ function MediaAttach_needleapi_mediaattach($args)
             // not in cache array
 
             if(!pnModAvailable('MediaAttach')) {
-                $cache[$nid] = '<em>' . DataUtil::formatForDisplay(pnML(_MODULENOTAVAILABLE, array('s' => 'MediaAttach'))) . '</em>';
+                $cache[$nid] = '<em>' . DataUtil::formatForDisplay(__('Sorry! The MediaAttach module is not available.')) . '</em>';
             }
 
             $result = '<em title="' . DataUtil::formatForDisplay(sprintf(_MH_NEEDLEDATAERROR, $nid, 'MediaAttach')) . '">MEDIAATTACH' . $nid . '</em>';
@@ -83,7 +83,7 @@ function MediaAttach_needleapi_mediaattach($args)
         $result = $cache[$nid];
 
     } else {
-        $result = '<em>' . DataUtil::formatForDisplay('No correct needle id given') . '</em>';
+        $result = '<em>' . __('No correct needle id given') . '</em>';
     }
 
     return $result;

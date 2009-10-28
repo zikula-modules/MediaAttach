@@ -18,8 +18,9 @@
  */
 function MediaAttach_quotaapi_getusedquota($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['uid']) || !is_numeric($args['uid'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $uid = $args['uid'];

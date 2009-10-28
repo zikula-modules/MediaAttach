@@ -25,11 +25,12 @@
  */
 function MediaAttach_fileinfo_showfileinfo($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid = (int) FormUtil::getPassedValue('fileid', (isset($args['fileid'])) ? $args['fileid'] : null, 'GET');
     unset($args);
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$fileid", ACCESS_OVERVIEW)) {

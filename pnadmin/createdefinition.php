@@ -28,6 +28,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_createdefinition($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -45,7 +46,7 @@ function MediaAttach_admin_createdefinition($args)
     unset($args);
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewdefinitions'));
     }
 
@@ -65,7 +66,7 @@ function MediaAttach_admin_createdefinition($args)
                               'numfiles'      => $numfiles));
 
     if ($did) {
-        LogUtil::registerStatus(_CREATESUCCEDED);
+        LogUtil::registerStatus(__('Done! Item created.', $dom));
     }
 
     return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewdefinitions'));

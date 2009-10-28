@@ -20,12 +20,13 @@
  */
 function MediaAttach_filetypesapi_updateformat($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!isset($args['fid']) || !is_numeric($args['fid']) || !isset($args['image']) || !isset($args['groups'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fid = $args['fid'];
@@ -34,7 +35,7 @@ function MediaAttach_filetypesapi_updateformat($args)
     unset($args);
 
     if (!($format = pnModAPIFunc('MediaAttach', 'filetypes', 'getformat', array('fid' => $fid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $format['image'] = $image;
@@ -42,17 +43,17 @@ function MediaAttach_filetypesapi_updateformat($args)
     $result = DBUtil::updateObject($format, 'ma_formats', '', 'fid');
 
     if (!$result) {
-        return LogUtil::registerError(_UPDATEFAILED);
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
 
     if (!pnModAPIFunc('MediaAttach', 'filetypes', 'deleteformatgroups',
                         array('fid' => $fid))) {
-        return LogUtil::registerError(_UPDATEFAILED);
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
     foreach ($groups as $currentgroup) {
         if (!pnModAPIFunc('MediaAttach', 'filetypes', 'createformatgroup',
                             array('fid' => $fid, 'gid' => $currentgroup))) {
-            return LogUtil::registerError(_UPDATEFAILED);
+            return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
         }
     }
 

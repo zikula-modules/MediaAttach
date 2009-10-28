@@ -18,8 +18,9 @@
  */
 function MediaAttach_userapi_getupload($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['fileid']) || !is_numeric($args['fileid'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fileid = $args['fileid'];
@@ -54,7 +55,7 @@ function MediaAttach_userapi_getupload($args)
     }
 
     if (!($class = Loader::loadClass('ObjectUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'ObjectUtil')));
+        pn_exit (__('Error! Unable to load class ObjectUtil'));
     }
 
     // need to do this here as the category expansion code can't know the

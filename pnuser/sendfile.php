@@ -20,6 +20,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_sendfile($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!pnUserLoggedIn()) {
         return LogUtil::registerPermissionError();
     }
@@ -28,7 +29,7 @@ function MediaAttach_user_sendfile($args)
     unset($args);
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$fileid", ACCESS_READ)) {
@@ -43,13 +44,13 @@ function MediaAttach_user_sendfile($args)
                            'toname'      => pnUserGetVar('uname'),
                            'toaddress'   => pnUserGetVar('email'),
                            'subject'     => _MEDIAATTACH_DLMAILSUBJECT . ': ' . $file['filename'],
-                           'body'        => _MEDIAATTACH_DLMAILBODY,
+                           'body'        => __('Hi! Here is the file which you sent yourself on our site', $dom),
                            'html'        => 0,
                            'attachments' => array($fullfilename)))) {
         pnModAPIFunc('MediaAttach', 'user', 'incdlcounter', array('fileid' => $fileid));
-        pnSessionSetVar('statusmsg', _MEDIAATTACH_UPLOADMAILSENT);
+        pnSessionSetVar('statusmsg', __('The mail has been sent to you successfully', $dom));
     } else {
-        LogUtil::registerError(_MEDIAATTACH_UPLOADMAILNOTSENT);
+        LogUtil::registerError(__('Sorry, the mail could not be sent to you', $dom));
     }
 
     $file['url'] = str_replace('&amp;', '&', urldecode($file['url']));

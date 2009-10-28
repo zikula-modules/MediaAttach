@@ -7,7 +7,7 @@
             <!--[mafilebuttons file=$file edit=1 delete=1]-->
         </div>
         <div style="float: left; width: 80%">
-            <!--[pnimg src="formats/`$file.format`" modname="MediaAttach" alt=_MEDIAATTACH_DOWNLOADIT altml=true style="padding-right: 5px"]-->
+            <!--[pnimg src="formats/`$file.format`" modname="MediaAttach" __alt="Download this file" style="padding-right: 5px"]-->
             <!--[$file.title]--><!--[if $file.extension ne "extvid"]--> (<!--[mafilesize size=$file.filesize]-->)<!--[/if]--><br />
             <!--[include file="MediaAttach_file_categories.htm"]-->
 
@@ -16,7 +16,7 @@
             (<!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, &nbsp;<!--[$file.date|date_format:"%d.%m.%y, %H:%M"]-->)
 <!--[if $file.extension ne "extvid"]-->
            &nbsp;
-            <!--[pnml name="_MEDIAATTACH_UPLOADDLCOUNT" count=$file.dlcount]-->
+            <!--[gt text="%s times downloaded" tag1=$file.dlcount]-->
 
             <div id="fileinfo<!--[$file.fileid]-->" style="display: none">
                 <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->

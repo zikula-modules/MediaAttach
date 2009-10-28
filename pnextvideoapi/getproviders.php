@@ -19,6 +19,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_extvideoapi_getproviders()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $providers = array();
 
     $providers[] = array('name' => 'Dailymotion',
@@ -150,8 +151,8 @@ function MediaAttach_extvideoapi_getproviders()
                                 'fileEnd'    => '&quot;&gt;"',
                                 'filePfix'   => '',
                                 'fileSfix'   => ''));
-								
-    
+
+
 	$providers[] = array('name' => 'Hulu',
                          'desc' => 'Watch your favorites. Anytime. For free.',
                          'domains' => array('hulu.com'),
@@ -170,7 +171,7 @@ function MediaAttach_extvideoapi_getproviders()
 
 /*
 
-BubblePLY (www.bubbleply.com) - 
+BubblePLY (www.bubbleply.com) -
 MySpace (http://www.myspace.com) - (Video and Music part)
 hi5 - Who's in? (http://www.hi5.com) (Video part)
 Image hosting, free photo sharing & video sharing at Photobucket (http://www.photobucket.com)
@@ -223,7 +224,7 @@ Jokeroo.com - Funny Videos, Funny Pictures, Games, Entertainment and More! (http
 Brightcove - Internet TV Your Way (http://www.brightcove.com)
 Online videos: From home videos to premium internet television content | Veoh Video Network (http://www.veoh.com)
 Last.fm &ndash; The Social Music Revolution (http://www.last.fm)
-SpikedHumor.com » Spiked Daily (http://www.spikedhumor.com)
+SpikedHumor.com ï¿½ Spiked Daily (http://www.spikedhumor.com)
 Funny Videos, Crazy Videos, Video Clips :: Vidmax.com (http://www.vidmax.com)
 Savvy.com (http://www.savvy.com)
 glumbert - the most amazing videos on the internet (http://www.glumbert.com)
@@ -241,13 +242,13 @@ Yikers.com - Funny Videos, Pictures, Jokes, and Humor (http://www.yikers.com)
 VIDEO CODE ZONE | 40,000+ Music Video Codes For MySpace, Piczo, Friendster and Xanga, Free Movie Trailers, Funny Clips & Gaming Videos, Online Webcam Chat (http://www.videocodezone.com)
 http://www.uniquepeek.com
 KillSomeTime.com - Funny Videos, Extreme Videos, Funny Movies, Flash Games, Funny Pictures (http://www.killsometime.com)
-tetesaclaques.tv - Têtes à claques, clips d'animations humoristiques en ligne (http://www.tetesaclaques.tv)
+tetesaclaques.tv - Tï¿½tes ï¿½ claques, clips d'animations humoristiques en ligne (http://www.tetesaclaques.tv)
 Dumpalink.com - Your Daily Entertainment (http://www.dumpalink.com)
 Neatorama (http://www.neatorama.com)
 LiveDigital: Home (http://www.livedigital.com)
-Vimeo. Because everyone shouldnâ¤?t see everything. (http://www.vimeo.com)
+Vimeo. Because everyone shouldnï¿½?t see everything. (http://www.vimeo.com)
 Cracked.com - America's Only Humor & Video Site, Since 1958 (http://www.cracked.com)
-Bravo TV Shows: Fashion, Comedy, Celebrity and Real Estate Shows â¤? Official Bravo TV Site (http://www.bravotv.com)
+Bravo TV Shows: Fashion, Comedy, Celebrity and Real Estate Shows ï¿½? Official Bravo TV Site (http://www.bravotv.com)
 http://www.thatvideosite.com
 
 Yahoo! Video (http://www.video.yahoo.com)
@@ -269,7 +270,7 @@ theYNC.com Daily Media, Humor, Shocking, News Videos (http://www.theync.com)
 http://www.educatedearth.net
 Funny Hub - Funny Pictures, Videos & Jokes (http://www.funnyhub.com)
 Sharkle.com - Free Online Video Sharing Community (http://www.sharkle.com)
-ø Extreme Videos ø (http://www.buzzhumor.com)
+ï¿½ Extreme Videos ï¿½ (http://www.buzzhumor.com)
 http://www.godtube.com
 EJB.com: The best videos, pictures, and galleries on the web. (http://www.ejb.com)
 Celebrity Videos, Hot Sexy Movie Clips, Funny Celebrity Gossip (http://www.vidking.com)
@@ -350,7 +351,7 @@ MySpaceTV: Sieh dir deine Lieblingsvideos, -trailer, -filme, -TV-Serien, -musikv
 Photo & Video Sharing (http://www.pickle.com)
 Stupid videos, Funny videos, Extreme videos - StupidVideos.us (http://www.stupidvideos.us)
 Drunk University: Drunk girls, videos, and photos (http://www.drunkuniversity.com)
-TonTuyau.com - La communauté de vidéo au Québec ! (http://www.tontuyau.com)
+TonTuyau.com - La communautï¿½ de vidï¿½o au Quï¿½bec ! (http://www.tontuyau.com)
 Vidly - Your daily video entertainment. (http://www.vidly.net)
 Welcome to Don and Murph.com- The Funniest Internet Show Anywhere!! (http://www.donandmurph.com)
 Welcome to Kewego - Home page - Kewego (http://www.kewego.com)
@@ -411,7 +412,7 @@ Funny clips, funny movies, funny videos - FrozenHippo.com (http://www.frozenhipp
 DailyDumb.com - Dumb People, Dumb Games, Dumb Pictures, Dumb Videos, Funny pictures, Flash Games (http://www.dailydumb.com)
 Evil Humor - That's Not Funny (http://www.evilhumor.com)
 Dump4Links.com - Funny Videos, Sexy Clips - All Videos (http://www.dump4links.com)
-Radioactif.tv | Mon Espace Vidéo, Audio, Photo et Texte au Québec, 100% gratuit! Grosse journée au bureau Vidéo (http://www.radioactif.tv)
+Radioactif.tv | Mon Espace Vidï¿½o, Audio, Photo et Texte au Quï¿½bec, 100% gratuit! Grosse journï¿½e au bureau Vidï¿½o (http://www.radioactif.tv)
 Disloyal.org - MySpace Videos - Pictures and Codes for MySpaces - Funny Videos - Free Flash Games (http://www.disloyal.org)
 Upload, Share, Earn and Connect Videos - Qweki.com (http://www.qweki.com)
 College After Hours - What to do when class is over! (http://www.collegeafterhours.com)
@@ -492,14 +493,14 @@ A1 Bollywood Hindi Tamil Telugu Indian Movie Songs Music Videos - SmasHits.com (
 SantaBanta Homepage : Jokes, Wallpapers, Bollywood, e-cards and more (http://www.santabanta.com)
 FLIX ? (http://www.flix.co.il)
 Mean Duck | ohnoes, ohnoes, ohnoes. (http://www.meanduck.com)
-ücretsiz Video Paylaþým Sitesi (http://www.izlesene.com)
+ï¿½cretsiz Video Paylaï¿½ï¿½m Sitesi (http://www.izlesene.com)
 Lustige Videos - Gratis Fun Video - Deine funny Videos bei Clipfish (http://www.clipfish.de)
 GUBA - Enjoy, upload, and share free videos. Download hit movies and television shows (http://www.guba.com)
 (http://www.youku.com)
 LoadUp - (http://www.loadup.ru)
 sevenload | The media platform for photos and videos (http://www.sevenload.com)
 (http://www.podlook.com)
-Ordena y comparte tus vídeos - www.dalealplay.com (http://www.dalealplay.com)
+Ordena y comparte tus vï¿½deos - www.dalealplay.com (http://www.dalealplay.com)
 www.mmxxdd.com (http://www.mmxxdd.com) (video part)
 Pikniktube (http://www.pikniktube.com)
 Bienvenue sur Wideo - Accueil - Wideo (http://www.wideo.fr)
@@ -512,20 +513,20 @@ WAT TV - (http://www.wat.tv)
 http://www.carcrimes.com
 (http://www.biku.com)
 Music Videos at their best @ KOvideo.net (http://www.kovideo.net)
-ICHLACHE.com » Fun-Blog (http://www.ichlache.com)
+ICHLACHE.com ï¿½ Fun-Blog (http://www.ichlache.com)
 TN.com.ar (http://www.tn.com.ar)
 Fun-Portal, Funlinks, Fun, Fun Videos, Fun Pics, lustiges Ebay, Games - bildschirmarbeiter.com (http://www.bildschirmarbeiter.com)
-Hans-Wurst.de - Der tägliche Blödsinn des Internets (http://www.hans-wurst.de)
-=) sinn-frei.com - fun-blog » lustige videos, witzige games & funny flashs (http://www.sinn-frei.com)
+Hans-Wurst.de - Der tï¿½gliche Blï¿½dsinn des Internets (http://www.hans-wurst.de)
+=) sinn-frei.com - fun-blog ï¿½ lustige videos, witzige games & funny flashs (http://www.sinn-frei.com)
 Jeuxvideo.TV : (http://www.jeuxvideo.tv)
-Cool-Clip.de - FUN Spaß und coole VideoClips (http://www.cool-clip.de)
+Cool-Clip.de - FUN Spaï¿½ und coole VideoClips (http://www.cool-clip.de)
 VideoWebTown.com - Free Video Hosting and Streaming Service (http://www.videowebtown.com)
 Trendhure.com (http://www.trendhure.com)
 My Cool Clips (http://www.mycoolclips.com)
 (http://www.ourdv.com)
 Vid Crazy - Home (http://www.vidcrazy.com)
 http://www.movies.yoyos-blog.com
-Eylol - Die Spaß-Community & Funseite mit attraktiven Prämien - Täglich neue Fun Videos, Bilder, Clips und vieles mehr! (http://www.eylol.de)
+Eylol - Die Spaï¿½-Community & Funseite mit attraktiven Prï¿½mien - Tï¿½glich neue Fun Videos, Bilder, Clips und vieles mehr! (http://www.eylol.de)
 NSFW.to | Daily Entertainmet - Fun, Videos, Picture, Babes, Amateure and the best Trash! (http://www.juckiq.de)
 STUPIDEXE.COM - Video divertenti e di particolare interesse, giochi flash, animazioni, sfondi e molto altro... (http://www.stupidexe.com)
 http://www.autoclips.net
@@ -536,23 +537,23 @@ Lachlabor - Lustige Videos, Fun & witzige Bilder! (http://www.lachlabor.de)
 Clips4.Us (http://www.clips4.us)
 HIPHOPDEAL - LE HIP HOP EST AVANT TOUT UNE PASSION (http://www.hiphopdeal.com)
 SomeHoney - Your collection of media (http://www.somehoney.com)
-Crazy-Movie.de - Immer die neuesten Brüller (http://www.crazy-movie.de)
+Crazy-Movie.de - Immer die neuesten Brï¿½ller (http://www.crazy-movie.de)
 ClipTubes - Viral Videos (http://www.cliptubes.com)
 Bienvenue sur VidÃ©oRigolo, le site gratuit de la vidÃ©o d'humour rigolo, vidÃ©os de gag, bÃªtisiers, chutes, blonde, etc. (http://www.videorigolo.com)
-» Spassfabrik - Babes, lustige Bilder, coole Clips, Flash Games, Witze und Kurioses. Just Fun! (http://www.spassfabrik.net)
+ï¿½ Spassfabrik - Babes, lustige Bilder, coole Clips, Flash Games, Witze und Kurioses. Just Fun! (http://www.spassfabrik.net)
 Tussi Clips - witzige Videos, Flash und scharfe Tussis (http://www.tussi-clips.de)
 Paradise Philippines - Viral Videos (http://www.dalipit.com)
 Funny-Fresh (http://www.funny-fresh.de)
 eingeparkt.com - hier hat der spass eingeparkt (http://www.eingeparkt.de)
-Funny-Shit.net » Fun Videos, Lustige Videos, Fun Clips, Witzige Filme, Funny Movies, Musik Clips (http://www.funny-shit.net)
-Vidéo Humour gratuit, Videoclip et autres vidéos - Partager vos vidéos sur Tonclip.com (http://www.tonclip.com)
+Funny-Shit.net ï¿½ Fun Videos, Lustige Videos, Fun Clips, Witzige Filme, Funny Movies, Musik Clips (http://www.funny-shit.net)
+Vidï¿½o Humour gratuit, Videoclip et autres vidï¿½os - Partager vos vidï¿½os sur Tonclip.com (http://www.tonclip.com)
 2funny4u - Der Linkdump: Funvideos, Fungames, Funpics, Hot babes (http://www.2funny4u.de)
 Sexy Fun-Videos und Fun-Pics! (http://www.totaler-fun.de)
 Trashbook.de - Lustige Videos, Bilder, Spass und viel zum Lachen (http://www.trashbook.de)
 3steg.com - Your funny media center (http://www.3steg.com)
 search 1 on :: search1on.com (http://www.extremesportsclips.net)
 Top Free Music Downloads - free music news, music video downloads, free music download, celebrity photo, music charts, music lyrics, free ringtones (http://www.topfreemusicdownloads.com)
-KrankerFrank - Präsentiert dir jeden Tag den BESTEN Funstuff! LayerFREI! Next door Nikki, Raven Riley ... (http://www.krankerfrank.com)
+KrankerFrank - Prï¿½sentiert dir jeden Tag den BESTEN Funstuff! LayerFREI! Next door Nikki, Raven Riley ... (http://www.krankerfrank.com)
 Total Blogal - SpaÃ¾ Blog (http://www.totalblogal.net)
 http://www.myvideo.ge
 http://www.see.daum.net

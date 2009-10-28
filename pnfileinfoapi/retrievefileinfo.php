@@ -19,8 +19,9 @@
  */
 function MediaAttach_fileinfoapi_retrievefileinfo($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['file']) || !is_array($args['file'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $file = $args['file'];
@@ -29,7 +30,7 @@ function MediaAttach_fileinfoapi_retrievefileinfo($args)
 
     $filenameOS = DataUtil::formatForOS($filename, true);
     if (!is_file($filenameOS) || !file_exists($filenameOS)) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fileInfo = pnModAPIFunc('MediaAttach', 'fileinfo', 'getcachedinfo', array('fileid' => $file['fileid']));

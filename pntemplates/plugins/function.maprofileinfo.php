@@ -16,8 +16,9 @@
  * @param        int         uid          id of user who's file information is being requested
  * @return       string      output
  */
-function smarty_function_maprofileinfo($params, &$smarty) 
+function smarty_function_maprofileinfo($params, &$smarty)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($params['uid'])) {
         $smarty->trigger_error("smarty_function_maprofileinfo: missing parameter 'uid'");
         return false;
@@ -42,7 +43,7 @@ function smarty_function_maprofileinfo($params, &$smarty)
     $res .= '<td>' . _MEDIAATTACH_PROFILEUPLOADS . '</td>' . "\n";
 
     if (!$files) {
-        $res .= '<td>' . pnML('_MEDIAATTACH_PROFILEFILESUPLOADED', array('count' => $numFiles)) . '</td>' . "\n";
+        $res .= '<td>' . __f('%s files uploaded', $numFiles) . '</td>' . "\n";
     }
     else {
         $numFiles = count($files);
@@ -54,7 +55,7 @@ function smarty_function_maprofileinfo($params, &$smarty)
         Loader::requireOnce('modules/MediaAttach/common.php');
         $sizeFiles = _maIntCalcReadableFilesize($sizeFiles);
 
-        $res .= '<td>' . pnML('_MEDIAATTACH_PROFILEFILESUPLOADED', array('count' => $numFiles)) . ' (' . $sizeFiles . ' ' . _MEDIAATTACH_PROFILETOTAL . ')' . '</td>' . "\n";
+        $res .= '<td>' . __f('%s files uploaded', $numFiles) . ' (' . $sizeFiles . ' ' . _MEDIAATTACH_PROFILETOTAL . ')' . '</td>' . "\n";
     }
 
     $res .= '</tr>' . "\n";

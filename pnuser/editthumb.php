@@ -23,6 +23,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_editthumb($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid   = (int) FormUtil::getPassedValue('fileid',   (isset($args['fileid']))   ? $args['fileid']   : null, 'GET');
     $objectid = (int) FormUtil::getPassedValue('objectid', (isset($args['objectid'])) ? $args['objectid'] : null, 'GET');
     $backurl  =       FormUtil::getPassedValue('backurl',  (isset($args['backurl']))  ? $args['backurl']  : null, 'GET');
@@ -37,13 +38,13 @@ function MediaAttach_user_editthumb($args)
     }
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $usethumbcropper = pnModGetVar('MediaAttach', 'usethumbcropper');
     if ($usethumbcropper == 0) {
         $backurl = str_replace('&amp;', '&', base64_decode($backurl)) . '#file' . $fileid;
-        LogUtil::registerError(_MEDIAATTACH_CROPTHUMBDEACTIVATED);
+        LogUtil::registerError(__('Thumbnail cropping is deactivated.', $dom));
         return pnRedirect($backurl);
     }
 

@@ -4,28 +4,28 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=_MEDIAATTACH_GROUPEDIT altml=true]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" __alt="Edit this group"]--></div>
 
 <form id="editgroupform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updategroup"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
     <fieldset>
-        <legend><!--[pnml name="_MEDIAATTACH_GROUPEDIT"]--></legend>
+        <legend><!--[gt text="Edit this group"]--></legend>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
         <input type="hidden" name="gid" value="<!--[$group.gid]-->" />
 
-        <label for="MediaAttach_groupname" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPNAME"]-->:</label>
+        <label for="MediaAttach_groupname" class="maleft"><!--[gt text="Name"]-->:</label>
         <input type="text" class="required validate-alphanum" id="MediaAttach_groupname" name="groupname" value="<!--[$group.groupname]-->" maxlength="100" /><br />
-        <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONGROUPNAMEREQUIRED"]--></p>
-        <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONGROUPNAMEALPHANUM"]--></p>
+        <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[gt text="Please enter a name for the new group."]--></p>
+        <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[gt text="The group name may only contain letters and numbers."]--></p>
 
-        <label for="MediaAttach_directory" class="maleft"><!--[pnml name="_MEDIAATTACH_GROUPDIR"]-->:</label>
+        <label for="MediaAttach_directory" class="maleft"><!--[gt text="Directory"]-->:</label>
         <input type="text" class="required validate-alphanum" id="MediaAttach_directory" name="directory" value="<!--[$group.directory]-->" maxlength="255" /><br />
-        <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONDIRECTORYREQUIRED"]--></p>
-        <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[pnml name="_MEDIAATTACH_VALIDATIONDIRECTORYALPHANUM"]--></p>
+        <p id="advice-required-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[gt text="Please enter a directory for the new group"]--></p>
+        <p id="advice-validate-alphanum-MediaAttach_groupname" class="custom-advice" style="display: none"><!--[gt text="The directory may only contain letters and numbers."]--></p>
 
-        <label for="MediaAttach_image" class="maleft"><!--[pnml name="_MEDIAATTACH_IMAGE"]-->:</label>
+        <label for="MediaAttach_image" class="maleft"><!--[gt text="Image"]-->:</label>
         <!--[maimageselect selected=$group.image type="groups"]--><br />
 
-        <label for="MediaAttach_formats" class="maleft"><!--[pnml name="_MEDIAATTACH_FORMATS"]-->:</label>
+        <label for="MediaAttach_formats" class="maleft"><!--[gt text="File formats"]-->:</label>
         <select id="MediaAttach_formats" name="formats[]" size="10" multiple="multiple" style="width: 100px">
             <!--[foreach item="currentformat" from=$allformats]-->
                 <option value="<!--[$currentformat.fid]-->"
@@ -36,8 +36,8 @@
             <!--[/foreach]-->
         </select><br /><br />
 
-        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_GROUPUPDATE"]-->" class="maright" />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->" title="<!--[pnml name="_CANCELEDIT"]-->"><!--[pnml name="_CANCEL"]--></a>
+        <input name="submit" type="submit" value="<!--[gt text="Update this group"]-->" class="maright" />
+        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->" title="<!--[gt text="Cancel item edits."]-->"><!--[gt text="Cancel"]--></a>
     </fieldset>
 </form>
 

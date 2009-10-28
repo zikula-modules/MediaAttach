@@ -17,6 +17,7 @@
  */
 function MediaAttach_quotaapi_getallgroupquotas()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -34,7 +35,7 @@ function MediaAttach_quotaapi_getallgroupquotas()
                      $gcolumn[gid],
                      $qcolumn[qamount]
             FROM     $gtable
-            LEFT JOIN $qtable ON $gcolumn[gid] = $qcolumn[qguid] 
+            LEFT JOIN $qtable ON $gcolumn[gid] = $qcolumn[qguid]
             AND $qcolumn[qtype] = 0
             ORDER BY $gcolumn[name]";
 

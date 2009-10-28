@@ -17,8 +17,9 @@
  */
 function MediaAttach_catapi_getCategories()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!($class = Loader::loadClass('CategoryUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryUtil')));
+        pn_exit (__f('Error! Unable to load class CategoryUtil', $dom));
     }
 
     $categories  = array();
@@ -26,11 +27,11 @@ function MediaAttach_catapi_getCategories()
 
     // Different registered categories will be retrieved
     // TODO: config var to choose the property to list by default
-    $alreadyIncluded = array(); 
+    $alreadyIncluded = array();
     foreach ($catRegistry as $prop => $rootCat) {
         // check if the category is already listed
         if (isset($alreadyIncluded[$rootCat])) {
-            continue; 
+            continue;
         }
         $alreadyIncluded[$rootCat] = 1;
 

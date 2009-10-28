@@ -26,6 +26,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_createupload($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -43,7 +44,7 @@ function MediaAttach_admin_createupload($args)
 
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect($MediaAttach_redirect);
     }
 
@@ -70,7 +71,7 @@ function MediaAttach_admin_createupload($args)
 
         $numfiles = count($jsfield_files['name']);
         if (($numfiles != count($jsfield_titles)) || ($numfiles != count($jsfield_descs)) || ($numfiles != count($jsfield_cats))) {
-            return LogUtil::registerError(_MODARGSERROR);
+            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         if ($numfiles > $definition['numfiles']) {
@@ -97,7 +98,7 @@ function MediaAttach_admin_createupload($args)
         //process fields from non-JS upload form
 
         for ($i = 1; $i <= $definition['numfiles']; $i++) {
-            $title = FormUtil::getPassedValue('MediaAttach_title' . $i, _MEDIAATTACH_NOTITLE, 'POST');
+            $title = FormUtil::getPassedValue('MediaAttach_title' . $i, __('No title', $dom), 'POST');
             $desc = FormUtil::getPassedValue('MediaAttach_description' . $i, '', 'POST');
             $cats = FormUtil::getPassedValue('mafilecats_' . $i,      null, 'POST');
 

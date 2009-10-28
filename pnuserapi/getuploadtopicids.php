@@ -18,8 +18,9 @@
  */
 function MediaAttach_userapi_getuploadtopicids($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['topics']) || !is_array($args['topics'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', 'Dizkus::', ACCESS_OVERVIEW)) {

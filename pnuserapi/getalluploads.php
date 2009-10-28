@@ -32,6 +32,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_userapi_getalluploads($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $uploads = array();
 
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_READ)) {
@@ -124,7 +125,7 @@ function MediaAttach_userapi_getalluploads($args)
     }
 
     if (!($class = Loader::loadClass('ObjectUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'ObjectUtil')));
+        pn_exit (__f('Error! Unable to load class ObjectUtil'));
     }
 
     // need to do this here as the category expansion code can't know the

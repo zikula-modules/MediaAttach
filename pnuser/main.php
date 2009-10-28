@@ -19,15 +19,16 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_main()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
     }
 
     if (pnModGetVar('MediaAttach', 'usefrontpage') == 0) {
-        return LogUtil::registerError(_MODULENODIRECTACCESS);
+        return LogUtil::registerError(__('Sorry! This module cannot be accessed directly.', $dom));
     }
 
-    // Check that the upload and cache folders are Ok 
+    // Check that the upload and cache folders are Ok
     $uploaddir = pnModGetVar('MediaAttach', 'uploaddir');
 
     if (!pnModAPIFunc('MediaAttach', 'filesystem', 'checkdirectory', array('directory' => $uploaddir))
@@ -79,7 +80,7 @@ function MediaAttach_user_main()
     // If the mode is using categories, get the property
     if ($catmode == MEDIAATTACH_CATMODE_CATEGORIES) {
         if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+            pn_exit (__('Error! Unable to load class CategoryRegistryUtil'));
         }
         $cat_prop = (string) SessionUtil::getVar('MediaAttach_cat_prop', '');
         $cat_prop = (string) FormUtil::getPassedValue('cat_prop', $cat_prop, 'GET');
@@ -109,7 +110,7 @@ function MediaAttach_user_main()
                 case MEDIAATTACH_CATMODE_CATEGORIES:
                         // fetch files for category
                         if (!($class = Loader::loadClass('CategoryUtil'))) {
-                            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryUtil')));
+                            pn_exit (__('Error! Unable to load class CategoryUtil'));
                         }
                         $currentlang = pnUserGetLang();
                         $category = CategoryUtil::getCategoryByID($cat_id);
@@ -133,7 +134,7 @@ function MediaAttach_user_main()
                         break;
 
                 case MEDIAATTACH_CATMODE_MODULES:
-                        // fetch the files of an specific module 
+                        // fetch the files of an specific module
                         $modInfo   = pnModGetInfo($cat_id);
                         $pagetitle = $modInfo['displayname'];
 
@@ -142,7 +143,7 @@ function MediaAttach_user_main()
                         break;
 
                 case MEDIAATTACH_CATMODE_USERS:
-                        // fetch the files of an specific user 
+                        // fetch the files of an specific user
                         $pagetitle = pnUserGetVar('uname', $cat_id);
 
                         $fetchArgs['userFilter'] = $cat_id;

@@ -5,12 +5,12 @@
 
 <div class="pn-admincontainer">
 
-<h3><!--[pnml name="_MEDIAATTACH_WELCOME"]--></h3>
+<h3><!--[gt text="Welcome to the MediaAttach admin area"]--></h3>
 
 <!--[if $numUploads > 0 && $sizeUploads > "0"]-->
-    <p style="margin-left: 50px"><!--[pnml name="_MEDIAATTACH_FILESTOTAL" count=$numUploads]--> (<!--[$sizeUploads]-->)</p>
+    <p style="margin-left: 50px"><!--[gt text="%s files total" tag1=$numUploads]--> (<!--[$sizeUploads]-->)</p>
 <!--[else]-->
-    <!--[pnml name="_MEDIAATTACH_UPLOADNOUPLOADS"]--><br />
+    <!--[gt text="No files were uploaded yet"]--><br />
 <!--[/if]-->
 
 </div>

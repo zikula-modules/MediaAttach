@@ -16,7 +16,7 @@
  * @param        array       file         array of file to beautify
  * @return       mixed       analyzation results
  */
-function smarty_function_macodesource($params, &$smarty) 
+function smarty_function_macodesource($params, &$smarty)
 {
     if (!isset($params['file'])) {
         $smarty->trigger_error("smarty_function_macodesource: missing parameter 'file'");

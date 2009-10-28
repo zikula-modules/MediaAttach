@@ -9,19 +9,20 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 /**
  * return string with enhanced file format string
  *
  * @param    fileinfo   array     the file information array
  * @return   string     beauty formatted output
  */
-function MediaAttach_fileinfoapi_nicefileformatdisplay($args) {
+function MediaAttach_fileinfoapi_nicefileformatdisplay($args)
+{
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['fileinfo']) || !is_array($args['fileinfo'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
-    $fileinfo =  $args['fileinfo'];
+    $fileinfo = $args['fileinfo'];
     unset($args);
 
     if (empty($fileinfo['fileformat'])) {
@@ -30,7 +31,7 @@ function MediaAttach_fileinfoapi_nicefileformatdisplay($args) {
 
     $output = $fileinfo['fileformat'];
     if (empty($fileinfo['video']['dataformat']) && empty($fileinfo['audio']['dataformat'])) {
-        return $output;  // 'gif'
+        return $output; // 'gif'
     }
     if (empty($fileinfo['video']['dataformat']) && !empty($fileinfo['audio']['dataformat'])) {
         if ($fileinfo['fileformat'] == $fileinfo['audio']['dataformat']) {
@@ -55,6 +56,7 @@ function MediaAttach_fileinfoapi_nicefileformatdisplay($args) {
     }
     $output .= '.' . $fileinfo['video']['dataformat'];
     $output .= '.' . $fileinfo['audio']['dataformat']; // asf.wmv.wma
+
 
     return $output;
 }

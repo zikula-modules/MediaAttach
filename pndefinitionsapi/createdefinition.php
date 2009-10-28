@@ -27,6 +27,7 @@
  */
 function MediaAttach_definitionsapi_createdefinition($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -39,7 +40,7 @@ function MediaAttach_definitionsapi_createdefinition($args)
          || !isset($args['naming']) || !is_numeric($args['naming'])
          || !isset($args['namingprefix'])
          || !isset($args['numfiles']) || !is_numeric($args['numfiles'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $modname = $args['modname'];
@@ -67,14 +68,14 @@ function MediaAttach_definitionsapi_createdefinition($args)
     $result = DBUtil::insertObject($def, 'ma_defs', 'did');
 
     if (!$result) {
-        return LogUtil::registerError(_CREATEFAILED);
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
 
     foreach ($groups as $currentgroup) {
         if (!pnModAPIFunc('MediaAttach', 'filetypes', 'createdefgroup',
                             array('did' => $def['did'], 'gid' => $currentgroup))) {
-            return LogUtil::registerError(_CREATEFAILED);
+            return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
         }
     }
 

@@ -19,6 +19,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_viewdefinitions()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -29,7 +30,7 @@ function MediaAttach_admin_viewdefinitions()
     }
 
     if (!($groups = pnModAPIFunc('MediaAttach', 'filetypes', 'getallgroups'))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $definitions = pnModAPIFunc('MediaAttach', 'definitions', 'getalldefinitions');

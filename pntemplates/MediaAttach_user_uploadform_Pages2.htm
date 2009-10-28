@@ -16,37 +16,37 @@
             <div id="SWFUploadTarget">
                 <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createuploadflash"]-->" method="post" enctype="multipart/form-data">
                     <div>
-                        <label id="labelfile" for="Filedata"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+                        <label id="labelfile" for="Filedata"><!--[gt text="File"]-->:</label>
                         <input id="Filedata" name="Filedata" type="file" /><br />
 
-                        <input type="submit" value="<!--[pnml name="_MEDIAATTACH_UPLOAD"]-->" />
+                        <input type="submit" value="<!--[gt text="Upload"]-->" />
                     </div>
                 </form>
             </div>
 
-            <h4 id="queueinfo"><!--[pnml name="_MEDIAATTACH_SWFQUEUEISEMPTY"]--></h4>
+            <h4 id="queueinfo"><!--[gt text="Queue is empty"]--></h4>
             <div id="SWFUploadFileListingFiles"></div>
             <br style="clear: both" />
 
-            <a class="swfuploadbtn" id="cancelqueuebtn" href="javascript:cancelQueue();"><!--[pnml name="_MEDIAATTACH_SWFCANCELQUEUE"]--></a>
+            <a class="swfuploadbtn" id="cancelqueuebtn" href="javascript:cancelQueue();"><!--[gt text="Cancel queue"]--></a>
 
             <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
 
             <script type="text/javascript" language="javascript">
             /* <![CDATA[ */
                 var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if !$smarty.foreach.formatloop.last]-->, <!--[/if]--><!--[/foreach]-->);
-                var errorAllowedFilenum         = "<!--[pnml name="_MEDIAATTACH_ERRORALLOWEDFILENUM" m=$definition.numfiles]-->";
-                var errorAlreadySelected        = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYSELECTED"]-->";
-                var errorExtensionNotAllowed    = "<!--[pnml name="_MEDIAATTACH_ERROREXTENSIONNOTALLOWED"]-->";
-                var errorNoFilesSelected        = "<!--[pnml name="_MEDIAATTACH_ERRORNOFILESSELECTED"]-->";
-                var errorAlreadyRunning         = "<!--[pnml name="_MEDIAATTACH_ERRORALREADYRUNNING"]-->";
+                var errorAllowedFilenum         = "<!--[gt text="You are not allowed to upload more than %s files at once." tag1=$definition.numfiles]-->";
+                var errorAlreadySelected        = "<!--[gt text="This file has already been selected."]-->";
+                var errorExtensionNotAllowed    = "<!--[gt text="The filetype of this file is not allowed."]-->";
+                var errorNoFilesSelected        = "<!--[gt text="No file has been chosen yet."]-->";
+                var errorAlreadyRunning         = "<!--[gt text="There is already a file being uploaded."]-->";
 
-                var msgCallbackFileQueue        = "<!--[pnml name="_MEDIAATTACH_SWFCBFILEQUEUE"]-->";
-                var msgCallbackFileSelected     = "<!--[pnml name="_MEDIAATTACH_SWFCBFILECANCELLED"]-->";
-                var msgCallbackFilesQueued      = "<!--[pnml name="_MEDIAATTACH_SWFCBFILESQUEUED"]-->";
-                var msgCallbackUploadingFile    = "<!--[pnml name="_MEDIAATTACH_SWFCBUPLOADINGFILE"]-->";
-                var msgCallbackUploadingOf      = "<!--[pnml name="_MEDIAATTACH_SWFCBUPLOADINGOF"]-->";
-                var msgCallbackAllFilesUploaded = "<!--[pnml name="_MEDIAATTACH_SWFALLFILESUPLOADED"]-->";
+                var msgCallbackFileQueue        = "<!--[gt text="File queue"]-->";
+                var msgCallbackFileSelected     = "<!--[gt text="cancelled"]-->";
+                var msgCallbackFilesQueued      = "<!--[gt text="files queued"]-->";
+                var msgCallbackUploadingFile    = "<!--[gt text="Uploading file"]-->";
+                var msgCallbackUploadingOf      = "<!--[gt text="of"]-->";
+                var msgCallbackAllFilesUploaded = "<!--[gt text="All files uploaded..."]-->";
 
                 var maxFilesAtOnce = <!--[$definition.numfiles]-->;
 
@@ -60,9 +60,9 @@
                         flash_path                      : 'modules/MediaAttach/pnincludes/SWFUpload/SWFUpload.swf',
                         allowed_filesize                : <!--[$definition.maxsize]-->,
                         allowed_filetypes               : '<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->*.<!--[$currentformat.extension]--><!--[if !$smarty.foreach.formatloop.last]-->;<!--[/if]--><!--[/foreach]-->',
-                        allowed_filetypes_description   : '<!--[pnml name="_MEDIAATTACH_SWFFILESELECTION"]-->',
-                        browse_link_innerhtml           : '<!--[pnml name="_MEDIAATTACH_SWFBROWSEFILES"]-->',
-                        upload_link_innerhtml           : '<!--[pnml name="_MEDIAATTACH_UPLOADFILES"]-->',
+                        allowed_filetypes_description   : '<!--[gt text="MediaAttach files..."]-->',
+                        browse_link_innerhtml           : '<!--[gt text="Browse files"]-->',
+                        upload_link_innerhtml           : '<!--[gt text="Upload files"]-->',
                         browse_link_class               : 'swfuploadbtn browsebtn',
                         upload_link_class               : 'swfuploadbtn uploadbtn',
                         flash_loaded_callback           : 'swfu.flashLoaded',
@@ -84,9 +84,9 @@
             </script>
 
         <!--[else]-->
-            <p><!--[pnml name="_MEDIAATTACH_QUOTAFULL"]--></p>
+            <p><!--[gt text="You have no more memory for uploads available"]--></p>
         <!--[/if]-->
 <!--[*    <!--[else]-->
-        <p><!--[pnml name="_MEDIAATTACH_NORIGHTS"]--></p> *]-->
+        <p><!--[gt text="Sorry, you have no permission for uploading files"]--></p> *]-->
     <!--[/if]-->
 <!--[/if]-->

@@ -22,6 +22,7 @@ Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
  */
 function MediaAttach_user_delete($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid       = (int)  FormUtil::getPassedValue('fileid',       (isset($args['fileid']))       ? $args['fileid']       : null, 'GETPOST');
     $objectid     = (int)  FormUtil::getPassedValue('objectid',     (isset($args['objectid']))     ? $args['objectid']     : null, 'GETPOST');
     $confirmation = (bool) FormUtil::getPassedValue('confirmation', (isset($args['confirmation'])) ? $args['confirmation'] : null, 'POST');
@@ -33,7 +34,7 @@ function MediaAttach_user_delete($args)
     }
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $isOwner = (pnModGetVar('MediaAttach', 'ownhandling') && (pnUserGetVar('uid') == $file['uid']));
@@ -55,13 +56,13 @@ function MediaAttach_user_delete($args)
     $backurl = str_replace('&amp;', '&', base64_decode($backurl)) . '#files';
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect($backurl);
     }
 
     if (pnModAPIFunc('MediaAttach', 'user', 'delete', array('fileid' => $fileid))) {
         if ($file['extension'] == 'extvid') {
-            LogUtil::registerStatus(_DELETESUCCEDED);
+            LogUtil::registerStatus(__('Done! Item deleted.', $dom));
         } else {
             // delete file physically
             $fullFileName = pnModGetVar('MediaAttach', 'uploaddir') . '/' . $file['filename'];
@@ -77,9 +78,9 @@ function MediaAttach_user_delete($args)
 
             // now delete original file
             if (pnModAPIFunc('MediaAttach', 'filesystem', 'deletefile', array('file' => $fullFileName))) {
-                LogUtil::registerStatus(_DELETESUCCEDED);
+                LogUtil::registerStatus(__('Done! Item deleted.', $dom));
             } else {
-                LogUtil::registerError(_DELETEFAILED);
+                LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
             }
         }
     }

@@ -18,30 +18,31 @@
  */
 function MediaAttach_filetypesapi_deletegroup($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!isset($gid) || !is_numeric($gid)) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $gid = $args['gid'];
     unset($args);
 
     if (!($group = pnModAPIFunc('MediaAttach', 'filetypes', 'getgroup', array('gid' => $gid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $result = DBUtil::deleteObjectByID('ma_groups', $gid, 'gid');
 
     if (!$result) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     if (!pnModAPIFunc('MediaAttach', 'filetypes', 'deleteformatgroups',
                         array('gid' => $gid))) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     $render = pnRender::getInstance('MediaAttach');

@@ -11,7 +11,7 @@
 <!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
 <!--[if $isLoggedIn || $numFiles > 0]-->
     <a name="files"></a>
-    <strong><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></strong>
+    <strong><!--[gt text="File attachments"]--></strong>
     <div id="myfilelist" style="margin: 1em 0;">
         <!--[pnusergetvar name="uid" assign="currentuser"]-->
         <!--[foreach item="file" from=$files]-->

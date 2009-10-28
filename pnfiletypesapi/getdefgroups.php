@@ -18,8 +18,9 @@
  */
 function MediaAttach_filetypesapi_getdefgroups($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['did']) || !is_numeric($args['did'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $did = $args['did'];

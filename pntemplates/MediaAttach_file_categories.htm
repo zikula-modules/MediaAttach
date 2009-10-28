@@ -14,7 +14,7 @@
         <!--[assign var="linkCats" value="1"]-->
     <!--[/if]-->
 
-    <strong><!--[pnml name="_CATEGORIES"]-->:</strong>
+    <strong><!--[gt text="Categories"]-->:</strong>
     <!--[foreach name="categoryloop" key="prop" item="cat" from=$file.__CATEGORIES__]-->
         <!--[if $linkCats]--><a href="<!--[pnmodurl modname="MediaAttach" type="user" func="main" catmode=1 cat_prop=$prop cat_id=$cat.id sortby=$sortby sortdir=$sortdir itemsperpage=$itemsperpage preview=$preview onlyimages=$onlyimages]-->"><!--[/if]-->
         <!--[pnusergetlang assign="currentlang"]-->

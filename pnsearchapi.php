@@ -39,6 +39,7 @@ function MediaAttach_searchapi_options($args)
  **/
 function MediaAttach_searchapi_search($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_READ)) {
         return true;
     }
@@ -69,7 +70,7 @@ function MediaAttach_searchapi_search($args)
 
     $result = DBUtil::executeSQL($sql);
     if (!$result) {
-        return LogUtil::registerError (_GETFAILED);
+        return LogUtil::registerError (__('Error! Could not load items.', $dom));
     }
 
     $sessionId = session_id();
@@ -98,7 +99,7 @@ function MediaAttach_searchapi_search($args)
 
             $insertResult = DBUtil::executeSQL($sql);
             if (!$insertResult) {
-                return LogUtil::registerError (_GETFAILED);
+                return LogUtil::registerError (__('Error! Could not load items.', $dom));
             }
         }
     }

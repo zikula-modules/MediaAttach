@@ -21,6 +21,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_createuserquota($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -43,7 +44,7 @@ function MediaAttach_admin_createuserquota($args)
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewquotas'));
     }
 
@@ -51,10 +52,10 @@ function MediaAttach_admin_createuserquota($args)
                         array('qtype' => 1,
                               'qguid' => $uid,
                               'qamount' => _maIntMBToByte($amount)))) {
-        LogUtil::registerError(_UPDATEFAILED);
+        LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
 
-    LogUtil::registerStatus(_UPDATESUCCEDED);
+    LogUtil::registerStatus(__('Done! Item updated.', $dom));
     return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewquotas'));
 }
 

@@ -17,6 +17,7 @@
  */
 function MediaAttach_filetypesapi_getallformats()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -28,11 +29,11 @@ function MediaAttach_filetypesapi_getallformats()
     $dbformats = DBUtil::selectObjectArray('ma_formats', $where, $orderBy);
 
     if (!$dbformats) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $formats = array();
-	
+
     foreach($dbformats as $currentFormat) {
         if (!$currentFormat['image']) $currentFormat['image'] = 'unknown.gif';
         $groups = pnModAPIFunc('MediaAttach', 'filetypes', 'getformatgroups',

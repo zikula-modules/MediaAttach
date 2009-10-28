@@ -6,9 +6,9 @@
 <div class="pn-admincontainer">
 <div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large"]--></div>
 
-<h3><!--[pnimg src="fileimport.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[pnml name="_MEDIAATTACH_IMPORTFILESFROMMODULE"]--></h3>
+<h3><!--[pnimg src="fileimport.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="Import files from another module"]--></h3>
 
-<p><!--[pnml name="_MEDIAATTACH_IMPORTFILESFROMMODULEHINT"]--> <!--[pnml name="_MEDIAATTACH_IMPORTLIMITSHINT"]--></p>
+<p><!--[gt text="MediaAttach has found the following modules from which files can be imported."]--> <!--[gt text="The upload filesize limits are not being used here."]--></p>
 
 <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="importmodprocess"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
     <div style="margin-left: 8em">
@@ -19,9 +19,9 @@
         <!--[/foreach]-->
 
         <br />
-        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_IMPORTSTART"]-->" class="maright" />
+        <input name="submit" type="submit" value="<!--[gt text="Start import"]-->" class="maright" />
     </div>
 </form>
 <br />
-<p><!--[pnml name="_MEDIAATTACH_IMPORTFILESFROMMODULEHINT2"]--></p>
+<p><!--[gt text="Existing hierarchies are converted in the form of Categories."]--></p>
 </div>

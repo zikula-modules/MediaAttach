@@ -17,6 +17,7 @@
  */
 function MediaAttach_quotaapi_getalluserquotas()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -34,7 +35,7 @@ function MediaAttach_quotaapi_getalluserquotas()
                      $ucolumn[uid],
                      q.$qcolumn[qamount]
             FROM     $utable, $qtable q
-            WHERE    $ucolumn[uid] = q.$qcolumn[qguid] 
+            WHERE    $ucolumn[uid] = q.$qcolumn[qguid]
             AND      q.$qcolumn[qtype] = 1
             ORDER BY $ucolumn[uname] ASC";
 

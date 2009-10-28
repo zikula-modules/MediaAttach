@@ -19,12 +19,13 @@
  */
 function MediaAttach_filetypesapi_deleteformatgroups($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if ((!isset($args['fid']) || !is_numeric($args['fid'])) && (!isset($args['gid']) || !is_numeric($args['gid']))) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fid = $args['fid'];
@@ -44,7 +45,7 @@ function MediaAttach_filetypesapi_deleteformatgroups($args)
     $resultwhere = DBUtil::deleteObject(array(), 'ma_formatgroups', $where);
 
     if (!$resultwhere) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     return true;

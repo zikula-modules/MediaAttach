@@ -17,6 +17,7 @@
  */
 function MediaAttach_definitionsapi_getalldefinitions()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -49,7 +50,7 @@ function MediaAttach_definitionsapi_getalldefinitions()
         $dbdef = DBUtil::selectObjectArray('ma_defs', $where);
 
         if ($dbdef === false) {
-            return LogUtil::registerError(_GETFAILED);
+            return LogUtil::registerError(__('Error! Could not load items.', $dom));
         }
 
         if ($dbdef) {

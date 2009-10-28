@@ -13,8 +13,8 @@
 
     <div style="float: right; margin: 0 15px; width: 180px">
         <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
-        <!--[pnml name="_MEDIAATTACH_FROM"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
-        <!--[pnml name="_MEDIAATTACH_ON"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+        <!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
+        <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
         <!--[include file="MediaAttach_file_categories.htm"]-->
     </div>
 
@@ -31,9 +31,9 @@
     </div>
 <!--[/if]-->
 <p>
-    <a href="<!--[$file.url|pnvarprepfordisplay]-->" title="<!--[pnml name="_BACK"]-->">
-        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" alt=_BACK altml=true title=_BACK titleml=true]-->
-        <!--[pnml name="_BACK"]-->
+    <a href="<!--[$file.url|pnvarprepfordisplay]-->" title="<!--[gt text="Back"]-->">
+        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt="Back"  __title="Back"]-->
+        <!--[gt text="Back"]-->
     </a>
 </p>
 

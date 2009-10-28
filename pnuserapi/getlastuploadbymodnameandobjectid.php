@@ -19,8 +19,9 @@
  */
 function MediaAttach_userapi_getlastuploadbymodnameandobjectid($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['modname']) || empty($args['modname']) || !isset($args['objectid'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $modname  = $args['modname'];
@@ -45,7 +46,7 @@ function MediaAttach_userapi_getlastuploadbymodnameandobjectid($args)
     $file = DBUtil::selectExpandedObjectArray('ma_files', $formatJoin, $where, $orderBy, 0, 1); //LIMIT 0, 1
 
     if ($file === false || !$file) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     //we have only one item
@@ -56,7 +57,7 @@ function MediaAttach_userapi_getlastuploadbymodnameandobjectid($args)
     }
 
     if (!($definition = pnModAPIFunc('MediaAttach', 'definitions', 'getdefinition', array('did' => $file['definition'])))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $file['url'] = str_replace('&amp;', '&', urldecode($file['url']));

@@ -17,9 +17,10 @@
  */
 function MediaAttach_catapi_getCategoryTemplate($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (empty($args['property']) || !is_string($args['property'])
       || empty($args['category']) || !is_array($args['category']) ) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $property = $args['property'];
@@ -36,7 +37,7 @@ function MediaAttach_catapi_getCategoryTemplate($args)
 
     // check parent categories to inherit a template if exists
     if (!($class = Loader::loadClass('CategoryUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryUtil')));
+        pn_exit (__('Error! Unable to load class CategoryUtil', $dom));
     }
 
     // get the ipath of the category root of the registry

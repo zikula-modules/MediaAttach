@@ -9,7 +9,6 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 /**
  * cache given array
  *
@@ -19,9 +18,9 @@
  */
 function MediaAttach_fileinfoapi_cacheinfo(&$args)
 {
-    if (!isset($args['fileid']) || !is_numeric($args['fileid'])
-      || !isset($args['data']) || !is_array($args['data'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
+    if (!isset($args['fileid']) || !is_numeric($args['fileid']) || !isset($args['data']) || !is_array($args['data'])) {
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $cacheDir = pnConfigGetVar('temp') . '/pnRender_cache';
@@ -37,8 +36,7 @@ function MediaAttach_fileinfoapi_cacheinfo(&$args)
             unlink($cacheFileOS);
             $cacheNeeded = true;
         }
-    }
-    else {
+    } else {
         $cacheNeeded = true;
     }
 
@@ -51,8 +49,10 @@ function MediaAttach_fileinfoapi_cacheinfo(&$args)
     return true;
 }
 
-
-function base64_encoder_multi(&$val, $key) {
-   if (is_array($val)) array_walk($val, 'base64_encoder_multi');
-   else $val = base64_encode($val);
+function base64_encoder_multi(&$val, $key)
+{
+    if (is_array($val))
+        array_walk($val, 'base64_encoder_multi');
+    else
+        $val = base64_encode($val);
 }

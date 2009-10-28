@@ -19,6 +19,7 @@ Loader::requireOnce('modules/MediaAttach/common_imgthumb.php');
  */
 function MediaAttach_ajax_performupload()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $result = array();
     if (!isset($_POST['MediaAttach_modname'])) {
         //upload is still running
@@ -37,13 +38,13 @@ function MediaAttach_ajax_performupload()
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$MediaAttach_modname:: ", ACCESS_COMMENT)) {
-        AjaxUtil::error(_MODULENOAUTH);
+        AjaxUtil::error(__('Sorry! No authorization to access this module.', $dom));
     }
 
     $MediaAttach_redirect = str_replace('&amp;', '&', base64_decode($MediaAttach_redirect)) . '#files';
 
     if (!SecurityUtil::confirmAuthKey()) {
-        AjaxUtil::error(_BADAUTHKEY);
+        AjaxUtil::error(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
     }
 
     $definition = pnModAPIFunc('MediaAttach', 'definitions', 'getmoduledefinition', array('modname' => $MediaAttach_modname));
@@ -53,12 +54,12 @@ function MediaAttach_ajax_performupload()
     $jsfield_descs  = FormUtil::getPassedValue('MediaAttach_descriptions', null, 'POST');
     $jsfield_cats   = FormUtil::getPassedValue('MediaAttach_categories',   array(), 'POST');
     if (!is_array($jsfield_files) || !is_array($jsfield_titles) || !is_array($jsfield_descs) || !is_array($jsfield_cats)) {
-        AjaxUtil::error(_MODARGSERROR);
+        AjaxUtil::error(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $numfiles = count($jsfield_files['name']);
     if (($numfiles != count($jsfield_titles)) || ($numfiles != count($jsfield_descs))) {
-        AjaxUtil::error(_MODARGSERROR);
+        AjaxUtil::error(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     if ($numfiles > $definition['numfiles']) {
@@ -118,6 +119,7 @@ function MediaAttach_ajax_performupload()
  */
 function MediaAttach_ajax_getfilelist($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $sortby       =       FormUtil::getPassedValue('sortby',       'date');
     $sortdir      =       FormUtil::getPassedValue('sortdir',  ($sortby == 'date') ? 'desc' : 'asc');
     $searchfor    =       FormUtil::getPassedValue('searchfor',   '');
@@ -149,13 +151,13 @@ function MediaAttach_ajax_getfilelist($args)
         if (empty($modname)) {
             return false;
         } else if (!SecurityUtil::checkPermission('MediaAttach::', $modname.'::', ACCESS_READ)) {
-            AjaxUtil::error(_MODULENOAUTH);
+            AjaxUtil::error(__('Sorry! No authorization to access this module.', $dom));
         }
 
         $fetchArgs['moduleFilter'] = $modname;
 
     } else if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_COMMENT)) {
-        AjaxUtil::error(_MODULENOAUTH);
+        AjaxUtil::error(__('Sorry! No authorization to access this module.', $dom));
     }
 
     $cat_prop = FormUtil::getPassedValue('catprop', 'Main');
@@ -167,7 +169,7 @@ function MediaAttach_ajax_getfilelist($args)
 
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', $fetchArgs);
     if ($files === false) {
-        AjaxUtil::error(_GETFAILED);
+        AjaxUtil::error(__('Error! Could not load items.', $dom));
     }
 
     $uploaddir = pnModGetVar('MediaAttach', 'uploaddir');

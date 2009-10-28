@@ -2,11 +2,11 @@
 <!--[* Purpose of this template: Block configuration options *]-->
 
 <div class="pn-adminformrow">
-    <label for="MediaAttach_numitems"><!--[pnml name="_MEDIAATTACH_NUMITEMS"]--></label>
+    <label for="MediaAttach_numitems"><!--[gt text="Number of files to display"]--></label>
     <input id="MediaAttach_numitems" type="text" name="numitems" value="<!--[$numitems|pnvarprephtmldisplay]-->" size="5" maxlength="5" />
 </div>
 <div class="pn-adminformrow">
-    <label for="MediaAttach_formats"><!--[pnml name="_MEDIAATTACH_FORMATFILTER"]--></label>
+    <label for="MediaAttach_formats"><!--[gt text="Show only files of these formats (optional)"]--></label>
     <select id="MediaAttach_formats" name="formats[]" size="10" multiple="multiple" style="width: 100px">
     <!--[foreach item="currentformat" from=$allformats]-->
         <option value="<!--[$currentformat.extension|pnvarprephtmldisplay]-->"

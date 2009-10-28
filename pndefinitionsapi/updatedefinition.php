@@ -27,6 +27,7 @@
  */
 function MediaAttach_definitionsapi_updatedefinition($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -39,7 +40,7 @@ function MediaAttach_definitionsapi_updatedefinition($args)
          || !isset($args['naming']) || !is_numeric($args['naming'])
          || !isset($args['namingprefix'])
          || !isset($args['numfiles']) || !is_numeric($args['numfiles'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $did = $args['did'];
@@ -55,7 +56,7 @@ function MediaAttach_definitionsapi_updatedefinition($args)
     unset($args);
 
     if (!($definition = pnModAPIFunc('MediaAttach', 'definitions', 'getdefinition', array('did' => $did)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $definition['displayfiles'] = $displayfiles;
@@ -70,16 +71,16 @@ function MediaAttach_definitionsapi_updatedefinition($args)
     $result = DBUtil::updateObject($definition, 'ma_defs', '', 'did');
 
     if (!$result) {
-        return LogUtil::registerError(_UPDATEFAILED);
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
 
     if (!pnModAPIFunc('MediaAttach', 'filetypes', 'deletedefgroups', array('did' => $did))) {
-        return LogUtil::registerError(_UPDATEFAILED);
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
     foreach ($groups as $currentgroup) {
         if (!pnModAPIFunc('MediaAttach', 'filetypes', 'createdefgroup',
                                             array('did' => $did, 'gid' => $currentgroup))) {
-            return LogUtil::registerError(_UPDATEFAILED);
+            return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
         }
     }
 

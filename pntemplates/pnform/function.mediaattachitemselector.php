@@ -9,9 +9,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 Loader::requireOnce('modules/MediaAttach/common.php');
-
 
 /**
  * item selector class for content plugin
@@ -34,7 +32,6 @@ class mediaattachItemSelector extends pnFormPlugin
         return __FILE__;
     }
 
-
     function create(&$render, $params)
     {
         $this->inputName = $this->id;
@@ -42,7 +39,6 @@ class mediaattachItemSelector extends pnFormPlugin
         $this->dataField = (array_key_exists('dataField', $params) ? $params['dataField'] : $this->id);
         $this->mandatory = (array_key_exists('mandatory', $params) ? $params['mandatory'] : true);
     }
-
 
     function load(&$render, &$params)
     {
@@ -56,6 +52,7 @@ class mediaattachItemSelector extends pnFormPlugin
 
     function render(&$render)
     {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
         PageUtil::AddVar('javascript', 'javascript/ajax/prototype.js');
         PageUtil::AddVar('javascript', 'modules/MediaAttach/pnjavascript/finditem.js');
         PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
@@ -79,7 +76,7 @@ class mediaattachItemSelector extends pnFormPlugin
 
         if ($definitionid != 0) {
             $modname = '';
-            foreach($definitions as $currentDef) {
+            foreach ($definitions as $currentDef) {
                 if ($currentDef['did'] == $definitionid) {
                     $modname = $currentDef['modname'];
                     break;
@@ -87,16 +84,14 @@ class mediaattachItemSelector extends pnFormPlugin
             }
 
             if (empty($modname)) {
-                return LogUtil::registerError(_MODARGSERROR);
-            }
-            else if (!SecurityUtil::checkPermission('MediaAttach::', "$modname:: ", ACCESS_COMMENT)) {
+                return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+            } else if (!SecurityUtil::checkPermission('MediaAttach::', "$modname:: ", ACCESS_COMMENT)) {
                 return LogUtil::registerPermissionError();
             }
 
             $fetchArgs = array();
             $fetchArgs['moduleFilter'] = $modname;
-        }
-        else if (!SecurityUtil::checkPermission('MediaAttach::', "::", ACCESS_COMMENT)) {
+        } else if (!SecurityUtil::checkPermission('MediaAttach::', "::", ACCESS_COMMENT)) {
             return LogUtil::registerPermissionError();
         }
 
@@ -114,7 +109,8 @@ class mediaattachItemSelector extends pnFormPlugin
 
     }
 
-    function decode(&$render) {
+    function decode(&$render)
+    {
         $this->clearValidation($render);
         $fileid = FormUtil::getPassedValue($this->inputName, null, 'POST');
         if (get_magic_quotes_gpc())
@@ -123,28 +119,32 @@ class mediaattachItemSelector extends pnFormPlugin
         $this->selectedItemId = (int) $fileid;
     }
 
-    function validate(&$render) {
+    function validate(&$render)
+    {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
         if ($this->mandatory && empty($this->selectedItemId)) {
-            $this->setError(_PNFORM_MANDATORYSELECTERROR);
+            $this->setError(__('A selection here is mandatory.', $dom));
         }
     }
 
-    function setError($msg) {
+    function setError($msg)
+    {
         $this->isValid = false;
         $this->errorMessage = $msg;
     }
 
-    function clearValidation(&$render) {
+    function clearValidation(&$render)
+    {
         $this->isValid = true;
         $this->errorMessage = null;
     }
 
-    function saveValue(&$render, &$data) {
+    function saveValue(&$render, &$data)
+    {
         if ($this->dataBased) {
             if ($this->group == null) {
                 $data[$this->dataField] = $this->selectedItemId;
-            }
-            else {
+            } else {
                 if (!array_key_exists($this->group, $data))
                     $data[$this->group] = array();
                 $data[$this->group][$this->dataField] = $this->selectedItemId;
@@ -152,15 +152,15 @@ class mediaattachItemSelector extends pnFormPlugin
         }
     }
 
-    function loadValue(&$render, &$values) {
+    function loadValue(&$render, &$values)
+    {
         if ($this->dataBased) {
             $value = null;
 
             if ($this->group == null) {
-                if ($this->dataField != null  &&  isset($values[$this->dataField]))
+                if ($this->dataField != null && isset($values[$this->dataField]))
                     $value = $values[$this->dataField];
-            }
-            else {
+            } else {
                 if (isset($values[$this->group])) {
                     $data = $values[$this->group];
                     if (isset($data[$this->dataField])) {
@@ -174,10 +174,8 @@ class mediaattachItemSelector extends pnFormPlugin
     }
 }
 
-
-
 function smarty_function_mediaattachitemselector($params, &$render)
 {
-  return $render->pnFormRegisterPlugin('mediaattachItemSelector', $params);
+    return $render->pnFormRegisterPlugin('mediaattachItemSelector', $params);
 }
 

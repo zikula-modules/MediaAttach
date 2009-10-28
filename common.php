@@ -9,12 +9,11 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 /* categorization modes */
-define('MEDIAATTACH_CATMODE_NONE',       0);
+define('MEDIAATTACH_CATMODE_NONE', 0);
 define('MEDIAATTACH_CATMODE_CATEGORIES', 1);
-define('MEDIAATTACH_CATMODE_MODULES',    2);
-define('MEDIAATTACH_CATMODE_USERS',      4);
+define('MEDIAATTACH_CATMODE_MODULES', 2);
+define('MEDIAATTACH_CATMODE_USERS', 4);
 
 /**
  * utility function for getting file names
@@ -31,8 +30,8 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
         if ($naming == 0) {
             // original file name
             $filenameCharCount = strlen($filename);
-            for ($y = 0; $y < $filenameCharCount; $y++){
-                if(!ereg("([0-9A-Za-z_\.])", $filename[$y]))
+            for ($y = 0; $y < $filenameCharCount; $y++) {
+                if (!ereg("([0-9A-Za-z_\.])", $filename[$y]))
                     $filename[$y] = '_';
             }
             // append incremented number
@@ -43,12 +42,12 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
                 $filename .= (string) ++$iterIndex;
                 // readd extension
                 $filename .= '.' . $extension;
-            }
-            else $iterIndex++;
+            } else
+                $iterIndex++;
 
         } else if ($naming == 1) {
             // md5 name
-            $filename = md5(uniqid(mt_rand(),TRUE)) . '.' . $extension;
+            $filename = md5(uniqid(mt_rand(), TRUE)) . '.' . $extension;
 
         } else if ($naming == 2) {
             // prefix with random number
@@ -56,15 +55,14 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
         }
 
         if (StringUtil::left($filename, 1) == '/' || StringUtil::left($filename, 1) == '\\') {
-            $filename = substr($filename, 1, strlen($filename)-1);
+            $filename = substr($filename, 1, strlen($filename) - 1);
         }
-    }
-    while (file_exists($uploaddir . '/' . $filename)); // repeat until we have a new name
+    } while (file_exists($uploaddir . '/' . $filename)); // repeat until we have a new name
+
 
     // return file name as well as it's path
     return array($filename, $uploaddir . '/' . $filename);
 }
-
 
 /**
  * display a given file size in a readable format
@@ -76,18 +74,18 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
  */
 function _maIntCalcReadableFilesize($size, $nodesc = false, $onlydesc = false)
 {
-    $sizeDesc = _MEDIAATTACH_BYTES;              // we have bytes as default
+    $sizeDesc = __('Bytes', $dom); // we have bytes as default
     if ($size >= 1024) {
         $size /= 1024;
-        $sizeDesc = _MEDIAATTACH_KB;             // kilobytes
+        $sizeDesc = __('KB', $dom); // kilobytes
     }
     if ($size >= 1024) {
         $size /= 1024;
-        $sizeDesc = _MEDIAATTACH_MB;             // megabytes
+        $sizeDesc = __('MB', $dom); // megabytes
     }
     if ($size >= 1024) {
         $size /= 1024;
-        $sizeDesc = _MEDIAATTACH_GB;             // gigabytes
+        $sizeDesc = __('GB', $dom); // gigabytes
     }
     $sizeDesc = '&nbsp;' . $sizeDesc;
 
@@ -120,13 +118,14 @@ function _maIntCalcReadableFilesize($size, $nodesc = false, $onlydesc = false)
  */
 function _maIntPrepFileForTemplate($file, $currentUser, $ownHandling)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     // append default title if necessary
     if ($file['title'] == '') {
-        $file['title'] = _MEDIAATTACH_NOTITLE;
+        $file['title'] = __('No title', $dom);
     }
 
     // call transform hooks
-    list($file['title'], $file['desc']) = pnModCallHooks('item', 'transform', '', array($file['title'], $file['desc']));
+    list ($file['title'], $file['desc']) = pnModCallHooks('item', 'transform', '', array($file['title'], $file['desc']));
 
     // determine if current user may modify this file in terms of config
     $isOwner = ($ownHandling && ($currentUser == $file['uid']));
@@ -147,7 +146,8 @@ function _maIntPrepFileForTemplate($file, $currentUser, $ownHandling)
  *
  * @return   int  calculated file size
  */
-function _maIntMBToByte($amount) {
+function _maIntMBToByte($amount)
+{
     $amount = str_replace('.', '', $amount);
     $amount = str_replace(',', '', $amount);
     $amount = $amount * 1024 * 1024;
@@ -173,6 +173,7 @@ function _maIntBuildWhereString($args)
 
     // no further $args checking here --> has been done before
 
+
     $pntables = pnDBGetTables();
     $filescolumn = $pntables['ma_files_column'];
     $formatscolumn = $pntables['ma_formats_column'];
@@ -183,66 +184,76 @@ function _maIntBuildWhereString($args)
     }
 
     if (!empty($args['fileFilter'])) {
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $where .= $prefix . $filescolumn['fileid'] . ' IN (';
         $firstone = 1;
-        foreach($args['fileFilter'] as $currentFilter) {
-            if ($firstone) $firstone = 0;
-            else $where .= ',';
+        foreach ($args['fileFilter'] as $currentFilter) {
+            if ($firstone)
+                $firstone = 0;
+            else
+                $where .= ',';
             $where .= "'" . $currentFilter . "'";
         }
         $where .= ')';
     }
 
     if (!empty($args['formatFilter'])) {
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $where .= $prefix . $filescolumn['extension'] . ' IN (';
         $firstone = 1;
-        foreach($args['formatFilter'] as $currentFilter) {
-            if ($firstone) $firstone = 0;
-            else $where .= ',';
+        foreach ($args['formatFilter'] as $currentFilter) {
+            if ($firstone)
+                $firstone = 0;
+            else
+                $where .= ',';
             $where .= "'" . $currentFilter . "'";
         }
         $where .= ')';
     }
 
     if (!empty($args['userFilter'])) {
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $where .= $prefix . $filescolumn['uid'] . ' = ' . (int) DataUtil::formatForStore($args['userFilter']);
     }
 
     if (!empty($args['moduleFilter'])) {
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $where .= $prefix . $filescolumn['modname'] . " = '" . DataUtil::formatForStore($args['moduleFilter']) . "'";
     } elseif ($args['moduleFilter'] != false) {
         $currentType = FormUtil::getPassedValue('type', '', 'GETPOST');
         $currentFunc = FormUtil::getPassedValue('func', '', 'GETPOST');
         $currentMod = pnModGetName();
 
-        if ($currentMod != 'MediaAttach' && $currentMod != 'Profile' && $currentMod != 'content'
-            || ($currentMod == 'MediaAttach' && $currentType != 'account' && $currentType != 'ajax' && $currentType != 'external'
-            && ($currentFunc != 'view' && $currentFunc != 'main' && !empty($currentFunc) && $currentFunc != 'getfilelist'))) {
-                if (!empty($where)) $where .= ' AND ';
-                $where .= $prefix . $filescolumn['modname'] . " != 'MediaAttach'";
+        if ($currentMod != 'MediaAttach' && $currentMod != 'Profile' && $currentMod != 'content' || ($currentMod == 'MediaAttach' && $currentType != 'account' && $currentType != 'ajax' && $currentType != 'external' && ($currentFunc != 'view' && $currentFunc != 'main' && !empty($currentFunc) && $currentFunc != 'getfilelist'))) {
+            if (!empty($where))
+                $where .= ' AND ';
+            $where .= $prefix . $filescolumn['modname'] . " != 'MediaAttach'";
         }
     }
 
     if (!empty($args['objectidFilter'])) {
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $where .= $prefix . $filescolumn['objectid'] . " = '" . DataUtil::formatForStore($args['objectidFilter']) . "'";
     }
 
     if (!empty($args['searchfor'])) {
         $args['searchfor'] = DataUtil::formatForStore(trim($args['searchfor']));
 
-        if (!empty($where)) $where .= ' AND ';
+        if (!empty($where))
+            $where .= ' AND ';
         $flag = false;
         $words = explode(' ', $args['searchfor']);
 
         $where .= '(';
         foreach ($words as $word) {
             if ($flag) {
-                if ($bool != 'AND' && $bool != 'OR') $bool = 'OR';
+                if ($bool != 'AND' && $bool != 'OR')
+                    $bool = 'OR';
                 $where .= ' ' . $bool . ' ';
             }
             $where .= '(' . $prefix . $filescolumn['title'] . " LIKE '%$word%' OR " . $prefix . $filescolumn['desc'] . " LIKE '%$word%') \n";
@@ -257,7 +268,8 @@ function _maIntBuildWhereString($args)
 /**
  * utility function to select a template for the current use case
  */
-function _maIntChooseTemplate(&$render, $type, $func, $modname) {
+function _maIntChooseTemplate(&$render, $type, $func, $modname)
+{
     if ($render->template_exists('MediaAttach_' . $type . '_' . $func . '_' . DataUtil::formatForOS($modname) . '.htm')) {
         return 'MediaAttach_' . $type . '_' . $func . '_' . DataUtil::formatForOS($modname) . '.htm';
     } else {
@@ -268,27 +280,24 @@ function _maIntChooseTemplate(&$render, $type, $func, $modname) {
 /**
  * helper method treating outsourced file list handling
  */
-function _maIntProcessFileList(&$render, $itemsperpage, $customFilter, $dataSource = 'GET') {
+function _maIntProcessFileList(&$render, $itemsperpage, $customFilter, $dataSource = 'GET')
+{
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $itemsperpage = (int) FormUtil::getPassedValue('itemsperpage', $itemsperpage, $dataSource);
-    $startnum     = (int) FormUtil::getPassedValue('startnum',     0,        $dataSource);
-    $sortby       =       FormUtil::getPassedValue('sortby',       'date',   $dataSource);
-    $sortdir      =       FormUtil::getPassedValue('sortdir',      ($sortby == 'date') ? 'desc' : 'asc', $dataSource);
-    $preview      = (int) FormUtil::getPassedValue('preview',      0,        $dataSource);
-    $onlyimages   = (int) FormUtil::getPassedValue('onlyimages',   0,        $dataSource);
-    $searchfor    =       FormUtil::getPassedValue('searchfor',    '',       $dataSource);
-    $thumbnr      = (int) FormUtil::getPassedValue('thumbnr',      0,        $dataSource);
+    $startnum = (int) FormUtil::getPassedValue('startnum', 0, $dataSource);
+    $sortby = FormUtil::getPassedValue('sortby', 'date', $dataSource);
+    $sortdir = FormUtil::getPassedValue('sortdir', ($sortby == 'date') ? 'desc' : 'asc', $dataSource);
+    $preview = (int) FormUtil::getPassedValue('preview', 0, $dataSource);
+    $onlyimages = (int) FormUtil::getPassedValue('onlyimages', 0, $dataSource);
+    $searchfor = FormUtil::getPassedValue('searchfor', '', $dataSource);
+    $thumbnr = (int) FormUtil::getPassedValue('thumbnr', 0, $dataSource);
     if ($thumbnr == 0) {
         $thumbnr = pnModGetVar('MediaAttach', 'defaultthumb');
     }
 
     $formatFilter = ($onlyimages == 1) ? array('gif', 'jpg', 'jpeg', 'png') : '';
 
-    $fetchArgs = array('startnum'     => $startnum,
-                       'numitems'     => $itemsperpage,
-                       'sortby'       => $sortby,
-                       'sortdir'      => $sortdir,
-                       'formatFilter' => $formatFilter,
-                       'searchfor'    => $searchfor);
+    $fetchArgs = array('startnum' => $startnum, 'numitems' => $itemsperpage, 'sortby' => $sortby, 'sortdir' => $sortdir, 'formatFilter' => $formatFilter, 'searchfor' => $searchfor);
 
     if (!empty($customFilter) && is_array($customFilter)) {
         foreach ($customFilter as $filterName => $filterValue) {
@@ -299,15 +308,15 @@ function _maIntProcessFileList(&$render, $itemsperpage, $customFilter, $dataSour
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads', $fetchArgs);
 
     if ($files === false) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
-    $render->assign('sortby',         DataUtil::formatForDisplay($sortby));
-    $render->assign('sortdir',        DataUtil::formatForDisplay($sortdir));
-    $render->assign('itemsperpage',   $itemsperpage);
-    $render->assign('preview',        $preview);
-    $render->assign('onlyimages',     $onlyimages);
-    $render->assign('thumbnr',        $thumbnr);
+    $render->assign('sortby', DataUtil::formatForDisplay($sortby));
+    $render->assign('sortdir', DataUtil::formatForDisplay($sortdir));
+    $render->assign('itemsperpage', $itemsperpage);
+    $render->assign('preview', $preview);
+    $render->assign('onlyimages', $onlyimages);
+    $render->assign('thumbnr', $thumbnr);
 
     if (empty($files)) {
         $render->assign('filesthere', 0);
@@ -322,8 +331,7 @@ function _maIntProcessFileList(&$render, $itemsperpage, $customFilter, $dataSour
         $render->assign('filesthere', 1);
         $render->assign('files', $files);
 
-        $render->assign('pager', array('numitems'     => pnModAPIFunc('MediaAttach', 'user', 'countuploads', $fetchArgs),
-                                       'itemsperpage' => $itemsperpage));
+        $render->assign('pager', array('numitems' => pnModAPIFunc('MediaAttach', 'user', 'countuploads', $fetchArgs), 'itemsperpage' => $itemsperpage));
     }
     return;
 }
@@ -331,17 +339,12 @@ function _maIntProcessFileList(&$render, $itemsperpage, $customFilter, $dataSour
 /**
  * utility function to get all modules from which files can be imported
  */
-function _maGetImportModules() {
-    $supportedModules = Array(
-        'Downloads',
-        'mediashare',
-        'PhotoGallery',
-        'PNphpBB2',
-        'pnUpper'
-    );
+function _maGetImportModules()
+{
+    $supportedModules = Array('Downloads', 'mediashare', 'PhotoGallery', 'PNphpBB2', 'pnUpper');
 
     $availableModules = Array();
-    foreach($supportedModules as $modName) {
+    foreach ($supportedModules as $modName) {
         if (pnModAvailable($modName) && !file_exists('pnTemp/convertLog_MediaAttach_import_from_' . DataUtil::formatForOS($modName) . '.txt')) {
             $availableModules[] = $modName;
         }

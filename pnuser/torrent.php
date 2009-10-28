@@ -23,11 +23,12 @@ Loader::requireOnce('modules/MediaAttach/pnincludes/File_Bittorrent2/MakeTorrent
  */
 function MediaAttach_user_torrent($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid = (int) FormUtil::getPassedValue('fileid', (isset($args['fileid'])) ? $args['fileid'] : 0, 'GET');
     unset($args);
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$file[modname]:$file[objectid]:$fileid", ACCESS_READ)) {

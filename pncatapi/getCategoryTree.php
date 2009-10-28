@@ -17,8 +17,9 @@
  */
 function MediaAttach_catapi_getCategoryTree()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+        pn_exit (__('Error! Unable to load class CategoryRegistryUtil', $dom));
     }
 
     return CategoryRegistryUtil::getRegisteredModuleCategories('MediaAttach', 'ma_files');

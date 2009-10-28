@@ -32,6 +32,7 @@
  */
 function MediaAttach_userapi_createupload($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['modname'])
              || !isset($args['objectid'])
              || !isset($args['definition'])
@@ -41,7 +42,7 @@ function MediaAttach_userapi_createupload($args)
              || !isset($args['filename'])
              || !isset($args['filesize'])
              || !isset($args['url'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $modname    = $args['modname'];
@@ -80,7 +81,7 @@ function MediaAttach_userapi_createupload($args)
     $result = DBUtil::insertObject($file, 'ma_files', 'fileid');
 
     if (!$result) {
-        return LogUtil::registerError(_CREATEFAILED);
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
     // call create hooks for this item

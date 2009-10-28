@@ -1,30 +1,30 @@
 <div class="row">
-  <!--[pnformlabel for=maFileID text=_MEDIAATTACH_CONTENTENTTYPE_MEDIASNIPPETLABEL]-->
+  <!--[pnformlabel for='maFileID' __text='Select MediaAttach file']-->
   <!--[mediaattachitemselector id=mafile group=data]-->
 </div>
 
 <div class="row">
-  <!--[pnformradiobutton id=linkButton value=link dataField=pasteMode group=data mandatory=1]--> 
-  <!--[pnformlabel for=textButton text=_MEDIAATTACH_CONTENTENTTYPE_PASTEMODELINK]-->
-  <!--[pnformradiobutton id=embedButton value=embed dataField=pasteMode group=data mandatory=1]--> 
-  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_PASTEMODEEMBED]-->
+  <!--[pnformradiobutton id='linkButton' value='link' datafield='pasteMode' group='data' mandatory='1']--> 
+  <!--[pnformlabel for='textButton' __text='Link file']-->
+  <!--[pnformradiobutton id='embedButton' value='embed' datafield='pasteMode' group='data' mandatory='1']--> 
+  <!--[pnformlabel for='rawButton' __text='Embed file']-->
 </div>
 
 <div class="row">
-  <!--[pnformradiobutton id=floatnoneButton value=none dataField=floatMode group=data mandatory=1]--> 
-  <!--[pnformlabel for=textButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATNONE]-->
-  <!--[pnformradiobutton id=floatleftButton value=left dataField=floatMode group=data mandatory=1]--> 
-  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATLEFT]-->
-  <!--[pnformradiobutton id=floatrightButton value=right dataField=floatMode group=data mandatory=1]--> 
-  <!--[pnformlabel for=rawButton text=_MEDIAATTACH_CONTENTENTTYPE_FLOATRIGHT]-->
+  <!--[pnformradiobutton id='floatnoneButton' value='none' datafield='floatMode' group='data' mandatory='1']--> 
+  <!--[pnformlabel for='textButton' __text='No flow']-->
+  <!--[pnformradiobutton id='floatleftButton' value='left' datafield='floatMode' group='data' mandatory='1']--> 
+  <!--[pnformlabel for='rawButton' __text='Flow right (medium left)']-->
+  <!--[pnformradiobutton id='floatrightButton' value='right' datafield='floatMode' group='data' mandatory='1']--> 
+  <!--[pnformlabel for='rawButton' __text='Flow left (medium right)']-->
 </div>
 
 <div class="row">
     <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
     <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
-        <!--[pnformradiobutton id="thumbnr`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField=thumbnr group=data mandatory=1]--> 
-        <!--[pnformlabel for=rawButton text="`$thumbsize[0]` x `$thumbsize[1]` px"]-->
+        <!--[pnformradiobutton id="thumbnr`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration datafield='thumbnr' group='data' mandatory='1']--> 
+        <!--[pnformlabel for='rawButton' __text="`$thumbsize[0]` x `$thumbsize[1]` px"]-->
     <!--[/foreach]-->
-    <!--[pnformradiobutton id="original" value="original" dataField=thumbnr group=data mandatory=1]--> 
-    <!--[pnformlabel for=rawButton text=_MEDIAATTACH_EXTERNALPASTEORIGINAL]-->
+    <!--[pnformradiobutton id="original" value="original" datafield='thumbnr' group='data' mandatory='1']--> 
+    <!--[pnformlabel for='rawButton' __text='Original image']-->
 </div>

@@ -9,10 +9,8 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 Loader::requireOnce('modules/MediaAttach/common.php');
 Loader::requireOnce('modules/MediaAttach/common_mimetypes.php');
-
 
 /**
  * starts import from another module
@@ -21,12 +19,13 @@ Loader::requireOnce('modules/MediaAttach/common_mimetypes.php');
  */
 function MediaAttach_admin_importmodprocess($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'importmodform'));
     }
 
@@ -34,7 +33,7 @@ function MediaAttach_admin_importmodprocess($args)
 
     $importMod = FormUtil::getPassedValue('importmod', isset($args['importmod']) ? $args['importmod'] : null, 'POST');
     if ($importMod == null || !in_array($importMod, $availableImportMods) || !pnModAvailable($importMod)) {
-        LogUtil::registerError(_MODARGSERROR);
+        LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'importmodform'));
     }
     unset($args);
@@ -44,7 +43,7 @@ function MediaAttach_admin_importmodprocess($args)
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'importmodform'));
     }
 
-    ini_set('max_execution_time' , 86400);
+    ini_set('max_execution_time', 86400);
     ini_set('memory_limit', '64M');
 
     $loggedData = array();
@@ -52,6 +51,7 @@ function MediaAttach_admin_importmodprocess($args)
     $loggedData['files'] = array();
 
     $modError = 'Could not load database information of ' . $importMod; // todo: put in lang file
+
 
     if (!pnModDBInfoLoad($importMod)) {
         LogUtil::registerError($modError);
@@ -74,32 +74,32 @@ function MediaAttach_admin_importmodprocess($args)
         $allLanguages = LanguageUtil::getLanguages();
         $collectedCategoryInfo = array();
 
-        switch($importMod) {
+        switch ($importMod) {
             case 'Downloads':
-                    $columns = $pntable['downloads_categories_column'];
-                    $sql = "SELECT " . $columns['cid'] . " AS catOldID,
+                $columns = $pntable['downloads_categories_column'];
+                $sql = "SELECT " . $columns['cid'] . " AS catOldID,
                                 " . $columns['title'] . " AS title,
                                 " . $columns['description'] . " AS description,
                                 " . $columns['pid'] . " AS catOldParentID
                             FROM " . $pntable['downloads_categories'];
-                    break;
+                break;
             case 'mediashare':
-                    $columns = $pntable['mediashare_albums_column'];
-                    $sql = "SELECT " . $columns['id'] . " AS catOldID,
+                $columns = $pntable['mediashare_albums_column'];
+                $sql = "SELECT " . $columns['id'] . " AS catOldID,
                                 " . $columns['title'] . " AS title,
                                 " . $columns['description'] . " AS description,
                                 " . $columns['parentAlbumId'] . " AS catOldParentID
                             FROM " . $pntable['mediashare_albums'] . "
                             WHERE " . $columns['id'] . " > 1";
-                    break;
+                break;
             case 'PhotoGallery':
-                    $columns = $pntable['photogallery_galleries_column'];
-                    $sql = "SELECT " . $columns['gid'] . " AS catOldID,
+                $columns = $pntable['photogallery_galleries_column'];
+                $sql = "SELECT " . $columns['gid'] . " AS catOldID,
                                 " . $columns['name'] . " AS title,
                                 " . $columns['desc'] . " AS description,
                                 '0' AS catOldParentID
                             FROM " . $pntable['photogallery_galleries'];
-                    break;
+                break;
         }
 
         $result = DBUtil::executeSQL($sql);
@@ -109,15 +109,15 @@ function MediaAttach_admin_importmodprocess($args)
         }
 
         for (; !$result->EOF; $result->MoveNext()) {
-            list($catOldID, $catTitle, $catDescription, $catOldParentID) = $result->fields;
+            list ($catOldID, $catTitle, $catDescription, $catOldParentID) = $result->fields;
 
-            $isInterestingRow = ($importMod != 'mediashare' || ($importMod == 'mediashare' && $catOldID != 1));        // exclude main album
+            $isInterestingRow = ($importMod != 'mediashare' || ($importMod == 'mediashare' && $catOldID != 1)); // exclude main album
+
 
             if ($isInterestingRow) {
                 // determine new parent category ID, default to main category
                 $catNewParentID = 30;
-                if (($importMod == 'Downloads' && $catOldParentID > 0)
-                 || ($importMod == 'mediashare' && $catOldParentID > 1)) {
+                if (($importMod == 'Downloads' && $catOldParentID > 0) || ($importMod == 'mediashare' && $catOldParentID > 1)) {
                     $catNewParentID = $loggedData['categories'][$catOldParentID]['newCatID'];
                 }
 
@@ -137,26 +137,21 @@ function MediaAttach_admin_importmodprocess($args)
                 $newCat->setDataField('display_desc', $catDisplayDesc);
 
                 $newCat->insert();
-                $newCat->update();    // since the original insert can't construct the ipath (since the insert id is not known yet) we update the object here.
+                $newCat->update(); // since the original insert can't construct the ipath (since the insert id is not known yet) we update the object here.
+
 
                 $catNewID = $newCat->getDataField('id');
 
-                $loggedData['categories'][$catOldID] = array(
-                                                        'oldCatID'      => $catOldID,
-                                                        'newCatID'      => $catNewID,
-                                                        'oldParentID'   => $catOldParentID,
-                                                        'newParentID'   => $catNewParentID,
-                                                        'title'         => $catTitle,
-                                                        'description'   => $catDescription);
+                $loggedData['categories'][$catOldID] = array('oldCatID' => $catOldID, 'newCatID' => $catNewID, 'oldParentID' => $catOldParentID, 'newParentID' => $catNewParentID, 'title' => $catTitle, 'description' => $catDescription);
             }
         }
     }
 
     // step two - convert files
-    switch($importMod) {
+    switch ($importMod) {
         case 'Downloads':
-                $columns = $pntable['downloads_downloads_column'];
-                $sql = "SELECT " . $columns['lid'] . " AS fileOldID,
+            $columns = $pntable['downloads_downloads_column'];
+            $sql = "SELECT " . $columns['lid'] . " AS fileOldID,
                             " . $columns['title'] . " AS title,
                             " . $columns['description'] . " AS description,
                             " . $columns['cid'] . " AS catOldID,
@@ -165,12 +160,12 @@ function MediaAttach_admin_importmodprocess($args)
                             " . $columns['filesize'] . " AS filesize
                         FROM " . $pntable['downloads_downloads'];
 
-                $sourcePath = pnModGetVar('downloads','upload_folder');
-                break;
+            $sourcePath = pnModGetVar('downloads', 'upload_folder');
+            break;
         case 'mediashare':
-                $mcolumns = $pntable['mediashare_media_column'];
-                $scolumns = $pntable['mediashare_mediastore_column'];
-                $sql = "SELECT a." . $mcolumns['id'] . " AS fileOldID,
+            $mcolumns = $pntable['mediashare_media_column'];
+            $scolumns = $pntable['mediashare_mediastore_column'];
+            $sql = "SELECT a." . $mcolumns['id'] . " AS fileOldID,
                                a." . $mcolumns['title'] . " AS title,
                                a." . $mcolumns['description'] . " AS description,
                                a." . $mcolumns['parentAlbumId'] . " AS catOldID,
@@ -181,11 +176,11 @@ function MediaAttach_admin_importmodprocess($args)
                              " . $pntable['mediashare_mediastore'] . " b
                         WHERE a." . $mcolumns['originalId'] . " = b." . $scolumns['id'];
 
-                $sourcePath = pnModGetVar('mediashare', 'mediaDirName') . '/';
-                break;
+            $sourcePath = pnModGetVar('mediashare', 'mediaDirName') . '/';
+            break;
         case 'PhotoGallery':
-                $columns = $pntable['photogallery_photos_column'];
-                $sql = "SELECT " . $columns['pid'] . " AS fileOldID,
+            $columns = $pntable['photogallery_photos_column'];
+            $sql = "SELECT " . $columns['pid'] . " AS fileOldID,
                             " . $columns['name'] . " AS title,
                             " . $columns['desc'] . " AS description,
                             " . $columns['gid'] . " AS catOldID,
@@ -194,12 +189,12 @@ function MediaAttach_admin_importmodprocess($args)
                             '0' AS filesize
                         FROM " . $pntable['photogallery_photos'];
 
-                $sourcePath = pnModGetVar('PhotoGallery', 'imagepath');
-                break;
+            $sourcePath = pnModGetVar('PhotoGallery', 'imagepath');
+            break;
         case 'pnUpper':
-                $columns = $pntable['up_files_column'];
+            $columns = $pntable['up_files_column'];
 
-                $sql = "SELECT " . $columns['fileid'] . " AS fileOldID,
+            $sql = "SELECT " . $columns['fileid'] . " AS fileOldID,
                                " . $columns['title'] . " AS title,
                                " . $columns['desc'] . " AS description,
                                '0' AS catOldID,
@@ -208,8 +203,8 @@ function MediaAttach_admin_importmodprocess($args)
                                " . $columns['filesize'] . " AS filesize
                         FROM " . $pntable['up_files'];
 
-                $sourcePath = pnModGetVar('pnUpper', 'uploaddir') . '/';
-                break;
+            $sourcePath = pnModGetVar('pnUpper', 'uploaddir') . '/';
+            break;
     }
 
     $result = DBUtil::executeSQL($sql);
@@ -221,15 +216,14 @@ function MediaAttach_admin_importmodprocess($args)
     $msglog = '';
 
     for (; !$result->EOF; $result->MoveNext()) {
-        list($fileOldID, $fileTitle, $fileDescription, $fileOldCatID, $fileMimetype, $fileOldPath, $fileSize) = $result->fields;
+        list ($fileOldID, $fileTitle, $fileDescription, $fileOldCatID, $fileMimetype, $fileOldPath, $fileSize) = $result->fields;
 
         if ($importMod == 'Downloads') {
             // determine mimetype
             $extensionarr = split("\.", $fileOldPath);
             $extension = $extensionarr[count($extensionarr) - 1];
             $fileMimetype = _maGuessMimetypeFromExtension($extension);
-        }
-        elseif ($importMod == 'PhotoGallery') {
+        } elseif ($importMod == 'PhotoGallery') {
             $fileMimetype = _maGuessMimetypeFromExtension($fileOldPath);
             $fileOldPath = _PHOTO_IMAGEPREFIX . $fileOldID . _PHOTO_LARGEIMAGESUFFIX . '.' . $fileOldPath;
             $fileSize = filesize($sourcePath . $fileOldPath);
@@ -241,42 +235,30 @@ function MediaAttach_admin_importmodprocess($args)
         }
 
         $cats = array();
-        if ($newCatID) $cats['Main'] = $newCatID;
+        if ($newCatID)
+            $cats['Main'] = $newCatID;
 
-        $file = array('filename' => $fileOldPath,
-                      'filepath' => $sourcePath . $fileOldPath,
-                      'filesize' => $fileSize,
-                      'mimetype' => $fileMimetype
-                );
+        $file = array('filename' => $fileOldPath, 'filepath' => $sourcePath . $fileOldPath, 'filesize' => $fileSize, 'mimetype' => $fileMimetype);
 
-        list($fileNewID, $singlelog) = MediaAttach_import_performsinglemoduleimport($file, $fileTitle, $fileDescription, $cats, $definition);
+        list ($fileNewID, $singlelog) = MediaAttach_import_performsinglemoduleimport($file, $fileTitle, $fileDescription, $cats, $definition);
         $msglog .= $singlelog;
 
         if ($fileNewID) {
-            $loggedData['files'][$fileOldID] = array(
-                                                    'oldFileID'     => $fileOldID,
-                                                    'oldFilePath'   => $fileOldPath,
-                                                    'newID'         => $fileNewID,
-                                                    'oldCatID'      => $fileOldCatID,
-                                                    'newCatID'      => $newCatID,
-                                                    'title'         => $fileTitle,
-                                                    'description'   => $fileDescription);
+            $loggedData['files'][$fileOldID] = array('oldFileID' => $fileOldID, 'oldFilePath' => $fileOldPath, 'newID' => $fileNewID, 'oldCatID' => $fileOldCatID, 'newCatID' => $newCatID, 'title' => $fileTitle, 'description' => $fileDescription);
         }
     }
 
-    if (!empty($msglog)) $msglog = '<ul>' . $msglog . '</ul>';
+    if (!empty($msglog))
+        $msglog = '<ul>' . $msglog . '</ul>';
 
     Loader::loadClass('FileUtil');
     $res = FileUtil::writeSerializedFile('pnTemp/convertLog_MediaAttach_import_from_' . DataUtil::formatForOS($importMod) . '.txt', $loggedData);
-    if ($res === false) LogUtil::registerError('Writing the protocol file failed unfortunately.');
+    if ($res === false)
+        LogUtil::registerError('Writing the protocol file failed unfortunately.');
 
     LogUtil::registerStatus($msglog);
     return pnRedirect(pnModURL('MediaAttach', 'admin', 'view'));
 }
-
-
-
-
 
 /**
  * outsourced part of the create function - the real upload functionality
@@ -287,7 +269,10 @@ function MediaAttach_admin_importmodprocess($args)
  * @param    array    categories        category array
  * @param    array    definition        definition for the current module
  */
-function MediaAttach_import_performsinglemoduleimport($file, $title, $description, $categories, $definition) {
+function MediaAttach_import_performsinglemoduleimport($file, $title, $description, $categories, $definition)
+{
+
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $msglog = '';
 
     $filename = $file['filename'];
@@ -296,7 +281,7 @@ function MediaAttach_import_performsinglemoduleimport($file, $title, $descriptio
 
     $msgpref = '<li><strong>' . $filename . '</strong>:<br /><div style="padding-left: 30px">';
 
-    list($filename, $destFilePath) = _maIntGetFilenameForDefinition($filename, $extension, $definition['naming'], $definition['namingprefix']);
+    list ($filename, $destFilePath) = _maIntGetFilenameForDefinition($filename, $extension, $definition['naming'], $definition['namingprefix']);
 
     // Extension check
     $extension_okay = 0;
@@ -315,31 +300,21 @@ function MediaAttach_import_performsinglemoduleimport($file, $title, $descriptio
     $copiedProperly = 1;
     if (!copy($file['filepath'], $destFilePath)) {
         $copiedProperly = 0;
-        $msglog .= $msgpref . _MEDIAATTACH_ERRINSERTFILE.' ('._FROM." $file[filepath] "._TO." $destFilePath)";
+        $msglog .= $msgpref . __('Sorry, the data of your file could not be written into the database', $dom) . ' (' . _FROM . " $file[filepath] " . __('To', $dom) . " $destFilePath)";
     }
 
     if ($copiedProperly == 1) {
-        $upload = array('modname'    => 'MediaAttach',
-                        'objectid'   => 99999999,
-                        'definition' => $definition['did'],
-                        'uid'        => pnUserGetVar('uid'),
-                        'title'      => $title,
-                        'desc'       => str_replace("\n", "<br />", $description),
-                        'extension'  => $extension,
-                        'mimetype'   => $file['mimetype'],
-                        'filename'   => $filename,
-                        'filesize'   => $file['filesize'],
-                        'url'        => pnModUrl('MediaAttach', 'admin', 'view'));
+        $upload = array('modname' => 'MediaAttach', 'objectid' => 99999999, 'definition' => $definition['did'], 'uid' => pnUserGetVar('uid'), 'title' => $title, 'desc' => str_replace("\n", "<br />", $description), 'extension' => $extension,
+            'mimetype' => $file['mimetype'], 'filename' => $filename, 'filesize' => $file['filesize'], 'url' => pnModUrl('MediaAttach', 'admin', 'view'));
         $upload['__CATEGORIES__'] = $categories;
 
         $fileid = pnModAPIFunc('MediaAttach', 'user', 'createupload', $upload);
 
         if ($fileid == false) {
-            $msglog .= $msgpref . _MEDIAATTACH_ERRINSERTFILE;
-        }
-        else {
+            $msglog .= $msgpref . __('Sorry, the data of your file could not be written into the database', $dom);
+        } else {
             $upload['fileid'] = $fileid;
-            $msglog .= $msgpref . _MEDIAATTACH_IMPORTCREATED;
+            $msglog .= $msgpref . __('The file has been imported successfully', $dom);
         }
     }
     $msglog .= '</div></li>';

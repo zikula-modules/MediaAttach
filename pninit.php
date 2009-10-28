@@ -17,6 +17,7 @@
  */
 function MediaAttach_init()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $tableNames = array('formats', 'groups', 'formatgroups', 'defs', 'defgroups', 'files', 'quotas');
 
     foreach ($tableNames as $currentTableName) {
@@ -63,12 +64,12 @@ function MediaAttach_init()
 
     // create the category registries for MediaAttach
     if (!MediaAttach_create_categoryregistries()) {
-        return LogUtil::registerError(_CATREGCREATEFAILED);
+        return LogUtil::registerError(__('An error occured while creating the category registries.', $dom));
     }
 
     if (!pnModAPIFunc('Modules', 'admin', 'enablehooks', array('callermodname' => 'MediaAttach',
                                                                'hookmodname' => 'MediaAttach'))) {
-        return LogUtil::registerError(_REGISTERSELFFAILED);
+        return LogUtil::registerError(__('Admin uploads could not be prepared. This is not critical.', $dom));
     }
 
     return true;
@@ -101,6 +102,7 @@ function MediaAttach_upgrade($oldversion)
  */
 function MediaAttach_delete()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!pnModUnregisterHook('item', 'display', 'GUI', 'MediaAttach', 'user', 'viewupload')) {
         return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 1');
     }
@@ -130,7 +132,7 @@ function MediaAttach_delete()
 
     // remove the category data of MediaAttach
     if (!MediaAttach_delete_categorydata()) {
-        return LogUtil::registerError(_CATREGDELETEFAILED);
+        return LogUtil::registerError(__('An error occured while deleting the category registries.', $dom));
     }
 
     // deletion successful

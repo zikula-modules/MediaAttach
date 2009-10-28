@@ -4,11 +4,11 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" alt=_MEDIAATTACH_GROUPDELETE altml=true]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this group"]--></div>
 
 <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deletegroup"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
     <fieldset>
-        <legend><!--[pnml name="_MEDIAATTACH_GROUPDELETE"]--></legend>
+        <legend><!--[gt text="Delete this group"]--></legend>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
         <input type="hidden" name="confirmation" value="1" />
         <input type="hidden" name="gid" value="<!--[$group.gid]-->" />
@@ -18,8 +18,8 @@
             <!--[$group.groupname]-->
         </p>
 
-        <input name="submit" type="submit" value="<!--[pnml name="_CONFIRMDELETE"]-->" class="maright" />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->" title="<!--[pnml name="_CANCELDELETE"]-->"><!--[pnml name="_CANCEL"]--></a>
+        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" class="maright" />
+        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[gt text="Cancel"]--></a>
     </fieldset>
 </form>
 

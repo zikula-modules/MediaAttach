@@ -20,6 +20,7 @@
  */
 function MediaAttach_quotaapi_createquota($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -27,7 +28,7 @@ function MediaAttach_quotaapi_createquota($args)
     if (!isset($args['qtype']) || !is_numeric($args['qtype'])
         || !isset($args['qguid']) || !is_numeric($args['qguid'])
         || !isset($args['qamount']) || !is_numeric($args['qamount'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $qtype = $args['qtype'];
@@ -42,7 +43,7 @@ function MediaAttach_quotaapi_createquota($args)
     $result = DBUtil::insertObject($quota, 'ma_quotas', 'qid');
 
     if (!$result) {
-        return LogUtil::registerError(_CREATEFAILED);
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
     return $quota['qid'];

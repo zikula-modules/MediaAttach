@@ -19,6 +19,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_deleteuserquota($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -32,7 +33,7 @@ function MediaAttach_admin_deleteuserquota($args)
     }
 
     if (pnModAPIFunc('MediaAttach', 'quota', 'deleteuserquota', array('uid' => $uid))) {
-        LogUtil::registerStatus(_DELETESUCCEDED);
+        LogUtil::registerStatus(__('Done! Item deleted.', $dom));
     }
 
     return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewquotas'));

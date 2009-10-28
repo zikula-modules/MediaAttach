@@ -18,8 +18,9 @@
  */
 function MediaAttach_userapi_shrinkimage($imagefile)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($imagefile) || !file_exists($imagefile)) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     // get image information

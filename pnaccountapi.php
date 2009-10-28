@@ -23,6 +23,7 @@
  */
 function MediaAttach_accountapi_getall($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     unset($args);
 
     $items = array();
@@ -33,7 +34,7 @@ function MediaAttach_accountapi_getall($args)
         $items = array(array('url'     => pnModURL('MediaAttach', 'account', 'viewuploads'),
                             'module'  => 'MediaAttach',
                             'set'     => '',
-                            'title'   => pnML(_MEDIAATTACH_MYUPLOADS),
+                            'title'   => __('My uploads'),
                             'icon'    => 'profile_myuploads.png'));
     }
 

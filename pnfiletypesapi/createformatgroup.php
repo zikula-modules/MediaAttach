@@ -19,12 +19,13 @@
  */
 function MediaAttach_filetypesapi_createformatgroup($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!isset($args['fid']) || !isset($args['gid']) || !is_numeric($args['fid']) || !is_numeric($args['gid'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fid = $args['fid'];
@@ -36,7 +37,7 @@ function MediaAttach_filetypesapi_createformatgroup($args)
 
     $result = DBUtil::insertObject($fgroup, 'ma_formatgroups', 'fid', true);
     if (!$result) {
-        return LogUtil::registerError(_CREATEFAILED);
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
     return true;

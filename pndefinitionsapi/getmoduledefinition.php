@@ -18,8 +18,9 @@
  */
 function MediaAttach_definitionsapi_getmoduledefinition($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['modname'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $modname = $args['modname'];
@@ -31,7 +32,7 @@ function MediaAttach_definitionsapi_getmoduledefinition($args)
     $def = DBUtil::selectObjectArray('ma_defs', $where);
 
     if ($def === false) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $definition = array('state' => '0', 'numfiles' => '1');

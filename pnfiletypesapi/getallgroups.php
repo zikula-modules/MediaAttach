@@ -17,6 +17,7 @@
  */
 function MediaAttach_filetypesapi_getallgroups()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -28,7 +29,7 @@ function MediaAttach_filetypesapi_getallgroups()
     $dbgroups = DBUtil::selectObjectArray('ma_groups', $where, $orderBy);
 
     if (!$dbgroups) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $groups = array();

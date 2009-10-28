@@ -18,8 +18,9 @@
  */
 function MediaAttach_userapi_incdlcounter($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['fileid']) || !is_numeric($args['fileid'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $result = DBUtil::incrementObjectFieldByID('ma_files', 'dlcount', $args['fileid'], 'fileid', 1);

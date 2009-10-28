@@ -20,9 +20,10 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_viewupload($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $uploaddir = pnModGetVar('MediaAttach', 'uploaddir');
     if (!pnModAPIFunc('MediaAttach', 'filesystem', 'checkdirectory', array('directory' => $uploaddir))) {
-        return LogUtil::registerError(_MEDIAATTACH_DIRERR);
+        return LogUtil::registerError(__('Sorry, MediaAttach has not been configured yet', $dom));
     }
 
     $modname   = pnModGetName();

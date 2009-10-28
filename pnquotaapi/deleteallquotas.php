@@ -18,12 +18,13 @@
  */
 function MediaAttach_quotaapi_deleteallquotas($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if (!isset($args['qtype']) || !is_numeric($args['qtype'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $qtype = $args['qtype'];
@@ -36,7 +37,7 @@ function MediaAttach_quotaapi_deleteallquotas($args)
     $resultwhere = DBUtil::deleteObject(array(), 'ma_quotas', $where);
 
     if (!$resultwhere) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     return true;

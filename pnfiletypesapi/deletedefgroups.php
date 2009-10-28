@@ -19,12 +19,13 @@
  */
 function MediaAttach_filetypesapi_deletedefgroups($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
 
     if ((!isset($args['did']) || !is_numeric($args['did'])) && (!isset($args['gid']) || !is_numeric($args['gid']))) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     if (isset($args['did'])) {
@@ -48,7 +49,7 @@ function MediaAttach_filetypesapi_deletedefgroups($args)
     $resultwhere = DBUtil::deleteObject(array(), 'ma_defgroups', $where);
 
     if (!$resultwhere) {
-        return LogUtil::registerError(_DELETEFAILED);
+        return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
     return true;

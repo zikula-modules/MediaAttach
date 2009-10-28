@@ -44,6 +44,7 @@ function MediaAttach_specificfilesblock_info()
  */
 function MediaAttach_specificfilesblock_display($blockinfo)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach:Specificfilesblock:', "$blockinfo[title]::", ACCESS_READ)) {
         return false;
     }
@@ -73,7 +74,7 @@ function MediaAttach_specificfilesblock_display($blockinfo)
     $numFiles = count($files);
     for ($i = 0; $i < $numFiles; $i++) {
         if ($files[$i]['title'] == '') {
-            $files[$i]['title'] = _MEDIAATTACH_NOTITLE;
+            $files[$i]['title'] = __('No title', $dom);
         }
         list($files[$i]['title'], $files[$i]['desc']) = pnModCallHooks('item', 'transform', 'x', array($files[$i]['title'], $files[$i]['desc']));
     }

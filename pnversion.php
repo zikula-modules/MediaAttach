@@ -13,10 +13,10 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
-$modversion['name']           = _MEDIAATTACH_NAME;
-$modversion['description']    = _MEDIAATTACH_DESCRIPTION;
-$modversion['displayname']    = _MEDIAATTACH_DISPLAYNAME;
+$dom = ZLanguage::getModuleDomain('MediaAttach');
+$modversion['name']           = 'MediaAttach';
+$modversion['description']    = __('Uploads and file management', $dom);
+$modversion['displayname']    = __('MediaAttach', $dom);
 $modversion['version']        = '1.0.0.2';
 
 $modversion['changelog']      = '';

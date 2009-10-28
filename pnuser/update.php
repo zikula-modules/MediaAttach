@@ -24,6 +24,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_user_update($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $fileid   = (int) FormUtil::getPassedValue('fileid',                  (isset($args['fileid']) && is_numeric($args['fileid'])) ? $args['fileid'] : null, 'POST');
     $objectid = (int) FormUtil::getPassedValue('objectid',                (isset($args['objectid'])) ? $args['objectid'] : null, 'POST');
     $title    =       FormUtil::getPassedValue('MediaAttach_title',       (isset($args['title']))    ? $args['title']    : null, 'POST');
@@ -40,12 +41,12 @@ function MediaAttach_user_update($args)
     $backurl = str_replace('&amp;', '&', base64_decode($backurl)) . '#file' . $fileid;
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect($backurl);
     }
 
     if (!($file = pnModAPIFunc('MediaAttach', 'user', 'getupload', array('fileid' => $fileid)))) {
-        LogUtil::registerError(_GETFAILED);
+        LogUtil::registerError(__('Error! Could not load items.', $dom));
         return pnRedirect($backurl);
     }
 
@@ -55,7 +56,7 @@ function MediaAttach_user_update($args)
     $file['__CATEGORIES__'] = $cats;
 
     if (pnModAPIFunc('MediaAttach', 'user', 'update', $file)) {
-        LogUtil::registerStatus(_UPDATESUCCEDED);
+        LogUtil::registerStatus(__('Done! Item updated.', $dom));
     }
 
     return pnRedirect($backurl);

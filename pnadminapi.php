@@ -17,44 +17,45 @@
  */
 function MediaAttach_adminapi_getlinks()
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $links = array();
 
     pnModLangLoad('MediaAttach', 'admin');
 
     if (SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'main'),
-                         'text' => _MEDIAATTACH_ADMINMAIN,
-                         'title' => _MEDIAATTACH_ADMINTMAIN,
+                         'text' => __('Start', $dom),
+                         'title' => __('Go the start page of MediaAttach admin section', $dom),
                          'id' => 'MediaAttach_start');
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'view'),
-                         'text' => _MEDIAATTACH_ADMINADMINUPLOADS,
-                         'title' => _MEDIAATTACH_ADMINTADMINUPLOADS,
+                         'text' => __('Admin uploads', $dom),
+                         'title' => __('Upload and import admin files', $dom),
                          'id' => 'MediaAttach_adminuploads');
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'viewuploads'),
-                         'text' => _MEDIAATTACH_ADMINUSERUPLOADS,
-                         'title' => _MEDIAATTACH_ADMINTUSERUPLOADS,
+                         'text' => __('User uploads', $dom),
+                         'title' => __('Management of user files', $dom),
                          'id' => 'MediaAttach_useruploads');
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'viewdefinitions'),
-                         'text' => _MEDIAATTACH_ADMINDEFINITIONS,
-                         'title' => _MEDIAATTACH_ADMINTDEFINITIONS,
+                         'text' => __('Definitions', $dom),
+                         'title' => __('Manage module definitions', $dom),
                          'id' => 'MediaAttach_definitions');
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'viewformats'),
-                         'text' => _MEDIAATTACH_ADMINFORMATS,
-                         'title' => _MEDIAATTACH_ADMINTFORMATS,
+                         'text' => __('Formats', $dom),
+                         'title' => __('File formats', $dom),
                          'id' => 'MediaAttach_formats');
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'viewgroups'),
-                         'text' => _MEDIAATTACH_ADMINGROUPS,
-                         'title' => _MEDIAATTACH_ADMINTGROUPS,
+                         'text' => __('Groups', $dom),
+                         'title' => __('File format groups', $dom),
                          'id' => 'MediaAttach_groups');
         if (pnModGetVar('MediaAttach', 'usequota') == 1) {
             $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'viewquotas'),
-                             'text' => _MEDIAATTACH_ADMINQUOTAS,
-                             'title' => _MEDIAATTACH_ADMINTQUOTAS,
+                             'text' => __('Quotas', $dom),
+                             'title' => __('Quotas', $dom),
                              'id' => 'MediaAttach_quotas');
         }
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'modifyconfig'),
-                         'text' => _MEDIAATTACH_ADMINCONFIG,
-                         'title' => _MEDIAATTACH_ADMINTCONFIG,
+                         'text' => __('Config', $dom),
+                         'title' => __('The MediaAttach configuration', $dom),
                          'id' => 'MediaAttach_config');
     }
 
@@ -64,8 +65,8 @@ function MediaAttach_adminapi_getlinks()
     }
 
     $links[] = array('url' => 'modules/MediaAttach/pndocs/MediaAttach-Manual-' . $userlang . '.pdf',
-                     'text' => _MEDIAATTACH_ADMINMANUAL,
-                     'title' => _MEDIAATTACH_ADMINTMANUAL,
+                     'text' => __('Manual', $dom),
+                     'title' => __('The worth to read pdf manual', $dom),
                      'id' => 'MediaAttach_manual');
 
     return $links;

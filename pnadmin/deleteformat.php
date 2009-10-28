@@ -21,6 +21,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_admin_deleteformat($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -35,7 +36,7 @@ function MediaAttach_admin_deleteformat($args)
     }
 
     if (!($format = pnModAPIFunc('MediaAttach', 'filetypes', 'getformat', array('fid' => $fid)))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     if (empty($confirmation)) {
@@ -46,12 +47,12 @@ function MediaAttach_admin_deleteformat($args)
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(_BADAUTHKEY);
+        LogUtil::registerError(__("Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.", $dom));
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewformats'));
     }
 
     if (pnModAPIFunc('MediaAttach', 'filetypes', 'deleteformat', array('fid' => $fid))) {
-        LogUtil::registerStatus(_DELETESUCCEDED);
+        LogUtil::registerStatus(__('Done! Item deleted.', $dom));
     }
 
     return pnRedirect(pnModURL('MediaAttach', 'admin', 'viewformats'));

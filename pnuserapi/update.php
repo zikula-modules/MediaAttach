@@ -21,10 +21,11 @@
  */
 function MediaAttach_userapi_update($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!isset($args['fileid']) || !is_numeric($args['fileid'])
          || !isset($args['title'])
          || !isset($args['desc'])) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     $fileid = $args['fileid'];
@@ -34,7 +35,7 @@ function MediaAttach_userapi_update($args)
     unset($args);
 
     if (!($file = DBUtil::selectObjectByID('ma_files', $fileid, 'fileid'))) {
-        return LogUtil::registerError(_GETFAILED);
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $file['title'] = $title;
@@ -44,7 +45,7 @@ function MediaAttach_userapi_update($args)
     $result = DBUtil::updateObject($file, 'ma_files', '', 'fileid');
 
     if (!$result) {
-        return LogUtil::registerError(_UPDATEFAILED);
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
 
     // call update hooks for this item

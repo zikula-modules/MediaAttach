@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<!--[lang]-->" lang="<!--[lang]-->">
 <head>
-    <title><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_TITLE"]--></title>
+    <title><!--[gt text="Files and media"]--></title>
     <link type="text/css" rel="stylesheet" href="<!--[pngetbaseurl]-->modules/MediaAttach/pnstyle/style.css" />
     <link type="text/css" rel="stylesheet" href="<!--[pngetbaseurl]-->modules/MediaAttach/pnstyle/finditem.css" />
     <!--[pnconfiggetvar name="entrypoint" assign="ourEntry"]-->
@@ -21,7 +21,7 @@
 
 <!--[if $modules eq 0]-->
     <p class="centered">
-        <!--[pnml name="_MEDIAATTACH_DEFINITIONNOMODULES"]-->
+        <!--[gt text="MediaAttach could not find a module, for which it has been activated. Please go to the module settings and activate MediaAttach for one or more modules of your choice."]-->
     </p>
 <!--[else]-->
 
@@ -32,9 +32,9 @@
     <input type="hidden" id="fromguppy" name="guppy" value="<!--[$fromGuppy]-->" />
 
     <fieldset>
-        <legend><!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_TITLE"]--></legend>
+        <legend><!--[gt text="Files and media"]--></legend>
 
-        <label for="MediaAttach_onlyimages" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALONLYIMAGES"]--></label>
+        <label for="MediaAttach_onlyimages" class="maleft"><!--[gt text="Only images"]--></label>
         <input type="checkbox" id="MediaAttach_onlyimages" name="onlyimages" value="1" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaattach.find.onParamChanged()" <!--[if $onlyimages]--> checked="checked"<!--[/if]-->/>
 <!--[if $onlyimages]-->
         <select id="MediaAttach_thumbnr" name="thumbnr" style="width: 100px" onchange="mediaAttach.find.onParamChanged()">
@@ -46,7 +46,7 @@
 <!--[/if]-->
         <br />
 
-        <label for="MediaAttach_did" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADMODNAME"]-->:</label>
+        <label for="MediaAttach_did" class="maleft"><!--[gt text="Module"]-->:</label>
         <select id="MediaAttach_did" name="did" onchange="mediaAttach.find.onParamChanged()">
         <!--[foreach item="currentdef" from=$definitions]-->
             <option value="<!--[$currentdef.did]-->"<!--[if $currentdef.modname eq "MediaAttach"]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
@@ -54,18 +54,18 @@
         </select>
         <br />
 
-        <label for="MediaAttach_cid" class="maleft"><!--[pnml name="_CATEGORY"]-->:</label>
-        <!--[pnml name="_CHOOSECATEGORY" assign="lblDef"]-->
+        <label for="MediaAttach_cid" class="maleft"><!--[gt text="Category"]-->:</label>
+        <!--[gt text="Choose Category" assign="lblDef"]-->
         <!--[selector_category category=$mainCategory name="cat_id" field="id" defaultText=$lblDef editLink=false submit=true selectedValue=$catID]-->
         <br />
 
     <!--[pnmodavailable modname="MultiHook" assign="mhavailable"]-->
     <!--[if $mhavailable eq 1]-->
-        <label for="MediaAttach_output" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUT"]-->:</label>
+        <label for="MediaAttach_output" class="maleft"><!--[gt text="Display mode"]-->:</label>
          <select id="MediaAttach_output" name="output">
-             <option value="link"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTLINK"]--></option>
-             <option value="inline"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTINLINE"]--></option>
-             <option value="physical"><!--[pnml name="_MEDIAATTACH_EXTERNALOUTPUTPHYSICAL"]--></option>
+             <option value="link"><!--[gt text="Link to the file"]--></option>
+             <option value="inline"><!--[gt text="Embed the item inline"]--></option>
+             <option value="physical"><!--[gt text="Embed the item physically"]--></option>
          </select>
         <br />
     <!--[else]-->
@@ -73,28 +73,28 @@
     <!--[/if]-->
 
     <!--[if $onlyimages eq 1]-->
-        <label for="MediaAttach_pasteas" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEAS"]-->:</label>
+        <label for="MediaAttach_pasteas" class="maleft"><!--[gt text="Paste as"]-->:</label>
         <select id="MediaAttach_pasteas" name="pasteas">
-            <option value="1"<!--[if $fromGuppy ne 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBWITHLINK"]--></option>
-            <option value="2"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBWITHLINKDL"]--></option>
-            <option value="3"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMB"]--></option>
-            <option value="4"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINAL"]--></option>
-            <option value="5"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTETHUMBLINK"]--></option>
-            <option value="6"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINALLINK"]--></option>
-            <option value="7"<!--[if $fromGuppy eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEID"]--></option>
-            <option value="8"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINALWITHLINK"]--></option>
+            <option value="1"<!--[if $fromGuppy ne 1]--> selected="selected"<!--[/if]-->><!--[gt text="Thumbnail with link to view original image"]--></option>
+            <option value="2"><!--[gt text="Thumbnail with link to download original image"]--></option>
+            <option value="3"><!--[gt text="Thumbnail"]--></option>
+            <option value="4"><!--[gt text="Original image"]--></option>
+            <option value="5"><!--[gt text="Link to thumbnail"]--></option>
+            <option value="6"><!--[gt text="Link to original image"]--></option>
+            <option value="7"<!--[if $fromGuppy eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="File ID"]--></option>
+            <option value="8"><!--[gt text="Original image with link to itself"]--></option>
         </select>
         <br /><br />
     <!--[elseif $fromGuppy eq 1]-->
-        <label for="MediaAttach_pasteas" class="maleft"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEAS"]-->:</label>
+        <label for="MediaAttach_pasteas" class="maleft"><!--[gt text="Paste as"]-->:</label>
         <select id="MediaAttach_pasteas" name="pasteas">
-            <option value="6"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEORIGINALLINK"]--></option>
-            <option value="7" selected="selected"><!--[pnml name="_MEDIAATTACH_EXTERNALPASTEID"]--></option>
+            <option value="6"><!--[gt text="Link to original image"]--></option>
+            <option value="7" selected="selected"><!--[gt text="File ID"]--></option>
         </select>
         <br /><br />
     <!--[/if]-->
 
-        <label for="MediaAttach_objectid" class="maleft"><!--[pnml name="_MEDIAATTACH_FILE"]-->:</label>
+        <label for="MediaAttach_objectid" class="maleft"><!--[gt text="File"]-->:</label>
 
         <!--[if $onlyimages eq 1]-->
             <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
@@ -136,7 +136,7 @@
                     <li>
                 <!--[else]-->
                 <!--[/if]-->
-                <!--[pnml name="_MEDIAATTACH_SEARCHINCLUDE_NOENTRIES"]-->
+                <!--[gt text="no uploads found"]-->
                 <!--[if $onlyimages ne 1]-->
                     </li>
                 <!--[else]-->
@@ -149,23 +149,23 @@
         </div>
         <br />
 
-        <label for="MediaAttach_sortby" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADSORTBY"]-->:</label>
+        <label for="MediaAttach_sortby" class="maleft"><!--[gt text="Sort by"]-->:</label>
         <select id="MediaAttach_sortby" name="sortby" onchange="mediaAttach.find.onParamChanged()">
-            <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYDATE"]--></option>
-            <option value="title"<!--[if $sortby eq "title"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYTITLE"]--></option>
-            <option value="module"<!--[if $sortby eq "module"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYMODULE"]--></option>
-            <option value="username"<!--[if $sortby eq "username"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYUSERNAME"]--></option>
-            <option value="filename"<!--[if $sortby eq "filename"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILENAME"]--></option>
-            <option value="filetype"<!--[if $sortby eq "filetype"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILETYPE"]--></option>
-            <option value="filesize"<!--[if $sortby eq "filesize"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTBYFILESIZE"]--></option>
+            <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[gt text="date"]--></option>
+            <option value="title"<!--[if $sortby eq "title"]--> selected="selected"<!--[/if]-->><!--[gt text="title"]--></option>
+            <option value="module"<!--[if $sortby eq "module"]--> selected="selected"<!--[/if]-->><!--[gt text="module"]--></option>
+            <option value="username"<!--[if $sortby eq "username"]--> selected="selected"<!--[/if]-->><!--[gt text="username"]--></option>
+            <option value="filename"<!--[if $sortby eq "filename"]--> selected="selected"<!--[/if]-->><!--[gt text="filename"]--></option>
+            <option value="filetype"<!--[if $sortby eq "filetype"]--> selected="selected"<!--[/if]-->><!--[gt text="filetype"]--></option>
+            <option value="filesize"<!--[if $sortby eq "filesize"]--> selected="selected"<!--[/if]-->><!--[gt text="filesize"]--></option>
         </select>
         <select id="MediaAttach_sortdir" name="sortdir" onchange="mediaAttach.find.onParamChanged()">
-            <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRASC"]--></option>
-            <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_UPLOADSORTDIRDESC"]--></option>
+            <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[gt text="ascending"]--></option>
+            <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[gt text="descending"]--></option>
         </select>
 		<br />
 
-        <label for="MediaAttach_perpage" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADPERPAGE"]--></label>
+        <label for="MediaAttach_perpage" class="maleft"><!--[gt text="Entries per page"]--></label>
         <select id="MediaAttach_perpage" name="itemsperpage" style="width: 50px; text-align: right" onchange="mediaAttach.find.onParamChanged()">
             <option value="5"<!--[if $itemsperpage eq 5]--> selected="selected"<!--[/if]-->>5</option>
             <option value="10"<!--[if $itemsperpage eq 10]--> selected="selected"<!--[/if]-->>10</option>
@@ -177,15 +177,15 @@
         </select>
         <br />
 
-        <label for="MediaAttach_filterby" class="maleft"><!--[pnml name="_MEDIAATTACH_UPLOADFILTERBY"]-->:</label>
+        <label for="MediaAttach_filterby" class="maleft"><!--[gt text="Filter by"]-->:</label>
         <input type="text" id="MediaAttach_filterby" name="searchfor" />
-        <input type="button" id="MediaAttach_gosearch" name="gosearch" value="<!--[pnml name="_FILTER"]-->" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaAttach.find.onParamChanged()" />
+        <input type="button" id="MediaAttach_gosearch" name="gosearch" value="<!--[gt text="Filter"]-->" onclick="mediaAttach.find.onParamChanged()" onkeypress="mediaAttach.find.onParamChanged()" />
         <br />
 
         <div style="margin-left: 6em">
             <!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum template="pagercss.html" maxpages="10"]-->
         </div>
-        <input type="button" name="cancelButton" value="<!--[pnml name="_CANCEL"]-->" onclick="mediaAttach.find.handleCancel()" />
+        <input type="button" name="cancelButton" value="<!--[gt text="Cancel"]-->" onclick="mediaAttach.find.handleCancel()" />
         <br />
     </fieldset>
 </form>

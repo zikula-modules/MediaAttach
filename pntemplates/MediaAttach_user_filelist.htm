@@ -10,7 +10,7 @@
 <!--[pnuserloggedin assign="isLoggedIn"]-->
 <!--[capture assign="numFiles"]--><!--[$files|@count]--><!--[/capture]-->
 <!--[if $isLoggedIn || $numFiles > 0]-->
-    <h3><!--[pnml name="_MEDIAATTACH_ATTACHMENT"]--></h3>
+    <h3><!--[gt text="File attachments"]--></h3>
 
     <dl id="myfilelist">
     <!--[pnusergetvar name="uid" assign="currentuser"]-->

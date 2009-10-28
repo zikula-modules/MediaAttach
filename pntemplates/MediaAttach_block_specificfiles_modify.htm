@@ -2,7 +2,7 @@
 <!--[* Purpose of this template: Block configuration options *]-->
 
 <div class="pn-adminformrow">
-    <label for="MediaAttach_files"><!--[pnml name="_MEDIAATTACH_FILEFILTER"]--></label>
+    <label for="MediaAttach_files"><!--[gt text="Files to show"]--></label>
     <select id="MediaAttach_files" name="files[]" size="10" multiple="multiple" style="width: 200px">
     <!--[foreach item="currentfile" from=$allfiles]-->
         <option value="<!--[$currentfile.fileid|pnvarprephtmldisplay]-->"

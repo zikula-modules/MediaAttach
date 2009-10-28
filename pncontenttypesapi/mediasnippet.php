@@ -9,9 +9,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-
 Loader::requireOnce('modules/MediaAttach/common.php');
-
 
 /**
  * content plugin class
@@ -23,13 +21,27 @@ class MediaAttach_contenttypesapi_mediaSnippetPlugin extends contentTypeBase
     var $floatMode;
     var $thumbnr;
 
-    function getModule() { return 'MediaAttach'; }
-    function getName() { return 'mediasnippet'; }
-    function getTitle() { return _MEDIAATTACH_CONTENTENTTYPE_MEDIASNIPPETTITLE; }
-    function getDescription() { return _MEDIAATTACH_CONTENTENTTYPE_MEDIASNIPPETDESCR; }
+    function getModule()
+    {
+        return 'MediaAttach';
+    }
+    function getName()
+    {
+        return 'mediasnippet';
+    }
+    function getTitle()
+    {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
+        return __('MediaAttach file', $dom);
+    }
+    function getDescription()
+    {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
+        return __('Display a single MediaAttach file.', $dom);
+    }
 
-
-    function loadData(&$data) {
+    function loadData(&$data)
+    {
         if (!isset($data['pasteMode']))
             $data['pasteMode'] = 'embed';
         if (!isset($data['floatMode']))
@@ -43,30 +55,35 @@ class MediaAttach_contenttypesapi_mediaSnippetPlugin extends contentTypeBase
         $this->thumbnr = $data['thumbnr'];
     }
 
-    function display() {
+    function display()
+    {
         if (!empty($this->fileID) && !empty($this->pasteMode) && !empty($this->floatMode) && !empty($this->thumbnr)) {
-            return pnModFunc('MediaAttach', 'external', 'display', array('fileid' => $this->fileID, 'displaymode' => $this->pasteMode,  'floatmode' => $this->floatMode, 'thumbnr' => $this->thumbnr));
+            return pnModFunc('MediaAttach', 'external', 'display', array('fileid' => $this->fileID, 'displaymode' => $this->pasteMode, 'floatmode' => $this->floatMode, 'thumbnr' => $this->thumbnr));
         }
         return '';
     }
 
-    function displayEditing() {
+    function displayEditing()
+    {
+        $dom = ZLanguage::getModuleDomain('MediaAttach');
         if (!empty($this->fileID) && !empty($this->pasteMode)) {
             return pnModFunc('MediaAttach', 'external', 'display', array('fileid' => $this->fileID, 'displaymode' => $this->pasteMode, 'thumbnr' => $this->thumbnr));
         }
-        return _MEDIAATTACH_CONTENTENTTYPE_NOMEDIA;
+        return __('No media file selected', $dom);
     }
 
-    function getDefaultData() {
+    function getDefaultData()
+    {
         return array('fileID' => null, 'pasteMode' => 'embed', 'floatMode' => 'none', 'thumbnr' => pnModGetVar('MediaAttach', 'defaultthumb'));
     }
 
-    function startEditing(&$render) {
+    function startEditing(&$render)
+    {
         array_push($render->plugins_dir, 'modules/MediaAttach/pntemplates/pnform');
     }
 }
 
-
-function MediaAttach_contenttypesapi_mediasnippet($args) {
-  return new MediaAttach_contenttypesapi_mediaSnippetPlugin();
+function MediaAttach_contenttypesapi_mediasnippet($args)
+{
+    return new MediaAttach_contenttypesapi_mediaSnippetPlugin();
 }

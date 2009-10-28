@@ -4,18 +4,18 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=_MEDIAATTACH_DEFINITIONEDIT altml=true]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" __alt="Edit this definition"]--></div>
 
 <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updatedefinition"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
     <fieldset>
-        <legend><!--[pnml name="_MEDIAATTACH_DEFINITIONEDIT"]--></legend>
+        <legend><!--[gt text="Edit this definition"]--></legend>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
         <input type="hidden" name="did" value="<!--[$definition.did]-->" />
 
-        <label for="MediaAttach_modname" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONMODNAME"]--></label>
+        <label for="MediaAttach_modname" class="maleft"><!--[gt text="Module"]--></label>
         <!--[$definition.modname]--><br />
 
-        <label for="MediaAttach_groups" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONGROUPS"]--></label>
+        <label for="MediaAttach_groups" class="maleft"><!--[gt text="Groups"]--></label>
         <select id="MediaAttach_groups" name="groups[]" size="10" multiple="multiple" style="width: 150px">
             <!--[foreach item="currentgroup" from=$allgroups]-->
                 <option value="<!--[$currentgroup.gid]-->"
@@ -26,17 +26,17 @@
             <!--[/foreach]-->
         </select><br />
 
-        <label for="MediaAttach_displayfiles" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONDSPFILES"]--></label>
+        <label for="MediaAttach_displayfiles" class="maleft"><!--[gt text="Show uploaded files in the user section"]--></label>
         <select id="MediaAttach_displayfiles" name="displayfiles" size="1">
-            <option value="0"<!--[if $definition.displayfiles eq 0]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_NONE"]--></option>
-            <option value="1"<!--[if $definition.displayfiles eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_ONLYOWN"]--></option>
-            <option value="2"<!--[if $definition.displayfiles eq 2]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_ALL"]--></option>
+            <option value="0"<!--[if $definition.displayfiles eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="None"]--></option>
+            <option value="1"<!--[if $definition.displayfiles eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Only own"]--></option>
+            <option value="2"<!--[if $definition.displayfiles eq 2]--> selected="selected"<!--[/if]-->><!--[gt text="All"]--></option>
         </select><br />
 
         <input type="checkbox" id="MediaAttach_sendmailsedit" name="sendmails" value="1"<!--[if $definition.sendmails eq 1]--> checked="checked"<!--[/if]--> onclick="maCheckMailDiv('edit')" onkeyup="maCheckMailDiv('edit')" class="maright" />
-        <label for="MediaAttach_sendmailsedit"><!--[pnml name="_MEDIAATTACH_DEFINITIONSENDMAILS"]--></label><br />
+        <label for="MediaAttach_sendmailsedit"><!--[gt text="Send a mail after uploading"]--></label><br />
         <div id="divmailedit">
-            <label for="MediaAttach_recipient" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONRECIPIENT"]-->:</label>
+            <label for="MediaAttach_recipient" class="maleft"><!--[gt text="Recipient of the mail"]-->:</label>
             <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" value="<!--[$definition.recipient]-->" /><br />
         </div>
 
@@ -48,23 +48,23 @@
             </script>
         <!--[/if]-->
 
-        <label for="MediaAttach_maxsize" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONMAXSIZE"]--></label>
-        <input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxlength="20" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" style="text-align: right" />&nbsp;<!--[pnml name="_MEDIAATTACH_KB"]--><br />
+        <label for="MediaAttach_maxsize" class="maleft"><!--[gt text="Maximum file size during upload"]--></label>
+        <input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxlength="20" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
 
-        <label for="MediaAttach_downloadmode" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONDOWNLOADMODE"]--></label>
+        <label for="MediaAttach_downloadmode" class="maleft"><!--[gt text="Download mode"]--></label>
         <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
-            <option value="0"<!--[if $definition.downloadmode eq 0]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_DEFINITIONPHYSICAL"]--></option>
-            <option value="1"<!--[if $definition.downloadmode eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_DEFINITIONINLINE"]--></option>
+            <option value="0"<!--[if $definition.downloadmode eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Physical"]--></option>
+            <option value="1"<!--[if $definition.downloadmode eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Inline"]--></option>
         </select><br />
 
-        <label for="MediaAttach_namingedit" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMING"]--></label>
+        <label for="MediaAttach_namingedit" class="maleft"><!--[gt text="Naming convention"]--></label>
         <select id="MediaAttach_namingedit" name="naming" size="1" onchange="maCheckNamingDiv('edit')" onblur="maCheckNamingDiv('edit')" onkeyup="maCheckNamingDiv('edit')">
-            <option value="0"<!--[if $definition.naming eq 0]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMORIG"]--></option>
-            <option value="1"<!--[if $definition.naming eq 1]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMRAND"]--></option>
-            <option value="2"<!--[if $definition.naming eq 2]--> selected="selected"<!--[/if]-->><!--[pnml name="_MEDIAATTACH_DEFINITIONNAMSTAT"]--></option>
+            <option value="0"<!--[if $definition.naming eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Original filename"]--></option>
+            <option value="1"<!--[if $definition.naming eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Random filename"]--></option>
+            <option value="2"<!--[if $definition.naming eq 2]--> selected="selected"<!--[/if]-->><!--[gt text="Numbered with prefix"]--></option>
         </select><br />
         <div id="divnamingprefixedit">
-            <label for="MediaAttach_namingprefix" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONPREFIX"]-->:</label>
+            <label for="MediaAttach_namingprefix" class="maleft"><!--[gt text="Prefix"]-->:</label>
             <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" value="<!--[$definition.namingprefix]-->" /><br />
         </div>
 
@@ -76,7 +76,7 @@
             </script>
         <!--[/if]-->
 
-        <label for="MediaAttach_numfiles" class="maleft"><!--[pnml name="_MEDIAATTACH_DEFINITIONNUMFILES"]--></label>
+        <label for="MediaAttach_numfiles" class="maleft"><!--[gt text="Number of files"]--></label>
         <select id="MediaAttach_numfiles" name="numfiles" size="1">
             <option value="1"<!--[if $definition.numfiles eq 1]--> selected="selected"<!--[/if]-->>1</option>
             <option value="2"<!--[if $definition.numfiles eq 2]--> selected="selected"<!--[/if]-->>2</option>
@@ -89,8 +89,8 @@
         </select>
         <br /><br />
 
-        <input name="submit" type="submit" value="<!--[pnml name="_MEDIAATTACH_DEFINITIONUPDATE"]-->" class="maright" />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewdefinitions"]-->" title="<!--[pnml name="_CANCELEDIT"]-->"><!--[pnml name="_CANCEL"]--></a>
+        <input name="submit" type="submit" value="<!--[gt text="Update this definition"]-->" class="maright" />
+        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewdefinitions"]-->" title="<!--[gt text="Cancel item edits."]-->"><!--[gt text="Cancel"]--></a>
     </fieldset>
 </form>
 
