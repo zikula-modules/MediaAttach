@@ -40,13 +40,15 @@
 * @category File
 * @author Markus Tacker <m@tacker.org>
 * @author Robin H. Johnson <robbat2@gentoo.org>
-* @version $Id: Decode.php 82 2008-06-12 09:47:04Z m $
+* @version $Id: Decode.php 94 2009-03-22 21:16:09Z m $
 */
 
 /**
 * Include required classes
 */
 require_once 'PEAR.php';
+require_once 'File/Bittorrent2/Encode.php';
+require_once 'File/Bittorrent2/Exception.php';
 
 /**
 * Encode data in Bittorrent format
@@ -131,11 +133,6 @@ class File_Bittorrent2_Decode
     protected $position = 0;
 
     /**
-    * @var string   Info hash
-    */
-    protected $info_hash;
-
-    /**
     * @var array    Decoded data from File_Bittorrent2_Decode::decodeFile()
     */
     protected $decoded = array();
@@ -189,7 +186,6 @@ class File_Bittorrent2_Decode
         $this->announce      = '';
         $this->announce_list = array();
         $this->position     = 0;
-        $this->info_hash     = '';
 
         // Decode .torrent
         $this->source = file_get_contents($file);
@@ -198,10 +194,6 @@ class File_Bittorrent2_Decode
         if (!is_array($this->decoded)) {
 			throw new File_Bittorrent2_Exception('Corrupted bencoded data. Failed to decode data from file \'$file\'.', File_Bittorrent2_Exception::decode);
         }
-
-        // Compute info_hash
-        $Encoder = new File_Bittorrent2_Encode;
-        $this->info_hash = sha1($Encoder->encode($this->decoded['info']));
 
         // Pull information form decoded data
         $this->filename = basename($file);
@@ -274,7 +266,7 @@ class File_Bittorrent2_Decode
             'size'          => $this->size,
             'announce'      => $this->announce,
             'announce_list' => $this->announce_list,
-            'info_hash'     => $this->info_hash,
+            'info_hash'     => $this->getInfoHash(),
         );
     }
 
@@ -481,18 +473,24 @@ class File_Bittorrent2_Decode
             return false;
         }
         // Query the scrape page
-        $packed_hash = pack('H*', $this->info_hash);
+        $packed_hash = pack('H*', $this->getInfoHash());
         $scrape_url = preg_replace('/\/announce$/', '/scrape', $this->announce) . '?info_hash=' . urlencode($packed_hash);
         $scrape_data = file_get_contents($scrape_url);
+
         try {
 			$stats = $this->decode($scrape_data);
 		} catch (File_Bittorrent2_Exception $e) {
 			throw new File_Bittorrent2_Exception('Invalid scrape data: \'' . $scrape_data . '\'', File_Bittorrent2_Exception::decode);
 		}
-		if (!isset($stats['files'][$packed_hash])) {
-			throw new File_Bittorrent2_Exception('Invalid scrape data: \'' . $scrape_data . '\'', File_Bittorrent2_Exception::decode);
-		}
-        return $stats['files'][$packed_hash];
+
+		if (isset($stats['files'][$packed_hash])) return $stats['files'][$packed_hash];
+
+		// Some trackers escape special characters in the
+		// info_hash in their response so check these also
+		$alt_hash = str_replace(' ', '+', $packed_hash);
+		if (isset($stats['files'][$alt_hash])) return $stats['files'][$alt_hash];
+
+		throw new File_Bittorrent2_Exception('Invalid scrape data: \'' . $scrape_data . '\'', File_Bittorrent2_Exception::decode);
     }
 
 	/**
@@ -572,17 +570,20 @@ class File_Bittorrent2_Decode
 	*/
 	function getAnnounceList()
 	{
-		return $this->announe_list;
+		return $this->announce_list;
 	}
 
 	/**
 	* Returns the info hash of the torrent
 	*
+	* @bool return raw info_hash
 	* @return string
 	*/
-	function getInfoHash()
+	function getInfoHash( $raw = false )
 	{
-		return $this->info_hash;
+        $Encoder = new File_Bittorrent2_Encode;
+        $return = sha1($Encoder->encode($this->decoded['info']), $raw);
+		return $return;
 	}
 
 	/**

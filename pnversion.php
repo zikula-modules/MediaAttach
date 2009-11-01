@@ -18,6 +18,7 @@ $modversion['name']           = 'MediaAttach';
 $modversion['description']    = __('Uploads and file management', $dom);
 $modversion['displayname']    = __('MediaAttach', $dom);
 $modversion['version']        = '1.0.0.2';
+$modbversion['url']           = __('mediaattach', $dom);
 
 $modversion['changelog']      = '';
 $modversion['credits']        = 'pndocs/credits.txt';

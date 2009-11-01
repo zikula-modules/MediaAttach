@@ -33,7 +33,7 @@
  * @author Justin Jones <j.nagash@gmail.com>
  * @author Markus Tacker <m@tacker.org>
  * @author barry hunter <geo@barryhunter.co.uk>
- * @version $Id: MakeTorrent.php 82 2008-06-12 09:47:04Z m $
+ * @version $Id: MakeTorrent.php 93 2009-02-07 18:50:57Z m $
  * @package File_Bittorrent2
  * @category File
  */
@@ -42,6 +42,8 @@
  * Include required classes
  */
 require_once 'PEAR.php';
+require_once 'File/Bittorrent2/Encode.php';
+require_once 'File/Bittorrent2/Exception.php';
 
 /**
  * Provides a class for making .torrent files
@@ -90,7 +92,7 @@ class File_Bittorrent2_MakeTorrent
     /**
      * @var string The .torrent created by string
      */
-    protected $created_by = 'File_Bittorrent2_MakeTorrent $Rev: 82 $. http://pear.php.net/package/File_Bittorrent';
+    protected $created_by = 'File_Bittorrent2_MakeTorrent $Rev: 93 $. http://pear.php.net/package/File_Bittorrent';
 
     /**
      * @var string The .torrent suggested name (file/dir)
@@ -145,7 +147,7 @@ class File_Bittorrent2_MakeTorrent
      *
      * @param string Path to use
      */
-    function File_Bittorrent2_MakeTorrent($path)
+    function __construct($path)
     {
         $this->setPath($path);
     }
@@ -235,29 +237,29 @@ class File_Bittorrent2_MakeTorrent
      * based on the parameters you have set
      * with the set* functions.
      *
+     * @param array custom data set to be included in the metainfo
      * @return mixed false on failure or a string containing the metainfo
 	 * @throws File_Bittorrent2_Exception if no file or directory is given
      */
-    function buildTorrent()
+    function buildTorrent(array $metainfo = array())
     {
         if ($this->is_multifile) {
             //we already have the files added
-            $metainfo = $this->encodeTorrent();
+            $metainfo = $this->encodeTorrent(array(),$metainfo);
         } else if ($this->is_file) {
             if (!$info = $this->addFile($this->path)) {
                 return false;
             }
-            if (!$metainfo = $this->encodeTorrent($info)) {
+            if (!$metainfo = $this->encodeTorrent($info,$metainfo)) {
                 return false;
             }
         } else if ($this->is_dir) {
             if (!$diradd_ok = $this->addDir($this->path)) {
                 return false;
             }
-            $metainfo = $this->encodeTorrent();
+            $metainfo = $this->encodeTorrent(array(),$metainfo);
         } else {
             throw new File_Bittorrent2_Exception('You must provide a file or directory.', File_Bittorrent2_Exception::make);
-            return false;
         }
         return $metainfo;
     }
@@ -267,12 +269,13 @@ class File_Bittorrent2_MakeTorrent
      * into a valid torrent metainfo string
      *
      * @param array file data
-     * @return mixed false on failure or the bencoded metainfo string
+     * @param array custom data set to be included in the metainfo 
+     * @return string bencoded metainfo 
 	 * @throws File_Bittorrent2_Exception if no file or directory is defined
      */
-    protected function encodeTorrent(array $info = array())
+    protected function encodeTorrent(array $info = array(), array $metainfo = array())
     {
-        $bencdata = array();
+        $bencdata = $metainfo;
         $bencdata['info'] = array();
         if ($this->is_file) {
             $bencdata['info']['length'] = $info['length'];

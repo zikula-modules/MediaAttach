@@ -38,13 +38,14 @@
 * @package File_Bittorrent2
 * @category File
 * @author Markus Tacker <m@tacker.org>
-* @version $Id: Encode.php 77 2007-08-26 09:42:22Z m $
+* @version $Id: Encode.php 97 2009-04-26 11:26:37Z m $
 */
 
 /**
 * Include required classes
 */
 require_once 'PEAR.php';
+require_once 'File/Bittorrent2/Exception.php';
 
 /**
 * Encode data in Bittorrent format
@@ -82,7 +83,7 @@ class File_Bittorrent2_Encode
             return $this->encode_string($mixed);
         case 'integer':
         case 'double':
-            return  $this->encode_int(round($mixed));
+            return $this->encode_int(sprintf('%.0f', round($mixed)));
         case 'array':
             return $this->encode_array($mixed);
         default:

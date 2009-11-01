@@ -1,9 +1,9 @@
 File_Bittorrent2
-    1.2.0 (2008-06-12)
+    1.3.1 (2009-04-26)
         http://pear.php.net/package/File_Bittorrent2
 
 GeSHi
-    1.0.8.3 (2009-03-22)
+    1.0.8.4 (2009-05-23)
         http://qbnz.com/highlighter/
 
 getid3
@@ -29,7 +29,7 @@ FlowPlayer
       GPL-V3
 
 Snoopy Class
-    1.2.3 (2005-11-08)
+    1.2.4 (2008-10-22)
         http://sourceforge.net/projects/snoopy/
 
 SWFUpload

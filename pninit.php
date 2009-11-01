@@ -86,7 +86,7 @@ function MediaAttach_upgrade($oldversion)
       switch ($oldversion) {
         case '1.0':
         case '1.0.0.1':
-            if (!DBUtil::changeTable('ma_files')) {
+            if (!DBUtil::changeTable('ma_files',$dom)) {
                  return LogUtil::registerError(__('An Error occured while updating to Rev.') .'1.0.0.1');
             }
         }
