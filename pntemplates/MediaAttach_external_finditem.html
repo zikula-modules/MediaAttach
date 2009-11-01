@@ -119,7 +119,7 @@
                         <!--[$file.title]--> (<!--[$file.extension]--><!--[if $file.extension ne "extvid"]-->, <!--[mafilesize size=$file.filesize]--><!--[/if]-->)
                     <!--[else]-->
                         <!--[pnmodfunc modname="MediaAttach" type="user" func="download" thumb=1 thumbnr=$thumbnr fileid=$file.fileid assign="previewfile"]-->
-                        <img id="maimg<!--[$file.fileid]-->" src="<!--[$previewfile]-->" width="<!--[$thumbwidth]-->" height="<!--[$thumbheight]-->" title="<!--[$file.title]-->" alt="" class="previmg" />
+                        <img id="maimg<!--[$file.fileid]-->" src="<!--[$previewfile]-->" width="<!--[$thumbwidth]-->" height="<!--[$thumbheight]-->" title="<!--[$file.title]-->" __alt="" class="previmg" />
                     <!--[/if]-->
                 </a>
                 <!--[if $onlyimages eq 1]-->

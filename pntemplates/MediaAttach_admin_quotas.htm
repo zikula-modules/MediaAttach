@@ -4,7 +4,7 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname="core" src="encrypted.gif" set="icons/large" alt=Quotas]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="encrypted.gif" set="icons/large" __alt="Quotas"]--></div>
 
 <h3><!--[pnimg src="unlock.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]-->Quotas</h3>
 <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="updategroupquotas"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
@@ -17,7 +17,7 @@
             <!--[counter assign="currentgroupnum"]-->
             <label for="MediaAttach_amountg<!--[$currentgroupnum]-->" class="maleft"><!--[$currentquota.name]--></label>
             <input type="hidden" name="gid<!--[$currentgroupnum]-->" value="<!--[$currentquota.gid]-->" />
-            <input type="text" id="MediaAttach_amountg<!--[$currentgroupnum]-->" name="amountg<!--[$currentgroupnum]-->" maxlength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br />
+            <input type="text" id="MediaAttach_amountg<!--[$currentgroupnum]-->" name="amountg<!--[$currentgroupnum]-->" maxLength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br />
         <!--[/foreach]-->
         <br />
         <input type="hidden" name="numgroups" value="<!--[$currentgroupnum]-->" />
@@ -38,7 +38,7 @@
                 <!--[counter assign="currentusernum"]-->
                 <label for="MediaAttach_amountu<!--[$currentusernum]-->" class="maleft"><!--[$currentquota.name]--></label>
                 <input type="hidden" name="uid<!--[$currentusernum]-->" value="<!--[$currentquota.uid]-->" />
-                <input type="text" id="MediaAttach_amountu<!--[$currentusernum]-->" name="amountu<!--[$currentusernum]-->" maxlength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]-->
+                <input type="text" id="MediaAttach_amountu<!--[$currentusernum]-->" name="amountu<!--[$currentusernum]-->" maxLength="10" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]-->
                 <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteuserquota" uid=$currentquota.uid]-->" title="<!--[gt text="Delete"]-->"><!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" __alt="Delete" ]--></a><br />
             <!--[/foreach]-->
             <br />
@@ -55,7 +55,7 @@
 
         <label for="newuname" class="maleft"><!--[gt text="Name"]-->:</label>
         <input type="text" name="uname" id="newuname" value="" />
-        <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]--><br />
+        <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" __alt=""]--><br />
 
         <div id="username_choices" class="autocomplete_user"></div>
 
@@ -66,7 +66,7 @@
         </script>
 
         <label for="MediaAttach_amount" class="maleft"><!--[gt text="Quota"]-->:</label>
-        <input type="text" id="MediaAttach_amount" name="amount" maxlength="10" value="0" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br /><br />
+        <input type="text" id="MediaAttach_amount" name="amount" maxLength="10" value="0" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br /><br />
 
         <input name="submit" type="submit" value="<!--[gt text="Create Quota"]-->" class="maright" />
     </fieldset>

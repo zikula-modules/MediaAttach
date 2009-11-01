@@ -4,7 +4,7 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname="core" src="easymoblog.gif" set="icons/large" alt=Upload definitions ]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname="core" src="easymoblog.gif" set="icons/large" __alt="Upload definitions" ]--></div>
 
 <!--[if $modules eq 0]-->
     <p class="centered">
@@ -50,12 +50,12 @@
                             <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[gt text="Send a mail after uploading"]--></label><br />
                             <div id="divmail<!--[$currentmod]-->">
                                 <label for="MediaAttach_recipient" class="maadminleft"><!--[gt text="Recipient of the mail"]-->:</label>
-                                <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" /><br />
+                                <input type="text" id="MediaAttach_recipient" name="recipient" maxLength="100" /><br />
                             </div>
                             <br />
 
                             <label for="MediaAttach_maxsize" class="maadminleft"><!--[gt text="Maximum file size during upload"]-->:</label>
-                            <input type="text" id="MediaAttach_maxsize" name="maxsize" maxlength="20" value="2000" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
+                            <input type="text" id="MediaAttach_maxsize" name="maxsize" maxLength="20" value="2000" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
 
                             <label for="MediaAttach_downloadmode" class="maadminleft"><!--[gt text="Download mode"]-->:</label>
                             <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
@@ -71,7 +71,7 @@
                             </select><br />
                             <div id="divnamingprefix<!--[$currentmod]-->">
                                 <label for="MediaAttach_namingprefix" class="maadminleft"><!--[gt text="Prefix"]-->:</label>
-                                <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" /><br />
+                                <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxLength="40" /><br />
                             </div>
 
                             <label for="MediaAttach_numfiles" class="maadminleft"><!--[gt text="Number of files"]-->:</label>

@@ -37,7 +37,7 @@
         <label for="MediaAttach_sendmailsedit"><!--[gt text="Send a mail after uploading"]--></label><br />
         <div id="divmailedit">
             <label for="MediaAttach_recipient" class="maleft"><!--[gt text="Recipient of the mail"]-->:</label>
-            <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" value="<!--[$definition.recipient]-->" /><br />
+            <input type="text" id="MediaAttach_recipient" name="recipient" maxLength="100" value="<!--[$definition.recipient]-->" /><br />
         </div>
 
         <!--[if $definition.sendmails eq 0]-->
@@ -49,7 +49,7 @@
         <!--[/if]-->
 
         <label for="MediaAttach_maxsize" class="maleft"><!--[gt text="Maximum file size during upload"]--></label>
-        <input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxlength="20" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
+        <input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxLength="20" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
 
         <label for="MediaAttach_downloadmode" class="maleft"><!--[gt text="Download mode"]--></label>
         <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
@@ -65,7 +65,7 @@
         </select><br />
         <div id="divnamingprefixedit">
             <label for="MediaAttach_namingprefix" class="maleft"><!--[gt text="Prefix"]-->:</label>
-            <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" value="<!--[$definition.namingprefix]-->" /><br />
+            <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxLength="40" value="<!--[$definition.namingprefix]-->" /><br />
         </div>
 
         <!--[if $definition.naming neq 2]-->

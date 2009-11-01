@@ -23,7 +23,7 @@
             <dd><!--[$docroot]--></dd>
 
             <dt><!--[pnformlabel for="uploaddir" __text="Upload folder (absolute, ideally outside the HTML root):"]--></dt>
-            <dd><!--[pnformtextinput id="uploaddir" size="40" maxlength="200" __text=$pncore.MediaAttach.uploaddir]-->&nbsp;&nbsp;
+            <dd><!--[pnformtextinput id="uploaddir" size="40" maxLength="200" text=$pncore.MediaAttach.uploaddir]-->&nbsp;&nbsp;
                 <!--[if !$updirexists]--><span class="dirnotokay"><!--[gt text="This directory does not exist"]--></span>
                 <!--[elseif !$updirisdir]--><span class="dirnotokay"><!--[gt text="This is not a directory"]--></span>
                 <!--[elseif !$updiriswritable]--><span class="dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></span>
@@ -32,7 +32,7 @@
             </dd>
 
             <dt><!--[pnformlabel for="cachedir" __text="Cache folder (relative from HTML root):"]--></dt>
-            <dd><!--[pnformtextinput id="cachedir" size="40" maxlength="200" __text=$pncore.MediaAttach.cachedir]-->&nbsp;&nbsp;
+            <dd><!--[pnformtextinput id="cachedir" size="40" maxLength="200" text=$pncore.MediaAttach.cachedir]-->&nbsp;&nbsp;
                 <!--[if !$cachedirexists]--><span class="dirnotokay"><!--[gt text="This directory does not exist"]--></span>
                 <!--[elseif !$cachedirisdir]--><span class="dirnotokay"><!--[gt text="This is not a directory"]--></span>
                 <!--[elseif !$cachediriswritable]--><span class="dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></span>
@@ -45,7 +45,7 @@
             <dd><!--[pnformcheckbox id="mailfiles" checked=$pncore.MediaAttach.mailfiles]--></dd>
 
             <dt id="mailerdt"><!--[pnformlabel for="maxmailsize" __text="Maximum filesize for mails:"]--></dt>
-            <dd id="mailerdd"><!--[pnformintinput id="maxmailsize" size="10" maxlength="10" __text=$maxmailsize]--> <!--[gt text="KB"]--></dd>
+            <dd id="mailerdd"><!--[pnformintinput id="maxmailsize" size="10" maxLength="10" __text=$maxmailsize]--> <!--[gt text="KB"]--></dd>
     <!--[/if]-->
             <dt><!--[pnformlabel for="usequota" __text="Activate quotas"]--></dt>
             <dd><!--[pnformcheckbox id="usequota" checked=$pncore.MediaAttach.usequota]--></dd>
@@ -69,14 +69,14 @@
             <!--[pnformvolatile]-->
             <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
                 <li>
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxlength="4" __text=$thumbsize[0]]--> x
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`height" size="6" maxlength="4" __text=$thumbsize[1]]--> <!--[gt text="pixels"]-->
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxLength="4" __text=$thumbsize[0]]--> x
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`height" size="6" maxLength="4" __text=$thumbsize[1]]--> <!--[gt text="pixels"]-->
                     <!--[pnformradiobutton id="defaultthumb`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration datafield='defaultthumb' mandatory='1']-->
                 </li>
             <!--[/foreach]-->
                 <li>
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxlength="4" text=""]--> x
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxlength="4" text=""]--> <!--[gt text="pixels"]-->
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxLength="4" text=""]--> x
+                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxLength="4" text=""]--> <!--[gt text="pixels"]-->
                 </li>
             <!--[/pnformvolatile]-->
             </ol></dd>
@@ -85,8 +85,8 @@
             <dd><!--[pnformcheckbox id="shrinkimages" checked=$pncore.MediaAttach.shrinkimages]--></dd>
 
             <dt id="shrinksizedt"><!--[pnformlabel for="shrinkwidth" __text="Maximum image size:"]--></dt>
-            <dd id="shrinksizedd"><!--[pnformintinput id="shrinkwidth" size="8" maxlength="4" __text=$pncore.MediaAttach.shrinkwidth]--> x
-                <!--[pnformintinput id="shrinkheight" size="8" maxlength="4" __text=$pncore.MediaAttach.shrinkheight]--> <!--[gt text="pixels"]-->
+            <dd id="shrinksizedd"><!--[pnformintinput id="shrinkwidth" size="8" maxLength="4" __text=$pncore.MediaAttach.shrinkwidth]--> x
+                <!--[pnformintinput id="shrinkheight" size="8" maxLength="4" __text=$pncore.MediaAttach.shrinkheight]--> <!--[gt text="pixels"]-->
             </dd>
 
             <dt><!--[pnformlabel for="usethumbcropper" __text="Allow cropping of thumbnails"]--></dt>
