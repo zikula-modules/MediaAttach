@@ -260,11 +260,11 @@ ul#uploadRemoveBox li {
 
 /* configuration classes */
 
-span.dirokay {
+.dirokay {
     color: green;
 }
 
-span.dirnotokay {
+.dirnotokay {
     color: red;
 }
 

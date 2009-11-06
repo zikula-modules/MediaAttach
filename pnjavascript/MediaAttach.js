@@ -39,33 +39,27 @@
     function maCheckMailerEntry() {
         var mycheckbox = $('mailfiles');
         if (mycheckbox.checked == true) {
-            Effect.BlindDown('mailerdt');
-            Effect.BlindDown('mailerdd');
+            Effect.BlindDown('ma_mailer');
         } else {
-            Effect.BlindUp('mailerdt');
-            Effect.BlindUp('mailerdd');
+            Effect.BlindUp('ma_mailer');
         }
     }
 
     function maCheckShrinkEntry() {
         var mycheckbox = $('shrinkimages');
         if (mycheckbox.checked == true) {
-            Effect.BlindDown('shrinksizedt');
-            Effect.BlindDown('shrinksizedd');
+            Effect.BlindDown('ma_shrinksize');
         } else {
-            Effect.BlindUp('shrinksizedt');
-            Effect.BlindUp('shrinksizedd');
+            Effect.BlindUp('ma_shrinksize');
         }
     }
 
     function maCheckCropSizeEntry() {
         var mycheckbox = $('usethumbcropper');
         if (mycheckbox.checked == true) {
-            Effect.BlindDown('cropsizemodedt');
-            Effect.BlindDown('cropsizemodedd');
+            Effect.BlindDown('ma_cropsizemode');
         } else {
-            Effect.BlindUp('cropsizemodedt');
-            Effect.BlindUp('cropsizemodedd');
+            Effect.BlindUp('ma_cropsizemode');
         }
     }
 

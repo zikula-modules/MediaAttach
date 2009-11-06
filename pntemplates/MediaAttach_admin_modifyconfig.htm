@@ -3,201 +3,231 @@
 
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
-<div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg src="package_settings.gif" modname="core" set="icons/large" __alt="Configuration" ]--></div>
+<div class="z-admincontainer">
+    <div class="z-adminpageicon"><!--[pnimg src="package_settings.gif" modname="core" set="icons/large" __alt="Configuration" ]--></div>
 
-<h3><!--[pnimg src="package_settings.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="Configuration"]--></h3>
+    <h2><!--[gt text="Settings"]--></h2>
 
-<!--[pnform id="MediaAttach_config" cssclass="maform" enctype="application/x-www-form-urlencoded"]-->
-    <!--[pnformsetinitialfocus inputid="uploaddir"]-->
+    <!--[pnform id="MediaAttach_config" cssClass="z-form" enctype="application/x-www-form-urlencoded"]-->
+    <!--[pnformsetinitialfocus inputId="uploaddir"]-->
     <!--[pnformvalidationsummary]-->
 
     <fieldset>
         <legend><!--[gt text="General Settings"]--></legend>
-
-        <dl id="configlist">
-            <dt><label><!--[gt text="MediaAttach installation directory"]-->:</label></dt>
-            <dd><!--[$mediaattachdir]--></dd>
-
-            <dt><label><!--[gt text="HTML root"]-->:</label></dt>
-            <dd><!--[$docroot]--></dd>
-
-            <dt><!--[pnformlabel for="uploaddir" __text="Upload folder (absolute, ideally outside the HTML root):"]--></dt>
-            <dd><!--[pnformtextinput id="uploaddir" size="40" maxLength="200" text=$pncore.MediaAttach.uploaddir]-->&nbsp;&nbsp;
-                <!--[if !$updirexists]--><span class="dirnotokay"><!--[gt text="This directory does not exist"]--></span>
-                <!--[elseif !$updirisdir]--><span class="dirnotokay"><!--[gt text="This is not a directory"]--></span>
-                <!--[elseif !$updiriswritable]--><span class="dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></span>
-                <!--[else]--><span class="dirokay"><!--[gt text="Everything allright"]--></span>
-                <!--[/if]-->
-            </dd>
-
-            <dt><!--[pnformlabel for="cachedir" __text="Cache folder (relative from HTML root):"]--></dt>
-            <dd><!--[pnformtextinput id="cachedir" size="40" maxLength="200" text=$pncore.MediaAttach.cachedir]-->&nbsp;&nbsp;
-                <!--[if !$cachedirexists]--><span class="dirnotokay"><!--[gt text="This directory does not exist"]--></span>
-                <!--[elseif !$cachedirisdir]--><span class="dirnotokay"><!--[gt text="This is not a directory"]--></span>
-                <!--[elseif !$cachediriswritable]--><span class="dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></span>
-                <!--[else]--><span class="dirokay"><!--[gt text="Everything allright"]--></span>
-                <!--[/if]-->
-            </dd>
-
-    <!--[if $mailer]-->
-            <dt><!--[pnformlabel for="mailfiles" __text="Allow users sending files in mails to theirselves"]--></dt>
-            <dd><!--[pnformcheckbox id="mailfiles" checked=$pncore.MediaAttach.mailfiles]--></dd>
-
-            <dt id="mailerdt"><!--[pnformlabel for="maxmailsize" __text="Maximum filesize for mails:"]--></dt>
-            <dd id="mailerdd"><!--[pnformintinput id="maxmailsize" size="10" maxLength="10" __text=$maxmailsize]--> <!--[gt text="KB"]--></dd>
-    <!--[/if]-->
-            <dt><!--[pnformlabel for="usequota" __text="Activate quotas"]--></dt>
-            <dd><!--[pnformcheckbox id="usequota" checked=$pncore.MediaAttach.usequota]--></dd>
-
-            <dt><!--[pnformlabel for="ownhandling" __text="Users are able to edit and delete their own files"]--></dt>
-            <dd><!--[pnformcheckbox id="ownhandling" checked=$pncore.MediaAttach.ownhandling]--></dd>
-
-            <dt><!--[pnformlabel for="usefrontpage" __text="Activate frontpage in user section"]--></dt>
-            <dd><!--[pnformcheckbox id="usefrontpage" checked=$pncore.MediaAttach.usefrontpage]--></dd>
-
-            <dt><!--[pnformlabel for="useaccountpage" __text="Activate account page in user section"]--></dt>
-            <dd><!--[pnformcheckbox id="useaccountpage" checked=$pncore.MediaAttach.useaccountpage]--></dd>
-        </dl>
+        <div class="z-formrow">
+            <label><!--[gt text="MediaAttach installation directory"]--></label>
+            <!--[$mediaattachdir]-->
+        </div>
+        <div class="z-formrow">
+            <label><!--[gt text="HTML root"]--></label>
+            <!--[$docroot]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="uploaddir" __text="Upload folder (absolute, ideally outside the HTML root)"]-->
+            <!--[pnformtextinput id="uploaddir" size="40" maxLength="200" text=$pncore.MediaAttach.uploaddir]-->
+            <!--[if !$updirexists]--><em class="z-formnote dirnotokay"><!--[gt text="This directory does not exist"]--></em>
+            <!--[elseif !$updirisdir]--><em class="z-formnote dirnotokay"><!--[gt text="This is not a directory"]--></em>
+            <!--[elseif !$updiriswritable]--><em class="z-formnote dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></em>
+            <!--[else]--><em class="z-formnote dirokay"><!--[gt text="Everything allright"]--></em>
+            <!--[/if]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="cachedir" __text="Cache folder (relative from HTML root)"]-->
+            <!--[pnformtextinput id="cachedir" size="40" maxLength="200" text=$pncore.MediaAttach.cachedir]-->
+            <!--[if !$cachedirexists]--><em class="z-formnote dirnotokay"><!--[gt text="This directory does not exist"]--></em>
+            <!--[elseif !$cachedirisdir]--><em class="z-formnote dirnotokay"><!--[gt text="This is not a directory"]--></em>
+            <!--[elseif !$cachediriswritable]--><em class="z-formnote dirnotokay"><!--[gt text="This directory is not writable for the web server"]--></em>
+            <!--[else]--><em class="z-formnote dirokay"><!--[gt text="Everything allright"]--></em>
+            <!--[/if]-->
+        </div>
+        <!--[if $mailer]-->
+        <div class="z-formrow">
+            <!--[pnformlabel for="mailfiles" __text="Allow users sending files in mails to theirselves"]-->
+            <!--[pnformcheckbox id="mailfiles" checked=$pncore.MediaAttach.mailfiles]-->
+        </div>
+        <div id="ma_mailer">
+            <div class="z-formrow">
+                <!--[pnformlabel for="maxmailsize" text="Maximum filesize for mails"]-->
+                <span><!--[pnformintinput id="maxmailsize" size="10" maxLength="10" text=$maxmailsize]--> <!--[gt text="KB"]--></span>
+            </div>
+        </div>
+        <!--[/if]-->
+        <div class="z-formrow">
+            <!--[pnformlabel for="usequota" __text="Activate quotas"]-->
+            <!--[pnformcheckbox id="usequota" checked=$pncore.MediaAttach.usequota]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="ownhandling" __text="Users are able to edit and delete their own files"]-->
+            <!--[pnformcheckbox id="ownhandling" checked=$pncore.MediaAttach.ownhandling]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="usefrontpage" __text="Activate frontpage in user section"]-->
+            <!--[pnformcheckbox id="usefrontpage" checked=$pncore.MediaAttach.usefrontpage]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="useaccountpage" __text="Activate account page in user section"]-->
+            <!--[pnformcheckbox id="useaccountpage" checked=$pncore.MediaAttach.useaccountpage]-->
+        </div>
     </fieldset>
+
     <fieldset>
         <legend><!--[gt text="Image settings"]--></legend>
 
-        <dl id="configlist2">
-            <dt><!--[pnformlabel for="thumb1width" __text="Default sizes of thumbnails (you can create as many formats as desired):"]--></dt>
-            <dd><ol style="margin-left: 0">
+        <div class="z-formrow">
+            <!--[pnformlabel for="thumb1width" __text="Default sizes of thumbnails (you can create as many formats as desired):"]-->
+
             <!--[pnformvolatile]-->
             <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
-                <li>
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxLength="4" __text=$thumbsize[0]]--> x
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`height" size="6" maxLength="4" __text=$thumbsize[1]]--> <!--[gt text="pixels"]-->
-                    <!--[pnformradiobutton id="defaultthumb`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration datafield='defaultthumb' mandatory='1']-->
-                </li>
+            <div class="z-formlist">
+                <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`width" size="6" maxLength="4" text=$thumbsize[0]]--> x
+                <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration`height" size="6" maxLength="4" text=$thumbsize[1]]--> <!--[gt text="pixels"]-->
+                <!--[pnformradiobutton id="defaultthumb`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField='defaultthumb' mandatory='1']-->
+            </div>
             <!--[/foreach]-->
-                <li>
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxLength="4" text=""]--> x
-                    <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxLength="4" text=""]--> <!--[gt text="pixels"]-->
-                </li>
+            <div class="z-formlist">
+                <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`width" size="6" maxLength="4" text=""]--> x
+                <!--[pnformintinput id="thumb`$smarty.foreach.thumbLoop.iteration+1`height" size="6" maxLength="4" text=""]--> <!--[gt text="pixels"]-->
+            </div>
             <!--[/pnformvolatile]-->
-            </ol></dd>
+        </div>
 
-            <dt><!--[pnformlabel for="shrinkimages" __text="Shrink big images"]--></dt>
-            <dd><!--[pnformcheckbox id="shrinkimages" checked=$pncore.MediaAttach.shrinkimages]--></dd>
+        <div class="z-formrow">
+            <!--[pnformlabel for="shrinkimages" __text="Shrink big images"]-->
+            <!--[pnformcheckbox id="shrinkimages" checked=$pncore.MediaAttach.shrinkimages]-->
+        </div>
 
-            <dt id="shrinksizedt"><!--[pnformlabel for="shrinkwidth" __text="Maximum image size:"]--></dt>
-            <dd id="shrinksizedd"><!--[pnformintinput id="shrinkwidth" size="8" maxLength="4" __text=$pncore.MediaAttach.shrinkwidth]--> x
-                <!--[pnformintinput id="shrinkheight" size="8" maxLength="4" __text=$pncore.MediaAttach.shrinkheight]--> <!--[gt text="pixels"]-->
-            </dd>
+        <div id="ma_shrinksize">
+            <div class="z-formrow">
+                <!--[pnformlabel for="shrinkwidth" __text="Maximum image size:"]-->
+                <span>
+                    <!--[pnformintinput id="shrinkwidth" size="8" maxLength="4" text=$pncore.MediaAttach.shrinkwidth]--> x
+                    <!--[pnformintinput id="shrinkheight" size="8" maxLength="4" text=$pncore.MediaAttach.shrinkheight]--> <!--[gt text="pixels"]-->
+                </span>
+            </div>
+        </div>
 
-            <dt><!--[pnformlabel for="usethumbcropper" __text="Allow cropping of thumbnails"]--></dt>
-            <dd><!--[pnformcheckbox id="usethumbcropper" checked=$pncore.MediaAttach.usethumbcropper]--></dd>
+        <div class="z-formrow">
+            <!--[pnformlabel for="usethumbcropper" __text="Allow cropping of thumbnails"]-->
+            <!--[pnformcheckbox id="usethumbcropper" checked=$pncore.MediaAttach.usethumbcropper]-->
+        </div>
 
-            <dt id="cropsizemodedt"><!--[pnformlabel for="cropsizemode" __text="Behaviour of the selection tool"]--></dt>
-            <dd id="cropsizemodedd"><!--[pnformdropdownlist id="cropsizemode"]--></dd>
-        </dl>
+        <div id="ma_cropsizemode">
+            <div class="z-formrow">
+                <!--[pnformlabel for="cropsizemode" __text="Behaviour of the selection tool"]-->
+                <!--[pnformdropdownlist id="cropsizemode"]-->
+            </div>
+        </div>
     </fieldset>
+
     <fieldset>
         <legend><!--[gt text="Categorization settings"]--></legend>
-
-        <dl id="configlist3">
-            <dt><!--[pnformlabel for="catmodecategories" __text="MediaAttach categories (Categories module)"]--></dt>
-            <dd><!--[pnformcheckbox id="catmodecategories" checked=$cat_use_categories]--></dd>
-
-            <dt><!--[pnformlabel for="catmodemodules" __text="Modules"]--></dt>
-            <dd><!--[pnformcheckbox id="catmodemodules" checked=$cat_use_modules]--></dd>
-
-            <dt><!--[pnformlabel for="catmodeusers" __text="Users"]--></dt>
-            <dd><!--[pnformcheckbox id="catmodeusers" checked=$cat_use_users]--></dd>
-
-            <dt><!--[pnformlabel for="catdefaultmode" __text="Default mode:"]--></dt>
-            <dd><!--[pnformdropdownlist id="catdefaultmode"]--></dd>
-        </dl>
+        <div class="z-formrow">
+            <!--[pnformlabel for="catmodecategories" __text="MediaAttach categories (Categories module)"]-->
+            <!--[pnformcheckbox id="catmodecategories" checked=$cat_use_categories]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="catmodemodules" __text="Modules"]-->
+            <!--[pnformcheckbox id="catmodemodules" checked=$cat_use_modules]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="catmodeusers" __text="Users"]-->
+            <!--[pnformcheckbox id="catmodeusers" checked=$cat_use_users]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="catdefaultmode" __text="Default mode"]-->
+            <!--[pnformdropdownlist id="catdefaultmode"]-->
+        </div>
     </fieldset>
-    <fieldset>
-        <legend><!--[gt text="Action"]--></legend>
-        <br />
+
+    <div class="z-formbuttons">
         <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" hookid="MediaAttach" module="MediaAttach"]-->
-        <!--[pnformbutton id="submit" commandname="submit" __text="Save Settings"]-->
-    </fieldset>
-<!--[/pnform]-->
-<script type="text/javascript" language="javascript">
-/* <![CDATA[ */
-    <!--[if $pncore.MediaAttach.mailfiles eq 0]-->
-        $('mailerdt').hide();
-        $('mailerdd').hide();
-    <!--[/if]-->
-    $('mailfiles').observe('click', maCheckMailerEntry);
-    $('mailfiles').observe('keyup', maCheckMailerEntry);
+        <!--[pnformbutton id="submit" commandName="submit" text="Settings"]-->
+    </div>
+    <!--[/pnform]-->
 
-    <!--[if $pncore.MediaAttach.shrinkimages eq 0]-->
-        $('shrinksizedt').hide();
-        $('shrinksizedd').hide();
-    <!--[/if]-->
-    $('shrinkimages').observe('click', maCheckShrinkEntry);
-    $('shrinkimages').observe('keyup', maCheckShrinkEntry);
-
-    <!--[if $pncore.MediaAttach.usethumbcropper eq 0]-->
-        $('cropsizemodedt').hide();
-        $('cropsizemodedd').hide();
-    <!--[/if]-->
-    $('usethumbcropper').observe('click', maCheckCropSizeEntry);
-    $('usethumbcropper').observe('keyup', maCheckCropSizeEntry);
-
-    $('catmodecategories').observe('change', maCheckCatMode1);
-    $('catmodecategories').observe('keyup', maCheckCatMode1);
-    $('catmodemodules').observe('change', maCheckCatMode2);
-    $('catmodemodules').observe('keyup', maCheckCatMode2);
-    $('catmodeusers').observe('change', maCheckCatMode3);
-    $('catmodeusers').observe('keyup', maCheckCatMode3);
-    $('catdefaultmode').observe('change', maCheckCatModes);
-    $('catdefaultmode').observe('keyup', maCheckCatModes);
-/* ]]> */
-</script>
-<br />
-<!--[if $updirexists]-->
-    <!--[if $updirisdir]-->
-        <!--[if $updiriswritable && $htaccessexists == 0]-->
-            <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="generatehtaccess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_htaccess" class="maform">
-                <fieldset>
-                    <p><!--[gt text="MediaAttach can automatically write a .htaccess file into your upload directory to avoid direct access to uploaded files. Notice that not all webservers support .htaccess files."]--></p>
-
-                    <input name="submit" type="submit" value="<!--[gt text="Generate .htaccess"]-->" class="maadminright" />
-                </fieldset>
-            </form>
-            <br />
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        <!--[if $pncore.MediaAttach.mailfiles eq 0]-->
+        $('ma_mailer').hide();
         <!--[/if]-->
-    <!--[/if]-->
-<!--[/if]-->
-<div class="configbox">
-    <p style="font-weight: 700"><!--[gt text="Important settings in php.ini, which are relevant for uploads"]--></p>
-    <dl id="inilist">
-        <dt>open_basedir:</dt>
-        <dd><!--[$open_basedir|default:"&nbsp;"]--></dd>
-        <dt>upload_tmp_dir:</dt>
-        <dd><!--[$upload_tmp_dir|default:"&nbsp;"]--></dd>
-        <dt>file_uploads:</dt>
-        <dd><!--[$file_uploads|default:"&nbsp;"]--></dd>
-        <dt>upload_max_filesize:</dt>
-        <dd><!--[$upload_max_filesize|default:"&nbsp;"]--></dd>
-        <dt>post_max_size:</dt>
-        <dd><!--[$post_max_size|default:"&nbsp;"]--></dd>
-        <dt>max_input_time:</dt>
-        <dd><!--[$max_input_time|default:"&nbsp;"]--></dd>
-    </dl>
-    <br style="clear: left" />
-</div>
-<br />
-<div class="configbox">
-    <p style="font-weight: 700"><!--[gt text="Version-Check"]--></p>
+        $('mailfiles').observe('click', maCheckMailerEntry);
+        $('mailfiles').observe('keyup', maCheckMailerEntry);
 
-    <!--[gt text="Your Version"]-->: <!--[$yourversion]--><br />
-    <!--[if $yourversion < $newestversion]-->
-        <!--[gt text="There is a new Version available"]-->: <!--[$newestversion]--><br />
-        <a href="http://code.zikula.org/mediaattach/downloads" title="<!--[gt text="Download the newest version of MediaAttach"]-->"><!--[gt text="Download now"]--></a><br />
-    <!--[else]-->
-        <!--[gt text="Your version is the newest"]-->
+        <!--[if $pncore.MediaAttach.shrinkimages eq 0]-->
+        $('ma_shrinksize').hide();
+        <!--[/if]-->
+        $('shrinkimages').observe('click', maCheckShrinkEntry);
+        $('shrinkimages').observe('keyup', maCheckShrinkEntry);
+
+        <!--[if $pncore.MediaAttach.usethumbcropper eq 0]-->
+        $('ma_cropsizemode').hide();
+        <!--[/if]-->
+        $('usethumbcropper').observe('click', maCheckCropSizeEntry);
+        $('usethumbcropper').observe('keyup', maCheckCropSizeEntry);
+
+        $('catmodecategories').observe('change', maCheckCatMode1);
+        $('catmodecategories').observe('keyup', maCheckCatMode1);
+        $('catmodemodules').observe('change', maCheckCatMode2);
+        $('catmodemodules').observe('keyup', maCheckCatMode2);
+        $('catmodeusers').observe('change', maCheckCatMode3);
+        $('catmodeusers').observe('keyup', maCheckCatMode3);
+        $('catdefaultmode').observe('change', maCheckCatModes);
+        $('catdefaultmode').observe('keyup', maCheckCatModes);
+        /* ]]> */
+    </script>
+
+    <!--[if $updirexists]-->
+    <!--[if $updirisdir]-->
+    <!--[if $updiriswritable && $htaccessexists == 0]-->
+    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="generatehtaccess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_htaccess" class="maform">
+        <fieldset>
+            <legend><!--[gt text="Generate .htaccess"]--></legend>
+            <p class="z-warningmsg"><!--[gt text="MediaAttach can automatically write a .htaccess file into your upload directory to avoid direct access to uploaded files. Notice that not all webservers support .htaccess files."]--></p>
+            <input name="submit" type="submit" value="<!--[gt text="Generate"]-->" class="maadminright" />
+        </fieldset>
+    </form>
     <!--[/if]-->
-</div>
+    <!--[/if]-->
+    <!--[/if]-->
+
+    <div class="z-form">
+        <p class="z-informationmsg"><!--[gt text="Important settings in php.ini, which are relevant for uploads"]--></p>
+        <div class="z-formrow">
+            <span class="z-label">open_basedir</span>
+            <span><!--[$open_basedir|default:"&nbsp;"]--></span>
+        </div>
+        <div class="z-formrow">
+            <span class="z-label">upload_tmp_dir</span>
+            <span><!--[$upload_tmp_dir|default:"&nbsp;"]--></span>
+        </div>
+        <div class="z-formrow">
+            <span class="z-label">file_uploads</span>
+            <span><!--[$file_uploads|default:"&nbsp;"]--></span>
+        </div>
+        <div class="z-formrow">
+            <span class="z-label">upload_max_filesize</span>
+            <span><!--[$upload_max_filesize|default:"&nbsp;"]--></span>
+        </div>
+        <div class="z-formrow">
+            <span class="z-label">post_max_size</span>
+            <span><!--[$post_max_size|default:"&nbsp;"]--></span>
+        </div>
+        <div class="z-formrow">
+            <span class="z-label">max_input_time</span>
+            <span><!--[$max_input_time|default:"&nbsp;"]--></span>
+        </div>
+    </div>
+
+    <p class="z-informationmsg">
+        <!--[gt text="Version check"]--> | 
+        <!--[gt text="Your version"]-->: <!--[$yourversion]--> | 
+        <!--[if $yourversion < $newestversion]-->
+        <!--[gt text="There is a new Version available"]-->: <!--[$newestversion]--> | 
+        <a href="http://code.zikula.org/mediaattach/downloads" title="<!--[gt text="Download the newest version of MediaAttach"]-->"><!--[gt text="Download now"]--></a> | 
+        <!--[else]-->
+        <!--[gt text="Your version is the newest."]-->
+        <!--[/if]-->
+    </p>
 
 </div>
 <!--[include file="MediaAttach_admin_footer.htm"]-->
