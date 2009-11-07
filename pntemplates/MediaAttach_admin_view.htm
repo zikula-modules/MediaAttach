@@ -4,108 +4,120 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname="core" src="lists.gif" set="icons/large" __alt="Admin files" ]--></div>
+    <div class="z-adminpageicon"><!--[pnimg modname="core" src="lists.gif" set="icons/large" __alt="Admin files" ]--></div>
 
-<!--[if $definition.state eq 1]-->
-    <h3><!--[pnimg src="folder_favorites.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="Admin files"]--></h3>
+    <!--[if $definition.state eq 1]-->
+    <h2><!--[gt text="Admin files"]--></h2>
 
-    <p style="font-weight: 700">
-        <a id="myuploadform_switch" href="javascript:void(0);" title="<!--[gt text="Upload files"]-->" style="display: none">
-            <!--[gt text="Upload files"]-->
-        </a>
-<!--[if $activateExternalVideos]-->
-      | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[gt text="Embed external video"]-->" style="display: none">
-            <!--[gt text="Embed external video"]-->
-        </a>
-<!--[/if]-->
-        <br />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform"]-->" title="<!--[gt text="Import files from a server directory"]-->">
-            <!--[gt text="Import files from a server directory"]-->
-        </a>
-<!--[assign var="numImportModules" value=$importModules|@count]-->
-<!--[if $numImportModules > 0]-->
-        <br />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importmodform"]-->" title="<!--[gt text="Import files from another module"]-->">
-            <!--[gt text="Import files from another module"]-->
-        </a>
-<!--[/if]-->
-    </p>
+    <div class="z-menu">
+        <span class="z-menuitem-title">
+            [ <a id="myuploadform_switch" href="javascript:void(0);" title="<!--[gt text="Upload files"]-->" style="display: none"><!--[gt text="Upload files"]--></a>
+
+            <!--[if $activateExternalVideos]-->
+            | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[gt text="Embed external video"]-->" style="display: none">
+                <!--[gt text="Embed external video"]-->
+            </a>
+            <!--[/if]-->
+
+            |  <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform"]-->" title="<!--[gt text="Import files from a server directory"]-->"><!--[gt text="Import files from a server directory"]--></a>
+            <!--[assign var="numImportModules" value=$importModules|@count]-->
+
+            <!--[if $numImportModules > 0]-->
+            |  <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importmodform"]-->" title="<!--[gt text="Import files from another module"]-->"><!--[gt text="Import files from another module"]--></a>
+            <!--[/if]-->
+            ]
+        </span>
+    </div>
 
     <form class="z-form" id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createupload"]-->" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <legend><!--[gt text="Upload files"]--></legend>
+        <div>
             <input type="hidden" name="authid" id="MediaAttach_authid" value="<!--[$authid]-->" />
             <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="MediaAttach" />
-
-            <label><!--[gt text="Allowed formats"]-->:</label>
-            <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
-                <span id="showformats"><!--[gt text="show"]--></span>
-                <span id="hideformats" style="display: none"><!--[gt text="hide"]--></span>
-            </a>
-            <p id="allowedformats" style="float: left; margin-left: 13.3em"><!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]--></p><br />
-
-            <label><!--[gt text="Max. size"]-->:</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="<!--[$definition.maxsize]-->" />
-            <!--[mafilesize size=$definition.maxsize]--><br />
+            <fieldset>
+                <legend><!--[gt text="Upload files"]--></legend>
+                <div class="z-formrow">
+                    <label><!--[gt text="Allowed formats"]--></label>
+                    <div>
+                        <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
+                            <span id="showformats"><!--[gt text="show"]--></span>
+                            <span id="hideformats" style="display: none"><!--[gt text="hide"]--></span>
+                        </a>
+                    </div>
+                </div>
+                <p id="allowedformats" class="z-formnote"><!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]--></p>
+                <div class="z-formrow">
+                    <label><!--[gt text="Max. size"]--></label>
+                    <span><!--[mafilesize size=$definition.maxsize]--></span>
+                </div>
+                <!--[if $usequota eq 1]-->
+                <div class="z-formrow">
+                    <label><!--[gt text="Quota"]--></label>
+                    <span><!--[gt text="You have"]--> <!--[mafilesize size=$usedquota]--> <!--[gt text="of"]--> <!--[mafilesize size=$allowedquota]--> <!--[gt text="used"]--></span>
+                </div>
+                <!--[/if]-->
 
-            <!--[if $usequota eq 1]-->
-                <label><!--[gt text="Quota"]-->:</label>
-                <!--[gt text="You have"]--> <!--[mafilesize size=$usedquota]--> <!--[gt text="of"]--> <!--[mafilesize size=$allowedquota]--> <!--[gt text="used"]--><br />
-            <!--[/if]-->
-            <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
+                <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
                 <!--[gt text="Choose Category" assign="lblDef"]-->
                 <div id="uploadformwrappernonjs">
-                <!--[foreach item="currentfilenum" from=$numArr]-->
+                    <!--[foreach item="currentfilenum" from=$numArr]-->
                     <div style="margin: 5px 20px; padding-left: 20px">
                         <p style="font-weight: 700"><!--[gt text="File"]--><!--[if $definition.numfiles > 1]--> <!--[$currentfilenum]--><!--[/if]--></p>
 
-                        <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->"><!--[gt text="File"]--></label>
-                        <input id="MediaAttach_uploadfile<!--[$currentfilenum]-->" name="MediaAttach_uploadfile<!--[$currentfilenum]-->" type="file" /><br />
-
-                        <label for="MediaAttach_title<!--[$currentfilenum]-->"><!--[gt text="Title"]--></label>
-                        <input id="MediaAttach_title<!--[$currentfilenum]-->" name="MediaAttach_title<!--[$currentfilenum]-->" type="text" maxLength="64" /><br />
-
-                        <label for="MediaAttach_description<!--[$currentfilenum]-->"><!--[gt text="Description"]--></label>
-                        <textarea id="MediaAttach_description<!--[$currentfilenum]-->" name="MediaAttach_description<!--[$currentfilenum]-->" rows="3" cols="30"></textarea><br />
-
-                        <label for="mafilecats_<!--[$currentfilenum]-->_Main_"><!--[gt text="Categories"]-->:</label><br />
-                        <!--[nocache]-->
-                        <ul class="maCatSelector">
-                        <!--[foreach from=$categories key=property item=category]-->
-                            <li><!--[selector_category category=$category name="mafilecats_`$currentfilenum`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
-                        <!--[/foreach]-->
-                        </ul>
-                        <!--[/nocache]-->
-                        <br />
+                        <div class="z-formrow">
+                            <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->"><!--[gt text="File"]--></label>
+                            <input id="MediaAttach_uploadfile<!--[$currentfilenum]-->" name="MediaAttach_uploadfile<!--[$currentfilenum]-->" type="file" />
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_title<!--[$currentfilenum]-->"><!--[gt text="Title"]--></label>
+                            <input id="MediaAttach_title<!--[$currentfilenum]-->" name="MediaAttach_title<!--[$currentfilenum]-->" type="text" />
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_description<!--[$currentfilenum]-->"><!--[gt text="Description"]--></label>
+                            <textarea id="MediaAttach_description<!--[$currentfilenum]-->" name="MediaAttach_description<!--[$currentfilenum]-->" rows="3" cols="30"></textarea>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="mafilecats_<!--[$currentfilenum]-->_Main_"><!--[gt text="Categories"]--></label>
+                            <!--[nocache]-->
+                            <!--[foreach from=$categories key=property item=category]-->
+                            <div class="z-formnote"><!--[selector_category category=$category name="mafilecats_`$currentfilenum`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></div>
+                            <!--[/foreach]-->
+                            <!--[/nocache]-->
+                        </div>
                     </div>
-                <!--[/foreach]-->
+                    <!--[/foreach]-->
                 </div>
 
                 <div id="uploadformwrapperjs" style="display: none">
                     <div id="fileInputFrame">
-                        <label><!--[gt text="Max. files"]-->:</label>
-                        <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="<!--[$definition.numfiles]-->" />
-                        <!--[$definition.numfiles]-->
-
-                        <label id="labelfile" for="MediaAttach_uploadfile"><!--[gt text="File"]-->:</label>
-                        <input id="MediaAttach_uploadfile" type="file" />
-
-                        <label id="labeltitle" for="MediaAttach_title"><!--[gt text="Title"]-->:</label>
-                        <input id="MediaAttach_title" type="text" maxLength="64" />
-
-                        <label id="labeldesc" for="MediaAttach_description"><!--[gt text="Description"]-->:</label>
-                        <textarea id="MediaAttach_description" rows="3" cols="30"></textarea>
-
-                        <label for="mafilecats_Main_"><!--[gt text="Categories"]-->:</label>
-                        <!--[nocache]-->
-                        <ul id="maCatSelector" class="maCatSelector">
-                        <!--[foreach from=$categories key=property item=category]-->
-                            <li><!--[selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
-                        <!--[/foreach]-->
-                        </ul>
-                        <!--[/nocache]-->
-
-                        <input type="button" id="addNewUploadFile" value="<!--[gt text="Add file"]-->" />
+                        <div class="z-formrow">
+                            <label><!--[gt text="Max. files"]--></label>
+                            <span><!--[$definition.numfiles]--></span>
+                            <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="<!--[$definition.numfiles]-->" />
+                        </div>
+                        <div class="z-formrow">
+                            <label id="labelfile" for="MediaAttach_uploadfile"><!--[gt text="File"]--></label>
+                            <input id="MediaAttach_uploadfile" type="file" />
+                        </div>
+                        <div class="z-formrow">
+                            <label id="labeltitle" for="MediaAttach_title"><!--[gt text="Title"]--></label>
+                            <input id="MediaAttach_title" type="text" />
+                        </div>
+                        <div class="z-formrow">
+                            <label id="labeldesc" for="MediaAttach_description"><!--[gt text="Description"]--></label>
+                            <textarea id="MediaAttach_description" rows="3" cols="30"></textarea>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="mafilecats_Main_"><!--[gt text="Categories"]--></label>
+                            <!--[nocache]-->
+                            <!--[foreach from=$categories key=property item=category]-->
+                            <div class="z-formnote"><!--[selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></div>
+                            <!--[/foreach]-->
+                            <!--[/nocache]-->
+                        </div>
+                        <div class="z-formbuttons">
+                            <input type="button" id="addNewUploadFile" value="<!--[gt text="Add file"]-->" />
+                        </div>
                     </div>
 
                     <ul id="addedUploadList">
@@ -119,89 +131,96 @@
 
                 <iframe id="myuploadframe" name="myuploadframe" src="ajax.php?module=MediaAttach&amp;func=performupload<!--[*admin*]-->" style="display: none"></iframe>
 
-                <br />
+
                 <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
                 <input type="submit" value="<!--[gt text="Upload"]-->" />
                 <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]-->
-                <span id="myuploadresult" style="display: none"><!--[gt text="Uploading..."]--></span><br />
-            <!--[else]-->
+                <span id="myuploadresult" style="display: none"><!--[gt text="Uploading..."]--></span>
+                <!--[else]-->
                 <p><!--[gt text="You have no more memory for uploads available"]--></p>
-            <!--[/if]-->
-        </fieldset>
+                <!--[/if]-->
+            </fieldset>
+        </div>
     </form>
 
-<!--[if $activateExternalVideos]-->
-<form class="z-form" id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post">
-    <fieldset>
-        <legend><!--[gt text="Embed external video"]--></legend>
-        <input type="hidden" name="authid" value="<!--[$authid]-->" />
-        <input type="hidden" name="MediaAttach_modname" value="MediaAttach" />
-        <input type="hidden" name="MediaAttach_redirect" value="<!--[$redirect]-->" />
-        <input type="hidden" name="MediaAttach_objectid" value="99999999" />
-
-        <label class="mamarginleft"><!--[gt text="Supported providers"]-->:</label>
-        <a id="supportedproviders_switch" href="javascript:void(0);" style="display: none">
-            <span id="showproviders"><!--[gt text="show"]--></span>
-            <span id="hideproviders" style="display: none"><!--[gt text="hide"]--></span>
-        </a>
-        <p id="supportedproviders" style="float: left; margin-left: 14em"><!--[foreach name="proloop" item="provider" from=$supportedProviders]--><!--[$provider.name|pnvarprepfordisplay]--><!--[if !$smarty.foreach.proloop.last]-->, <!--[/if]--><!--[/foreach]--></p><br />
-
-        <label id="lblurl" for="MediaAttach_videourl" class="mamarginleft"><!--[gt text="Video Page URL"]-->:</label>
-        <input id="MediaAttach_videourl" name="MediaAttach_videourl" type="text" size="40" />
-        <input type="submit" value="<!--[gt text="Submit"]-->" />
-        <br />
-
-        <label for="maextvidcats_Main_" class="mamarginleft"><!--[gt text="Categories"]-->:</label><br />
-        <!--[nocache]-->
-        <ul class="maCatSelector" style="margin-left: 14em">
-        <!--[foreach from=$categories key=property item=category]-->
-            <li><!--[selector_category category=$category name="maextvidcats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
-        <!--[/foreach]-->
-        </ul>
-        <!--[/nocache]-->
-    </fieldset>
-</form>
-<!--[/if]-->
+    <!--[if $activateExternalVideos]-->
+    <form class="z-form" id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post">
+        <div>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <input type="hidden" name="MediaAttach_modname" value="MediaAttach" />
+            <input type="hidden" name="MediaAttach_redirect" value="<!--[$redirect]-->" />
+            <input type="hidden" name="MediaAttach_objectid" value="99999999" />
+            <fieldset>
+                <legend><!--[gt text="Embed external video"]--></legend>
+                <div class="z-formrow">
+                    <label><!--[gt text="Supported providers"]--></label>
+                    <div>
+                        <a id="supportedproviders_switch" href="javascript:void(0);" style="display: none">
+                            <span id="showproviders"><!--[gt text="show"]--></span>
+                            <span id="hideproviders" style="display: none"><!--[gt text="hide"]--></span>
+                        </a>
+                    </div>
+                </div>
+                <p class="z-formnote" id="supportedproviders"><!--[foreach name="proloop" item="provider" from=$supportedProviders]--><!--[$provider.name|pnvarprepfordisplay]--><!--[if !$smarty.foreach.proloop.last]-->, <!--[/if]--><!--[/foreach]--></p>
+                <div class="z-formrow">
+                    <label id="lblurl" for="MediaAttach_videourl"><!--[gt text="Video Page URL"]--></label>
+                    <input id="MediaAttach_videourl" name="MediaAttach_videourl" type="text" size="40" />
+                </div>
+                <div class="z-formrow">
+                    <label for="maextvidcats_Main_"><!--[gt text="Categories"]--></label>
+                    <!--[nocache]-->
+                    <!--[foreach from=$categories key=property item=category]-->
+                    <div class="z-formnote"><!--[selector_category category=$category name="maextvidcats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></div>
+                    <!--[/foreach]-->
+                    <!--[/nocache]-->
+                </div>
+                <div class="z-formbuttons">
+                    <input type="submit" value="<!--[gt text="Submit"]-->" />
+                </div>
+            </fieldset>
+        </div>
+    </form>
+    <!--[/if]-->
 
     <!--[include file="MediaAttach_navform.html" hiddenType="admin" hiddenFunc="view" categorization=false sorting=true perpage=true displayswitch=true]-->
 
     <!--[if $preview]-->
-        <!--[if $onlyimages]-->
-            <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
-        <!--[else]-->
-            <!--[include file="MediaAttach_admin_upload_inline.htm"]-->
-        <!--[/if]-->
+    <!--[if $onlyimages]-->
+    <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
     <!--[else]-->
-        <!--[include file="MediaAttach_admin_upload_filelist.htm"]-->
+    <!--[include file="MediaAttach_admin_upload_inline.htm"]-->
+    <!--[/if]-->
+    <!--[else]-->
+    <!--[include file="MediaAttach_admin_upload_filelist.htm"]-->
     <!--[/if]-->
 
     <!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1]-->
 
-    <script type="text/javascript" language="javascript">
-/* <![CDATA[ */
+    <script type="text/javascript">
+        /* <![CDATA[ */
         maInitUploadFormView();
 
         <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
-            var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]-->);
-            var errorAllowedFilenum = "<!--[gt text="You are not allowed to upload more than %s files at once." tag1=$definition.numfiles]-->";
-            var errorAlreadySelected = "<!--[gt text="This file has already been selected."]-->";
-            var errorExtensionNotAllowed = "<!--[gt text="The filetype of this file is not allowed."]-->";
-            maInitUploadFormFunction();
+        var allowedExtensions = new Array(<!--[foreach name="formatloop" item="currentformat" from=$definition.formats]-->".<!--[$currentformat.extension]-->"<!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]-->);
+        var errorAllowedFilenum = "<!--[gt text="You are not allowed to upload more than %s files at once." tag1=$definition.numfiles]-->";
+        var errorAlreadySelected = "<!--[gt text="This file has already been selected."]-->";
+        var errorExtensionNotAllowed = "<!--[gt text="The filetype of this file is not allowed."]-->";
+        maInitUploadFormFunction();
 
-            var errorNoFilesSelected = "<!--[gt text="No file has been chosen yet."]-->";
-            var errorAlreadyRunning = "<!--[gt text="There is already a file being uploaded."]-->";
-            $('myuploadform').observe('submit', maSubmitUploadForm);
-            $('myuploadframe').observe('load', maResponseUpload);
+        var errorNoFilesSelected = "<!--[gt text="No file has been chosen yet."]-->";
+        var errorAlreadyRunning = "<!--[gt text="There is already a file being uploaded."]-->";
+        $('myuploadform').observe('submit', maSubmitUploadForm);
+        $('myuploadframe').observe('load', maResponseUpload);
         <!--[/if]-->
 
         <!--[if $activateExternalVideos]-->
-            maInitExtVideoFormView();
+        maInitExtVideoFormView();
         <!--[/if]-->
-/* ]]> */
+        /* ]]> */
     </script>
-<!--[else]-->
+    <!--[else]-->
     <p><!--[gt text='To use admin files a definition must be created for MediaAttach. Therefore click in the menu on "definitions".']--></p>
-<!--[/if]-->
+    <!--[/if]-->
 
 </div>
 <!--[include file="MediaAttach_admin_footer.htm"]-->
