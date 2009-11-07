@@ -4,77 +4,85 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname="core" src="easymoblog.gif" set="icons/large" __alt="Upload definitions" ]--></div>
+    <div class="z-adminpageicon"><!--[pnimg modname="core" src="easymoblog.gif" set="icons/large" __alt="Upload definitions" ]--></div>
 
-<!--[if $modules eq 0]-->
-    <p class="centered">
+    <!--[if $modules eq 0]-->
+    <p class="z-center z-warningmsg">
         <!--[gt text="MediaAttach could not find a module, for which it has been activated. Please go to the module settings and activate MediaAttach for one or more modules of your choice."]-->
     </p>
-<!--[else]-->
-    <h3><!--[pnimg src="easymoblog.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="Upload definitions"]--></h3>
+    <!--[else]-->
+    <h2><!--[gt text="Upload definitions"]--></h2>
 
     <!--[foreach item="currentdef" from=$definitions]-->
-        <div style="margin: 5px 20px; padding-left: 20px; padding-bottom: 20px; border: 1px solid #000">
-            <p style="font-weight: 700"><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)</p>
+    <div style="margin: 5px 20px; padding-left: 20px; padding-bottom: 20px; border: 1px solid #000">
+        <p><strong><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)</strong></p>
 
-            <!--[assign var="currentmod" value=$currentdef.modname]-->
-            <!--[if $currentdef.state eq 0]-->
-                <a id="new_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none">
-                    <!--[gt text="Create a new definition"]-->
-                </a>
-                <div id="new_definition<!--[$currentmod]-->">
-                    <form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createdefinition"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
-                        <fieldset>
-                            <legend><!--[gt text="Add definition"]--></legend>
-                            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <!--[assign var="currentmod" value=$currentdef.modname]-->
+        <!--[if $currentdef.state eq 0]-->
+        <p><a id="new_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none"><!--[gt text="Create a new definition"]--></a></p>
+        <div id="new_definition<!--[$currentmod]-->">
+            <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createdefinition"]-->" method="post" enctype="application/x-www-form-urlencoded">
+                <div>
+                    <input type="hidden" name="authid" value="<!--[$authid]-->" />
+                    <fieldset>
+                        <legend><!--[gt text="Add definition"]--></legend>
 
-                            <label for="MediaAttach_modname" class="maadminleft"><!--[gt text="Module"]-->:</label>
-                            <p style="float: left"><!--[$currentmod]--></p>
-                            <input type="hidden" id="MediaAttach_modname" name="modname" value="<!--[$currentmod]-->" /><br />
-
-                            <label for="MediaAttach_groups<!--[$currentmod]-->" class="maadminleft"><!--[gt text="Groups"]-->:</label>
-                            <select id="MediaAttach_groups<!--[$currentmod]-->" name="groups[]" size="10" multiple="multiple" style="width: 150px">
+                        <div class="z-formrow">
+                            <label for="MediaAttach_modname"><!--[gt text="Module"]--></label>
+                            <span><!--[$currentmod]--></span>
+                            <input type="hidden" id="MediaAttach_modname" name="modname" value="<!--[$currentmod]-->" />
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_groups<!--[$currentmod]-->"><!--[gt text="Groups"]--></label>
+                            <select id="MediaAttach_groups<!--[$currentmod]-->" name="groups[]" size="5" multiple="multiple">
                                 <!--[foreach item="currentgroup" from=$groups]-->
-                                    <option value="<!--[$currentgroup.gid]-->" selected="selected"><!--[$currentgroup.groupname]--></option>
+                                <option value="<!--[$currentgroup.gid]-->" selected="selected"><!--[$currentgroup.groupname]--></option>
                                 <!--[/foreach]-->
-                            </select><br /><br />
-
-                            <label for="MediaAttach_displayfiles" class="maadminleft"><!--[gt text="Show uploaded files in the user section"]-->:</label>
+                            </select>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_displayfiles"><!--[gt text="Show uploaded files in the user section"]--></label>
                             <select id="MediaAttach_displayfiles" name="displayfiles" size="1">
                                 <option value="0"><!--[gt text="None"]--></option>
                                 <option value="1"><!--[gt text="Only own"]--></option>
                                 <option value="2"><!--[gt text="All"]--></option>
-                            </select><br /><br />
-
-                            <input type="checkbox" id="MediaAttach_sendmails<!--[$currentmod]-->" name="sendmails" value="1" onclick="maCheckMailDiv('<!--[$currentmod]-->')" onkeyup="maCheckMailDiv('<!--[$currentmod]-->')" class="maadminright" />
-                            <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[gt text="Send a mail after uploading"]--></label><br />
+                            </select>
+                        </div>
+                        <div class="z-formrow">
+                            <input type="checkbox" id="MediaAttach_sendmails<!--[$currentmod]-->" name="sendmails" value="1" onclick="maCheckMailDiv('<!--[$currentmod]-->')" onkeyup="maCheckMailDiv('<!--[$currentmod]-->')" />
+                            <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[gt text="Send a mail after uploading"]--></label>
                             <div id="divmail<!--[$currentmod]-->">
-                                <label for="MediaAttach_recipient" class="maadminleft"><!--[gt text="Recipient of the mail"]-->:</label>
-                                <input type="text" id="MediaAttach_recipient" name="recipient" maxLength="100" /><br />
+                                <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]-->:</label>
+                                <input type="text" id="MediaAttach_recipient" name="recipient" />
                             </div>
-                            <br />
-
-                            <label for="MediaAttach_maxsize" class="maadminleft"><!--[gt text="Maximum file size during upload"]-->:</label>
-                            <input type="text" id="MediaAttach_maxsize" name="maxsize" maxLength="20" value="2000" style="text-align: right" />&nbsp;<!--[gt text="KB"]--><br />
-
-                            <label for="MediaAttach_downloadmode" class="maadminleft"><!--[gt text="Download mode"]-->:</label>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_maxsize"><!--[gt text="Maximum file size during upload"]--></label>
+                            <span><input type="text" id="MediaAttach_maxsize" name="maxsize" value="2000" />&nbsp;<!--[gt text="KB"]--></span>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_downloadmode"><!--[gt text="Download mode"]--></label>
                             <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
                                 <option value="0" selected="selected"><!--[gt text="Physical"]--></option>
                                 <option value="1"><!--[gt text="Inline"]--></option>
-                            </select><br />
-
-                            <label for="MediaAttach_naming<!--[$currentmod]-->" class="maadminleft"><!--[gt text="Naming convention"]-->:</label>
+                            </select>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_naming<!--[$currentmod]-->"><!--[gt text="Naming convention"]--></label>
                             <select id="MediaAttach_naming<!--[$currentmod]-->" name="naming" size="1" onchange="maCheckNamingDiv('<!--[$currentmod]-->')" onblur="maCheckNamingDiv('<!--[$currentmod]-->')" onkeyup="maCheckNamingDiv('<!--[$currentmod]-->')">
                                 <option value="0" selected="selected"><!--[gt text="Original filename"]--></option>
                                 <option value="1"><!--[gt text="Random filename"]--></option>
                                 <option value="2"><!--[gt text="Numbered with prefix"]--></option>
-                            </select><br />
+                            </select>
                             <div id="divnamingprefix<!--[$currentmod]-->">
-                                <label for="MediaAttach_namingprefix" class="maadminleft"><!--[gt text="Prefix"]-->:</label>
-                                <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxLength="40" /><br />
+                                <div class="z-formrow">
+                                    <label for="MediaAttach_namingprefix"><!--[gt text="Prefix"]--></label>
+                                    <input type="text" id="MediaAttach_namingprefix" name="namingprefix" />
+                                </div>
                             </div>
-
-                            <label for="MediaAttach_numfiles" class="maadminleft"><!--[gt text="Number of files"]-->:</label>
+                        </div>
+                        <div class="z-formrow">
+                            <label for="MediaAttach_numfiles"><!--[gt text="Number of files"]--></label>
                             <select id="MediaAttach_numfiles" name="numfiles" size="1">
                                 <option value="1" selected="selected">1</option>
                                 <option value="2">2</option>
@@ -85,95 +93,114 @@
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                             </select>
-                            <br /><br />
-
-                            <input name="submit" type="submit" value="<!--[gt text="Add definition"]-->" class="maadminright" />
-                        </fieldset>
-                    </form>
+                        </div>
+                        <div class="z-formbuttons">
+                            <input name="submit" type="submit" value="<!--[gt text="Add definition"]-->"/>
+                        </div>
+                    </fieldset>
                 </div>
-
-                <script type="text/javascript" language="javascript">
-                    /* <![CDATA[ */
-                    initNewDefinition('<!--[$currentmod]-->');
-
-                    function maSwitchNewDef<!--[$currentmod]-->(event) {
-                        maSwitchDisplayState('new_definition<!--[$currentmod]-->');
-                        Event.stop(event);
-                    }
-                    $('new_definition<!--[$currentmod]-->_switch').observe('click', maSwitchNewDef<!--[$currentmod]-->);
-                    $('new_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchNewDef<!--[$currentmod]-->);
-                    /* ]]> */
-                </script>
-
-            <!--[else]-->
-                <a id="show_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none">
-                    <span id="showlink<!--[$currentmod]-->one"><!--[gt text="Show definition"]--></span>
-                    <span id="showlink<!--[$currentmod]-->two" style="display: none"><!--[gt text="Hide definition"]--></span>
-                </a>
-                <div id="show_definition<!--[$currentmod]-->" style="text-align: left">
-                    <h3><!--[gt text="Definition for"]--> <!--[$currentmod]--></h3>
-                    <dl id="deflist<!--[$currentmod]-->" class="madeflist">
-                        <dt><!--[gt text="Module"]--></dt>
-                        <dd><!--[$currentmod]--></dd>
-                        <dt><!--[gt text="Groups"]--></dt>
-                        <dd><!--[foreach name="grouploop" item="currentgroup" from=$currentdef.groups]--><!--[$currentgroup.groupname]--><!--[if $smarty.foreach.grouploop.last ne true]-->, <!--[/if]--><!--[/foreach]--></dd>
-                        <dt><!--[gt text="Show uploaded files in the user section"]--></dt>
-                        <dd>
-                            <!--[if $currentdef.displayfiles eq 0]--><!--[gt text="None"]-->
-                            <!--[elseif $currentdef.displayfiles eq 1]--><!--[gt text="Only own"]-->
-                            <!--[elseif $currentdef.displayfiles eq 2]--><!--[gt text="All"]-->
-                            <!--[/if]-->
-                        </dd>
-                        <dt><!--[gt text="Send a mail after uploading"]--></dt>
-                        <dd>
-                            <!--[if $currentdef.sendmails eq 1]--><!--[gt text="Yes"]-->
-                            <!--[else]--><!--[gt text="No"]-->
-                            <!--[/if]-->
-                        </dd>
-                <!--[if $currentdef.sendmails eq 1]-->
-                        <dt><!--[gt text="Recipient of the mail"]--></dt>
-                        <dd><!--[$currentdef.recipient]--></dd>
-                <!--[/if]-->
-                        <dt><!--[gt text="Maximum file size during upload"]--></dt>
-                        <dd><!--[math equation="x/1024" x=$currentdef.maxsize format="%.1f"]-->&nbsp;<!--[gt text="KB"]--></dd>
-                        <dt><!--[gt text="Download mode"]--></dt>
-                        <dd>
-                            <!--[if $currentdef.downloadmode eq 1]--><!--[gt text="Inline"]-->
-                            <!--[else]--><!--[gt text="Physical"]-->
-                            <!--[/if]-->
-                        </dd>
-                        <dt><!--[gt text="Naming convention"]--></dt>
-                        <dd>
-                            <!--[if $currentdef.naming eq 0]--><!--[gt text="Original filename"]-->
-                            <!--[elseif $currentdef.naming eq 1]--><!--[gt text="Random filename"]-->
-                            <!--[elseif $currentdef.naming eq 2]--><!--[gt text="Numbered with prefix"]--> <em><!--[$currentdef.namingprefix]--></em>
-                            <!--[/if]-->
-                        </dd>
-                        <dt><!--[gt text="Number of files"]--></dt>
-                        <dd><!--[$currentdef.numfiles]--></dd>
-                    </dl>
-                    <br style="clear: left" />
-                    <p><a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="editdefinition" did=$currentdef.did]-->">
-                        <!--[gt text="Edit this definition"]-->
-                    </a></p>
-                </div>
-
-                <script type="text/javascript" language="javascript">
-                    /* <![CDATA[ */
-                    initShowDefinition('<!--[$currentmod]-->');
-
-                    function maSwitchShowDef<!--[$currentmod]-->(event) {
-                        maCheckDefLink('<!--[$currentmod]-->');
-                        Event.stop(event);
-                    }
-                    $('show_definition<!--[$currentmod]-->_switch').observe('click', maSwitchShowDef<!--[$currentmod]-->);
-                    $('show_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchShowDef<!--[$currentmod]-->);
-                    /* ]]> */
-                </script>
-            <!--[/if]-->
+            </form>
         </div>
+
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            initNewDefinition('<!--[$currentmod]-->');
+
+            function maSwitchNewDef<!--[$currentmod]-->(event) {
+                maSwitchDisplayState('new_definition<!--[$currentmod]-->');
+                Event.stop(event);
+            }
+            $('new_definition<!--[$currentmod]-->_switch').observe('click', maSwitchNewDef<!--[$currentmod]-->);
+            $('new_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchNewDef<!--[$currentmod]-->);
+            /* ]]> */
+        </script>
+
+        <!--[else]-->
+        <p>
+            <a id="show_definition<!--[$currentmod]-->_switch" href="javascript:void(0);" style="display: none">
+                <span id="showlink<!--[$currentmod]-->one"><!--[gt text="Show definition"]--></span>
+                <span id="showlink<!--[$currentmod]-->two" style="display: none"><!--[gt text="Hide definition"]--></span>
+            </a>
+        </p>
+        <div id="show_definition<!--[$currentmod]-->" class="z-form">
+            <h3 class="z-formnote"><!--[gt text="Definition for"]--> <!--[$currentmod]--></h3>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Module"]--></span>
+                <span><!--[$currentmod]--></span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Groups"]--></span>
+                <span>
+                    <!--[foreach name="grouploop" item="currentgroup" from=$currentdef.groups]--><!--[$currentgroup.groupname]--><!--[if $smarty.foreach.grouploop.last ne true]-->, <!--[/if]--><!--[/foreach]-->
+                </span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Show uploaded files in the user section"]--></span>
+                <span>
+                    <!--[if $currentdef.displayfiles eq 0]--><!--[gt text="None"]-->
+                    <!--[elseif $currentdef.displayfiles eq 1]--><!--[gt text="Only own"]-->
+                    <!--[elseif $currentdef.displayfiles eq 2]--><!--[gt text="All"]-->
+                    <!--[/if]-->
+                </span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Send a mail after uploading"]--></span>
+                <span>
+                    <!--[if $currentdef.sendmails eq 1]--><!--[gt text="Yes"]-->
+                    <!--[else]--><!--[gt text="No"]-->
+                    <!--[/if]-->
+                </span>
+            </div>
+            <!--[if $currentdef.sendmails eq 1]-->
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Recipient of the mail"]--></span>
+                <span><!--[$currentdef.recipient]--></span>
+            </div>
+            <!--[/if]-->
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Maximum file size during upload"]--></span>
+                <span><!--[math equation="x/1024" x=$currentdef.maxsize format="%.1f"]-->&nbsp;<!--[gt text="KB"]--></span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Download mode"]--></span>
+                <span>
+                    <!--[if $currentdef.downloadmode eq 1]--><!--[gt text="Inline"]-->
+                    <!--[else]--><!--[gt text="Physical"]-->
+                    <!--[/if]-->
+                </span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Naming convention"]--></span>
+                <span>
+                    <!--[if $currentdef.naming eq 0]--><!--[gt text="Original filename"]-->
+                    <!--[elseif $currentdef.naming eq 1]--><!--[gt text="Random filename"]-->
+                    <!--[elseif $currentdef.naming eq 2]--><!--[gt text="Numbered with prefix"]--> <em><!--[$currentdef.namingprefix]--></em>
+                    <!--[/if]-->
+                </span>
+            </div>
+            <div class="z-formrow">
+                <span class="z-label"><!--[gt text="Number of files"]--></span>
+                <span><!--[$currentdef.numfiles]--></span>
+            </div>
+            <p class="z-formnote"><a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="editdefinition" did=$currentdef.did]-->"><!--[gt text="Edit this definition"]--></a></p>
+        </div>
+
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            initShowDefinition('<!--[$currentmod]-->');
+
+            function maSwitchShowDef<!--[$currentmod]-->(event) {
+                maCheckDefLink('<!--[$currentmod]-->');
+                Event.stop(event);
+            }
+            $('show_definition<!--[$currentmod]-->_switch').observe('click', maSwitchShowDef<!--[$currentmod]-->);
+            $('show_definition<!--[$currentmod]-->_switch').observe('keypress', maSwitchShowDef<!--[$currentmod]-->);
+            /* ]]> */
+        </script>
+        <!--[/if]-->
+    </div>
     <!--[/foreach]-->
-<!--[/if]-->
+    <!--[/if]-->
 
 </div>
 <!--[include file="MediaAttach_admin_footer.htm"]-->

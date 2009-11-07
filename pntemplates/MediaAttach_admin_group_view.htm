@@ -8,9 +8,9 @@
 
     <h2><!--[gt text="File groups"]--></h2>
 
-    <a id="new_group_switch" href="javascript:void(0);" style="display: none">
-        <!--[gt text="Create a new group"]-->
-    </a>
+    <p>
+        <a id="new_group_switch" href="javascript:void(0);" style="display: none"><!--[gt text="Create a new group"]--></a>
+    </p>
 
     <div id="new_group">
         <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="creategroup"]-->" method="post" enctype="application/x-www-form-urlencoded">
@@ -32,18 +32,18 @@
                     </div>
                     <div class="z-formrow">
                         <label for="MediaAttach_image"><!--[gt text="Image"]--></label>
-                        <!--[maimageselect selected="modules/MediaAttach/pnimages/folder/folder.gif" type="groups"]-->
+                        <div><!--[maimageselect selected="modules/MediaAttach/pnimages/folder/folder.gif" type="groups"]--></div>
                     </div>
                     <div class="z-formrow">
                         <label for="MediaAttach_formats_select"><!--[gt text="File formats"]--></label>
-                        <select id="MediaAttach_formats_select" name="formats[]" size="10" multiple="multiple" style="width: 100px">
+                        <select id="MediaAttach_formats_select" name="formats[]" size="10" multiple="multiple">
                             <!--[foreach item="currentformat" from=$formats]-->
                             <option value="<!--[$currentformat.fid]-->" selected="selected"><!--[$currentformat.extension]--></option>
                             <!--[/foreach]-->
                         </select>
                     </div>
                     <div class="z-formbuttons">
-                        <input name="submit" type="submit" value="<!--[gt text="Add group"]-->" class="maright" />
+                        <input name="submit" type="submit" value="<!--[gt text="Add group"]-->" />
                     </div>
                 </fieldset>
             </div>

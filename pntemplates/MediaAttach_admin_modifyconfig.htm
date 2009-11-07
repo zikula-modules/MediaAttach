@@ -143,6 +143,7 @@
         <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" hookid="MediaAttach" module="MediaAttach"]-->
         <!--[pnformbutton id="submit" commandName="submit" text="Settings"]-->
     </div>
+
     <!--[/pnform]-->
 
     <script type="text/javascript">
@@ -179,51 +180,59 @@
     <!--[if $updirexists]-->
     <!--[if $updirisdir]-->
     <!--[if $updiriswritable && $htaccessexists == 0]-->
-    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="generatehtaccess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_htaccess" class="maform">
+    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="generatehtaccess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_htaccess">
         <fieldset>
             <legend><!--[gt text="Generate .htaccess"]--></legend>
-            <p class="z-warningmsg"><!--[gt text="MediaAttach can automatically write a .htaccess file into your upload directory to avoid direct access to uploaded files. Notice that not all webservers support .htaccess files."]--></p>
-            <input name="submit" type="submit" value="<!--[gt text="Generate"]-->" class="maadminright" />
+            <p class="z-formnote z-warningmsg"><!--[gt text="MediaAttach can automatically write a .htaccess file into your upload directory to avoid direct access to uploaded files. Notice that not all webservers support .htaccess files."]--></p>
+            <div class="z-formbuttons">
+                <input name="submit" type="submit" value="<!--[gt text="Generate"]-->" />
+            </div>
         </fieldset>
     </form>
     <!--[/if]-->
     <!--[/if]-->
     <!--[/if]-->
 
-    <div class="z-form">
-        <p class="z-informationmsg"><!--[gt text="Important settings in php.ini, which are relevant for uploads"]--></p>
-        <div class="z-formrow">
-            <span class="z-label">open_basedir</span>
-            <span><!--[$open_basedir|default:"&nbsp;"]--></span>
-        </div>
-        <div class="z-formrow">
-            <span class="z-label">upload_tmp_dir</span>
-            <span><!--[$upload_tmp_dir|default:"&nbsp;"]--></span>
-        </div>
-        <div class="z-formrow">
-            <span class="z-label">file_uploads</span>
-            <span><!--[$file_uploads|default:"&nbsp;"]--></span>
-        </div>
-        <div class="z-formrow">
-            <span class="z-label">upload_max_filesize</span>
-            <span><!--[$upload_max_filesize|default:"&nbsp;"]--></span>
-        </div>
-        <div class="z-formrow">
-            <span class="z-label">post_max_size</span>
-            <span><!--[$post_max_size|default:"&nbsp;"]--></span>
-        </div>
-        <div class="z-formrow">
-            <span class="z-label">max_input_time</span>
-            <span><!--[$max_input_time|default:"&nbsp;"]--></span>
-        </div>
-    </div>
+    <table class="z-datatable">
+        <thead>
+            <tr>
+                <th colspan="2"><!--[gt text="Important settings in php.ini, which are relevant for uploads"]--></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="z-odd">
+                <td>open_basedir</td>
+                <td><!--[$open_basedir|default:"&nbsp;"]--></td>
+            </tr>
+            <tr class="z-even">
+                <td>upload_tmp_dir</td>
+                <td><!--[$upload_tmp_dir|default:"&nbsp;"]--></td>
+            </tr>
+            <tr class="z-odd">
+                <td>file_uploads</td>
+                <td><!--[$file_uploads|default:"&nbsp;"]--></td>
+            </tr>
+            <tr class="z-even">
+                <td>upload_max_filesize</td>
+                <td><!--[$upload_max_filesize|default:"&nbsp;"]--></td>
+            </tr>
+            <tr class="z-odd">
+                <td>post_max_size</td>
+                <td><!--[$post_max_size|default:"&nbsp;"]--></td>
+            </tr>
+            <tr class="z-even">
+                <td>max_input_time</td>
+                <td><!--[$max_input_time|default:"&nbsp;"]--></td>
+            </tr>
+        </tbody>
+    </table>
 
     <p class="z-informationmsg">
-        <!--[gt text="Version check"]--> | 
-        <!--[gt text="Your version"]-->: <!--[$yourversion]--> | 
+        <!--[gt text="Version check"]--> |
+        <!--[gt text="Your version"]-->: <!--[$yourversion]--> |
         <!--[if $yourversion < $newestversion]-->
-        <!--[gt text="There is a new Version available"]-->: <!--[$newestversion]--> | 
-        <a href="http://code.zikula.org/mediaattach/downloads" title="<!--[gt text="Download the newest version of MediaAttach"]-->"><!--[gt text="Download now"]--></a> | 
+        <!--[gt text="There is a new Version available"]-->: <!--[$newestversion]--> |
+        <a href="http://code.zikula.org/mediaattach/downloads" title="<!--[gt text="Download the newest version of MediaAttach"]-->"><!--[gt text="Download now"]--></a> |
         <!--[else]-->
         <!--[gt text="Your version is the newest."]-->
         <!--[/if]-->

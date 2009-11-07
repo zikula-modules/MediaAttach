@@ -31,25 +31,25 @@
 <!--[/if]-->
     </p>
 
-    <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createupload"]-->" method="post" enctype="multipart/form-data" class="maform">
+    <form class="z-form" id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createupload"]-->" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend><!--[gt text="Upload files"]--></legend>
             <input type="hidden" name="authid" id="MediaAttach_authid" value="<!--[$authid]-->" />
             <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="MediaAttach" />
 
-            <label class="maleft"><!--[gt text="Allowed formats"]-->:</label>
+            <label><!--[gt text="Allowed formats"]-->:</label>
             <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
                 <span id="showformats"><!--[gt text="show"]--></span>
                 <span id="hideformats" style="display: none"><!--[gt text="hide"]--></span>
             </a>
             <p id="allowedformats" style="float: left; margin-left: 13.3em"><!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]--></p><br />
 
-            <label class="maleft"><!--[gt text="Max. size"]-->:</label>
+            <label><!--[gt text="Max. size"]-->:</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="<!--[$definition.maxsize]-->" />
             <!--[mafilesize size=$definition.maxsize]--><br />
 
             <!--[if $usequota eq 1]-->
-                <label class="maleft"><!--[gt text="Quota"]-->:</label>
+                <label><!--[gt text="Quota"]-->:</label>
                 <!--[gt text="You have"]--> <!--[mafilesize size=$usedquota]--> <!--[gt text="of"]--> <!--[mafilesize size=$allowedquota]--> <!--[gt text="used"]--><br />
             <!--[/if]-->
             <!--[if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota]-->
@@ -59,16 +59,16 @@
                     <div style="margin: 5px 20px; padding-left: 20px">
                         <p style="font-weight: 700"><!--[gt text="File"]--><!--[if $definition.numfiles > 1]--> <!--[$currentfilenum]--><!--[/if]--></p>
 
-                        <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->" class="maleft"><!--[gt text="File"]--></label>
+                        <label for="MediaAttach_uploadfile<!--[$currentfilenum]-->"><!--[gt text="File"]--></label>
                         <input id="MediaAttach_uploadfile<!--[$currentfilenum]-->" name="MediaAttach_uploadfile<!--[$currentfilenum]-->" type="file" /><br />
 
-                        <label for="MediaAttach_title<!--[$currentfilenum]-->" class="maleft"><!--[gt text="Title"]--></label>
+                        <label for="MediaAttach_title<!--[$currentfilenum]-->"><!--[gt text="Title"]--></label>
                         <input id="MediaAttach_title<!--[$currentfilenum]-->" name="MediaAttach_title<!--[$currentfilenum]-->" type="text" maxLength="64" /><br />
 
-                        <label for="MediaAttach_description<!--[$currentfilenum]-->" class="maleft"><!--[gt text="Description"]--></label>
+                        <label for="MediaAttach_description<!--[$currentfilenum]-->"><!--[gt text="Description"]--></label>
                         <textarea id="MediaAttach_description<!--[$currentfilenum]-->" name="MediaAttach_description<!--[$currentfilenum]-->" rows="3" cols="30"></textarea><br />
 
-                        <label for="mafilecats_<!--[$currentfilenum]-->_Main_" class="maleft"><!--[gt text="Categories"]-->:</label><br />
+                        <label for="mafilecats_<!--[$currentfilenum]-->_Main_"><!--[gt text="Categories"]-->:</label><br />
                         <!--[nocache]-->
                         <ul class="maCatSelector">
                         <!--[foreach from=$categories key=property item=category]-->
@@ -83,20 +83,20 @@
 
                 <div id="uploadformwrapperjs" style="display: none">
                     <div id="fileInputFrame">
-                        <label class="maleft"><!--[gt text="Max. files"]-->:</label>
+                        <label><!--[gt text="Max. files"]-->:</label>
                         <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="<!--[$definition.numfiles]-->" />
-                        <!--[$definition.numfiles]--><br />
+                        <!--[$definition.numfiles]-->
 
-                        <label id="labelfile" for="MediaAttach_uploadfile" class="maleft"><!--[gt text="File"]-->:</label>
-                        <input id="MediaAttach_uploadfile" type="file" /><br />
+                        <label id="labelfile" for="MediaAttach_uploadfile"><!--[gt text="File"]-->:</label>
+                        <input id="MediaAttach_uploadfile" type="file" />
 
-                        <label id="labeltitle" for="MediaAttach_title" class="maleft"><!--[gt text="Title"]-->:</label>
-                        <input id="MediaAttach_title" type="text" maxLength="64" /><br />
+                        <label id="labeltitle" for="MediaAttach_title"><!--[gt text="Title"]-->:</label>
+                        <input id="MediaAttach_title" type="text" maxLength="64" />
 
-                        <label id="labeldesc" for="MediaAttach_description" class="maleft"><!--[gt text="Description"]-->:</label>
-                        <textarea id="MediaAttach_description" rows="3" cols="30"></textarea><br />
+                        <label id="labeldesc" for="MediaAttach_description"><!--[gt text="Description"]-->:</label>
+                        <textarea id="MediaAttach_description" rows="3" cols="30"></textarea>
 
-                        <label for="mafilecats_Main_" class="maleft"><!--[gt text="Categories"]-->:</label><br />
+                        <label for="mafilecats_Main_"><!--[gt text="Categories"]-->:</label>
                         <!--[nocache]-->
                         <ul id="maCatSelector" class="maCatSelector">
                         <!--[foreach from=$categories key=property item=category]-->
@@ -104,9 +104,8 @@
                         <!--[/foreach]-->
                         </ul>
                         <!--[/nocache]-->
-                        <br />
 
-                        <input type="button" id="addNewUploadFile" value="<!--[gt text="Add file"]-->" class="maadminright" /><br />
+                        <input type="button" id="addNewUploadFile" value="<!--[gt text="Add file"]-->" />
                     </div>
 
                     <ul id="addedUploadList">
@@ -122,7 +121,7 @@
 
                 <br />
                 <!--[pnmodcallhooks hookobject=item hookaction=new module=MediaAttach]-->
-                <input type="submit" value="<!--[gt text="Upload"]-->" class="maadminright" />
+                <input type="submit" value="<!--[gt text="Upload"]-->" />
                 <!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]-->
                 <span id="myuploadresult" style="display: none"><!--[gt text="Uploading..."]--></span><br />
             <!--[else]-->
@@ -132,7 +131,7 @@
     </form>
 
 <!--[if $activateExternalVideos]-->
-<form id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post" class="maform">
+<form class="z-form" id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post">
     <fieldset>
         <legend><!--[gt text="Embed external video"]--></legend>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />

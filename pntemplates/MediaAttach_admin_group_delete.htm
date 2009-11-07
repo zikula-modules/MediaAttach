@@ -4,24 +4,29 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this group"]--></div>
+    <div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this group"]--></div>
 
-<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deletegroup"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
-    <fieldset>
-        <legend><!--[gt text="Delete this group"]--></legend>
-        <input type="hidden" name="authid" value="<!--[$authid]-->" />
-        <input type="hidden" name="confirmation" value="1" />
-        <input type="hidden" name="gid" value="<!--[$group.gid]-->" />
+    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deletegroup"]-->" method="post" enctype="application/x-www-form-urlencoded">
+        <div>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <input type="hidden" name="confirmation" value="1" />
+            <input type="hidden" name="gid" value="<!--[$group.gid]-->" />
+            <fieldset>
+                <legend><!--[gt text="Delete this group"]--></legend>
+                <div class="z-formrow">
+                    <label><!--[gt text="Name"]--></label>
+                    <span><!--[$group.groupname]--></span>
+                </div>
 
-        <p>
-            <!--[pnimg src="folder/`$group.image`" alt=$group.groupname style="padding-right: 5px"]-->
-            <!--[$group.groupname]-->
-        </p>
-
-        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" class="maright" />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[gt text="Cancel"]--></a>
-    </fieldset>
-</form>
-
+                <div class="z-formnote">
+                    <!--[pnimg src="folder/`$group.image`" alt=$group.groupname style="padding-right: 5px"]-->
+                </div>
+            </fieldset>
+            <div class="z-formbuttons">
+                <!--[pnbutton src="button_ok.gif" set="icons/small" __alt="Confirm deletion?" __title="Confirm deletion?"]-->
+                <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewgroups"]-->"><!--[pnimg modname=core src="button_cancel.gif" set="icons/small" __alt="Cancel" __title="Cancel"]--></a>
+            </div>
+        </div>
+    </form>
 </div>
 <!--[include file="MediaAttach_admin_footer.htm"]-->

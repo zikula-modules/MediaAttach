@@ -6,7 +6,7 @@
 <div class="z-admincontainer">
 <div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this filetype"]--></div>
 
-<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
+<form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" enctype="application/x-www-form-urlencoded">
     <fieldset>
         <legend><!--[gt text="Delete this filetype"]--></legend>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
@@ -18,7 +18,7 @@
             <!--[$format.extension]-->
         </p>
 
-        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" class="maright" />
+        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" />
         <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewformats"]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[gt text="Cancel"]--></a>
     </fieldset>
 </form>
