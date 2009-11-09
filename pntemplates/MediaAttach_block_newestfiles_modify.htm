@@ -2,18 +2,18 @@
 <!--[* Purpose of this template: Block configuration options *]-->
 
 <div class="pn-adminformrow">
-    <label for="MediaAttach_numitems"><!--[gt text="Number of files to display"]--></label>
-    <input id="MediaAttach_numitems" type="text" name="numitems" value="<!--[$numitems|pnvarprephtmldisplay]-->" size="5" maxLength="5" />
+    <label for="MediaAttach_numitems"><!--[gt text="Number of files to display" domain="module_mediaattach"]--></label>
+    <input id="MediaAttach_numitems" type="text" name="numitems" value="<!--[$numitems|pnvarprephtmldisplay]-->" size="5" />
 </div>
 <div class="pn-adminformrow">
-    <label for="MediaAttach_formats"><!--[gt text="Show only files of these formats (optional)"]--></label>
+    <label for="MediaAttach_formats"><!--[gt text="Show only files of these formats (optional)" domain="module_mediaattach"]--></label>
     <select id="MediaAttach_formats" name="formats[]" size="10" multiple="multiple" style="width: 100px">
-    <!--[foreach item="currentformat" from=$allformats]-->
+        <!--[foreach item="currentformat" from=$allformats]-->
         <option value="<!--[$currentformat.extension|pnvarprephtmldisplay]-->"
             <!--[foreach item=myformat from=$formats]-->
-                <!--[if $myformat eq $currentformat.extension]--> selected="selected"<!--[/if]-->
+            <!--[if $myformat eq $currentformat.extension]--> selected="selected"<!--[/if]-->
             <!--[/foreach]-->
         ><!--[$currentformat.extension|pnvarprephtmldisplay]--></option>
-    <!--[/foreach]-->
+        <!--[/foreach]-->
     </select>
 </div>

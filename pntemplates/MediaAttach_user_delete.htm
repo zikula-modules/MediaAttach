@@ -1,53 +1,66 @@
 <!--[* $Id: MediaAttach_user_delete.htm 220 2007-08-11 15:23:48Z weckamc $ *]-->
 <!--[* Purpose of this template: Confirmation for upload deletion *]-->
 
-<form action="<!--[pnmodurl modname="MediaAttach" type="user" func="delete"]-->" method="post" enctype="application/x-www-form-urlencoded" class="maform">
-    <fieldset>
-        <legend><!--[gt text="Delete this file"]--></legend>
+<form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="user" func="delete"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
         <input type="hidden" name="authid" value="<!--[$authid]-->" />
         <input type="hidden" name="confirmation" value="1" />
         <input type="hidden" name="fileid" value="<!--[$file.fileid]-->" />
         <input type="hidden" name="backurl" value="<!--[$backurl]-->" />
-
-        <label class="maleft"><!--[gt text="File"]-->:</label>
-        <a href="<!--[pnmodurl modname="MediaAttach" func="display" fileid=$file.fileid]-->">
-            <!--[pnimg src="formats/`$file.format`" alt=$file.extension style="padding-right: 5px"]-->
-            <!--[$file.filename]-->
-        </a><br />
-
-        <label class="maleft"><!--[gt text="Module"]-->:</label>
-        <a href="<!--[$file.url|pnvarprepfordisplay]-->"><!--[pnmodgetinfo modname=$file.modname info="displayname"]--></a><br />
-
-        <label class="maleft"><!--[gt text="User"]-->:</label>
-        <!--[$file.username|userprofilelink]--><br />
-
-        <label class="maleft"><!--[gt text="Date"]-->:</label>
-        <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
-
-        <label class="maleft"><!--[gt text="Title"]-->:</label>
-        <!--[$file.title]--><br />
-
-        <label class="maleft"><!--[gt text="Description"]-->:</label>
-        <!--[$file.desc]--><br />
-
-        <label class="maleft"><!--[gt text="Mime type"]-->:</label>
-        <!--[$file.mimetype]--><br />
-
-        <label class="maleft"><!--[gt text="Filesize"]-->:</label>
-        <!--[mafilesize size=$file.filesize]--><br />
-
-        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" class="maright" />
-        <a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[gt text="Cancel"]--></a>
-    </fieldset>
-    <fieldset>
-        <legend><!--[gt text="Meta data"]--></legend>
-        <ul>
-            <!--[pnusergetvar name=uname uid=$file.cr_uid assign=username]-->
-            <li><!--[gt text="Created by %username%" tag1=$username]--></li>
-            <li><!--[gt text="Created on %date%" tag1=$file.cr_date|pndate_format]--></li>
-            <!--[pnusergetvar name=uname uid=$file.lu_uid assign=username]-->
-            <li><!--[gt text="Last updated by %username%" tag1=$username]--></li>
-            <li><!--[gt text="Updated on %date%" tag1=$file.lu_date|pndate_format]--></li>
-        </ul>
-    </fieldset>
+        <fieldset>
+            <legend><!--[gt text="Delete this file"]--></legend>
+            <div class="z-formrow">
+                <label><!--[gt text="File"]--></label>
+                <span>
+                    <a href="<!--[pnmodurl modname="MediaAttach" func="display" fileid=$file.fileid]-->">
+                        <!--[pnimg src="formats/`$file.format`" alt=$file.extension style="padding-right: 5px"]-->
+                        <!--[$file.filename]-->
+                    </a>
+                </span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Module"]--></label>
+                <span><a href="<!--[$file.url|pnvarprepfordisplay]-->"><!--[pnmodgetinfo modname=$file.modname info="displayname"]--></a></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="User"]--></label>
+                <span><!--[$file.username|userprofilelink]--></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Date"]--></label>
+                <span><!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Title"]--></label>
+                <span><!--[$file.title]--></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Description"]--></label>
+                <span><!--[$file.desc]--></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Mime type"]--></label>
+                <span><!--[$file.mimetype]--></span>
+            </div>
+            <div class="z-formrow">
+                <label><!--[gt text="Filesize"]--></label>
+                <span><!--[mafilesize size=$file.filesize]--></span>
+            </div>
+        </fieldset>
+        <div class="z-formbuttons">
+            <!--[pnbutton src="button_ok.gif" set="icons/small" __alt="Confirm deletion?" __title="Confirm deletion?"]-->
+            <a href="<!--[$backurl|@base64_decode|pnvarprepfordisplay]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[pnimg modname=core src="button_cancel.gif" set="icons/small" __alt="Cancel" __title="Cancel"]--></a>
+        </div>
+        <fieldset>
+            <legend><!--[gt text="Meta data"]--></legend>
+            <ul>
+                <!--[pnusergetvar name=uname uid=$file.cr_uid assign=username]-->
+                <li><!--[gt text="Created by %s" tag1=$username]--></li>
+                <li><!--[gt text="Created on %s" tag1=$file.cr_date|pndate_format]--></li>
+                <!--[pnusergetvar name=uname uid=$file.lu_uid assign=username]-->
+                <li><!--[gt text="Last updated by %s" tag1=$username]--></li>
+                <li><!--[gt text="Updated on %s" tag1=$file.lu_date|pndate_format]--></li>
+            </ul>
+        </fieldset>
+    </div>
 </form>

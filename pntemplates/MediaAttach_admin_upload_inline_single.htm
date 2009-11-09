@@ -27,15 +27,15 @@
     <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
 </div>
 
-<script type="text/javascript" language="javascript">
-/* <![CDATA[ */
+<script type="text/javascript">
+    /* <![CDATA[ */
     function maSwitchFileInfo<!--[$file.fileid]-->(event) {
         maSwitchDisplayState('fileinfo<!--[$file.fileid]-->');
         Event.stop(event);
     }
     $('fileinfo<!--[$file.fileid]-->_switch').observe('click', maSwitchFileInfo<!--[$file.fileid]-->);
     $('fileinfo<!--[$file.fileid]-->_switch').observe('keypress', maSwitchFileInfo<!--[$file.fileid]-->);
-/* ]]> */
+    /* ]]> */
 </script>
 <!--[/if]-->
 <hr style="clear: both" />

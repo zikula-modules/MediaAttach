@@ -9,8 +9,8 @@
     </dt>
     <dd>
         <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
-        <!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
-        <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+        <!--[gt text="from" domain="module_mediaattach"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
+        <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
         <!--[include file="MediaAttach_file_categories.htm"]-->
     </dd>
 </dl>
@@ -23,8 +23,8 @@
 
 <!--[* commented out because this seems to be too heavy for the default Ajax timeout
 <!--[if $file.extension ne "extvid"]-->
-    <div id="fileinfo">
-        <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
-    </div>
+<div id="fileinfo">
+    <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
+</div>
 <!--[/if]-->
 *]-->

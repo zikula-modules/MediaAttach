@@ -4,24 +4,28 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this filetype"]--></div>
-
-<form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" enctype="application/x-www-form-urlencoded">
-    <fieldset>
-        <legend><!--[gt text="Delete this filetype"]--></legend>
-        <input type="hidden" name="authid" value="<!--[$authid]-->" />
-        <input type="hidden" name="confirmation" value="1" />
-        <input type="hidden" name="fid" value="<!--[$format.fid]-->" />
-
-        <p>
-            <!--[pnimg src="formats/`$format.image`" alt=$format.extension style="padding-right: 5px"]-->
-            <!--[$format.extension]-->
-        </p>
-
-        <input name="submit" type="submit" value="<!--[gt text="Confirm deletion?"]-->" />
-        <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewformats"]-->" title="<!--[gt text="Cancel item deletion."]-->"><!--[gt text="Cancel"]--></a>
-    </fieldset>
-</form>
-
+    <div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this filetype"]--></div>
+    <h2><!--[gt text="Delete this filetype?"]--></h2>
+    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteformat"]-->" method="post" enctype="application/x-www-form-urlencoded">
+        <div>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <input type="hidden" name="confirmation" value="1" />
+            <input type="hidden" name="fid" value="<!--[$format.fid]-->" />
+            <fieldset>
+                <legend><!--[gt text="Confirmation prompt"]--></legend>
+                <div class="z-formrow">
+                    <label><!--[gt text="Extension"]--></label>
+                    <span><!--[$format.extension]--></span>
+                </div>
+                <div class="z-formnote">
+                    <!--[pnimg src="formats/`$format.image`" alt=$format.extension style="padding-right: 5px"]-->
+                </div>
+                <div class="z-formbuttons">
+                    <!--[pnbutton src="button_ok.gif" set="icons/small" __alt="Confirm deletion?" __title="Confirm deletion?"]-->
+                    <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="viewformats"]-->"><!--[pnimg modname=core src="button_cancel.gif" set="icons/small" __alt="Cancel" __title="Cancel"]--></a>
+                </div>
+            </fieldset>
+        </div>
+    </form>
 </div>
 <!--[include file="MediaAttach_admin_footer.htm"]-->

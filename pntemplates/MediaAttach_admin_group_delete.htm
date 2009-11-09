@@ -5,14 +5,14 @@
 
 <div class="z-admincontainer">
     <div class="z-adminpageicon"><!--[pnimg modname="core" src="editdelete.gif" set="icons/large" __alt="Delete this group"]--></div>
-
+    <h2><!--[gt text="Delete this group?"]--></h2>
     <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="deletegroup"]-->" method="post" enctype="application/x-www-form-urlencoded">
         <div>
             <input type="hidden" name="authid" value="<!--[$authid]-->" />
             <input type="hidden" name="confirmation" value="1" />
             <input type="hidden" name="gid" value="<!--[$group.gid]-->" />
             <fieldset>
-                <legend><!--[gt text="Delete this group"]--></legend>
+                <legend><!--[gt text="Confirmation prompt"]--></legend>
                 <div class="z-formrow">
                     <label><!--[gt text="Name"]--></label>
                     <span><!--[$group.groupname]--></span>

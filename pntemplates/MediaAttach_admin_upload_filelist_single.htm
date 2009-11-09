@@ -7,24 +7,24 @@
 
     <!--[mafilebuttons file=$file view=1 info=1 dl=1 mail=1]--><span style="margin-left: 15px"><!--[mafilebuttons file=$file edit=1 delete=1]--></span>
 </dt>
-<dd><!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--></dd>
+<dd><!--[gt text="from" domain="module_mediaattach"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--></dd>
 <!--[if $file.extension ne "extvid"]-->
-<dd><!--[gt text="%s times downloaded" tag1=$file.dlcount]--></dd>
+<dd><!--[gt text="%s times downloaded" tag1=$file.dlcount domain="module_mediaattach"]--></dd>
 <!--[/if]-->
 <!--[if $file.desc ne ""]--><dd><!--[$file.desc]--></dd><!--[/if]-->
 <dd><!--[include file="MediaAttach_file_categories.htm"]-->&nbsp;</dd>
 <!--[if $file.extension ne "extvid"]-->
 <dd id="fileinfo<!--[$file.fileid]-->" style="display: none">
     <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
-<script type="text/javascript" language="javascript">
-/* <![CDATA[ */
-    function maSwitchFileInfo<!--[$file.fileid]-->(event) {
-        maSwitchDisplayState('fileinfo<!--[$file.fileid]-->');
-        Event.stop(event);
-    }
-    $('fileinfo<!--[$file.fileid]-->_switch').observe('click', maSwitchFileInfo<!--[$file.fileid]-->);
-    $('fileinfo<!--[$file.fileid]-->_switch').observe('keypress', maSwitchFileInfo<!--[$file.fileid]-->);
-/* ]]> */
-</script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        function maSwitchFileInfo<!--[$file.fileid]-->(event) {
+            maSwitchDisplayState('fileinfo<!--[$file.fileid]-->');
+            Event.stop(event);
+        }
+        $('fileinfo<!--[$file.fileid]-->_switch').observe('click', maSwitchFileInfo<!--[$file.fileid]-->);
+        $('fileinfo<!--[$file.fileid]-->_switch').observe('keypress', maSwitchFileInfo<!--[$file.fileid]-->);
+        /* ]]> */
+    </script>
 </dd>
 <!--[/if]-->

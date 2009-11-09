@@ -2,14 +2,14 @@
 <!--[* Purpose of this template: Block configuration options *]-->
 
 <div class="pn-adminformrow">
-    <label for="MediaAttach_files"><!--[gt text="Files to show"]--></label>
+    <label for="MediaAttach_files"><!--[gt text="Files to show" domain="module_mediaattach"]--></label>
     <select id="MediaAttach_files" name="files[]" size="10" multiple="multiple" style="width: 200px">
-    <!--[foreach item="currentfile" from=$allfiles]-->
+        <!--[foreach item="currentfile" from=$allfiles]-->
         <option value="<!--[$currentfile.fileid|pnvarprephtmldisplay]-->"
             <!--[foreach item=myfile from=$files]-->
-                <!--[if $myfile eq $currentfile.fileid]--> selected="selected"<!--[/if]-->
+            <!--[if $myfile eq $currentfile.fileid]--> selected="selected"<!--[/if]-->
             <!--[/foreach]-->
         ><!--[$currentfile.title|pnvarprephtmldisplay]--> (<!--[$currentfile.filename|pnvarprephtmldisplay]-->)</option>
-    <!--[/foreach]-->
+        <!--[/foreach]-->
     </select>
 </div>
