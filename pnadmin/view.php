@@ -29,6 +29,8 @@ function MediaAttach_admin_view()
     }
 
     $modname = 'MediaAttach';
+    //$modname = pnModGetName();
+    
     $objectid = 99999999;
 
     if (!SecurityUtil::checkPermission('MediaAttach::', "$modname:$objectid: ", ACCESS_OVERVIEW)) {
