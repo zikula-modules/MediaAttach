@@ -20,8 +20,6 @@ function MediaAttach_adminapi_getlinks()
     $dom = ZLanguage::getModuleDomain('MediaAttach');
     $links = array();
 
-    pnModLangLoad('MediaAttach', 'admin');
-
     if (SecurityUtil::checkPermission('MediaAttach::', '::', ACCESS_ADMIN)) {
         $links[] = array('url' => pnModURL('MediaAttach', 'admin', 'main'),
                          'text' => __('Start', $dom),
@@ -59,7 +57,7 @@ function MediaAttach_adminapi_getlinks()
                          'id' => 'MediaAttach_config');
     }
 
-    $userlang = pnUserGetLang();
+    $userlang = ZLanguage::getLanguageCode();
     if ($userlang != 'deu') {
         $userlang = 'eng';
     }

@@ -44,7 +44,7 @@ function MediaAttach_admin_editformat($args)
         return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
     $render->assign('format', $format);
     $render->assign('groups', $groups);

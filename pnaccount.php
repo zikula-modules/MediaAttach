@@ -33,7 +33,7 @@ function MediaAttach_account_viewuploads()
         return false;
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
 
     _maIntProcessFileList($render, 5, array('userFilter' => pnUserGetVar('uid')));
 

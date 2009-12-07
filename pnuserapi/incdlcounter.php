@@ -29,7 +29,7 @@ function MediaAttach_userapi_incdlcounter($args)
         return false;
     }
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $fileid);
 
     return true;

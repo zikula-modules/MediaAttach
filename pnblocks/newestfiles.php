@@ -108,7 +108,7 @@ function MediaAttach_newestfilesblock_display($blockinfo)
         }
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('files', $newestfiles);
 
     $blockinfo['content'] = $render->fetch('MediaAttach_block_newestfiles.htm');
@@ -139,7 +139,7 @@ function MediaAttach_newestfilesblock_modify($blockinfo)
         return false;
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('numitems', $vars['numitems']);
     $render->assign('formats', $vars['formats']);
     $render->assign('allformats', $allformats);
@@ -162,7 +162,7 @@ function MediaAttach_newestfilesblock_update($blockinfo)
 
     $blockinfo['content'] = pnBlockVarsToContent($vars);
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->clear_cache('MediaAttach_block_newestfiles.htm');
     return $blockinfo;
 }

@@ -28,7 +28,7 @@ function MediaAttach_admin_viewuploads()
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'modifyconfig'));
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     _maIntProcessFileList($render, 20, '');
 
     $definition = array();

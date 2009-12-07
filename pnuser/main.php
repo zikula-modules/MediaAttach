@@ -112,7 +112,7 @@ function MediaAttach_user_main()
                         if (!($class = Loader::loadClass('CategoryUtil'))) {
                             pn_exit (__('Error! Unable to load class CategoryUtil'));
                         }
-                        $currentlang = pnUserGetLang();
+                        $currentlang = ZLanguage::getLanguageCode();
                         $category = CategoryUtil::getCategoryByID($cat_id);
 
                         // Check for an specific category template

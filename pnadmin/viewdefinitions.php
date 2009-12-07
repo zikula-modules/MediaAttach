@@ -35,7 +35,7 @@ function MediaAttach_admin_viewdefinitions()
 
     $definitions = pnModAPIFunc('MediaAttach', 'definitions', 'getalldefinitions');
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
 
     if (!$definitions) {

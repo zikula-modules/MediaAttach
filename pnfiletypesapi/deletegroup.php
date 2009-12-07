@@ -45,7 +45,7 @@ function MediaAttach_filetypesapi_deletegroup($args)
         return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
     }
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $gid);
 
     return true;

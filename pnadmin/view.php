@@ -35,7 +35,7 @@ function MediaAttach_admin_view()
         return LogUtil::registerPermissionError();
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     _maIntProcessFileList($render, 20, array('moduleFilter' => $modname));
 
     $definition = pnModAPIFunc('MediaAttach', 'definitions', 'getmoduledefinition', array('modname' => $modname));

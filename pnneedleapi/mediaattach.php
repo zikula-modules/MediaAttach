@@ -19,6 +19,7 @@ Loader::requireOnce('modules/MediaAttach/common.php');
  */
 function MediaAttach_needleapi_mediaattach($args)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     // Get arguments from argument array
     $nid = $args['nid'];
     unset($args);
@@ -29,7 +30,6 @@ function MediaAttach_needleapi_mediaattach($args)
         $cache = array();
     }
 
-    pnModLangLoad('MediaAttach');
     if (!empty($nid)) {
         if(!isset($cache[$nid])) {
             // not in cache array
@@ -60,7 +60,7 @@ function MediaAttach_needleapi_mediaattach($args)
                 // set a flag to clarify that this is a hook call
                 $file['definition']['hookcall'] = true;
 
-                $render = pnRender::getInstance('MediaAttach', false);
+                $render = & pnRender::getInstance('MediaAttach', false);
 
                 $definition = array('displayfiles' => $file['defdisplayfiles'],
                                     'sendmails'    => $file['defsendmails'],

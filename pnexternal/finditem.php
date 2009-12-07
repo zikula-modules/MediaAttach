@@ -36,7 +36,7 @@ function MediaAttach_external_finditem($args)
 
     PageUtil::AddVar('stylesheet', ThemeUtil::getModuleStylesheet('MediaAttach'));
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('definitionid', $definitionid);
     $render->assign('mainCategory', pnModAPIFunc('MediaAttach', 'cat', 'getMainCat'));
     $render->assign('fromGuppy', $fromGuppy);

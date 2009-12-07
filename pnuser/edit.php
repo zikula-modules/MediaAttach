@@ -43,7 +43,7 @@ function MediaAttach_user_edit($args)
         return LogUtil::registerPermissionError();
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
     $render->assign('file', $file);
     $render->assign('backurl', $backurl);

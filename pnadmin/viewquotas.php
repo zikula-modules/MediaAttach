@@ -36,7 +36,7 @@ function MediaAttach_admin_viewquotas()
         $userquotas = 0;
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
     $render->assign('groupquotas', $groupquotas);
     $render->assign('userquotas', $userquotas);

@@ -74,6 +74,8 @@ function _maIntGetFilenameForDefinition($filename, $extension, $naming, $namingp
  */
 function _maIntCalcReadableFilesize($size, $nodesc = false, $onlydesc = false)
 {
+
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $sizeDesc = __('Bytes', $dom); // we have bytes as default
     if ($size >= 1024) {
         $size /= 1024;

@@ -37,7 +37,7 @@ function MediaAttach_fileinfo_showfileinfo($args)
         return LogUtil::registerPermissionError();
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('file', $file);
 
     return $render->fetch('MediaAttach_file_information.htm');

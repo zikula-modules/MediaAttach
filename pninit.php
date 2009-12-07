@@ -269,7 +269,7 @@ function MediaAttach_create_categoryregistries()
     Loader::loadClassFromModule('Categories', 'CategoryRegistry');
 
     // get the language file
-    $lang = pnUserGetLang();
+    $lang = ZLanguage::getLanguageCode();
 
     $rootCatPath = '/__SYSTEM__/Modules/Global';
     $rootCat = CategoryUtil::getCategoryByPath($rootCatPath);

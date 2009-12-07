@@ -60,7 +60,6 @@ function MediaAttach_admin_importmodprocess($args)
 
     if ($importMod == 'PhotoGallery') {
         // load lang file with part of physical filenames
-        pnModLangLoad('PhotoGallery', 'photogallery', false);
     }
 
     $definition = pnModAPIFunc('MediaAttach', 'definitions', 'getmoduledefinition', array('modname' => 'MediaAttach'));

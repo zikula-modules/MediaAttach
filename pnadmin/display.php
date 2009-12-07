@@ -41,7 +41,7 @@ function MediaAttach_admin_display($args)
     $ownHandling = pnModGetVar('MediaAttach', 'ownhandling');
     $file = _maIntPrepFileForTemplate($file, $currentUser, $ownHandling);
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('currentuser', $currentUser);
     $render->assign('file', $file);
 

@@ -48,7 +48,7 @@ function MediaAttach_user_showfilelist($args)
         $files[$i] = _maIntPrepFileForTemplate($files[$i], $currentUser, $ownHandling);
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
 
     $render->assign('definition', $definition);
     $render->assign('files', $files);

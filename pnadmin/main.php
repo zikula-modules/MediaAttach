@@ -48,7 +48,7 @@ function MediaAttach_admin_main()
 
     $sizeUploads = _maIntCalcReadableFilesize($sizeUploads);
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('numUploads', $numUploads);
     $render->assign('sizeUploads', $sizeUploads);
 

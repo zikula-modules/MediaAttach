@@ -49,7 +49,7 @@ function MediaAttach_external_display($args)
     $ownHandling = pnModGetVar('MediaAttach', 'ownhandling');
     $file = _maIntPrepFileForTemplate($file, $currentUser, $ownHandling);
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('currentuser', $currentUser);
     $render->assign('file', $file);
     $render->assign('displaymode', $displaymode);

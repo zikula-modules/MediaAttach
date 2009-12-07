@@ -26,7 +26,7 @@ function MediaAttach_catapi_getModules()
     $definitions = pnModAPIFunc('MediaAttach', 'definitions', 'getalldefinitions');
     $modules = array();
 
-    $currentLang = pnUserGetLang();
+    $currentLang = ZLanguage::getLanguageCode();
     foreach($definitions as $def) {
         $modInfo = pnModGetInfo(pnModGetIDFromName($def['modname']));
         // transformation for unified handling with Categories

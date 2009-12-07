@@ -66,7 +66,7 @@ function smarty_function_getinlinesnippet($params, &$smarty)
         }
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('file', $params['file']);
     $render->assign('idprefix', ($params['blockcall']) ? 'block' : '');
     $render->assign('externalPreview', $params['externalPreview']);

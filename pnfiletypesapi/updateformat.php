@@ -57,7 +57,7 @@ function MediaAttach_filetypesapi_updateformat($args)
         }
     }
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $fid);
 
     return true;

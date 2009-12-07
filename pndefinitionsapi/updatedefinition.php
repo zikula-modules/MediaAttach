@@ -84,7 +84,7 @@ function MediaAttach_definitionsapi_updatedefinition($args)
         }
     }
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $did);
 
     return true;

@@ -51,7 +51,7 @@ function MediaAttach_userapi_update($args)
     // call update hooks for this item
     pnModCallHooks('item', 'update', $file['fileid'], array('module' => 'MediaAttach'));
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $fileid);
 
     return true;

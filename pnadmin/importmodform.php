@@ -29,7 +29,7 @@ function MediaAttach_admin_importmodform($args)
         return pnRedirect(pnModURL('MediaAttach', 'admin', 'modifyconfig'));
     }
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('authid', SecurityUtil::generateAuthKey('MediaAttach'));
     $render->assign('importModules', _maGetImportModules());
 

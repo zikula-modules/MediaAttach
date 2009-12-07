@@ -30,7 +30,7 @@ function smarty_function_mafilebuttons($params, &$smarty)
 
     $res = '';
 
-    $render = pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('file', $params['file']);
     $render->assign('view', (isset($params['view'])) ? (int) $params['view'] : 0);
     $render->assign('edit', (isset($params['edit'])) ? (int) $params['edit'] : 0);

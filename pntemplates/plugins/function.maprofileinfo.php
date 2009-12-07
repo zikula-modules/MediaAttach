@@ -29,8 +29,6 @@ function smarty_function_maprofileinfo($params, &$smarty)
         return false;
     }
 
-    //this plugin is being executed from the Profile menu - we have to ensure lang files are loaded
-    pnModLangLoad('MediaAttach');
 
     $files = pnModAPIFunc('MediaAttach', 'user', 'getalluploads',
                                          array('startnum'     => 1,

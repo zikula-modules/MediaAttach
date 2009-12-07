@@ -106,7 +106,7 @@ function _MediaAttachDeleteFileInternal($fileid)
     pnModCallHooks('item', 'delete', $file['fileid'], array('module' => 'MediaAttach'));
     pnSessionSetVar('MediaAttachDeleteLock', '0');
 
-    $render = pnRender::getInstance('MediaAttach');
+    $render = & pnRender::getInstance('MediaAttach');
     $render->clear_cache(null, $fileid);
 
     return true;

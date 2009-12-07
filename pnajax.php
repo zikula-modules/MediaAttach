@@ -94,7 +94,7 @@ function MediaAttach_ajax_performupload()
         $result['messages'][$i] = strip_tags($result['messages'][$i]);
 
         //retrieve entry in used filelist/inlinelist
-        $render = pnRender::getInstance('MediaAttach', false);
+        $render = & pnRender::getInstance('MediaAttach', false);
         $render->assign('definition', $definition);
         $render->assign('currentuser', pnUserGetVar('uid'));
         $newfile = pnModAPIFunc('MediaAttach', 'user', 'getlastuploadbymodnameandobjectid', array('modname' => $MediaAttach_modname, 'objectid' => $MediaAttach_objectid));
@@ -177,7 +177,7 @@ function MediaAttach_ajax_getfilelist($args)
 
     $slimFiles = array();
     foreach ($files as $file) {
-        $render = pnRender::getInstance('MediaAttach', false);
+        $render = & pnRender::getInstance('MediaAttach', false);
         $render->assign('file', $file);
         $render->assign('thumbnr', $thumbnr);
 
