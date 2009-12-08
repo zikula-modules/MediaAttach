@@ -4,76 +4,82 @@
 <!--[include file="MediaAttach_admin_header.htm"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=$templatetitle]--></div>
+    <div class="z-adminpageicon"><!--[pnimg modname="core" src="edit.gif" set="icons/large" alt=$templatetitle]--></div>
 
-<h3><!--[pnimg src="fileimport.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="Import files from a server directory"]--></h3>
+    <h2><!--[gt text="Import files from a server directory"]--></h2>
 
-<p><!--[gt text="Simply go to the desired directory, select the files to import and start. The upload filesize limit is not being used here."]--> <!--[gt text="The upload filesize limits are not being used here."]--></p>
+    <p class="z-informationmsg"><!--[gt text="Simply go to the desired directory, select the files to import and start. The upload filesize limit is not being used here."]--> <!--[gt text="The upload filesize limits are not being used here."]--></p>
 
-<form action="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsprocess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_config" class="maform">
-    <fieldset>
-        <legend><!--[$currentdir]--></legend>
-        <input type="hidden" name="authid" value="<!--[$authid]-->" />
-
-        <div style="margin-left: 10.5em">
-        <!--[foreach item="curDir" from=$dirs]-->
-            <!--[if $curDir ne "."]-->
-                <!--[pnimg src="folder.gif" __alt="Folder" style="margin-right: 5px"]-->
-                <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform" curd="`$currentdir`/`$curDir`"]-->"><!--[$curDir]--></a><br />
-            <!--[/if]-->
-        <!--[/foreach]-->
-        </div>
-
-    <input type="checkbox" name="markall" id="markall" onclick="maToggleImportFiles(this);" class="maright" />
-    <label for="markall" style="text-align: left">Select all</label>
-<br />
-<br />
-        <!--[assign var="filenr" value="-1"]-->
-        <!--[gt text="Choose Category" assign="lblDef"]-->
-        <!--[foreach name="fileloop" item="curFile" from=$files]-->
-            <!--[assign var="filenr" value=$filenr+1]-->
-            <input type="checkbox" id="file<!--[$filenr]-->" name="file<!--[$filenr]-->" value="1" class="maright" />
-            <label for="file<!--[$filenr]-->" style="text-align: left; margin-left: 2em"><!--[$curFile.filename|pnvarprepfordisplay]--> (<!--[mafilesize size=$curFile.filesize]-->)</label><br />
-
-            <div id="filedesc<!--[$filenr]-->">
-                <label for="title<!--[$filenr]-->" class="maleft"><!--[gt text="Title"]--></label>
-                <input id="title<!--[$filenr]-->" name="title<!--[$filenr]-->" type="text" maxLength="32" value="<!--[$curFile.filename|pnvarprepfordisplay]-->" /><br />
-
-                <label for="description<!--[$filenr]-->" class="maleft"><!--[gt text="Description"]--></label>
-                <textarea id="description<!--[$filenr]-->" name="description<!--[$filenr]-->" rows="3" cols="30"><!--[$curFile.filename|pnvarprepfordisplay]--></textarea><br />
-
-                <label for="mafilecats_Main_"><!--[gt text="Categories"]-->:</label><br />
-                <!--[nocache]-->
-                <ul style="list-style-type: none">
-                <!--[foreach from=$categories key=property item=category]-->
-                    <li><!--[selector_category category=$category name="mafilecats_`$filenr`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></li>
+    <form class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsprocess"]-->" method="post" enctype="application/x-www-form-urlencoded" id="MediaAttach_config_form">
+        <div>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <fieldset>
+                <legend><!--[$currentdir]--></legend>
+                <!--[foreach item="curDir" from=$dirs]-->
+                <!--[if $curDir ne "."]-->
+                <div class="z-formnote">
+                    <!--[pnimg src="folder.gif" __alt="Folder" style="margin-right: 5px"]-->
+                    <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform" curd="`$currentdir`/`$curDir`"]-->"><!--[$curDir]--></a>
+                </div>
+                <!--[/if]-->
                 <!--[/foreach]-->
-                </ul>
-                <!--[/nocache]-->
-                <br />
-            </div>
 
-            <script type="text/javascript" language="javascript">
-            /* <![CDATA[ */
-                Element.hide('filedesc<!--[$filenr]-->');
+                <div class="z-formnote">
+                    <input type="checkbox" name="markall" id="markall" onclick="maToggleImportFiles(this);" />
+                    <label for="markall" style="text-align: left"><!--[gt text="Select all"]--></label>
+                </div>
 
-                function maSwitchFileDesc<!--[$filenr]-->() {
-                    maSwitchDisplayState('filedesc<!--[$filenr]-->');
-                }
-                $('file<!--[$filenr]-->').observe('click', maSwitchFileDesc<!--[$filenr]-->);
-                $('file<!--[$filenr]-->').observe('keypress', maSwitchFileDesc<!--[$filenr]-->);
-            /* ]]> */
-            </script>
+                <!--[assign var="filenr" value="-1"]-->
+                <!--[gt text="Choose Category" assign="lblDef"]-->
+                <!--[foreach name="fileloop" item="curFile" from=$files]-->
+                <!--[assign var="filenr" value=$filenr+1]-->
+                <div class="z-formnote">
+                    <input type="checkbox" id="file<!--[$filenr]-->" name="file<!--[$filenr]-->" value="1"  />
+                    <label for="file<!--[$filenr]-->" style="text-align: left; margin-left: 2em"><!--[$curFile.filename|pnvarprepfordisplay]--> (<!--[mafilesize size=$curFile.filesize]-->)</label>
+                </div>
 
-        <!--[foreachelse]-->
-            <!--[gt text="No files were uploaded yet"]--><br />
-        <!--[/foreach]-->
+                <div id="filedesc<!--[$filenr]-->">
+                    <div class="z-formrow">
+                        <label for="title<!--[$filenr]-->"><!--[gt text="Title"]--></label>
+                        <input id="title<!--[$filenr]-->" name="title<!--[$filenr]-->" type="text" maxlength="32" value="<!--[$curFile.filename|pnvarprepfordisplay]-->" />
+                    </div>
+                    <div class="z-formrow">
+                        <label for="description<!--[$filenr]-->"><!--[gt text="Description"]--></label>
+                        <textarea id="description<!--[$filenr]-->" name="description<!--[$filenr]-->" rows="3" cols="30"><!--[$curFile.filename|pnvarprepfordisplay]--></textarea>
+                    </div>
+                    <div class="z-formrow">
+                        <label><!--[gt text="Categories"]--></label>
+                        <!--[nocache]-->
+                        <!--[foreach from=$categories key=property item=category]-->
+                        <div class="z-formnote"><!--[selector_category category=$category name="mafilecats_`$filenr`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false]--></div>
+                        <!--[/foreach]-->
+                        <!--[/nocache]-->
+                    </div>
+                    <hr />
+                </div>
 
-        <input type="hidden" name="numfiles" value="<!--[$filenr+1]-->" />
-        <input type="hidden" name="curd" value="<!--[$currentdir]-->" />
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    Element.hide('filedesc<!--[$filenr]-->');
 
-        <input name="submit" type="submit" value="<!--[gt text="Start import"]-->" class="maright" />
-    </fieldset>
-</form>
-<br />
+                    function maSwitchFileDesc<!--[$filenr]-->() {
+                        maSwitchDisplayState('filedesc<!--[$filenr]-->');
+                    }
+                    $('file<!--[$filenr]-->').observe('click', maSwitchFileDesc<!--[$filenr]-->);
+                    $('file<!--[$filenr]-->').observe('keypress', maSwitchFileDesc<!--[$filenr]-->);
+                    /* ]]> */
+                </script>
+
+                <!--[foreachelse]-->
+                <!--[gt text="No files were uploaded yet"]-->
+                <!--[/foreach]-->
+
+                <input type="hidden" name="numfiles" value="<!--[$filenr+1]-->" />
+                <input type="hidden" name="curd" value="<!--[$currentdir]-->" />
+                <div class="z-formbuttons">
+                    <input name="submit" type="submit" value="<!--[gt text="Start import"]-->" />
+                </div>
+            </fieldset>
+        </div>
+    </form>
 </div>

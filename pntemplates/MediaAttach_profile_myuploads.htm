@@ -4,25 +4,25 @@
 <h2><!--[pnimg src="folder_documents.gif" modname="core" set="icons/extrasmall" style="margin-right: 5px"]--><!--[gt text="My uploads"]--></h2>
 <div>
 
-<!--[include file="MediaAttach_navform.html" hiddenType="account" hiddenFunc="viewuploads" categorization=false sorting=true perpage=true displayswitch=true]-->
+    <!--[include file="MediaAttach_navform.html" hiddenType="account" hiddenFunc="viewuploads" categorization=false sorting=true perpage=true displayswitch=true]-->
 
-<!--[if $filesthere eq 0]-->
+    <!--[if $filesthere eq 0]-->
     <p class="centered" style="margin-top: 50px">
         <!--[gt text="No files were uploaded yet"]-->
     </p>
-<!--[else]-->
-    <!--[if $preview]-->
-        <!--[if $onlyimages]-->
-            <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
-        <!--[else]-->
-            <!--[include file="MediaAttach_user_inlinelist.htm"]-->
-        <!--[/if]-->
     <!--[else]-->
-        <!--[include file="MediaAttach_user_filelist.htm"]-->
+    <!--[if $preview]-->
+    <!--[if $onlyimages]-->
+    <!--[include file="MediaAttach_user_inlinelist_Pages.htm"]-->
+    <!--[else]-->
+    <!--[include file="MediaAttach_user_inlinelist.htm"]-->
     <!--[/if]-->
-<!--[/if]-->
+    <!--[else]-->
+    <!--[include file="MediaAttach_user_filelist.htm"]-->
+    <!--[/if]-->
+    <!--[/if]-->
 
-<br />
-<!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1]-->
+    <br />
+    <!--[pager show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1]-->
 
 </div>

@@ -41,12 +41,13 @@
                 </div>
 
                 <div class="z-formrow">
-                    <input type="checkbox" id="MediaAttach_sendmailsedit" name="sendmails" value="1"<!--[if $definition.sendmails eq 1]--> checked="checked"<!--[/if]--> onclick="maCheckMailDiv('edit')" onkeyup="maCheckMailDiv('edit')" />
                     <label for="MediaAttach_sendmailsedit"><!--[gt text="Send a mail after uploading"]--></label>
+                    <input type="checkbox" id="MediaAttach_sendmailsedit" name="sendmails" value="1"<!--[if $definition.sendmails eq 1]--> checked="checked"<!--[/if]--> onclick="maCheckMailDiv('edit')" onkeyup="maCheckMailDiv('edit')" />
                 </div>
+
                 <div id="divmailedit">
                     <div class="z-formrow">
-                        <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]-->:</label>
+                        <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]--></label>
                         <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" value="<!--[$definition.recipient]-->" />
                     </div>
                 </div>

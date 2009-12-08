@@ -49,10 +49,12 @@
                             </select>
                         </div>
                         <div class="z-formrow">
-                            <input type="checkbox" id="MediaAttach_sendmails<!--[$currentmod]-->" name="sendmails" value="1" onclick="maCheckMailDiv('<!--[$currentmod]-->')" onkeyup="maCheckMailDiv('<!--[$currentmod]-->')" />
                             <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[gt text="Send a mail after uploading"]--></label>
-                            <div id="divmail<!--[$currentmod]-->">
-                                <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]-->:</label>
+                            <input type="checkbox" id="MediaAttach_sendmails<!--[$currentmod]-->" name="sendmails" value="1" onclick="maCheckMailDiv('<!--[$currentmod]-->')" onkeyup="maCheckMailDiv('<!--[$currentmod]-->')" />
+                        </div>
+                        <div id="divmail<!--[$currentmod]-->">
+                            <div class="z-formrow">
+                                <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]--></label>
                                 <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" />
                             </div>
                         </div>
