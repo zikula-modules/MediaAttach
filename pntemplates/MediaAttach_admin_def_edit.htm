@@ -47,7 +47,7 @@
                 <div id="divmailedit">
                     <div class="z-formrow">
                         <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]-->:</label>
-                        <input type="text" id="MediaAttach_recipient" name="recipient" value="<!--[$definition.recipient]-->" />
+                        <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" value="<!--[$definition.recipient]-->" />
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
 
                 <div class="z-formrow">
                     <label for="MediaAttach_maxsize"><!--[gt text="Maximum file size during upload"]--></label>
-                    <span><input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" />&nbsp;<!--[gt text="KB"]--></span>
+                    <span><input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxlength="20" value="<!--[math equation="x/1024" x=$definition.maxsize format="%.1f"]-->" />&nbsp;<!--[gt text="KB"]--></span>
                 </div>
                 <div class="z-formrow">
                     <label for="MediaAttach_downloadmode"><!--[gt text="Download mode"]--></label>
@@ -82,7 +82,7 @@
                 <div id="divnamingprefixedit">
                     <div class="z-formrow">
                         <label for="MediaAttach_namingprefix"><!--[gt text="Prefix"]-->:</label>
-                        <input type="text" id="MediaAttach_namingprefix" name="namingprefix" value="<!--[$definition.namingprefix]-->" />
+                        <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" value="<!--[$definition.namingprefix]-->" />
                     </div>
                 </div>
 

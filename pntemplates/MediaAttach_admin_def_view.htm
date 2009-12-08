@@ -53,12 +53,12 @@
                             <label for="MediaAttach_sendmails<!--[$currentmod]-->"><!--[gt text="Send a mail after uploading"]--></label>
                             <div id="divmail<!--[$currentmod]-->">
                                 <label for="MediaAttach_recipient"><!--[gt text="Recipient of the mail"]-->:</label>
-                                <input type="text" id="MediaAttach_recipient" name="recipient" />
+                                <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" />
                             </div>
                         </div>
                         <div class="z-formrow">
                             <label for="MediaAttach_maxsize"><!--[gt text="Maximum file size during upload"]--></label>
-                            <span><input type="text" id="MediaAttach_maxsize" name="maxsize" value="2000" />&nbsp;<!--[gt text="KB"]--></span>
+                            <span><input type="text" id="MediaAttach_maxsize" name="maxsize" maxlength="20" value="2000" />&nbsp;<!--[gt text="KB"]--></span>
                         </div>
                         <div class="z-formrow">
                             <label for="MediaAttach_downloadmode"><!--[gt text="Download mode"]--></label>
@@ -77,7 +77,7 @@
                             <div id="divnamingprefix<!--[$currentmod]-->">
                                 <div class="z-formrow">
                                     <label for="MediaAttach_namingprefix"><!--[gt text="Prefix"]--></label>
-                                    <input type="text" id="MediaAttach_namingprefix" name="namingprefix" />
+                                    <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" />
                                 </div>
                             </div>
                         </div>

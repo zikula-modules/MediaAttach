@@ -17,7 +17,7 @@
             <div class="z-formrow">
                 <label for="MediaAttach_amountg<!--[$currentgroupnum]-->"><!--[$currentquota.name]--></label>
                 <span>
-                    <input type="hidden" name="gid<!--[$currentgroupnum]-->" value="<!--[$currentquota.gid]-->" />
+                    <input type="hidden" name="gid<!--[$currentgroupnum]-->" maxlength="10" value="<!--[$currentquota.gid]-->" />
                     <input type="text" id="MediaAttach_amountg<!--[$currentgroupnum]-->" name="amountg<!--[$currentgroupnum]-->" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br />
                 </span>
             </div>
@@ -41,7 +41,7 @@
             <div class="z-formrow">
                 <label for="MediaAttach_amountu<!--[$currentusernum]-->"><!--[$currentquota.name]--></label>
                 <div>
-                    <input type="hidden" name="uid<!--[$currentusernum]-->" value="<!--[$currentquota.uid]-->" />
+                    <input type="hidden" name="uid<!--[$currentusernum]-->" maxlength="10" value="<!--[$currentquota.uid]-->" />
                     <input type="text" id="MediaAttach_amountu<!--[$currentusernum]-->" name="amountu<!--[$currentusernum]-->" value="<!--[$currentquota.amount]-->" style="text-align: right" />&nbsp;<!--[gt text="MB"]-->
                     <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="deleteuserquota" uid=$currentquota.uid]-->" title="<!--[gt text="Delete"]-->"><!--[pnimg src="edit_remove.gif" modname="core" set="icons/extrasmall" __alt="Delete" ]--></a><br />
                 </div>
@@ -74,7 +74,7 @@
             <div class="z-formrow">
                 <label for="MediaAttach_amount"><!--[gt text="Quota"]--></label>
                 <span>
-                    <input type="text" id="MediaAttach_amount" name="amount" value="0" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br /><br />
+                    <input type="text" id="MediaAttach_amount" name="amount" maxlength="10" value="0" style="text-align: right" />&nbsp;<!--[gt text="MB"]--><br /><br />
                 </span>
             </div>
             <div class="z-formbuttons">

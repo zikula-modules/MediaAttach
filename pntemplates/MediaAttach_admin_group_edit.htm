@@ -14,13 +14,13 @@
                 <legend><!--[gt text="Edit this group"]--></legend>
                 <div class="z-formrow">
                     <label for="MediaAttach_groupname"><!--[gt text="Name"]--></label>
-                    <input type="text" class="required validate-alphanum" id="MediaAttach_groupname" name="groupname" value="<!--[$group.groupname]-->" />
+                    <input type="text" class="required validate-alphanum" id="MediaAttach_groupname" name="groupname" maxlength="100" value="<!--[$group.groupname]-->" />
                     <p id="advice-required-MediaAttach_groupname" class="z-formnote custom-advice" style="display: none"><!--[gt text="Please enter a name for the new group."]--></p>
                     <p id="advice-validate-alphanum-MediaAttach_groupname" class="z-formnote custom-advice" style="display: none"><!--[gt text="The group name may only contain letters and numbers."]--></p>
                 </div>
                 <div class="z-formrow">
                     <label for="MediaAttach_directory"><!--[gt text="Directory"]--></label>
-                    <input type="text" class="required validate-alphanum" id="MediaAttach_directory" name="directory" value="<!--[$group.directory]-->" />
+                    <input type="text" class="required validate-alphanum" id="MediaAttach_directory" name="directory" maxlength="255" value="<!--[$group.directory]-->" />
                     <p id="advice-required-MediaAttach_directory" class="z-formnote custom-advice" style="display: none"><!--[gt text="Please enter a directory for the new group"]--></p>
                     <p id="advice-validate-alphanum-MediaAttach_directory" class="z-formnote custom-advice" style="display: none"><!--[gt text="The directory may only contain letters and numbers."]--></p>
                 </div>
