@@ -23,7 +23,7 @@
 <br />
 
 <!--[if $showcatlist == 1]-->
-    <!--[ZLanguage::getLanguageCode assign="currentlang"]-->
+    <!--[pnusergetlang assign="currentlang"]-->
     <!--[foreach name="categoryloop" item="cat" from=$categories]-->
         <!--[*if $cat.filecount > 0*]-->
             <!--[if $cat.display_name && $cat.display_name.$currentlang]--><!--[assign var="catname" value=$cat.display_name.$currentlang]-->
