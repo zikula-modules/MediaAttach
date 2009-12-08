@@ -33,7 +33,7 @@ function MediaAttach_userapi_countuploads($args)
 
     $fileFilter     = (isset($args['fileFilter'])   && is_array($args['fileFilter']))   ? $args['fileFilter']   : '';
     $formatFilter   = (isset($args['formatFilter']) && is_array($args['formatFilter'])) ? $args['formatFilter'] : '';
-    $catFilter      = (isset($args['catFilter'])    && is_array($args['catFilter']))    ? $args['catFilter']    : array();
+    $catFilter      = (isset($args['catFilter'])    && is_array($args['catFilter']))    ? $args['catFilter']    : null;
     $userFilter     = (isset($args['userFilter'])   && is_numeric($args['userFilter'])) ? $args['userFilter']   : '';
     $moduleFilter   = (isset($args['moduleFilter']))                                    ? $args['moduleFilter'] : '';
     $objectidFilter = (isset($args['objectidFilter']))                                  ? $args['objectidFilter'] : '';
