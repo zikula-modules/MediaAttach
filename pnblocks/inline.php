@@ -114,7 +114,7 @@ function MediaAttach_inlineblock_display($blockinfo)
         }
     }
 
-    $render = && pnRender::getInstance('MediaAttach', false);
+    $render = & pnRender::getInstance('MediaAttach', false);
     $render->assign('files', $files);
 
     $blockinfo['content'] = $render->fetch('MediaAttach_block_inline.htm');
