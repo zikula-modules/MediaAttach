@@ -1,0 +1,5 @@
+1.1 - SVN: Date:
+- Complete migration to GetText
+- Removing of Deprecated Funktions
+- Design integrates more within the Zikula Admin Design
+- Complete GPL compatibility (Thanks to the Fedora Guys)

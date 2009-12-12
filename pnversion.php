@@ -20,9 +20,9 @@ $modversion['displayname']    = __('MediaAttach', $dom);
 $modversion['version']        = '1.0.0.2';
 $modbversion['url']           = __('mediaattach', $dom);
 
-$modversion['changelog']      = '';
+$modversion['changelog']      = 'CHANGELOG';
 $modversion['credits']        = 'pndocs/credits.txt';
-$modversion['help']           = '';
+$modversion['help']           = 'http://code.zikula.org/mediaattach';
 $modversion['license']        = 'pndocs/license.txt';
 $modversion['official']       = '0';
 $modversion['author']         = 'Axel Guckelsberger';
