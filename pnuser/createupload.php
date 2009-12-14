@@ -186,6 +186,7 @@ function MediaAttach_user_returnFromCreate($hookcall, $redirect, $extrainfo, $er
  */
 function MediaAttach_user_performsingleupload($nr, $file, $title, $description, $categories, $modname, $objectid, $url, $definition, $hookcall)
 {
+    $dom = ZLanguage::getModuleDomain('MediaAttach');
     $msglog = '';
     $errmsg = '';
 
