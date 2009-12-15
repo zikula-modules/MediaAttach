@@ -32,7 +32,7 @@
             <!--[/if]-->
         </div>
         <div class="z-formrow">
-            <!--[pnformlabel for="cachedir" __text="Cache folder (relative from HTML root)"]-->
+            <!--[pnformlabel for="cachedir" __text="Cache folder (absolute, inside HTML root)"]-->
             <!--[pnformtextinput id="cachedir" size="40" maxLength="200" text=$pncore.MediaAttach.cachedir]-->
             <!--[if !$cachedirexists]--><em class="z-formnote dirnotokay"><!--[gt text="This directory does not exist"]--></em>
             <!--[elseif !$cachedirisdir]--><em class="z-formnote dirnotokay"><!--[gt text="This is not a directory"]--></em>

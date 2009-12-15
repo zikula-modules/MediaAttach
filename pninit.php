@@ -43,7 +43,7 @@ function MediaAttach_init()
     }
 
     pnModSetVar('MediaAttach', 'uploaddir',      '/absolute/path/to/upload/dir');
-    pnModSetVar('MediaAttach', 'cachedir',       'relative/path/to/cache/dir');
+    pnModSetVar('MediaAttach', 'cachedir',       '/absolute/path/to/cache/dir');
     pnModSetVar('MediaAttach', 'mailfiles',      '0');
     pnModSetVar('MediaAttach', 'usequota',       '0');
     pnModSetVar('MediaAttach', 'ownhandling',    '0');

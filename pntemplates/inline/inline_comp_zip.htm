@@ -1,8 +1,75 @@
-<!--[* $Id: inline_comp_zip.htm 208 2007-08-08 11:56:00Z weckamc $ *]-->
+<!--[* $Id: inline_comp_zip.htm 208 2009-12-15 08:56:00Z nicname $ *]-->
 <!--[* Purpose of this template: Shows files contained in a zip package *]-->
 
 <!--[if $file.fileInfo.zip]-->
-    <!--[add_additional_header header='<script type="text/javascript" src="modules/MediaAttach/pnincludes/treemenu/treemenu.js"></script>']-->
+ <!--[pnpageaddvar name="stylesheet" value="modules/MediaAttach/pnstyle/tree.css"]-->
+ <!--[add_additional_header header="<script type=\"text/javascript\" language=\"javascript\">
+        function init(){
+	if(!document.getElementById) return;
+	if(!document.getElementsByTagName) return;
+	if(!document.createElement) return;
+
+	var navigation = document.getElementById('tree2');
+	var navSub = navigation.getElementsByTagName('ul');
+
+	for (i=0; i<navSub.length; i++){
+
+		var toggleImage = document.createElement('img');
+		toggleImage.setAttribute('src', 'img/expand.gif');
+		toggleImage.style.cursor = \"pointer\";
+		toggleImage.onclick = function() {
+			toggleNav(this);
+		}
+
+		navSub[i].parentNode.insertBefore(toggleImage, navSub[i].parentNode.firstChild);
+
+		navSub[i].style.display=\"none\";
+		navSub[i].parentNode.className = \"expandable\";
+	}
+
+	var expandLink = document.createElement('li');
+	expandLink.innerHTML = \"<a href='#' onclick='toggleNav(this)' id='expandAll'>Expand All</a>\"
+
+	var collapseLink = document.createElement('li');
+	collapseLink.innerHTML = \"<a href='#' onclick='toggleNav(this)' id='collapseAll'>Collapse All</a>\"
+
+	navigation.appendChild(expandLink);
+	navigation.appendChild(collapseLink);
+    }
+    function toggleNav(whichOne){
+    if (whichOne.getAttribute('id') == \"expandAll\") {
+    var navigation = document.getElementById('tree2');
+    var navigationULs = navigation.getElementsByTagName('ul');
+    var allImages = navigation.getElementsByTagName('img');
+    for (i = 0;
+    i < navigationULs.length;
+    i++) {
+    navigationULs[i].style.display = \"block\";
+    allImages[i].setAttribute('src', 'images/icons/extrasmall/folder_open.gif')
+    }}
+    else if (whichOne.getAttribute('id') == \"collapseAll\"){
+    var navigation = document.getElementById('tree2');
+    var navigationULs = navigation.getElementsByTagName('ul');
+    var allImages = navigation.getElementsByTagName('img');
+    for (i = 0;
+    i < navigationULs.length;
+    i++) {
+    navigationULs[i].style.display = \"none\";
+    allImages[i].setAttribute('src', 'images/icons/extrasmall/folder.gif')
+    }} else {
+    var theParent = whichOne.parentNode;
+    var theParentULs = theParent.getElementsByTagName('ul');
+    var theParentImage = theParent.getElementsByTagName('img');
+    if (theParentULs[0].style.display == \"none\") {
+    theParentULs[0].style.display = \"block\";
+    theParentImage[0].setAttribute('src', 'img/contract.gif');
+    } else {
+    theParentULs[0].style.display = \"none\";
+    theParentImage[0].setAttribute('src', 'img/expand.gif');
+    }}}
+
+    window.onload = init;
+    </script>"]-->
     <h5><!--[gt text="Information about this file"]--></h5>
     <ul id="ma<!--[$idprefix]-->zip<!--[$file.fileid]-->" class="mazipfile">
         <li>Compressed size: <!--[mafilesize size=$file.fileInfo.zip.compressed_size]--></li>

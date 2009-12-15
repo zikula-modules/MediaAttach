@@ -3,9 +3,9 @@
  * MediaAttach
  *
  * @version      $Id: function.showzipentries.php 210 2007-08-08 12:58:50Z weckamc $
- * @author       Axel Guckelsberger
+ * @author       Axel Guckelsberger & Nicolas Berens
  * @link         http://guite.de
- * @copyright    Copyright (C) 2008 by Guite
+ * @copyright    Copyright (C) 2009 by Guite
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
@@ -38,49 +38,31 @@ function smarty_function_showzipentries($params, &$smarty)
         return false;
     }
 
-    $menuname = 'treemenu' . $params['fileid'];
-    $treeimagepath = $smarty->baseurl.'/modules/MediaAttach/pnincludes/treemenu/';
-    $res = '<script type="text/javascript" language="javascript">' . "\n";
-    $res .= '    var ' . $menuname . ' = new TREEMENU();' . "\n";
-    $res .= '    ' . $menuname . '.entry(1, "Root folder");' . "\n";
-    $res .= getRecursiveDirString($params['dirarray'], $menuname);
-    $res .= '    ' . $menuname . '.width = 200;' . "\n";
-    $res .= '    ' . $menuname . '.bgColor = "transparent";' . "\n";
-    $res .= '    ' . $menuname . '.itemBGColor = "transparent";' . "\n";
-    $res .= '    ' . $menuname . '.itemBGColor1 = "transparent";' . "\n";
-    $res .= '    ' . $menuname . '.autoClose = true;' . "\n";
-    $res .= '    ' . $menuname . '.itemWrap = false;' . "\n";
-    $res .= '    ' . $menuname . '.itemBold = true;' . "\n";
-    $res .= '    ' . $menuname . '.iconClosed = "' . $treeimagepath . 'closed.gif";' . "\n";
-    $res .= '    ' . $menuname . '.iconClosedHilight = "' . $treeimagepath . 'closed_hilight.gif";' . "\n";
-    $res .= '    ' . $menuname . '.iconOpen = "' . $treeimagepath . 'open.gif";' . "\n";
-    $res .= '    ' . $menuname . '.iconOpenHilight = "' . $treeimagepath . 'open_hilight.gif";' . "\n";
-    $res .= '    ' . $menuname . '.iconPoint = "' . $treeimagepath . 'point.gif";' . "\n";
-    $res .= '    ' . $menuname . '.iconPointHilight = "' . $treeimagepath . 'point_hilight.gif";' . "\n";
-    $res .= '    ' . $menuname . '.imgBlank = "' . $treeimagepath . 'blank.gif";' . "\n";
-    $res .= '    ' . $menuname . '.create();' . "\n";
-    $res .= '</script>' . "\n";
+    $dirul = '';
+
+    $dirul .= '<ul id="tree' . $params['fileid'] . '" class="matree"><ul>';
+    $dirul .= createULconstructFromDirArray($params['dirarray'], menuname);
+    $dirul .= '</ul></ul>';
 
     if (isset($params['assign'])) {
-        $smarty->assign($params['assign'], $res);
+        $smarty->assign($params['assign'], $dirul);
     }
     else {
-        return $res;
+        return $dirul;
     }
 }
 
-
-function getRecursiveDirString($dirarray, $menuname, $level=1) {
-    $res = '';
+function createULconstructFromDirArray($dirarray, $menuname, $level=1)  {
+    $dirul = "";
     foreach($dirarray as $currentKey => $currentValue) {
         if (is_array($currentValue)) {
-
-            $res .= '    ' . $menuname . '.entry(' . ($level+1) . ', "' . $currentKey . '");' . "\n";
-            $res .= getRecursiveDirString($currentValue, $menuname, $level+1);
+            $dirul .= '<li><a href="#">' . $currentKey . '</a></li>' . "\n" . '<ul>' . "\n";
+            $dirul .= createULconstructFromDirArray($currentValue, $menuname, $level+1);
+            $dirul .= '</ul>';
         }
         else {
-            $res .= '    ' . $menuname . '.entry(' . ($level+1) . ', "' . $currentKey . ' (' . $currentValue . ' bytes)");' . "\n";
+            $dirul .= '<li><a href="#">' . $currentKey . '&nbsp;(' . $currentValue . ' bytes)</a></li>' . "\n";
         }
     }
-    return $res;
+    return $dirul;
 }

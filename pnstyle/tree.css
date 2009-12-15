@@ -1,0 +1,32 @@
+.matree, .matree ul{
+  list-style:none;
+  margin-left:20px;
+}
+.matree ul{
+  padding-top:.5em;
+}
+.matree li{
+  padding-left:17px;
+  background: url(..../../images/icons/extrasmall/1rightarrow.gif) left top no-repeat;
+  padding-bottom:.45em;
+}
+.matree a{
+  text-decoration:none;
+  color:#960000;
+}
+.matree a:hover{
+  color:#1b53b9;
+}
+
+.matree .expandable{
+  padding-left:0px;
+  background-image:none;
+}
+
+.matree .expandable img{
+  margin-right:5px;
+}
+
+#expandAll, #collapseAll {
+  font-weight:bold;
+}

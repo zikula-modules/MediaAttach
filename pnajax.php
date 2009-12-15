@@ -91,6 +91,7 @@ function MediaAttach_ajax_performupload()
         $upload['size'] = $jsfield_files['size'][$i];
 
         $result['messages'][$i] = MediaAttach_user_performsingleupload($i+1, $upload, $title, $desc, $cats, $MediaAttach_modname, $MediaAttach_objectid, $MediaAttach_redirect, $definition);
+        //TODO: define $hookcall (see createuplaod.php line 49)
         $result['messages'][$i] = strip_tags($result['messages'][$i]);
 
         //retrieve entry in used filelist/inlinelist

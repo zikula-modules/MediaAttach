@@ -14,8 +14,8 @@
     <h2><!--[gt text="Upload definitions"]--></h2>
 
     <!--[foreach item="currentdef" from=$definitions]-->
-    <div style="margin: 5px 20px; padding-left: 20px; padding-bottom: 20px; border: 1px solid #000">
-        <p><strong><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)</strong></p>
+    <fieldset>
+        <legend><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)</legend>
 
         <!--[assign var="currentmod" value=$currentdef.modname]-->
         <!--[if $currentdef.state eq 0]-->
@@ -200,7 +200,7 @@
             /* ]]> */
         </script>
         <!--[/if]-->
-    </div>
+    </fieldset>
     <!--[/foreach]-->
     <!--[/if]-->
 

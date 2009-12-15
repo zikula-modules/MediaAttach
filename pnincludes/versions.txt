@@ -40,6 +40,6 @@ tarmanager
     2002-05-08
         http://www.phpclasses.org/browse/package/529.html
 
-treemenu
-    2.1 (2007-01-10)
-        http://www.gerd-tentler.de/tools/treemenu/index.php
+#treemenu (removed because of licensing issues)
+#    2.1 (2007-01-10)
+#        http://www.gerd-tentler.de/tools/treemenu/index.php
