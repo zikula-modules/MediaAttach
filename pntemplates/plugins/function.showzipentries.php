@@ -40,9 +40,9 @@ function smarty_function_showzipentries($params, &$smarty)
 
     $dirul = '';
 
-    $dirul .= '<ul id="tree' . $params['fileid'] . '" class="matree"><ul>';
+    $dirul .= '<ul id="tree" class="matree">';
     $dirul .= createULconstructFromDirArray($params['dirarray'], menuname);
-    $dirul .= '</ul></ul>';
+    $dirul .= '</ul>';
 
     if (isset($params['assign'])) {
         $smarty->assign($params['assign'], $dirul);
@@ -56,12 +56,12 @@ function createULconstructFromDirArray($dirarray, $menuname, $level=1)  {
     $dirul = "";
     foreach($dirarray as $currentKey => $currentValue) {
         if (is_array($currentValue)) {
-            $dirul .= '<li><a href="#">' . $currentKey . '</a></li>' . "\n" . '<ul>' . "\n";
+            $dirul .= '<li><a href="#">' . $currentKey . '</a>' . "\n" . '<ul>' . "\n";
             $dirul .= createULconstructFromDirArray($currentValue, $menuname, $level+1);
-            $dirul .= '</ul>';
+            $dirul .= '</ul></li>';
         }
         else {
-            $dirul .= '<li><a href="#">' . $currentKey . '&nbsp;(' . $currentValue . ' bytes)</a></li>' . "\n";
+            $dirul .= '<li><a href="">' . $currentKey . '&nbsp;(' . $currentValue . ' bytes)</a></li>' . "\n";
         }
     }
     return $dirul;

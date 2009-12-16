@@ -9,13 +9,13 @@
 	if(!document.getElementsByTagName) return;
 	if(!document.createElement) return;
 
-	var navigation = document.getElementById('tree2');
+	var navigation = document.getElementById('tree');
 	var navSub = navigation.getElementsByTagName('ul');
 
 	for (i=0; i<navSub.length; i++){
 
 		var toggleImage = document.createElement('img');
-		toggleImage.setAttribute('src', 'img/expand.gif');
+		toggleImage.setAttribute('src', 'images/icons/extrasmall/folder.gif');
 		toggleImage.style.cursor = \"pointer\";
 		toggleImage.onclick = function() {
 			toggleNav(this);
@@ -27,18 +27,12 @@
 		navSub[i].parentNode.className = \"expandable\";
 	}
 
-	var expandLink = document.createElement('li');
-	expandLink.innerHTML = \"<a href='#' onclick='toggleNav(this)' id='expandAll'>Expand All</a>\"
-
-	var collapseLink = document.createElement('li');
-	collapseLink.innerHTML = \"<a href='#' onclick='toggleNav(this)' id='collapseAll'>Collapse All</a>\"
-
 	navigation.appendChild(expandLink);
 	navigation.appendChild(collapseLink);
     }
     function toggleNav(whichOne){
     if (whichOne.getAttribute('id') == \"expandAll\") {
-    var navigation = document.getElementById('tree2');
+    var navigation = document.getElementById('tree');
     var navigationULs = navigation.getElementsByTagName('ul');
     var allImages = navigation.getElementsByTagName('img');
     for (i = 0;
@@ -48,7 +42,7 @@
     allImages[i].setAttribute('src', 'images/icons/extrasmall/folder_open.gif')
     }}
     else if (whichOne.getAttribute('id') == \"collapseAll\"){
-    var navigation = document.getElementById('tree2');
+    var navigation = document.getElementById('tree');
     var navigationULs = navigation.getElementsByTagName('ul');
     var allImages = navigation.getElementsByTagName('img');
     for (i = 0;
@@ -62,10 +56,10 @@
     var theParentImage = theParent.getElementsByTagName('img');
     if (theParentULs[0].style.display == \"none\") {
     theParentULs[0].style.display = \"block\";
-    theParentImage[0].setAttribute('src', 'img/contract.gif');
+    theParentImage[0].setAttribute('src', 'images/icons/extrasmall/folder_open.gif');
     } else {
     theParentULs[0].style.display = \"none\";
-    theParentImage[0].setAttribute('src', 'img/expand.gif');
+    theParentImage[0].setAttribute('src', 'images/icons/extrasmall/folder.gif');
     }}}
 
     window.onload = init;

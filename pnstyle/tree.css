@@ -1,32 +1,24 @@
-.matree, .matree ul{
+#tree, #tree ul{
   list-style:none;
   margin-left:20px;
 }
-.matree ul{
+#tree ul{
   padding-top:.5em;
 }
-.matree li{
+#tree li{
   padding-left:17px;
-  background: url(..../../images/icons/extrasmall/1rightarrow.gif) left top no-repeat;
+  background: url(../../../images/icons/extrasmall/filenew.gif) left top no-repeat;
   padding-bottom:.45em;
 }
-.matree a{
+#tree a{
   text-decoration:none;
-  color:#960000;
-}
-.matree a:hover{
-  color:#1b53b9;
 }
 
-.matree .expandable{
+#tree .expandable{
   padding-left:0px;
   background-image:none;
 }
 
-.matree .expandable img{
-  margin-right:5px;
-}
-
-#expandAll, #collapseAll {
-  font-weight:bold;
+#tree .expandable img{
+  margin: 0 5px -2px 0;
 }

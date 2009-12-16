@@ -13,7 +13,7 @@ Frank Schummertz
 Joerg Napp
   -- for giving me alot of useful hints
 
-Jørn Lind-Nielsen
+Jï¿½rn Lind-Nielsen
   -- for giving some nice inspirations for the quota system from photoshare
 
 Carsten Volmer
@@ -21,6 +21,11 @@ Carsten Volmer
 
 My girlfriend
   -- for having to share with a laptop
+
+Brad Cooper
+ -- for having a nice utorial for tree meues (used in the zip preview)
+        bradleyjcooper@gmail.com
+        http://willworkforart.net/tutorials/unobtrusive-expand-and-collapse-navigation
 
 The developers and people behind the libraries I included - please respect their efforts and licenses:
 
@@ -30,15 +35,13 @@ The developers and people behind the libraries I included - please respect their
         License: GPL
   -- getID3()                                http://www.getid3.org/
         License: GPL
-  -- Highslide JS                            http://vikjavev.no/highslide/
-        License: Creative Commons Attribution-NonCommercial 2.5 License (http://creativecommons.org/licenses/by-nc/2.5/)
   -- JavaScript Image Cropper UI             http://www.defusion.org.uk/code/javascript-image-cropper-ui-using-prototype-scriptaculous/
         Copyright (c) 2006, David Spurr (www.defusion.org.uk)
-        All rights reserved.
-  -- JW FLV Player                           http://www.jeroenwijering.com/?item=JW_FLV_Player
-        License: Creative Commons Attribution-NonCommercial 2.0 License (http://creativecommons.org/licenses/by-nc-sa/2.0/)
+        License: BSD License
+  -- FlowPlayer FlowPlayer                   http://flowplayer.org/
+        License: GPL-V3
   -- SWFUpload                               http://swfupload.mammon.se/
-        (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media
+        (c) 2006-2007 Lars Huring, Olov Nilzï¿½n and Mammon Media
         License: MIT License (http://www.opensource.org/licenses/mit-license.php)
-  -- JS-TreeMenu                             http://www.gerd-tentler.de/tools/treemenu/
+
   -- TAR File Manager                        http://www.phpclasses.org/browse/package/529.html
