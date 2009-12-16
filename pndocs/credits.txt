@@ -23,7 +23,7 @@ My girlfriend
   -- for having to share with a laptop
 
 Brad Cooper
- -- for having a nice utorial for tree meues (used in the zip preview)
+ -- for having a nice tutorial for tree meues (used in the zip preview)
         bradleyjcooper@gmail.com
         http://willworkforart.net/tutorials/unobtrusive-expand-and-collapse-navigation
 
