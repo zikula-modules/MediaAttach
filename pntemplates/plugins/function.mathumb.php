@@ -66,7 +66,7 @@ function smarty_function_mathumb($params, &$smarty)
 
     $imgtag = '<img src="' . pnGetBaseURI() . '/' . $imgsrc . '" ';
     foreach ($params as $key => $value) {
-        $imgtag .= $key . '="' .$value  . '" ';
+        $imgtag .= $key . '="' . str_replace('"', '\'', $value) . '" ';
     }
     $imgtag .= '/>';
 
