@@ -4,7 +4,8 @@
 <!--[pnajaxheader modname="MediaAttach" filename=MediaAttach.js]-->
 
 <!--[insert name="getstatusmsg"]-->
-<br id="files" />
+<fieldset>
+    <legend><!--[pnmodgetinfo modname="MediaAttach" info="displayname"]--></legend>
 <!--[if $definition.state eq 1]-->
     <!--[pnmodfunc modname="MediaAttach" type="user" func="showfilelist" objectid=$objectid]-->
     <!--[if $allowadd]-->
@@ -12,6 +13,8 @@
     <!--[if $activateExternalVideos]-->
          | <a id="myextvidform_switch" href="javascript:void(0);" title="<!--[gt text="Embed external video"]-->" style="display: none"><!--[gt text="Embed external video"]--></a>
     <!--[/if]-->
+    |  <a href="<!--[pnmodurl modname="MediaAttach" type="admin" func="importfsform"]-->" title="<!--[gt text="Import files from a server directory"]-->"><!--[gt text="Import files from a server directory"]--></a>
+    <!--[assign var="numImportModules" value=$importModules|@count]-->
         <form id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createupload"]-->" method="post" enctype="multipart/form-data" class="maform">
             <fieldset>
                 <legend><!--[gt text="Upload files"]--></legend>
@@ -168,3 +171,4 @@
         </script>
     <!--[/if]-->
 <!--[/if]-->
+</fieldset>
