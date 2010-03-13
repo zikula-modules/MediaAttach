@@ -127,7 +127,7 @@ function _maIntPrepFileForTemplate($file, $currentUser, $ownHandling)
     }
 
     // call transform hooks
-    list ($file['title'], $file['desc']) = pnModCallHooks('item', 'transform', '', array($file['title'], $file['desc']));
+    // list ($file['title'], $file['desc']) = pnModCallHooks('item', 'transform', '', array($file['title'], $file['desc']));
 
     // determine if current user may modify this file in terms of config
     $isOwner = ($ownHandling && ($currentUser == $file['uid']));
