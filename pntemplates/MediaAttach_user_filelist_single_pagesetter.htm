@@ -11,7 +11,7 @@
     <dd>
         <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
         <!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->,
-        <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><!--[if $file.extension ne "extvid"]-->, 
+        <!--[gt text="on"]--> <!--[$file.date|pndate_format:datetimebrief]--><!--[if $file.extension ne "extvid"]-->, 
         <!--[gt text="%s times downloaded" tag1=$file.dlcount]--><!--[/if]--><br />
 
 <!--[*

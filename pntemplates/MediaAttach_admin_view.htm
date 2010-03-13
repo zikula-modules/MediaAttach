@@ -29,7 +29,7 @@
         </span>
     </div>
 
-    <form class="z-form" id="myuploadform" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createupload"]-->" method="post" enctype="multipart/form-data">
+    <form id="myuploadform" class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="admin" func="createupload"]-->" method="post" enctype="multipart/form-data">
         <div>
             <input type="hidden" name="authid" id="MediaAttach_authid" value="<!--[$authid]-->" />
             <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="MediaAttach" />
@@ -46,10 +46,12 @@
                     </div>
                 </div>
                 <p id="allowedformats" class="z-formnote"><!--[foreach name="formatloop" item="currentformat" from=$definition.formats]--><!--[$currentformat.extension]--><!--[if $smarty.foreach.formatloop.last ne true]-->, <!--[/if]--><!--[/foreach]--></p>
+
                 <div class="z-formrow">
                     <label><!--[gt text="Max. size"]--></label>
                     <span><!--[mafilesize size=$definition.maxsize]--></span>
                 </div>
+
                 <!--[if $usequota eq 1]-->
                 <div class="z-formrow">
                     <label><!--[gt text="Quota"]--></label>
@@ -144,7 +146,7 @@
     </form>
 
     <!--[if $activateExternalVideos]-->
-    <form class="z-form" id="myextvidform" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post">
+    <form id="myextvidform" class="z-form" action="<!--[pnmodurl modname="MediaAttach" type="user" func="createextvid"]-->" method="post">
         <div>
             <input type="hidden" name="authid" value="<!--[$authid]-->" />
             <input type="hidden" name="MediaAttach_modname" value="MediaAttach" />
@@ -162,10 +164,12 @@
                     </div>
                 </div>
                 <p class="z-formnote" id="supportedproviders"><!--[foreach name="proloop" item="provider" from=$supportedProviders]--><!--[$provider.name|pnvarprepfordisplay]--><!--[if !$smarty.foreach.proloop.last]-->, <!--[/if]--><!--[/foreach]--></p>
+
                 <div class="z-formrow">
                     <label id="lblurl" for="MediaAttach_videourl"><!--[gt text="Video Page URL"]--></label>
                     <input id="MediaAttach_videourl" name="MediaAttach_videourl" type="text" size="40" />
                 </div>
+
                 <div class="z-formrow">
                     <label for="maextvidcats_Main_"><!--[gt text="Categories"]--></label>
                     <!--[nocache]-->
@@ -174,6 +178,7 @@
                     <!--[/foreach]-->
                     <!--[/nocache]-->
                 </div>
+
                 <div class="z-formbuttons">
                     <input type="submit" value="<!--[gt text="Submit"]-->" />
                 </div>

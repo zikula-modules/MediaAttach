@@ -7,7 +7,7 @@
 
     <!--[mafilebuttons file=$file view=1 info=1 dl=1 mail=1]--><span style="margin-left: 15px"><!--[mafilebuttons file=$file edit=1 delete=1]--></span>
 </dt>
-<dd><!--[gt text="from" domain="module_mediaattach"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--></dd>
+<dd><!--[gt text="from" domain="module_mediaattach"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|pndate_format:datetimebrief]--></dd>
 <!--[if $file.extension ne "extvid"]-->
 <dd><!--[gt text="%s times downloaded" tag1=$file.dlcount domain="module_mediaattach"]--></dd>
 <!--[/if]-->

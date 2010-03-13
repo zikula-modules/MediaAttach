@@ -25,7 +25,7 @@
 <div class="highslide-caption" id="description<!--[$file.fileid]-->">
     <p id="file<!--[$file.fileid]-->"><strong><!--[$file.title]--></strong><!--[if $file.extension ne "extvid"]--> (<!--[mafilesize size=$file.filesize]-->)<!--[/if]--></p>
     <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
-    <!--[gt text="from"]--> <!--[$file.username|pnvarprephtmldisplay]-->, <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+    <!--[gt text="from"]--> <!--[$file.username|pnvarprephtmldisplay]-->, <!--[gt text="on"]--> <!--[$file.date|pndate_format:datetimebrief]--><br />
     <!--[include file="MediaAttach_file_categories.htm"]-->
 </div>
 

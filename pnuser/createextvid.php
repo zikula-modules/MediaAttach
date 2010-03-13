@@ -128,7 +128,7 @@ function _maGrabPageInfo($pageContent, $searchPattern)
 
     // extract title
     if (preg_match("#" . $searchPattern['titleStart'] . "(.*?)" . $searchPattern['titleEnd'] . "#s", $pageContent, $matches)) {
-        $title = DataUtil::convertFromUTF8($matches[1]);
+        $title =$matches[1];
     } else {
 //die('DEBUG: FEHLER 1');
         return false;
@@ -136,7 +136,7 @@ function _maGrabPageInfo($pageContent, $searchPattern)
 
     // extract description
     if (preg_match("#" . $searchPattern['descStart'] . "(.*?)" . $searchPattern['descEnd'] . "#s", $pageContent, $matches)) {
-        $desc = DataUtil::convertFromUTF8($matches[1]);
+        $desc = $matches[1];
     } else {
 //die('DEBUG: FEHLER 2');
         return false;

@@ -1,4 +1,4 @@
-<!--[* $Id: *]-->
+<!--[* $Id$ *]-->
 <!--[* Purpose of this template: Display one particular file within an external context *]-->
 
 <!--[if $floatmode eq "left"]--><!--[assign var="flowstyle" value=" itemleft"]-->
@@ -28,7 +28,7 @@
     <p class="maextdesc">
         <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
         <!--[gt text="from" domain="module_mediaattach"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
-        <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+        <!--[gt text="on" domain="module_mediaattach"]--> <!--[$file.date|pndate_format:datetimebrief]--><br />
         <!--[include file="MediaAttach_file_categories.htm"]-->
     </p>
     <!--[/if]-->

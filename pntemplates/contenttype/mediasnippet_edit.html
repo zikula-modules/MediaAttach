@@ -1,30 +1,39 @@
-<div class="row">
-  <!--[pnformlabel for='maFileID' __text='Select MediaAttach file']-->
-  <!--[mediaattachitemselector id=mafile group=data]-->
+<!--[* $Id$ *]-->
+<!--[mediaattachitemselector id=mafile group=data]-->
+
+<div class="z-formrow">
+    <label><!--[gt text="Paste mode"]--></label>
+    <div>
+        <!--[pnformradiobutton id='linkButton' value='link' dataField='pasteMode' group='data' mandatory='1']-->
+        <!--[pnformlabel for='linkButton' __text='Link file']-->
+        <!--[pnformradiobutton id='embedButton' value='embed' dataField='pasteMode' group='data' mandatory='1']-->
+        <!--[pnformlabel for='embedButton' __text='Embed file']-->
+    </div>
 </div>
 
-<div class="row">
-  <!--[pnformradiobutton id='linkButton' value='link' dataField='pasteMode' group='data' mandatory='1']--> 
-  <!--[pnformlabel for='linkButton' __text='Link file']-->
-  <!--[pnformradiobutton id='embedButton' value='embed' dataField='pasteMode' group='data' mandatory='1']--> 
-  <!--[pnformlabel for='embedButton' __text='Embed file']-->
+<div class="z-formrow">
+    <label><!--[gt text="Float mode"]--></label>
+    <div>
+        <!--[pnformradiobutton id='floatnoneButton' value='none' dataField='floatMode' group='data' mandatory='1']-->
+        <!--[pnformlabel for='floatnoneButton' __text='No flow']-->
+        <!--[pnformradiobutton id='floatleftButton' value='left' dataField='floatMode' group='data' mandatory='1']-->
+        <!--[pnformlabel for='floatleftButton' __text='Flow right (medium left)']-->
+        <!--[pnformradiobutton id='floatrightButton' value='right' dataField='floatMode' group='data' mandatory='1']-->
+        <!--[pnformlabel for='floatrightButton' __text='Flow left (medium right)']-->
+    </div>
 </div>
 
-<div class="row">
-  <!--[pnformradiobutton id='floatnoneButton' value='none' dataField='floatMode' group='data' mandatory='1']--> 
-  <!--[pnformlabel for='floatnoneButton' __text='No flow']-->
-  <!--[pnformradiobutton id='floatleftButton' value='left' dataField='floatMode' group='data' mandatory='1']--> 
-  <!--[pnformlabel for='floatleftButton' __text='Flow right (medium left)']-->
-  <!--[pnformradiobutton id='floatrightButton' value='right' dataField='floatMode' group='data' mandatory='1']--> 
-  <!--[pnformlabel for='floatrightButton' __text='Flow left (medium right)']-->
-</div>
-
-<div class="row">
+<div class="z-formrow">
+    <label><!--[gt text="Thumbsizes"]--></label>
     <!--[pnmodgetvar module="MediaAttach" name="thumbsizes" assign="thumbsizes"]-->
     <!--[foreach name="thumbLoop" item="thumbsize" from=$thumbsizes]-->
-        <!--[pnformradiobutton id="thumbnr`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField='thumbnr' group='data' mandatory='1']--> 
+    <div class="z-formnote">
+        <!--[pnformradiobutton id="thumbnr`$smarty.foreach.thumbLoop.iteration`" value=$smarty.foreach.thumbLoop.iteration dataField='thumbnr' group='data' mandatory='1']-->
         <!--[pnformlabel for="thumbnr`$smarty.foreach.thumbLoop.iteration`" text="`$thumbsize[0]` x `$thumbsize[1]` px"]-->
+    </div>
     <!--[/foreach]-->
-    <!--[pnformradiobutton id="original" value="original" dataField='thumbnr' group='data' mandatory='1']--> 
-    <!--[pnformlabel for='original' __text='Original image']-->
+    <div class="z-formnote">
+        <!--[pnformradiobutton id="original" value="original" dataField='thumbnr' group='data' mandatory='1']-->
+        <!--[pnformlabel for='original' __text='Original image']-->
+    </div>
 </div>

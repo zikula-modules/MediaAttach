@@ -24,7 +24,7 @@
         <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
 
         <label class="maleft"><!--[gt text="Date"]-->:</label>
-        <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+        <!--[$file.date|pndate_format:datetimebrief]--><br />
 
         <label for="MediaAttach_title" class="maleft"><!--[gt text="Title"]-->:</label>
         <input id="MediaAttach_title" name="MediaAttach_title" type="text" maxLength="64" value="<!--[$file.title]-->" /><br />

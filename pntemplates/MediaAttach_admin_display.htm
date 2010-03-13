@@ -1,4 +1,4 @@
-<!--[* $Id: *]-->
+<!--[* $Id$ *]-->
 <!--[* Purpose of this template: Display one particular file within the admin area *]-->
 
 <!--[include file="MediaAttach_admin_header.htm"]-->
@@ -17,7 +17,7 @@
         <div style="float: right; margin: 0 15px; width: 180px">
             <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
             <!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
-            <!--[gt text="on"]--> <!--[$file.date|date_format:"%d.%m.%y, %H:%M"]--><br />
+            <!--[gt text="on"]--> <!--[$file.date|pndate_format:datetimebrief]--><br />
             <!--[include file="MediaAttach_file_categories.htm"]-->
         </div>
 

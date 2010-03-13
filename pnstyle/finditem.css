@@ -1,15 +1,25 @@
 /* $Id: finditem.css 156 2008-07-18 23:30:32Z mateo $ */
 
 body {
-    background-color: #DDD;
-    margin: 10px;
-    text-align: left;
+    background-color:#EEEEEE;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    line-height:1.5em;
+    margin:10px;
+    text-align:left;
+    color:#000;
 }
 
-.maform fieldset,
-.maform fieldset legend {
-    background-color: #FFF;
-    border: none;
+a {
+    text-decoration:underline;
+    color:#000;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #900;
+    text-decoration: none;
 }
 
 #filecontainer {
@@ -28,8 +38,9 @@ body {
 #filecontainer a {
     color: #000;
     margin: 0.1em 0.2em;
-    text-decoration: underline;
+    text-decoration: none;
 }
+
 #filecontainer a:hover,
 #filecontainer a:focus,
 #filecontainer a:active {

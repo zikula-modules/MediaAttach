@@ -13,7 +13,7 @@
 
             <!--[mafilebuttons file=$file view=1 info=1 dl=1 mail=1]-->
             &nbsp;
-            (<!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, &nbsp;<!--[$file.date|date_format:"%d.%m.%y, %H:%M"]-->)
+            (<!--[$file.username|userprofilelink|pnvarprephtmldisplay]-->, &nbsp;<!--[$file.date|pndate_format:datetimebrief]-->)
 <!--[if $file.extension ne "extvid"]-->
            &nbsp;
             <!--[gt text="%s times downloaded" tag1=$file.dlcount]-->
