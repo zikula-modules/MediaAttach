@@ -57,7 +57,7 @@ function MediaAttach_userapi_getalluploads($args)
     $bool           = (isset($args['bool'])         && !empty($args['bool']))           ? $args['bool']         : 'AND';
     unset($args);
 
-    $allowedSortings = array('date', 'title', 'module', 'filename', 'username', 'filetype', 'filesize');
+    $allowedSortings = array('date', 'title', 'desc', 'module', 'filename', 'username', 'filetype', 'filesize');
     if (!in_array($sortby, $allowedSortings)) $sortby = 'date';
     $allowedSortdir = array('asc', 'desc');
     if (!in_array($sortdir, $allowedSortdir)) $sortdir = 'asc';
