@@ -16,7 +16,7 @@
  */
 function MediaAttach_specificfilesblock_init()
 {
-    pnSecAddSchema('MediaAttach:Specificfilesblock:', 'Block title::');
+    SecurityUtil::registerPermissionSchema('MediaAttach:Specificfilesblock:', 'Block title::');
 }
 
 /**

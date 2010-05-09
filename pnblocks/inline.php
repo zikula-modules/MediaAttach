@@ -16,7 +16,7 @@
  */
 function MediaAttach_inlineblock_init()
 {
-    pnSecAddSchema('MediaAttach:Inlineblock:', 'Block title::');
+    SecurityUtil::registerPermissionSchema('MediaAttach:Inlineblock:', 'Block title::');
 }
 
 /**

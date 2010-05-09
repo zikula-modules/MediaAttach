@@ -16,7 +16,7 @@
  */
 function MediaAttach_newestfilesblock_init()
 {
-    pnSecAddSchema('MediaAttach:Newestfilesblock:', 'Block title::');
+    SecurityUtil::registerPermissionSchema('MediaAttach:Newestfilesblock:', 'Block title::');
 }
 
 /**
