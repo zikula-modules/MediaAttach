@@ -142,7 +142,7 @@ function MediaAttach_pntables()
                                             'modname'      => "C(64)  NOTNULL DEFAULT ''",
                                             'objectid'     => "C(32)  NOTNULL DEFAULT ''",
                                             'uid'          => "I      NOTNULL DEFAULT 0",
-                                            'date'         => "T      NOTNULL DEFAULT 0",
+                                            'date'         => "T      NOTNULL DEFAULT ''",
                                             'title'        => "C(64)  NOTNULL DEFAULT ''",
                                             'desc'         => "X      NOTNULL DEFAULT ''",
                                             'extension'    => "C(10)  NOTNULL DEFAULT ''",
