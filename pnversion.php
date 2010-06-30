@@ -17,7 +17,7 @@ $dom = ZLanguage::getModuleDomain('MediaAttach');
 $modversion['name']           = 'MediaAttach';
 $modversion['description']    = __('Uploads and file management', $dom);
 $modversion['displayname']    = __('MediaAttach', $dom);
-$modversion['version']        = '1.1.0.0';
+$modversion['version']        = '1.1.1.0';
 $modbversion['url']           = __('mediaattach', $dom);
 
 $modversion['changelog']      = 'http://code.zikula.org/mediaattach/browser/trunk/MediaAttach/CHANGELOG';

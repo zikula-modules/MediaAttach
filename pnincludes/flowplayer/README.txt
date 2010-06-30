@@ -1,5 +1,52 @@
 Version history:
 
+3.2.2
+-----
+Fixes:
+- Now recognizes following kind of urls as audio clips: 'mp3:audiostreamname' (ulrs with mp3 prefix and no extension)
+- Now ignores the duration from metadata if we already got one. Fix required for pseudostreaming
+- Fix to reuse buffered data when replaying a clip
+
+3.2.1
+---------
+- Support for RTMP redirects (tested with Wowza loadbalancing)
+- Fixed video size when no size info available in clip metadata
+
+Fixes:
+- Fix to correctly detect if the player SWF name contains a version number and if it does also use the version number
+when it automatically loads the controls plugin.
+
+3.2.0
+-----
+- canvas, controlbar and the content plugin backgound color and border color can be now given with rgb() and rgba() CSS style syntax
+- Added onMouseOver() and onMouseOut() listener registration methods to the Flowplayer API
+- enhancements to RSS playlist. Converted parsing to E4X, yahoo media and flowplayer namespace support. 
+- added feature to obtain bitrate and dimension information to a new clip custom property "bitrates" for future support for bitrate choosing. 
+- added getter for playerSwfName config
+- if clip.url has the string "mp3:" in it, the clip.type will report 'audio'
+- added setKeyboardShortcutsEnabled(), addKeyListener(), removeKeyListener() to FlowplayerBase
+Fixes:
+- onSeek() was not fired when seeking while paused and when using RTMP. An extra onStart was fired too.
+- fireErrorExternal() was not working properly with an error PlayerEvent
+- countPlugins() was throwing an error when a plugin was not found
+- external swf files were not scaled properly
+- the logo was unnecessary shown when going fullscreen if logo.displayTime was being used
+- added a loadPluginWithConfig method to FlowplayerBase, accessible from javascript. Fixed double onload callback call.
+- now handles cuepoint parameters injected using the Adobe Media Encoder
+- showPlugin was not working when config.play was null
+- handles 3-part duration values included in FLV metadata, like "500.123.123"
+- player wasn't always reaching end of video
+- fixed broken buffering: false
+- fixed event dispatching when embedding flowplayer without flowplayer.js (=without playlist config field)
+- fixed safari crashes when unloading player
+- fixed scrubber behaviour with a playlist containing 2 images (or swf) in a row
+- fixed errors in logs when using an RSS playlist
+- fixed OverlayPlayButton that was showing even if it shouldn't on some cases
+- fixed wrong behavior when onBeforeFinish was returning false within playlists
+- /!\ Don't use the fadeIn / fadeOut controlbar's API while using autoHide.
+- fixed play state button with images
+- fixed splash image flickering
+
 3.1.5
 -----
 Fixes:

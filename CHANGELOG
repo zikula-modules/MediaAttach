@@ -1,3 +1,8 @@
+1.1.1
+ - Bug fixes for zk13
+ - download functionality now reads in chunks (fix: #73)
+ - updated external librarys etc (flowplayer)
+
 1.1 - SVN:266 Date: 2009-12-16
 - Complete migration to GetText
 - Removing of Deprecated Funktions

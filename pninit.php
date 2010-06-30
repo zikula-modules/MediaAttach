@@ -83,6 +83,7 @@ function MediaAttach_init()
  */
 function MediaAttach_upgrade($oldversion)
 {
+      $dom = ZLanguage::getModuleDomain('MediaAttach');
       switch ($oldversion) {
         case '1.0':
         case '1.0.0.1':

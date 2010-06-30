@@ -81,7 +81,7 @@ function MediaAttach_inlineblock_display($blockinfo)
                                                                           'formatFilter' => $formatFilter));
     }
 
-    if (!$uploads) {
+    else {
         return false;
     }
 

@@ -96,7 +96,7 @@ function MediaAttach_user_download($args)
         header("Last-Modified: " . gmdate('D, d M Y H:i:s', filemtime($file['filename'])) . ' GMT');
     }
 
-    //header("Content-Length: " . $file['filesize']);
+    header("Content-Length: " . $file['filesize']);
 
     if ($inline == 1) {
         header("Content-Description: MediaAttach inline file");
@@ -109,12 +109,28 @@ function MediaAttach_user_download($args)
     header("Content-Transfer-Encoding: binary");
 
     if ($useCompression != 1) {
-        // header("Content-Length: " . $file['filesize']);
+         header("Content-Length: " . $file['filesize']);
         // TODO: work out better solution (like getting rid of gzip with the above output buffer cleaning)
     }
 
-    Loader::loadClass('FileUtil');
-    echo FileUtil::readFile($uploaddir . '/' . $file['filename'], true);
 
+   // TODO: FileUtil needs a function for reading files in chunks
+   // Loader::loadClass('FileUtil');
+   // echo FileUtil::readFile($uploaddir . '/' . $file['filename'], true);
+    
+    $fileloc = $uploaddir . '/' . $file['filename'];
+    $chunk = 1048576; //1M
+    $buffer = '';
+    $handle = fopen($fileloc, 'rb');
+    if ($handle === false) {
+        return false;
+    }
+    while (!feof($handle)) {
+        $buffer = fread($handle, $chunk);
+        print $buffer;
+        ob_flush();
+        flush();
+    }
+    fclose($handle);
     return true;
 }
