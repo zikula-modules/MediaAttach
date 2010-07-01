@@ -1,0 +1,103 @@
+{* $Id: MediaAttach_admin_group_view.tpl 155 2006-09-11 20:11:19Z weckamc $ *}
+{* Purpose of this template: Group management *}
+
+{include file="MediaAttach_admin_header.tpl"}
+
+<div class="z-admincontainer">
+    <div class="z-adminpageicon">{zimg modname="core" src="windowlist.gif" set="icons/large" __alt="File groups"}</div>
+
+    <h2>{gt text="File groups"}</h2>
+
+    <p>
+        <a id="new_group_switch" href="javascript:void(0);" style="display: none">{gt text="Create a new group"}</a>
+    </p>
+
+    <div id="new_group">
+        <form class="z-form" action="{zmodurl modname="MediaAttach" type="admin" func="creategroup"}" method="post" enctype="application/x-www-form-urlencoded">
+            <div>
+                <input type="hidden" name="authid" value="{$authid}" />
+                <fieldset>
+                    <legend>{gt text="Add group"}</legend>
+                    <div class="z-formrow">
+                        <label for="MediaAttach_groupname">{gt text="Name"}</label>
+                        <input type="text" class="required validate-alphanum" id="MediaAttach_groupname" name="groupname" maxlength="100" />
+                        <p id="advice-required-MediaAttach_groupname" class="z-formnote custom-advice" style="display: none">{gt text="Please enter a name for the new group."}</p>
+                        <p id="advice-validate-alphanum-MediaAttach_groupname" class="z-formnote custom-advice" style="display: none">{gt text="The group name may only contain letters and numbers."}</p>
+                    </div>
+                    <div class="z-formrow">
+                        <label for="MediaAttach_directory">{gt text="Directory"}</label>
+                        <input type="text" class="required validate-alphanum" id="MediaAttach_directory" name="directory" maxlength="255" />
+                        <p id="advice-required-MediaAttach_directory" class="z-formnote custom-advice" style="display: none">{gt text="Please enter a directory for the new group"}</p>
+                        <p id="advice-validate-alphanum-MediaAttach_directory" class="z-formnote custom-advice" style="display: none">{gt text="The directory may only contain letters and numbers."}</p>
+                    </div>
+                    <div class="z-formrow">
+                        <label for="MediaAttach_image">{gt text="Image"}</label>
+                        <div>{maimageselect selected="modules/MediaAttach/pnimages/folder/folder.gif" type="groups"}</div>
+                    </div>
+                    <div class="z-formrow">
+                        <label for="MediaAttach_formats_select">{gt text="File formats"}</label>
+                        <select id="MediaAttach_formats_select" name="formats[]" size="10" multiple="multiple">
+                            {foreach item="currentformat" from=$formats}
+                            <option value="{$currentformat.fid}" selected="selected">{$currentformat.extension}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="z-formbuttons">
+                        <input name="submit" type="submit" value="{gt text="Add group"}" />
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        maInitGroupView();
+    </script>
+
+    <table class="z-datatable" summary="{gt text="File groups"}">
+        <colgroup>
+            <col id="groupname" />
+            <col id="directory" />
+            <col id="formats" />
+            <col id="actions" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th id="g" scope="col" abbr="{gt text="Name"}">{gt text="Name"}</th>
+                <th id="d" scope="col" abbr="{gt text="Directory"}">{gt text="Directory"}</th>
+                <th id="f" scope="col" abbr="{gt text="Formats"}">{gt text="Formats"}</th>
+                <th id="a" scope="col" abbr="{gt text="Actions"}">{gt text="Actions"}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item="currentgroup" from=$groups}
+            <tr class="{cycle values="z-odd,z-even"}">
+                <td headers="g">
+                    {zimg src="folder/`$currentgroup.image`" modname="MediaAttach" __alt="icon" style="padding-right: 5px"}
+                    {$currentgroup.groupname}
+                </td>
+                <td headers="d">
+                    {$currentgroup.directory}
+                </td>
+                <td headers="f">
+                    {foreach name="maFileTypeLoop" item="fileType" from=$currentgroup.formats}{if !$smarty.foreach.maFileTypeLoop.first}, {/if}{$fileType.extension}{/foreach}
+                </td>
+                <td headers="a" style="text-align: center; white-space:nowrap;">
+                    <form action="{zmodurl modname="MediaAttach" type="admin" func="editgroup}" method="post" style="display: inline">
+                        <input type="hidden" name="gid" value="{$currentgroup.gid}" />
+                        {zimg src="edit.gif" modname="core" set="icons/extrasmall" assign="editimg"}
+                        <input type="image" name="submit" src="{$editimg.src}" alt="{gt text="Edit"}" />
+                    </form>
+                    <form action="{zmodurl modname="MediaAttach" type="admin" func="deletegroup"}" method="post" style="display: inline">
+                        <input type="hidden" name="gid" value="{$currentgroup.gid}" />
+                        {zimg src="edit_remove.gif" modname="core" set="icons/extrasmall" assign="delimg"}
+                        <input type="image" name="submit" src="{$delimg.src}" alt="{gt text="Delete"}" />
+                    </form>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+
+</div>
+{include file="MediaAttach_admin_footer.tpl"}

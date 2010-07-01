@@ -1,0 +1,135 @@
+{* $Id: MediaAttach_user_uploadform_pnForum.tpl 242 2007-09-22 23:30:32Z weckamc $ *}
+{* Purpose of this template: shows upload form elements for a special module (here Dizkus) *}
+{* note that this template is being included within a form of Dizkus so we do not need an own form tag *}
+
+{zajaxheader modname="MediaAttach" filename=MediaAttach.js}
+
+{if $definition.state eq 1}
+{if $allowadd}
+<a id="myuploadform_switch" href="javascript:void(0);" title="{gt text="Upload files"}" style="display: none">
+    {gt text="Upload files"}
+</a>
+<div id="myuploadform">
+    <p class="maboldfont">
+        {gt text="Allowed formats"}:
+        <a id="allowedformats_switch" href="javascript:void(0);" style="display: none">
+            <span id="showformats">{gt text="show"}</span>
+            <span id="hideformats" style="display: none">{gt text="hide"}</span>
+        </a>
+    </p>
+    <p id="allowedformats">
+        {foreach name="formatloop" item="currentformat" from=$definition.formats}{$currentformat.extension}{if !$smarty.foreach.formatloop.last}, {/if}{/foreach}
+    </p>
+
+    <p>
+        <span class="maboldfont">{gt text="Max. size"}:</span>
+        <input type="hidden" name="MAX_FILE_SIZE" value="{$definition.maxsize}" />
+        {mafilesize size=$definition.maxsize}
+    </p>
+    {if $usequota eq 1}
+    <p>
+        <span class="maboldfont">{gt text="Quota"}:</span>
+        {gt text="You have"} {mafilesize size=$usedquota} {gt text="of"} {mafilesize size=$allowedquota} {gt text="used"}
+    </p>
+    {/if}
+    {if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota}
+    {gt text="Choose Category" assign="lblDef"}
+    <div id="uploadformwrappernonjs">
+        {foreach item="currentfilenum" from=$numArr}
+        <label for="MediaAttach_uploadfile{$currentfilenum}" class="maboldfont">{gt text="File"}{if $definition.numfiles > 1} {$currentfilenum}{/if}:</label><br />
+        <input id="MediaAttach_uploadfile{$currentfilenum}" name="MediaAttach_uploadfile{$currentfilenum}" type="file" size="13" /><br />
+
+        <label for="MediaAttach_title{$currentfilenum}" class="maboldfont">{gt text="Title"}:</label><br />
+        <input id="MediaAttach_title{$currentfilenum}" name="MediaAttach_title{$currentfilenum}" type="text" size="30" maxlength="32" /><br />
+
+        <label for="MediaAttach_description{$currentfilenum}" class="maboldfont">{gt text="Description"}:</label><br />
+        <textarea id="MediaAttach_description{$currentfilenum}" name="MediaAttach_description{$currentfilenum}" rows="3" cols="30" ></textarea><br />
+
+        <label for="mafilecats_{$currentfilenum}_Main_">{gt text="Categories"}:</label><br />
+        {nocache}
+        <ul class="maCatSelector">
+            {foreach from=$categories key=property item=category}
+            <li>{selector_category category=$category name="mafilecats_`$currentfilenum`[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false}</li>
+            {/foreach}
+        </ul>
+        {/nocache}
+        <br />
+        {/foreach}
+    </div>
+
+    <div id="uploadformwrapperjs" style="display: none">
+        <div id="fileInputFrame">
+            <input type="hidden" name="MediaAttach_redirect" id="MediaAttach_redirect" value="{$redirect}" />
+            <input type="hidden" name="MediaAttach_modname" id="MediaAttach_modname" value="{$modname}" />
+            <input type="hidden" name="MediaAttach_objectid" id="MediaAttach_objectid" value="{$objectid}" />
+            <p>
+                <label>{gt text="Max. files"}:</label>
+                <input type="hidden" id="MediaAttach_maxfiles" name="maxfiles" value="{$definition.numfiles}" />
+                {$definition.numfiles}<br />
+            </p>
+
+            <label id="labelfile" for="MediaAttach_uploadfile" style="display: block">{gt text="File"}:</label>
+            <input id="MediaAttach_uploadfile" type="file" size="13" /><br />
+
+            <label id="labeltitle" for="MediaAttach_title" style="display: block">{gt text="Title"}:</label>
+            <input id="MediaAttach_title" type="text" size="30" maxlength="64" /><br />
+
+            <label id="labeldesc" for="MediaAttach_description" style="display: block">{gt text="Description"}:</label>
+            <textarea id="MediaAttach_description" rows="3" cols="30"></textarea><br />
+
+            <label for="mafilecats_Main_">{gt text="Categories"}:</label><br />
+            {nocache}
+            <ul id="maCatSelector" class="maCatSelector">
+                {foreach from=$categories key=property item=category}
+                <li>{selector_category category=$category name="mafilecats[$property]" field="id" selectedValue=0 defaultValue="0" defaultText=$lblDef editLink=false}</li>
+                {/foreach}
+            </ul>
+            {/nocache}
+            <br />
+
+            <input type="button" id="addNewUploadFile" value="{gt text="Add file"}" style="margin-left: 80px" /><br />
+        </div>
+
+        <ul id="addedUploadList">
+            <li>{gt text="Added files will be listed here."}</li>
+        </ul>
+
+        <ul class="" style="position: relative" id="uploadRemoveBox">
+            <li>{gt text="Drop any added files here to remove them."}</li>
+        </ul>
+    </div>
+
+    <iframe id="myuploadframe" name="myuploadframe" src="ajax.php?module=MediaAttach&amp;func=performupload" style="display: none"></iframe>
+
+    {zmodcallhooks hookobject=item hookaction=new module=MediaAttach}
+    {zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" __alt=""}
+    <span id="myuploadresult" style="display: none">{gt text="Uploading..."}</span>
+    <input id="btnUpload" type="submit" value="{gt text="Upload"}" style="display: none" />
+    {else}
+    <p style="font-weight: 700; text-align: center">
+        {gt text="You have no more memory for uploads available"}
+    </p>
+    {/if}
+</div>
+
+<script type="text/javascript" language="javascript">
+    /* <![CDATA[ */
+    maInitUploadFormView();
+
+    {if $usequota eq 0 || $usequota eq 1 && $usedquota < $allowedquota}
+    var allowedExtensions = new Array({foreach name="formatloop" item="currentformat" from=$definition.formats}".{$currentformat.extension}"{if !$smarty.foreach.formatloop.last}, {/if}{/foreach});
+    var errorAllowedFilenum = "{gt text="You are not allowed to upload more than %s files at once." tag1=$definition.numfiles}";
+    var errorAlreadySelected = "{gt text="This file has already been selected."}";
+    var errorExtensionNotAllowed = "{gt text="The filetype of this file is not allowed."}";
+    withinForum = true;
+    maInitUploadFormFunction();
+
+    var errorAlreadyRunning = "{gt text="There is already a file being uploaded."}";
+    maInitUploadFormAsynchronous();
+    {/if}
+    /* ]]> */
+</script>
+{*    {else}
+<p>{gt text="Sorry, you have no permission for uploading files"}</p> *}
+{/if}
+{/if}

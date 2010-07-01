@@ -1,0 +1,79 @@
+<!--[* $Id$ *]-->
+<!--[* Purpose of this template: popup selector for pnForm and Content integration *]-->
+
+<!--[if $modules eq 0]-->
+<p class="z-center">
+    <!--[gt text="MediaAttach could not find a module, for which it has been activated. Please go to the module settings and activate MediaAttach for one or more modules of your choice." domain="module_mediaattach"]-->
+</p>
+<!--[else]-->
+
+<div id="<!--[$baseID]-->_preview" class="z-formrow">
+    <div class="z-label" style="min-height:25px;"><!--[pnimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""]--></div>
+    <div><strong><!--[gt text="Information about this file" domain="module_mediaattach"]--></strong></div>
+</div>
+<div id="<!--[$baseID]-->_previewcontainer">&nbsp;</div>
+
+<div class="z-formrow">
+    <label for="<!--[$baseID]-->_did"><!--[gt text="Module" domain="module_mediaattach"]--></label>
+    <select id="<!--[$baseID]-->_did" name="<!--[$baseID]-->_did" onchange="mediaAttach.itemSelector.onParamChanged()">
+        <option value="0"><!--[gt text="All" domain="module_mediaattach"]--></option>
+        <!--[foreach item="currentdef" from=$definitions]-->
+        <option value="<!--[$currentdef.did]-->"<!--[if $definitionid eq $currentdef.did]--> selected="selected"<!--[/if]-->><!--[pnmodgetinfo modname=$currentdef.modname info="displayname"]--> (<!--[$currentdef.modname]-->)&nbsp;</option>
+        <!--[/foreach]-->
+    </select>
+</div>
+
+<div class="z-formrow">
+    <label for="<!--[$baseID]-->_catid"><!--[gt text="Category" domain="module_mediaattach"]--></label>
+    <!--[gt text="Choose Category" assign="lblDef" domain="module_mediaattach"]-->
+    <!--[selector_category category=$mainCategory name="`$baseID`_catid" field="id" defaultText=$lblDef editLink=false selectedValue=$catID]-->
+</div>
+
+<div class="z-formrow">
+    <label for="<!--[$baseID]-->_fileid"><!--[gt text="File" domain="module_mediaattach"]--></label>
+    <select id="<!--[$baseID]-->_fileid" name="<!--[$baseID]-->" onchange="mediaAttach.itemSelector.onFileChanged()">
+        <!--[foreach item="file" from=$files]--><!--[strip]-->
+        <option value="<!--[$file.fileid]-->"<!--[if $selectedFileID eq $file.fileid]--> selected="selected"<!--[/if]-->>
+            <!--[$file.title]--> (<!--[$file.extension]-->)
+        </option><!--[/strip]-->
+        <!--[foreachelse]-->
+        <option value="0"><!--[gt text="No uploads found" domain="module_mediaattach"]--></option>
+        <!--[/foreach]-->
+    </select>
+</div>
+
+<div class="z-formrow">
+    <label for="<!--[$baseID]-->_sortby"><!--[gt text="Sort by" domain="module_mediaattach"]--></label>
+    <div>
+        <select id="<!--[$baseID]-->_sortby" name="sortby" onchange="mediaAttach.itemSelector.onParamChanged()">
+            <option value="date"<!--[if $sortby eq "date"]--> selected="selected"<!--[/if]-->><!--[gt text="date" domain="module_mediaattach"]--></option>
+            <option value="title"<!--[if $sortby eq "title"]--> selected="selected"<!--[/if]-->><!--[gt text="title" domain="module_mediaattach"]--></option>
+            <option value="module"<!--[if $sortby eq "module"]--> selected="selected"<!--[/if]-->><!--[gt text="module" domain="module_mediaattach"]--></option>
+            <option value="username"<!--[if $sortby eq "username"]--> selected="selected"<!--[/if]-->><!--[gt text="username" domain="module_mediaattach"]--></option>
+            <option value="filename"<!--[if $sortby eq "filename"]--> selected="selected"<!--[/if]-->><!--[gt text="filename" domain="module_mediaattach"]--></option>
+            <option value="filetype"<!--[if $sortby eq "filetype"]--> selected="selected"<!--[/if]-->><!--[gt text="filetype" domain="module_mediaattach"]--></option>
+            <option value="filesize"<!--[if $sortby eq "filesize"]--> selected="selected"<!--[/if]-->><!--[gt text="filesize" domain="module_mediaattach"]--></option>
+        </select>
+        <select id="<!--[$baseID]-->_sortdir" name="sortdir" onchange="mediaAttach.itemSelector.onParamChanged()">
+            <option value="asc"<!--[if $sortdir eq "asc"]--> selected="selected"<!--[/if]-->><!--[gt text="ascending" domain="module_mediaattach"]--></option>
+            <option value="desc"<!--[if $sortdir eq "desc"]--> selected="selected"<!--[/if]-->><!--[gt text="descending" domain="module_mediaattach"]--></option>
+        </select>
+    </div>
+</div>
+
+<div class="z-formrow">
+    <label for="<!--[$baseID]-->_filterby"><!--[gt text="Filter by" domain="module_mediaattach"]--></label>
+    <div>
+        <input type="text" id="<!--[$baseID]-->_filterby" name="searchfor" />
+        <input type="button" id="MediaAttach_gosearch" name="gosearch" value="<!--[gt text="Search" domain="module_mediaattach"]-->" onclick="mediaAttach.itemSelector.onParamChanged()" onkeypress="mediaAttach.itemSelector.onParamChanged()" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    /* <![CDATA[ */
+    Event.observe(window, 'load', function() {
+        mediaAttach.itemSelector.onLoad('<!--[$baseID]-->', <!--[$selectedFileID|default:0]-->);
+    });
+    /* ]]> */
+</script>
+<!--[/if]-->

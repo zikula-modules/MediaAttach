@@ -1,0 +1,121 @@
+{* $Id: MediaAttach_admin_def_edit.tpl 220 2007-08-11 15:23:48Z weckamc $ *}
+{* Purpose of this template: Definition editing *}
+
+{include file="MediaAttach_admin_header.tpl"}
+
+<div class="z-admincontainer">
+    <div class="z-adminpageicon">{zimg modname="core" src="edit.gif" set="icons/large" __alt="Edit this definition"} </div>
+    <h2>{gt text="Edit this definition"} </h2>
+    <form class="z-form" action="{zmodurl modname="MediaAttach" type="admin" func="updatedefinition"} " method="post" enctype="application/x-www-form-urlencoded">
+        <div>
+            <input type="hidden" name="authid" value="{$authid} " />
+            <input type="hidden" name="did" value="{$definition.did} " />
+            <fieldset>
+                <legend>{gt text="Edit this definition"} </legend>
+
+                <div class="z-formrow">
+                    <label>{gt text="Module"} </label>
+                    <span>{$definition.modname} </span>
+                </div>
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_groups_select">{gt text="Groups"} </label>
+                    <select id="MediaAttach_groups_select" name="groups[]" size="10" multiple="multiple">
+                        {foreach item="currentgroup" from=$allgroups}
+                        <option value="{$currentgroup.gid} "
+                            {foreach item=mygroup from=$groups}
+                            {if $mygroup.gid eq $currentgroup.gid} selected="selected"{/if}
+                            {/foreach}>
+                                {$currentgroup.groupname}
+                            </option>
+                        {/foreach}
+                    </select>
+                </div>
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_displayfiles">{gt text="Show uploaded files in the user section"} </label>
+                    <select id="MediaAttach_displayfiles" name="displayfiles" size="1">
+                        <option value="0"{if $definition.displayfiles eq 0} selected="selected"{/if} >{gt text="None"} </option>
+                        <option value="1"{if $definition.displayfiles eq 1} selected="selected"{/if} >{gt text="Only own"} </option>
+                        <option value="2"{if $definition.displayfiles eq 2} selected="selected"{/if} >{gt text="All"} </option>
+                    </select>
+                </div>
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_sendmailsedit">{gt text="Send a mail after uploading"} </label>
+                    <input type="checkbox" id="MediaAttach_sendmailsedit" name="sendmails" value="1"{if $definition.sendmails eq 1} checked="checked"{/if} onclick="maCheckMailDiv('edit')" onkeyup="maCheckMailDiv('edit')" />
+                </div>
+
+                <div id="divmailedit">
+                    <div class="z-formrow">
+                        <label for="MediaAttach_recipient">{gt text="Recipient of the mail"} </label>
+                        <input type="text" id="MediaAttach_recipient" name="recipient" maxlength="100" value="{$definition.recipient} " />
+                    </div>
+                </div>
+
+                {if $definition.sendmails eq 0}
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    $('divmailedit').hide();
+                    /* ]]> */
+                </script>
+                {/if}
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_maxsize">{gt text="Maximum file size during upload"} </label>
+                    <span><input type="text" id="MediaAttach_maxsize" name="maxsize" size="10" maxlength="20" value="{math equation="x/1024" x=$definition.maxsize format="%.1f"} " />&nbsp;{gt text="KB"} </span>
+                </div>
+                <div class="z-formrow">
+                    <label for="MediaAttach_downloadmode">{gt text="Download mode"} </label>
+                    <select id="MediaAttach_downloadmode" name="downloadmode" size="1">
+                        <option value="0"{if $definition.downloadmode eq 0} selected="selected"{/if} >{gt text="Physical"} </option>
+                        <option value="1"{if $definition.downloadmode eq 1} selected="selected"{/if} >{gt text="Inline"} </option>
+                    </select>
+                </div>
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_namingedit">{gt text="Naming convention"} </label>
+                    <select id="MediaAttach_namingedit" name="naming" size="1" onchange="maCheckNamingDiv('edit')" onblur="maCheckNamingDiv('edit')" onkeyup="maCheckNamingDiv('edit')">
+                        <option value="0"{if $definition.naming eq 0} selected="selected"{/if} >{gt text="Original filename"} </option>
+                        <option value="1"{if $definition.naming eq 1} selected="selected"{/if} >{gt text="Random filename"} </option>
+                        <option value="2"{if $definition.naming eq 2} selected="selected"{/if} >{gt text="Numbered with prefix"} </option>
+                    </select>
+                </div>
+                <div id="divnamingprefixedit">
+                    <div class="z-formrow">
+                        <label for="MediaAttach_namingprefix">{gt text="Prefix"} :</label>
+                        <input type="text" id="MediaAttach_namingprefix" name="namingprefix" maxlength="40" value="{$definition.namingprefix} " />
+                    </div>
+                </div>
+
+                {if $definition.naming neq 2}
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    $('divnamingprefixedit').hide();
+                    /* ]]> */
+                </script>
+                {/if}
+
+                <div class="z-formrow">
+                    <label for="MediaAttach_numfiles">{gt text="Number of files"} </label>
+                    <select id="MediaAttach_numfiles" name="numfiles" size="1">
+                        <option value="1"{if $definition.numfiles eq 1} selected="selected"{/if} >1</option>
+                        <option value="2"{if $definition.numfiles eq 2} selected="selected"{/if} >2</option>
+                        <option value="3"{if $definition.numfiles eq 3} selected="selected"{/if} >3</option>
+                        <option value="4"{if $definition.numfiles eq 4} selected="selected"{/if} >4</option>
+                        <option value="5"{if $definition.numfiles eq 5} selected="selected"{/if} >5</option>
+                        <option value="6"{if $definition.numfiles eq 6} selected="selected"{/if} >6</option>
+                        <option value="7"{if $definition.numfiles eq 7} selected="selected"{/if} >7</option>
+                        <option value="8"{if $definition.numfiles eq 8} selected="selected"{/if} >8</option>
+                    </select>
+                </div>
+                <div class="z-formbuttons">
+                    {zbutton src="button_ok.gif" set="icons/small" __alt="Update this definition" __title="Update this definition"}
+                    <a href="{zmodurl modname="MediaAttach" type="admin" func="viewdefinitions"} ">{zimg modname=core src="button_cancel.gif" set="icons/small" __alt="Cancel" __title="Cancel"} </a>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+
+</div>
+{include file="MediaAttach_admin_footer.tpl"}
