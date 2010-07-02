@@ -1,49 +1,49 @@
-<!--[* $Id: $ *]-->
-<!--[* Purpose of this template: One entry within the SWFUpload filelist *]-->
+{* $Id: $ *}
+{* Purpose of this template: One entry within the SWFUpload filelist *}
 
-<!--[*if ($definition.displayfiles eq 1 && $currentuser eq $file.uid) || $definition.displayfiles eq 2*]-->
-<!--[if $definition.hookcall ne true]-->
-    <p id="file<!--[$file.fileid]-->"><strong><!--[$file.title]--></strong><!--[if $file.extension ne "extvid"]--> (<!--[mafilesize size=$file.filesize]-->)<!--[/if]--></p>
+{*if ($definition.displayfiles eq 1 && $currentuser eq $file.uid) || $definition.displayfiles eq 2*}
+{if $definition.hookcall ne true}
+    <p id="file{$file.fileid}"><strong>{$file.title}</strong>{if $file.extension ne "extvid"} ({mafilesize size=$file.filesize}){/if}</p>
 
     <div style="float: right; margin-right: 15px">
-        <!--[mafilebuttons file=$file edit=1 delete=1]-->
+        {mafilebuttons file=$file edit=1 delete=1}
     </div>
 
     <div style="float: right; margin: 0 15px; width: 180px">
-        <!--[if $file.desc ne ""]--><!--[$file.desc]--><br /><!--[/if]-->
-        <!--[gt text="from"]--> <!--[$file.username|userprofilelink|pnvarprephtmldisplay]--><br />
-        <!--[gt text="on"]--> <!--[$file.date|dateformat:datetimebrief]--><br />
-        <!--[include file="MediaAttach_file_categories.tpl"]-->
+        {if $file.desc ne ""}{$file.desc}<br />{/if}
+        {gt text="from"} {$file.username|userprofilelink|pnvarprephtmldisplay}<br />
+        {gt text="on"} {$file.date|dateformat:datetimebrief}<br />
+        {include file="MediaAttach_file_categories.tpl"}
     </div>
 
     <div style="float: right; margin: 5px 15px; width: 75px">
-        <!--[mafilebuttons file=$file view=1 info=1 dl=1 mail=1]-->
+        {mafilebuttons file=$file view=1 info=1 dl=1 mail=1}
     </div>
 
     <div style="margin: 0 15px">
-<!--[/if]-->
-        <!--[getinlinesnippet file=$file]-->
-<!--[if $definition.hookcall ne true]-->
+{/if}
+        {getinlinesnippet file=$file}
+{if $definition.hookcall ne true}
     </div>
 
-  <!--[if $file.extension ne "extvid"]-->
-    <div id="fileinfo<!--[$file.fileid]-->" style="display: none">
-        <!--[pnmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid]-->
+  {if $file.extension ne "extvid"}
+    <div id="fileinfo{$file.fileid}" style="display: none">
+        {zmodfunc modname="MediaAttach" type="fileinfo" func="showfileinfo" fileid=$file.fileid}
     </div>
-  <!--[/if]-->
+  {/if}
 
     <hr style="clear: both" />
 
-  <!--[if $file.extension ne "extvid"]-->
+  {if $file.extension ne "extvid"}
     <script type="text/javascript" language="javascript">
     /* <![CDATA[ */
-        function maSwitchFileInfo<!--[$file.fileid]-->(event) {
-            maSwitchDisplayState('fileinfo<!--[$file.fileid]-->');
+        function maSwitchFileInfo{$file.fileid}(event) {{
+            maSwitchDisplayState('fileinfo{$file.fileid}');
             Event.stop(event);
-        }
-        $('fileinfo<!--[$file.fileid]-->_switch').observe('click', maSwitchFileInfo<!--[$file.fileid]-->);
-        $('fileinfo<!--[$file.fileid]-->_switch').observe('keypress', maSwitchFileInfo<!--[$file.fileid]-->);
+        }}
+        $('fileinfo{$file.fileid}_switch').observe('click', maSwitchFileInfo{$file.fileid});
+        $('fileinfo{$file.fileid}_switch').observe('keypress', maSwitchFileInfo{$file.fileid});
     /* ]]> */
     </script>
-  <!--[/if]-->
-<!--[/if]-->
+  {/if}
+{/if}
