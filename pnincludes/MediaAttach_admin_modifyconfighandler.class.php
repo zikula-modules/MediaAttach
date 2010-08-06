@@ -13,7 +13,7 @@
 Loader::requireOnce('modules/MediaAttach/common.php');
 
 
-class MediaAttach_admin_modifyconfighandler
+class MediaAttach_admin_modifyconfighandler extends Form_Handler
 {
     var $id;
 
@@ -85,9 +85,13 @@ class MediaAttach_admin_modifyconfighandler
 
         $currentversion = pnModGetInfo(pnModGetIDFromName('MediaAttach'));
         $currentversion = $currentversion['version'];
-        $newestversion = file('http://guite.de/downloads/MediaAttach_version.txt');
+        $newestversion  = $currentversion;
+        if (ini_get('allow_url_fopen') == '1') {
+            $newestversion = file('http://guite.de/downloads/MediaAttach_version.txt');
+            $newestversion = $newestversion[0];
+        }
         $render->assign('yourversion', trim($currentversion));
-        $render->assign('newestversion', trim($newestversion[0]));
+        $render->assign('newestversion', trim($newestversion));
 
         return true;
     }
