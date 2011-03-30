@@ -102,7 +102,7 @@
     <iframe id="myuploadframe" name="myuploadframe" src="ajax.php?module=MediaAttach&amp;func=performupload" style="display: none"></iframe>
 
     {zmodcallhooks hookobject=item hookaction=new module=MediaAttach}
-    {zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" __alt=""}
+    {zimg id="ajax_indicator" style="display: none" modname="core" set="ajax" src="indicator_circle.gif" __alt=""}
     <span id="myuploadresult" style="display: none">{gt text="Uploading..."}</span>
     <input id="btnUpload" type="submit" value="{gt text="Upload"}" style="display: none" />
     {else}

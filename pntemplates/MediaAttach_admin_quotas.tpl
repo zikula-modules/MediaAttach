@@ -62,7 +62,7 @@
                 <label for="newuname">{gt text="Name"}</label>
                 <div>
                     <input type="text" name="uname" id="newuname" value="" />
-                    {zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" __alt=""}
+                    {zimg id="ajax_indicator" style="display: none" modname="core" set="ajax" src="indicator_circle.gif" __alt=""}
                 </div>
             </div>
             <div id="username_choices" class="autocomplete_user"></div>

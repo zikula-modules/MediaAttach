@@ -85,7 +85,7 @@
 
             {zmodcallhooks hookobject=item hookaction=new module=MediaAttach}
             <input type="submit" value="{gt text="Upload"}" class="maadminright" />
-            {zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""}<br />
+            {zimg id="ajax_indicator" style="display: none" modname="core" set="ajax" src="indicator_circle.gif" alt=""}<br />
             <span id="myuploadresult" style="display: none">{gt text="Uploading..."}</span>
         </fieldset>
         {/if}

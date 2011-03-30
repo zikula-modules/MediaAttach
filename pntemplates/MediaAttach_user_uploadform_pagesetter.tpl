@@ -110,7 +110,7 @@
                     <br />
                     {zmodcallhooks hookobject=item hookaction=new module=MediaAttach}
                     <input type="submit" value="{gt text="Upload"}" class="maadminright" />
-                    {zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" __alt=""}
+                    {zimg id="ajax_indicator" style="display: none" modname="core" set="ajax" src="indicator_circle.gif" __alt=""}
                     <span id="myuploadresult" style="display: none">{gt text="Uploading..."}</span><br />
                 {else}
                     <p>{gt text="You have no more memory for uploads available"}</p>

@@ -8,7 +8,7 @@
 {else}
 
 <div id="{$baseID}_preview" class="z-formrow">
-    <div class="z-label" style="min-height:25px;">{zimg id="ajax_indicator" style="display: none" modname="core" set="icons/extrasmall" src="indicator_circle.gif" alt=""}</div>
+    <div class="z-label" style="min-height:25px;">{zimg id="ajax_indicator" style="display: none" modname="core" set="ajax" src="indicator_circle.gif" alt=""}</div>
     <div><strong>{gt text="Information about this file" domain="module_mediaattach"}</strong></div>
 </div>
 <div id="{$baseID}_previewcontainer">&nbsp;</div>
