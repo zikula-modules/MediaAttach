@@ -19,8 +19,6 @@ function MediaAttach_pntables()
 {
     $pntable = array();
 
-    $dbdriver = DBConnectionStack::getConnectionDBDriver();
-
 
     // Formats table
     $pntable['ma_formats'] = DBUtil::getLimitedTablename('mediaattach_formats');
