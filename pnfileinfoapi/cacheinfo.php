@@ -23,7 +23,7 @@ function MediaAttach_fileinfoapi_cacheinfo(&$args)
         return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
-    $cacheDir = pnConfigGetVar('temp') . '/pnRender_cache';
+    $cacheDir = pnConfigGetVar('temp') . '/view_cache';
     $cacheId = 'fileinfo_' . $args['fileid'];
     $cacheFile = $cacheDir . '/' . md5($cacheId) . '.ma';
     $cacheFileOS = DataUtil::formatForOS($cacheFile, true);
