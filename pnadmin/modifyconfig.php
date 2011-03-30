@@ -25,8 +25,7 @@ function MediaAttach_admin_modifyconfig()
 
     Loader::requireOnce('modules/MediaAttach/pnincludes/MediaAttach_admin_modifyconfighandler.class.php');
 
-    $render = FormUtil::newpnForm('MediaAttach');
+    $render = FormUtil::newForm('MediaAttach');
 
-    return $render->pnFormExecute('MediaAttach_admin_modifyconfig.htm', new MediaAttach_admin_modifyconfighandler());
+    return $render->execute('MediaAttach_admin_modifyconfig.htm', new MediaAttach_admin_modifyconfighandler());
 }
-
