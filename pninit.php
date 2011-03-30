@@ -87,8 +87,8 @@ function MediaAttach_upgrade($oldversion)
       switch ($oldversion) {
         case '1.0':
         case '1.0.0.1':
-            if (!DBUtil::changeTable('ma_files',$dom)) {
-                 return LogUtil::registerError(__('An Error occured while updating to Rev.') .'1.0.0.1');
+            if (!DBUtil::changeTable('ma_files')) {
+                 return LogUtil::registerError(__('An Error occured while updating to Rev.', $dom) .'1.0.0.1');
             }
         }
 
@@ -105,19 +105,19 @@ function MediaAttach_delete()
 {
     $dom = ZLanguage::getModuleDomain('MediaAttach');
     if (!pnModUnregisterHook('item', 'display', 'GUI', 'MediaAttach', 'user', 'viewupload')) {
-        return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 1');
+        return LogUtil::registerError(__('Could not unregister the [%s] hook.', 'viewupload', $dom) . ', Nr. 1');
     }
     if (!pnModUnregisterHook('item', 'create', 'GUI', 'MediaAttach', 'user', 'createupload')) {
-        return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 2');
+        return LogUtil::registerError(__('Could not unregister the [%s] hook.', 'create.createupload', $dom) . ', Nr. 2');
     }
     if (!pnModUnregisterHook('item', 'update', 'GUI', 'MediaAttach', 'user', 'createupload')) {
-        return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 3');
+        return LogUtil::registerError(__('Could not unregister the [%s] hook.', 'update.createupload', $dom) . ', Nr. 3');
     }
     if (!pnModUnregisterHook('item', 'delete', 'API', 'MediaAttach', 'user', 'delete')) {
-        return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 4');
+        return LogUtil::registerError(__('Could not unregister the [%s] hook.', 'delete', $dom) . ', Nr. 4');
     }
     if (!pnModUnregisterHook('module', 'remove', 'API', 'MediaAttach', 'admin', 'removehook')) {
-        return LogUtil::registerError(_UNREGISTERFAILED . ', Nr. 5');
+        return LogUtil::registerError(__('Could not unregister the [%s] hook.', 'removehook', $dom) . ', Nr. 5');
     }
 
     $tableNames = array('formats', 'groups', 'formatgroups', 'defs', 'defgroups', 'files', 'quotas');
