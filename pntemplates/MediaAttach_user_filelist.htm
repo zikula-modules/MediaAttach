@@ -2,9 +2,7 @@
 <!--[* Purpose of this template: The list of files which is included in uploadform.html *]-->
 
 <!--[* let IE execute a js directly after rendering the DOM - this fixes that the user has to click for activating activeX for flash *]-->
-<!--[add_additional_header header='<!--']-->
-<!--[add_additional_header header='[if IE]><script type="text/javascript" src="fix_eolas.js" defer="defer"></script><![endif]']-->
-<!--[add_additional_header header='-->']-->
+{browserhack condition="if IE"}<script type="text/javascript" src="fix_eolas.js" defer="defer"></script>{/browserhack}
 
 <!--[if $definition.displayfiles ne 0]-->
 <!--[pnuserloggedin assign="isLoggedIn"]-->

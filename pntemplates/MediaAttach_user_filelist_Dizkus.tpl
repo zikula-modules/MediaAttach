@@ -2,9 +2,7 @@
 {* Purpose of this template: The filelist for Dizkus *}
 
 {* let IE execute a js directly after rendering the DOM - this fixes that the user has to click for activating activeX for flash *}
-{add_additional_header header='<!--'}
-{add_additional_header header='[if IE]><script type="text/javascript" src="fix_eolas.js" defer="defer"></script><![endif]'}
-{add_additional_header header='-->'}
+{browserhack condition="if IE"}<script type="text/javascript" src="fix_eolas.js" defer="defer"></script>{/browserhack}
 
 {if $definition.displayfiles ne 0}
 {zuserloggedin assign="isLoggedIn"}
