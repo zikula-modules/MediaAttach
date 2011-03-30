@@ -13,7 +13,7 @@
 Loader::requireOnce('modules/MediaAttach/common.php');
 
 
-class MediaAttach_admin_modifyconfighandler extends Form_Handler
+class MediaAttach_admin_modifyconfighandler extends Zikula_Form_AbstractHandler
 {
     var $id;
 
